@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 5 — Break</title>
+  <title>Step 5 — Break: Simulated Failure</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -17,17 +17,69 @@
       }
     };
   </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .option:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
+  </style>
 </head>
-<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
-  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6 text-center glow-border fade-in">
     <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 5 — Break</h1>
-    <p class="text-gray-300 mb-4">What if the screen stays blank?</p>
-    <p class="text-gray-400">A computer might not be broken — maybe the monitor is off, the cable is loose, or the program did not start correctly.</p>
-    <p class="text-gray-300 mt-4">This is how real troubleshooting starts: notice the symptom, then look for the simplest cause.</p>
-    <div class="mt-6 flex gap-3">
-      <button onclick="window.location.href='step4_test.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
-      <button onclick="window.location.href='step6_fix.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    <h2 class="text-xl text-neonBlue mb-4">Simulated Hardware Failure</h2>
+
+    <p class="text-gray-300 mb-6">
+      Your computer suddenly stops showing anything on the monitor.
+      You hear the fans spinning, but the screen is black.
+      Diagnose what might have gone wrong.
+    </p>
+
+    <div class="space-y-4 text-left text-gray-300">
+      <div class="option p-3 border border-neonBlue/40 rounded" onclick="checkAnswer('A')">
+        A. The monitor cable is unplugged.
+      </div>
+      <div class="option p-3 border border-neonBlue/40 rounded" onclick="checkAnswer('B')">
+        B. The CPU is overheating.
+      </div>
+      <div class="option p-3 border border-neonBlue/40 rounded" onclick="checkAnswer('C')">
+        C. The keyboard is broken.
+      </div>
     </div>
+
+    <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
+
+    <button onclick="nextStep()"
+            class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+      Next Step → Fix
+    </button>
+
+    <button onclick="goBack()"
+            class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">
+      ← Back to Room
+    </button>
   </div>
+
+  <script>
+    function checkAnswer(choice) {
+      if (choice === 'A') {
+        document.getElementById("feedback").textContent =
+          "✅ Correct — the monitor cable is unplugged. You’ve identified the failure!";
+        localStorage.setItem("room0_1_breakComplete", "true");
+      } else {
+        document.getElementById("feedback").textContent =
+          "❌ Incorrect — think about what connects the monitor to the computer.";
+      }
+    }
+
+    function nextStep() {
+      window.location.href = "step6_fix.html";
+    }
+
+    function goBack() {
+      window.location.href = "room0_1.html";
+    }
+  </script>
 </body>
 </html>
