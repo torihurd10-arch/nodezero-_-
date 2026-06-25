@@ -169,10 +169,10 @@ function renderRooms() {
     button.type = "button";
     button.dataset.roomId = room.id;
     button.className = completed
-      ? "mt-4 w-full inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-gray-400 cursor-default"
+      ? "mt-4 w-full inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-gray-400 hover:bg-white/10 transition"
       : "mt-4 w-full inline-flex items-center justify-center rounded-full bg-neonGreen text-black hover:bg-neonGreen/80 px-3 py-2 text-xs font-semibold transition";
-    button.textContent = completed ? "Completed" : "Start room";
-    button.disabled = completed;
+    button.textContent = completed ? "Review room" : "Open room";
+    button.setAttribute("onclick", `window.location.href='room.html?id=${room.id}'`);
 
     card.appendChild(button);
     grid.appendChild(card);
@@ -203,13 +203,6 @@ function setupEventListeners() {
   });
 
   document.getElementById("resetProgressBtn")?.addEventListener("click", resetProgress);
-
-  document.getElementById("roomsGrid")?.addEventListener("click", event => {
-    const button = event.target.closest("button[data-room-id]");
-    if (button) {
-      completeRoom(button.dataset.roomId);
-    }
-  });
 }
 
 function init() {
