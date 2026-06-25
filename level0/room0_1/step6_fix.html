@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 6 — Fix</title>
+  <title>Step 6 — Fix: Reconnect the Monitor</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -17,21 +17,74 @@
       }
     };
   </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .clickable:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
+  </style>
 </head>
-<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
-  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
     <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 6 — Fix</h1>
-    <p class="text-gray-300 mb-4">A practical fix routine:</p>
-    <ul class="list-disc list-inside text-gray-300 space-y-2">
-      <li>Check the power cable and screen connection.</li>
-      <li>Restart the computer if the system is frozen.</li>
-      <li>Confirm the program launched correctly.</li>
-    </ul>
-    <p class="text-gray-400 mt-4">Small checks often solve the biggest problems.</p>
-    <div class="mt-6 flex gap-3">
-      <button onclick="window.location.href='step5_break.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
-      <button onclick="window.location.href='step7_explain.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    <h2 class="text-xl text-neonBlue mb-4">Reconnect the Monitor Cable</h2>
+
+    <p class="text-gray-300 mb-6">
+      You’ve diagnosed that the monitor cable was unplugged.
+      Now perform the fix by reconnecting it to restore the display.
+    </p>
+
+    <div class="space-y-4 text-left text-gray-300">
+      <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="performFix('plug')">
+        🔌 Reconnect the monitor cable
+      </div>
+      <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="performFix('restart')">
+        🔄 Restart the computer
+      </div>
+      <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="performFix('ignore')">
+        🚫 Ignore the problem
+      </div>
     </div>
+
+    <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
+
+    <button onclick="nextStep()"
+            class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+      Next Step → Explain
+    </button>
+
+    <button onclick="goBack()"
+            class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">
+      ← Back to Room
+    </button>
   </div>
+
+  <script>
+    function performFix(action) {
+      if (action === 'plug') {
+        document.getElementById("feedback").textContent =
+          "✅ Display restored! The monitor shows the desktop again.";
+        let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
+        xp += 50;
+        localStorage.setItem("nodezero_xp", String(xp));
+        localStorage.setItem("room0_1_fixComplete", "true");
+      } else if (action === 'restart') {
+        document.getElementById("feedback").textContent =
+          "⚠️ Restarting didn’t help — the cable is still unplugged.";
+      } else {
+        document.getElementById("feedback").textContent =
+          "❌ Ignoring the issue won’t fix the display.";
+      }
+    }
+
+    function nextStep() {
+      window.location.href = "step7_explain.html";
+    }
+
+    function goBack() {
+      window.location.href = "room0_1.html";
+    }
+  </script>
 </body>
 </html>
