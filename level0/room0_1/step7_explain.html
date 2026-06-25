@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 7 — Explain</title>
+  <title>Step 7 — Explain: Describe the Fix</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -17,17 +17,67 @@
       }
     };
   </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    textarea { background-color: rgba(0,0,0,0.6); border: 1px solid #00C8FF; color: #00FF9C; }
+  </style>
 </head>
-<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
-  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
     <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 7 — Explain</h1>
-    <p class="text-gray-300 mb-4">Try explaining the computer flow in your own words:</p>
-    <p class="text-gray-400">“A computer takes input, processes it with software and hardware, and produces output.”</p>
-    <p class="text-gray-300 mt-4">Being able to explain a concept is a sign that you understand it.</p>
-    <div class="mt-6 flex gap-3">
-      <button onclick="window.location.href='step6_fix.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
-      <button onclick="window.location.href='step8_repeat.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
-    </div>
+    <h2 class="text-xl text-neonBlue mb-4">Describe What Happened and How You Fixed It</h2>
+
+    <p class="text-gray-300 mb-6">
+      In IT support, documenting your fix is just as important as performing it.
+      Write a short summary explaining the problem, the cause, and the solution.
+    </p>
+
+    <textarea id="explanation" rows="6" class="w-full rounded-lg p-3 mb-4" placeholder="Example: The monitor was not displaying because the cable was unplugged. I reconnected it and confirmed the display worked."></textarea>
+
+    <button onclick="saveExplanation()"
+            class="px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+      ✅ Save Explanation
+    </button>
+
+    <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
+
+    <button onclick="nextStep()"
+            class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+      Next Step → Repeat
+    </button>
+
+    <button onclick="goBack()"
+            class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">
+      ← Back to Room
+    </button>
   </div>
+
+  <script>
+    function saveExplanation() {
+      const text = document.getElementById("explanation").value.trim();
+      if (text.length < 20) {
+        document.getElementById("feedback").textContent =
+          "⚠️ Please write at least one full sentence describing the fix.";
+        return;
+      }
+      localStorage.setItem("room0_1_explanation", text);
+      let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
+      xp += 25;
+      localStorage.setItem("nodezero_xp", String(xp));
+      document.getElementById("feedback").textContent =
+        "✅ Explanation saved! You earned 25 XP for documentation.";
+    }
+
+    function nextStep() {
+      window.location.href = "step8_repeat.html";
+    }
+
+    function goBack() {
+      window.location.href = "room0_1.html";
+    }
+  </script>
 </body>
 </html>
