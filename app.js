@@ -16,26 +16,42 @@ const LEVELS = [
       {
         id: "room0_1",
         title: "Room 0.1 — Files & Folders",
-        description: "Create, rename, delete, and understand files and folders.",
+        description: "Learn how to create, rename, and delete folders.",
         level: 0,
         difficulty: "Beginner",
         order: 1
       },
       {
         id: "room0_2",
-        title: "Room 0.2 — Install & Uninstall",
-        description: "Download, install, and remove software safely.",
+        title: "Room 0.2 — Downloads & Installs",
+        description: "Practice downloading and installing apps safely.",
         level: 0,
         difficulty: "Beginner",
         order: 2
       },
       {
         id: "room0_3",
-        title: "Room 0.3 — Networking Basics",
-        description: "Learn IP, ping, and DNS at a basic level.",
+        title: "Room 0.3 — Keyboard & Mouse",
+        description: "Master basic typing and mouse control.",
         level: 0,
         difficulty: "Beginner",
         order: 3
+      },
+      {
+        id: "room0_4",
+        title: "Room 0.4 — File Explorer",
+        description: "Navigate folders and files like a pro.",
+        level: 0,
+        difficulty: "Beginner",
+        order: 4
+      },
+      {
+        id: "room0_5",
+        title: "Room 0.5 — Task Manager",
+        description: "Learn how to open and close programs safely.",
+        level: 0,
+        difficulty: "Beginner",
+        order: 5
       }
     ]
   },
