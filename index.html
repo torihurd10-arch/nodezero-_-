@@ -58,8 +58,8 @@
     <div class="grid grid-cols-3 gap-4">
       <div class="bg-black/60 border border-neonBlue/60 rounded-lg p-4">
         <h3 class="text-neonGreen font-semibold mb-2">Operator Status</h3>
-        <p class="text-gray-300">Level 0</p>
-        <p class="text-gray-300">XP: 0</p>
+        <p id="operatorLevel" class="text-gray-300">Level 0</p>
+        <p id="operatorXP" class="text-gray-300">XP: 0</p>
         <p class="text-gray-300">Streak: 0 days</p>
         <button onclick="resetProgress()" class="mt-2 text-xs border border-gray-500 px-2 py-1 rounded hover:bg-gray-800">Reset Progress</button>
       </div>
@@ -77,7 +77,7 @@
 
       <div class="bg-black/60 border border-neonBlue/60 rounded-lg p-4">
         <h3 class="text-neonGreen font-semibold mb-2">Phase 0 Progress</h3>
-        <p class="text-gray-300">0 % complete</p>
+        <p id="phaseProgress" class="text-gray-300">0 % complete</p>
         <p class="text-gray-400 text-sm">Complete all Level 0 missions to unlock Level 1.</p>
       </div>
     </div>
@@ -95,6 +95,15 @@
         `Learning Progress: ${progress}%`;
       document.getElementById("earningPotential").textContent =
         `Estimated Earning Potential: $${earning.toLocaleString()} – $${(earning + 5000).toLocaleString()} / yr`;
+
+      // Update progress cards
+      const levelBox = document.querySelector("#operatorLevel");
+      const xpBox = document.querySelector("#operatorXP");
+      const phaseBox = document.querySelector("#phaseProgress");
+
+      if (levelBox) levelBox.textContent = `Level ${level}`;
+      if (xpBox) xpBox.textContent = `XP: ${xp}`;
+      if (phaseBox) phaseBox.textContent = `${progress}% complete`;
     }
 
     // Listen for XP changes from lessons
