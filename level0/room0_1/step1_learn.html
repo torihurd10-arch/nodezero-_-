@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 1 — Learn: What is a Computer?</title>
+  <title>Learn + See — What is a Computer?</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -21,34 +21,51 @@
     .glow-border { box-shadow: 0 0 20px #00FF9C; }
     .fade-in { animation: fadeIn 1.2s ease-in; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .clickable:hover { color: #00FF9C; cursor: pointer; }
   </style>
 </head>
 
 <body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
-  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 1 — Learn</h1>
+  <div class="max-w-4xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Learn + See</h1>
     <h2 class="text-xl text-neonBlue mb-4">What is a Computer?</h2>
 
     <p class="text-gray-300 mb-6">
-      A computer is a machine that processes information. It takes input, performs calculations, and produces output.
-      Every computer has two main parts: <span class="text-neonGreen">hardware</span> (the physical components you can touch)
-      and <span class="text-neonBlue">software</span> (the programs that tell the hardware what to do).
+      A computer processes information using hardware and software. Click each part below to see what it does.
     </p>
+
+    <div class="mb-6">
+      <iframe width="560" height="315"
+        src="https://www.youtube.com/embed/5o3fMLPY7qY"
+        title="What is a Computer? (Beginner Explanation)"
+        frameborder="0"
+        allowfullscreen
+        class="mx-auto rounded-lg border border-neonBlue/60">
+      </iframe>
+    </div>
 
     <div class="grid grid-cols-2 gap-4 text-gray-300 mb-6">
       <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
         <h3 class="text-neonGreen font-semibold mb-2">Hardware</h3>
-        <p>CPU — the brain<br>RAM — short-term memory<br>Storage — long-term memory<br>Monitor — output device</p>
+        <p class="clickable" onclick="showInfo('CPU')">CPU — Click to learn</p>
+        <p class="clickable" onclick="showInfo('RAM')">RAM — Click to learn</p>
+        <p class="clickable" onclick="showInfo('Storage')">Storage — Click to learn</p>
+        <p class="clickable" onclick="showInfo('Monitor')">Monitor — Click to learn</p>
       </div>
+
       <div class="bg-black/60 border border-neonGreen/40 rounded-lg p-4">
         <h3 class="text-neonBlue font-semibold mb-2">Software</h3>
-        <p>Operating System — controls hardware<br>Applications — perform tasks<br>Drivers — connect hardware and software</p>
+        <p class="clickable" onclick="showInfo('OS')">Operating System — Click to learn</p>
+        <p class="clickable" onclick="showInfo('Apps')">Applications — Click to learn</p>
+        <p class="clickable" onclick="showInfo('Drivers')">Drivers — Click to learn</p>
       </div>
     </div>
 
+    <p id="infoBox" class="text-neonGreen font-semibold mb-6"></p>
+
     <button onclick="nextStep()"
             class="mt-4 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
-      Next Step → See
+      Next Step → Test
     </button>
 
     <button onclick="goBack()"
@@ -58,8 +75,21 @@
   </div>
 
   <script>
+    function showInfo(part) {
+      const info = {
+        CPU: "The CPU is the brain of the computer — it processes instructions.",
+        RAM: "RAM is short-term memory used while programs run.",
+        Storage: "Storage keeps data even when the computer is off.",
+        Monitor: "The monitor displays output from the computer.",
+        OS: "The operating system controls hardware and runs programs.",
+        Apps: "Applications perform specific tasks like writing or browsing.",
+        Drivers: "Drivers connect hardware to the operating system."
+      };
+      document.getElementById("infoBox").textContent = info[part];
+    }
+
     function nextStep() {
-      window.location.href = "step2_see.html";
+      window.location.href = "step4_test.html";
     }
     function goBack() {
       window.location.href = "room0_1.html";

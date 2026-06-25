@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 4 — Test</title>
+  <title>Step 4 — Test: Computer Basics</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -17,21 +17,88 @@
       }
     };
   </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .option:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
+  </style>
 </head>
-<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
-  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
     <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 4 — Test</h1>
-    <p class="text-gray-300 mb-4">Quick check:</p>
-    <div class="space-y-2 text-gray-300">
-      <p>1. What is the computer’s job?</p>
-      <p>2. What is hardware?</p>
-      <p>3. What is software?</p>
+    <h2 class="text-xl text-neonBlue mb-4">Computer Basics Quiz</h2>
+
+    <div id="quiz" class="space-y-6 text-left text-gray-300">
+      <div>
+        <p class="mb-2">1️⃣ What does the CPU do?</p>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(1,'A')">A. Stores files permanently</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(1,'B')">B. Processes instructions</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(1,'C')">C. Displays images</div>
+        <p id="q1Feedback" class="mt-2 text-sm"></p>
+      </div>
+
+      <div>
+        <p class="mb-2">2️⃣ Which part is short-term memory?</p>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(2,'A')">A. RAM</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(2,'B')">B. Storage</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(2,'C')">C. Monitor</div>
+        <p id="q2Feedback" class="mt-2 text-sm"></p>
+      </div>
+
+      <div>
+        <p class="mb-2">3️⃣ What connects hardware and software?</p>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(3,'A')">A. Drivers</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(3,'B')">B. Applications</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(3,'C')">C. Browsers</div>
+        <p id="q3Feedback" class="mt-2 text-sm"></p>
+      </div>
     </div>
-    <p class="text-gray-400 mt-4">If you can answer those, you’re ready for the next step.</p>
-    <div class="mt-6 flex gap-3">
-      <button onclick="window.location.href='step3_do.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+
+    <p id="resultBox" class="mt-6 text-neonGreen font-semibold"></p>
+    <p id="xpBox" class="mt-2 text-sm text-gray-400"></p>
+
+    <div class="mt-6 flex gap-3 justify-center">
+      <button onclick="window.location.href='step1_learn.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
       <button onclick="window.location.href='step5_break.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
     </div>
   </div>
+
+  <script>
+    const answers = { 1: 'B', 2: 'A', 3: 'A' };
+    const answered = { 1: false, 2: false, 3: false };
+    let score = 0;
+    let hasAwarded = false;
+
+    function checkAnswer(question, choice) {
+      if (answered[question]) return;
+
+      answered[question] = true;
+      const feedbackEl = document.getElementById(`q${question}Feedback`);
+      const correct = answers[question] === choice;
+
+      if (correct) {
+        score += 1;
+        feedbackEl.textContent = 'Correct!';
+        feedbackEl.className = 'mt-2 text-sm text-neonGreen';
+      } else {
+        feedbackEl.textContent = `Not quite. The correct answer is ${answers[question]}.`;
+        feedbackEl.className = 'mt-2 text-sm text-neonBlue';
+      }
+
+      const completed = Object.values(answered).filter(Boolean).length;
+      if (completed === 3 && !hasAwarded) {
+        hasAwarded = true;
+        const currentXP = parseInt(localStorage.getItem('nodezero_xp') || '0', 10);
+        const newXP = currentXP + 25;
+        localStorage.setItem('nodezero_xp', String(newXP));
+        document.getElementById('resultBox').textContent = `Quiz complete! You scored ${score}/3.`;
+        document.getElementById('xpBox').textContent = `You earned 25 XP. Total XP: ${newXP}`;
+      } else if (completed === 3) {
+        document.getElementById('resultBox').textContent = `Quiz complete! You scored ${score}/3.`;
+      }
+    }
+  </script>
 </body>
 </html>
