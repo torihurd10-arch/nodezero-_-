@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NodeZero – IT Tickets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDark: "#050816",
+            neonGreen: "#00FF9C",
+            neonBlue: "#00C8FF"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen">
+  <div class="max-w-4xl mx-auto px-4 py-6">
+    <div class="flex items-center justify-between mb-4">
+      <h1 class="text-2xl font-bold text-neonBlue">IT Job Tickets</h1>
+      <button onclick="goBack()" class="text-xs border border-gray-500 px-2 py-1 rounded hover:bg-gray-800">Back to Dashboard</button>
+    </div>
+
+    <div id="ticketContainer" class="space-y-4"></div>
+  </div>
+
+  <script>
+    const TICKETS = [
+      {
+        id: "ticket0",
+        title: "Basic Computer Setup",
+        level: 0,
+        steps: [
+          "Create a folder named 'NodeZero_Practice'.",
+          "Download and install Notepad++.",
+          "Type 'Mission Complete' and save."
+        ]
+      },
+      {
+        id: "ticket1",
+        title: "User Account Creation",
+        level: 1,
+        steps: [
+          "Open Control Panel → User Accounts.",
+          "Create a new local user named 'TestUser'.",
+          "Switch accounts and log in."
+        ]
+      },
+      {
+        id: "ticket2",
+        title: "Network Troubleshooting",
+        level: 3,
+        steps: [
+          "Run ipconfig and check IP address.",
+          "Ping 8.8.8.8.",
+          "Ping google.com."
+        ]
+      }
+    ];
+
+    const container = document.getElementById("ticketContainer");
+    const xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
+    const currentLevel = Math.floor(xp / 200);
+    const visibleTickets = TICKETS.filter(ticket => ticket.level <= currentLevel);
+
+    visibleTickets.forEach(ticket => {
+      const div = document.createElement("div");
+      div.className = "bg-black/60 border border-neonBlue/60 rounded-lg p-4";
+      div.innerHTML = `
+        <h2 class="text-neonGreen font-semibold mb-1">${ticket.title}</h2>
+        <p class="text-sm text-gray-300 mb-2"><span class="font-semibold">Level:</span> ${ticket.level}</p>
+        <ul class="list-disc pl-5 text-gray-300">
+          ${ticket.steps.map(step => `<li>${step}</li>`).join("")}
+        </ul>
+      `;
+      container.appendChild(div);
+    });
+
+    function goBack() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

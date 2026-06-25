@@ -42,6 +42,10 @@
             class="mt-6 inline-block px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
       Mark as Complete
     </button>
+    <button onclick="nextRoom()"
+            class="mt-2 inline-block px-4 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">
+      Next Room →
+    </button>
   </div>
 
   <script>
@@ -195,6 +199,25 @@
 
     function goBack() {
       window.location.href = "index.html";
+    }
+
+    function nextRoom() {
+      const progress = JSON.parse(localStorage.getItem("nodezero_progress") || "{}");
+      const roomIds = Object.keys(rooms);
+      const currentIndex = roomIds.indexOf(roomId);
+      const nextIndex = currentIndex + 1;
+
+      if (nextIndex < roomIds.length) {
+        const nextId = roomIds[nextIndex];
+        if (progress[roomId]) {
+          window.location.href = `room.html?id=${nextId}`;
+        } else {
+          alert("Complete this mission first to unlock the next room.");
+        }
+      } else {
+        alert("You’ve completed all rooms! Returning to dashboard.");
+        window.location.href = "index.html";
+      }
     }
 
     function renderRoom() {

@@ -163,6 +163,24 @@ function setStreak(streak) {
   localStorage.setItem(STORAGE_KEY_STREAK, String(streak));
 }
 
+function getUnlockedRooms() {
+  const progress = JSON.parse(localStorage.getItem("nodezero_progress") || "{}");
+  const unlocked = [];
+
+  rooms.forEach(room => {
+    const levelComplete = Object.keys(progress)
+      .filter(id => id.startsWith(`room${room.level}_`))
+      .length;
+
+    // Unlock next level only if all previous level rooms are complete
+    if (room.level === 0 || levelComplete >= 5 || progress[room.id]) {
+      unlocked.push(room);
+    }
+  });
+
+  return unlocked;
+}
+
 let terminalCursorTimer = null;
 let cursorVisible = true;
 
@@ -272,7 +290,7 @@ function renderRooms() {
   grid.innerHTML = "";
   const progress = getProgress();
 
-  [...rooms].sort((a, b) => a.order - b.order).forEach(room => {
+  getUnlockedRooms().forEach(room => {
     const completed = Boolean(progress[room.id]);
     const card = document.createElement("div");
     card.className = "bg-white/5 border border-white/10 rounded-xl p-4";
