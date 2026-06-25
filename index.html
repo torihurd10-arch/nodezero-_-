@@ -18,6 +18,17 @@
       }
     };
   </script>
+  <style>
+    .skill-unlock {
+      animation: glowPulse 1.5s ease-out;
+    }
+
+    @keyframes glowPulse {
+      0% { box-shadow: 0 0 0px #00FF9C; }
+      50% { box-shadow: 0 0 20px #00FF9C; }
+      100% { box-shadow: 0 0 0px #00FF9C; }
+    }
+  </style>
 </head>
 <body class="bg-bgDark text-gray-100 min-h-screen">
   <div class="max-w-6xl mx-auto px-4 py-6 space-y-6">
@@ -67,11 +78,11 @@
       <div class="bg-black/60 border border-neonGreen/60 rounded-lg p-4">
         <h3 class="text-neonBlue font-semibold mb-2">Knowledge Tracker</h3>
         <ul class="list-disc pl-5 text-gray-300 text-sm">
-          <li>Knowledge ✅</li>
-          <li>Skill ✅</li>
-          <li>Troubleshooting ⚙️</li>
-          <li>Independence ⚙️</li>
-          <li>Job Readiness ⚙️</li>
+          <li id="skillKnowledge">Knowledge</li>
+          <li id="skillSkill">Skill</li>
+          <li id="skillTroubleshooting">Troubleshooting</li>
+          <li id="skillIndependence">Independence</li>
+          <li id="skillJobReadiness">Job Readiness</li>
         </ul>
       </div>
 
@@ -106,10 +117,32 @@
       if (phaseBox) phaseBox.textContent = `${progress}% complete`;
     }
 
+    function unlockSkill(skillId) {
+      const el = document.getElementById(skillId);
+      if (!el) return;
+
+      if (el.textContent.includes("✅")) return;
+
+      el.textContent = `${el.textContent} ✅`;
+      el.classList.add("skill-unlock");
+
+      setTimeout(() => {
+        el.classList.remove("skill-unlock");
+      }, 1600);
+    }
+
     // Listen for XP changes from lessons
     window.addEventListener("storage", (event) => {
       if (event.key === "nodezero_xp") {
         updateMissionConsole();
+
+        const xp = parseInt(event.newValue || "0", 10);
+
+        if (xp >= 50) unlockSkill("skillKnowledge");
+        if (xp >= 100) unlockSkill("skillSkill");
+        if (xp >= 200) unlockSkill("skillTroubleshooting");
+        if (xp >= 300) unlockSkill("skillIndependence");
+        if (xp >= 400) unlockSkill("skillJobReadiness");
       }
     });
 
