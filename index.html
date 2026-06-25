@@ -1,48 +1,148 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Room 0.2 — Inside the Machine</title>
+  <title>NodeZero — Level 0 Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
-            bgDark: "#050816",
-            neonGreen: "#00FF9C",
-            neonBlue: "#00C8FF"
-          }
+          colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" }
         }
       }
     };
   </script>
+  <style>
+    .glow { box-shadow: 0 0 15px rgba(0,255,156,0.3); }
+    .glow:hover { box-shadow: 0 0 25px rgba(0,255,156,0.6); }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    .room-card { transition: all 0.2s ease; }
+    .room-card:hover { transform: translateY(-2px); }
+    .complete-badge { background: rgba(0,255,156,0.15); border-color: rgba(0,255,156,0.6); }
+  </style>
 </head>
-
-<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
-  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6 text-center">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Room 0.2 — Inside the Machine</h1>
-    <p class="text-gray-300 mb-6">
-      Learn how data travels through the CPU, memory, and storage.
-      Understand how performance bottlenecks happen and how to fix them.
-    </p>
-
-    <div class="space-y-2 text-left text-gray-300">
-      <p>✅ Step 1 — Learn the Data Path</p>
-      <p>✅ Step 2 — See CPU and RAM in Action</p>
-      <p>✅ Step 3 — Do a Performance Test</p>
-      <p>✅ Step 4 — Test Your Knowledge</p>
-      <p>✅ Step 5 — Break the System</p>
-      <p>✅ Step 6 — Fix the Bottleneck</p>
-      <p>✅ Step 7 — Explain the Optimization</p>
-      <p>✅ Step 8 — Repeat the Process</p>
-      <p>✅ Step 9 — Apply to a Job Scenario</p>
+<body class="bg-bgDark text-gray-100 min-h-screen">
+  <header class="border-b border-neonGreen/20 px-6 py-4 flex items-center justify-between">
+    <div>
+      <h1 class="text-2xl font-bold text-neonGreen">NodeZero</h1>
+      <p class="text-xs text-gray-500">Build It. Break It. Learn It.</p>
     </div>
-
-    <button onclick="window.location.href='step1_learn.html'"
-            class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
-      Start Lesson
-    </button>
+    <div class="text-right">
+      <p class="text-neonBlue font-semibold text-sm">XP: <span id="xpDisplay">0</span></p>
+      <p class="text-xs text-gray-500">Level 0 — IT Foundations</p>
+    </div>
+  </header>
+  <section class="text-center py-10 px-6 fade-in">
+    <p class="text-neonBlue text-sm font-mono mb-2">LEVEL 0 // IT FOUNDATIONS</p>
+    <h2 class="text-4xl font-bold text-neonGreen mb-4">Your Learning Mission</h2>
+    <p class="text-gray-300 max-w-2xl mx-auto mb-2">Complete all 9 rooms to build a complete foundation in IT. Each room follows the proven learning cycle:</p>
+    <p class="text-neonBlue text-sm font-mono">Learn → See → Do → Test → Break → Fix → Explain → Repeat → Apply to a Job</p>
+  </section>
+  <div class="px-6 mb-8 max-w-4xl mx-auto">
+    <div class="flex justify-between text-xs text-gray-500 mb-1">
+      <span>Level 0 Progress</span>
+      <span id="progressText">0 / 9 Rooms</span>
+    </div>
+    <div class="h-2 bg-black/60 border border-neonBlue/20 rounded-full overflow-hidden">
+      <div id="progressBar" class="h-full bg-neonGreen rounded-full transition-all duration-500" style="width:0%"></div>
+    </div>
   </div>
+  <main class="px-6 pb-12 max-w-4xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+      <a href="level0/room0_1/room0_1.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-1">
+        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.1</span><span id="badge-0-1" class="hidden text-xs text-neonGreen">✅</span></div>
+        <h3 class="text-neonGreen font-semibold mb-1">What is a Computer?</h3>
+        <p class="text-gray-400 text-xs">Hardware, software, CPU, RAM, storage — the fundamentals every IT job requires.</p>
+        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+      </a>
+      <a href="level0/room0_2/room0_2.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-2">
+        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.2</span><span id="badge-0-2" class="hidden text-xs text-neonGreen">✅</span></div>
+        <h3 class="text-neonGreen font-semibold mb-1">Inside the Machine</h3>
+        <p class="text-gray-400 text-xs">Data paths, CPU/RAM interaction, performance bottlenecks and how to fix them.</p>
+        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+      </a>
+      <a href="level0/room0_3/room0_3.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-3">
+        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.3</span><span id="badge-0-3" class="hidden text-xs text-neonGreen">✅</span></div>
+        <h3 class="text-neonGreen font-semibold mb-1">Operating Systems</h3>
+        <p class="text-gray-400 text-xs">Windows, Linux, macOS — what they do, where they're used, and how to fix OS failures.</p>
+        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+      </a>
+      <a href="level0/room0_4/room0_4.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-4">
+        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.4</span><span id="badge-0-4" class="hidden text-xs text-neonGreen">✅</span></div>
+        <h3 class="text-neonGreen font-semibold mb-1">File Systems</h3>
+        <p class="text-gray-400 text-xs">Files, folders, paths, extensions, permissions — and fixing file not found errors.</p>
+        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+      </a>
+      <a href="level0/room0_5/room0_5.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-5">
+        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.5</span><span id="badge-0-5" class="hidden text-xs text-neonGreen">✅</span></div>
+        <h3 class="text-neonGreen font-semibold mb-1">Networking Basics</h3>
+        <p class="text-gray-400 text-xs">IP addresses, DNS, HTTP/HTTPS, ports — and diagnosing network failures.</p>
+        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+      </a>
+      <a href="level0/room0_6/room0_6.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-6">
+        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.6</span><span id="badge-0-6" class="hidden text-xs text-neonGreen">✅</span></div>
+        <h3 class="text-neonGreen font-semibold mb-1">The Command Line</h3>
+        <p class="text-gray-400 text-xs">Terminal, CLI commands, navigation, permissions — the power tool of every IT pro.</p>
+        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+      </a>
+      <a href="level0/room0_7/room0_7.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-7">
+        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.7</span><span id="badge-0-7" class="hidden text-xs text-neonGreen">✅</span></div>
+        <h3 class="text-neonGreen font-semibold mb-1">How Software Gets Made</h3>
+        <p class="text-gray-400 text-xs">Source code, compilers, interpreters, dependencies — and fixing build errors.</p>
+        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+      </a>
+      <a href="level0/room0_8/room0_8.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-8">
+        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.8</span><span id="badge-0-8" class="hidden text-xs text-neonGreen">✅</span></div>
+        <h3 class="text-neonGreen font-semibold mb-1">Security Fundamentals</h3>
+        <p class="text-gray-400 text-xs">Passwords, phishing, encryption, 2FA, incident response — protect every layer.</p>
+        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+      </a>
+      <a href="level0/room0_9/room0_9.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-9">
+        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.9</span><span id="badge-0-9" class="hidden text-xs text-neonGreen">✅</span></div>
+        <h3 class="text-neonGreen font-semibold mb-1">Putting It All Together</h3>
+        <p class="text-gray-400 text-xs">Full system architecture, cascading failures, cross-domain diagnostics.</p>
+        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+      </a>
+    </div>
+    <div class="bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center mb-6">
+      <p class="text-neonBlue text-xs font-mono mb-1">FINAL CHALLENGE</p>
+      <h3 class="text-2xl font-bold text-neonGreen mb-2">Level 0 Final Mission Ticket</h3>
+      <p class="text-gray-300 text-sm mb-4">A full 5-phase scenario covering all Level 0 domains simultaneously. Prove you can diagnose and resolve real IT problems under pressure.</p>
+      <a href="level0/final_mission.html" class="inline-block px-8 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded-lg hover:bg-neonGreen/20 transition font-semibold">Launch Final Mission →</a>
+    </div>
+    <div id="completionBadge" class="hidden mt-6 bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center">
+      <p class="text-4xl mb-2">🏆</p>
+      <h3 class="text-2xl font-bold text-neonGreen mb-1">Level 0 Complete!</h3>
+      <p class="text-gray-300 text-sm">You earned the IT Foundations badge. Level 1 unlocked.</p>
+      <p class="text-neonBlue font-semibold mt-2">Total XP: <span id="finalXp">0</span></p>
+    </div>
+  </main>
+  <footer class="border-t border-neonGreen/10 px-6 py-4 text-center text-xs text-gray-600">
+    NodeZero — Build It. Break It. Learn It. | Level 0: IT Foundations
+  </footer>
+  <script>
+    const xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
+    document.getElementById("xpDisplay").textContent = xp;
+    const rooms = ["0_1","0_2","0_3","0_4","0_5","0_6","0_7","0_8","0_9"];
+    let completed = 0;
+    rooms.forEach(r => {
+      if (localStorage.getItem("room" + r + "_complete") === "true") {
+        const badge = document.getElementById("badge-" + r.replace("_","-"));
+        if (badge) { badge.classList.remove("hidden"); completed++; }
+        const card = document.getElementById("card-" + r.replace("_","-"));
+        if (card) card.classList.add("complete-badge");
+      }
+    });
+    const pct = Math.round((completed / 9) * 100);
+    document.getElementById("progressBar").style.width = pct + "%";
+    document.getElementById("progressText").textContent = completed + " / 9 Rooms";
+    if (localStorage.getItem("level0_badge") === "true") {
+      document.getElementById("completionBadge").classList.remove("hidden");
+      document.getElementById("finalXp").textContent = xp;
+    }
+  </script>
 </body>
 </html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 9 — Apply: OS Help-Desk Ticket</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .clickable:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
+  </style>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-4xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 9 — Apply to a Job</h1>
+    <h2 class="text-xl text-neonBlue mb-4">Help-Desk Ticket — OS Boot Failure</h2>
+    <p class="text-gray-300 mb-6">
+      You're on the help desk. A user calls in: <span class="text-neonGreen">"I restarted my PC and now I only see a black screen. I can move my mouse but there's no desktop."</span>
+      Choose your response:
+    </p>
+    <div class="space-y-4 text-left text-gray-300">
+      <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="handleChoice('explorer')">
+        🧠 Ask the user to press Ctrl+Shift+Esc, then run explorer.exe as a new task
+      </div>
+      <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="handleChoice('reimage')">
+        💽 Schedule a full OS reinstall for tomorrow
+      </div>
+      <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="handleChoice('reboot')">
+        🔄 Tell them to reboot again and hope it fixes itself
+      </div>
+    </div>
+    <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
+    <button onclick="finishRoom()"
+            class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+      ✅ Finish Room 0.3
+    </button>
+    <button onclick="window.location.href='step8_repeat.html'"
+            class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">
+      ← Back
+    </button>
+  </div>
+  <script>
+    function handleChoice(action) {
+      const fb = document.getElementById('feedback');
+      if (action === 'explorer') {
+        fb.textContent = '✅ Excellent! You diagnosed the explorer.exe crash and provided a fast, professional fix. The user is back working in 2 minutes.';
+        let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
+        xp += 100;
+        localStorage.setItem("nodezero_xp", String(xp));
+        localStorage.setItem("room0_3_complete", "true");
+      } else if (action === 'reimage') {
+        fb.textContent = '❌ Scheduling a full reinstall for a simple process crash wastes the user\'s day and your company\'s resources. Escalate only when necessary.';
+      } else {
+        fb.textContent = '⚠️ Rebooting might work but it\'s not a proper diagnosis. A professional identifies the root cause.';
+      }
+    }
+    function finishRoom() {
+      window.location.href = '../../index.html';
+    }
+  </script>
+</body>
+</html>

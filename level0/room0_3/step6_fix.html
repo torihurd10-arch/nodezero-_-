@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 6 — Fix: Restart the Shell</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .option:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
+  </style>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 6 — Fix</h1>
+    <h2 class="text-xl text-neonBlue mb-4">Restore the Windows Desktop</h2>
+    <p class="text-gray-300 mb-6">
+      You've identified that explorer.exe crashed. Now choose the correct fix:
+    </p>
+    <div class="space-y-4 text-left text-gray-300">
+      <div class="option p-3 border border-neonBlue/40 rounded" onclick="performFix('task')">
+        🔧 Open Task Manager (Ctrl+Alt+Del) → Run new task → type "explorer.exe"
+      </div>
+      <div class="option p-3 border border-neonBlue/40 rounded" onclick="performFix('reinstall')">
+        💿 Reinstall Windows from scratch
+      </div>
+      <div class="option p-3 border border-neonBlue/40 rounded" onclick="performFix('unplug')">
+        🔌 Unplug the computer and plug it back in
+      </div>
+    </div>
+    <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
+    <button onclick="window.location.href='step7_explain.html'"
+            class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+      Next Step → Explain
+    </button>
+    <button onclick="window.location.href='step5_break.html'"
+            class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">
+      ← Back
+    </button>
+  </div>
+  <script>
+    function performFix(action) {
+      const fb = document.getElementById('feedback');
+      if (action === 'task') {
+        fb.textContent = '✅ Correct! Running explorer.exe from Task Manager restarts the shell immediately. Fast, effective, no data loss.';
+        fb.className = 'text-neonGreen font-semibold mt-6';
+        let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
+        xp += 50;
+        localStorage.setItem("nodezero_xp", String(xp));
+      } else if (action === 'reinstall') {
+        fb.textContent = '❌ Reinstalling Windows is extreme overkill. You\'d lose time and data. Always try the minimal fix first.';
+        fb.className = 'text-red-400 font-semibold mt-6';
+      } else {
+        fb.textContent = '⚠️ Unplugging won\'t help a crashed process. Use Task Manager to target the issue directly.';
+        fb.className = 'text-yellow-400 font-semibold mt-6';
+      }
+    }
+  </script>
+</body>
+</html>

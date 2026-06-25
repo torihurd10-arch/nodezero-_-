@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 3 — Do: Spot the Phishing Email</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 3 — Do</h1>
+    <p class="text-gray-300 mb-4">Read this email carefully. Click every red flag you can spot:</p>
+    <div class="bg-black border border-neonBlue/30 rounded p-4 mb-6 text-sm">
+      <p class="text-gray-400"><strong>From:</strong> <span class="cursor-pointer text-red-400 hover:underline" onclick="flag('from')">security@paypa1.com</span></p>
+      <p class="text-gray-400 mt-1"><strong>Subject:</strong> <span class="cursor-pointer text-gray-300 hover:underline" onclick="flag('subject')">⚠️ URGENT: Your account will be suspended in 24 hours!</span></p>
+      <div class="mt-3 text-gray-300 space-y-2">
+        <p>Dear Valued Customer,</p>
+        <p>We have detected <span class="cursor-pointer text-yellow-400 hover:underline" onclick="flag('detected')">unusual activity on your account</span>. You must verify your identity immediately or your account will be permanently closed.</p>
+        <p>Click here to verify: <span class="cursor-pointer text-red-400 hover:underline" onclick="flag('link')">http://paypa1-secure-login.xyz/verify</span></p>
+        <p class="cursor-pointer text-gray-500 hover:underline" onclick="flag('urgency')">You have 24 HOURS to respond or lose access PERMANENTLY.</p>
+      </div>
+    </div>
+    <div id="flags" class="space-y-2 text-sm text-gray-400 mb-4"></div>
+    <div class="flex gap-3">
+      <button onclick="window.location.href='step2_see.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+      <button onclick="window.location.href='step4_test.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    </div>
+  </div>
+  <script>
+    const flagInfo = {
+      from: '🚩 "paypa1.com" — the number 1 is used instead of the letter l. Classic phishing domain spoofing.',
+      subject: '🚩 Urgent language ("SUSPENDED in 24 hours") is a manipulation tactic to make you act without thinking.',
+      detected: '🚩 Vague threat with no specific details. Legitimate companies provide specifics.',
+      link: '🚩 The URL "paypa1-secure-login.xyz" is NOT PayPal\'s domain. .xyz is unusual; the subdomain is suspicious.',
+      urgency: '🚩 Extreme urgency ("PERMANENTLY") is emotional manipulation — a core phishing tactic.'
+    };
+    const found = new Set();
+    function flag(k) {
+      if (found.has(k)) return;
+      found.add(k);
+      const el = document.getElementById('flags');
+      const p = document.createElement('p');
+      p.textContent = flagInfo[k];
+      p.className = 'text-neonGreen';
+      el.appendChild(p);
+    }
+  </script>
+</body>
+</html>

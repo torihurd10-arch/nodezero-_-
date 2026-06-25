@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 1 — Learn: How Software Gets Made</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    code { background: rgba(0,200,255,0.1); padding: 1px 5px; border-radius: 4px; color: #00FF9C; }
+  </style>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-4xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 1 — Learn</h1>
+    <h2 class="text-xl text-neonBlue mb-4">From Source Code to Running Program</h2>
+    <p class="text-gray-300 mb-6">Software begins as plain text — source code — written by humans. That code must be transformed into instructions a computer can execute.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300 mb-6 text-left">
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">📝 Source Code</h3>
+        <p class="text-sm">Human-readable instructions written in a programming language like Python, JavaScript, or Java. Stored in text files (.py, .js, .java).</p>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">⚙️ Compiler vs Interpreter</h3>
+        <p class="text-sm"><strong class="text-neonBlue">Compiler</strong> (C, Java): Translates all code to machine code before running. Faster execution.<br/>
+        <strong class="text-neonBlue">Interpreter</strong> (Python, JavaScript): Runs code line by line. Faster development.</p>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">📦 Dependencies</h3>
+        <p class="text-sm">Most programs rely on external libraries — pre-built code that handles common tasks. Missing dependencies are a top cause of build failures.</p>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">🚀 The Build Pipeline</h3>
+        <ol class="text-sm space-y-1 list-decimal list-inside">
+          <li>Write source code</li>
+          <li>Install dependencies</li>
+          <li>Compile or run the interpreter</li>
+          <li>Test the output</li>
+          <li>Deploy to production</li>
+        </ol>
+      </div>
+    </div>
+    <div class="flex gap-3 justify-center">
+      <button onclick="window.location.href='room0_7.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">← Back</button>
+      <button onclick="window.location.href='step2_see.html'" class="px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step →</button>
+    </div>
+  </div>
+</body>
+</html>

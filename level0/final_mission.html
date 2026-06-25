@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Level 0 — Final Mission Ticket</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" }
+        }
+      }
+    };
+  </script>
+  <style>
+    .glow-border { box-shadow: 0 0 30px #00FF9C; }
+    .fade-in { animation: fadeIn 1.5s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .option:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
+    .ticket-header { background: linear-gradient(135deg, rgba(0,255,156,0.1), rgba(0,200,255,0.1)); }
+  </style>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center py-8">
+  <div class="max-w-4xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 glow-border fade-in">
+
+    <!-- Header -->
+    <div class="ticket-header border border-neonGreen/40 rounded-lg p-4 mb-6 text-center">
+      <p class="text-neonBlue text-sm font-mono">NODEZERO // LEVEL 0 // FINAL MISSION</p>
+      <h1 class="text-3xl font-bold text-neonGreen mt-2">🏆 The Certification Test</h1>
+      <p class="text-gray-400 text-sm mt-1">Ticket #L0-FINAL — All domains active</p>
+    </div>
+
+    <!-- Mission Brief -->
+    <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4 mb-6">
+      <h2 class="text-neonBlue font-semibold mb-2">📋 Mission Brief</h2>
+      <p class="text-gray-300 text-sm">
+        It's your first week as an IT Support Specialist at NodeZero Technologies. Your manager has given you your first solo assignment.
+        A critical team member — the lead developer — is completely unable to work. You have one hour to resolve everything.
+        This test covers all Level 0 knowledge simultaneously.
+      </p>
+    </div>
+
+    <!-- Phase 1 -->
+    <div class="mb-6">
+      <h3 class="text-neonGreen font-semibold mb-3">Phase 1 — The Developer's Laptop Won't Boot Properly</h3>
+      <p class="text-gray-300 text-sm mb-3">The dev's Windows laptop shows a black screen after login. No desktop appears.</p>
+      <div class="space-y-2 text-sm">
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(1,'A')">A. Reinstall Windows</div>
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(1,'B')">B. Press Ctrl+Shift+Esc → run explorer.exe from Task Manager</div>
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(1,'C')">C. Replace the hard drive</div>
+      </div>
+      <p id="p1" class="mt-2 text-sm"></p>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="mb-6">
+      <h3 class="text-neonGreen font-semibold mb-3">Phase 2 — Can't Access Company Files</h3>
+      <p class="text-gray-300 text-sm mb-3">Desktop restored. But the developer reports: "I can't find my project files at <code class="text-neonGreen">C:\Projects\nodezero\</code>"</p>
+      <div class="space-y-2 text-sm">
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(2,'A')">A. Tell them the files are lost</div>
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(2,'B')">B. Check if "Projects" is a typo — look for "Projects" folder</div>
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(2,'C')">C. Reformat the drive</div>
+      </div>
+      <p id="p2" class="mt-2 text-sm"></p>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="mb-6">
+      <h3 class="text-neonGreen font-semibold mb-3">Phase 3 — Can't Connect to the Dev Server</h3>
+      <p class="text-gray-300 text-sm mb-3">Files found. But now: "I can't SSH into our dev server at dev.nodezero.local"</p>
+      <div class="space-y-2 text-sm">
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(3,'A')">A. Run ipconfig /flushdns then try again; if still failing, check internal DNS config</div>
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(3,'B')">B. Replace the network card</div>
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(3,'C')">C. Tell them to work from home</div>
+      </div>
+      <p id="p3" class="mt-2 text-sm"></p>
+    </div>
+
+    <!-- Phase 4 -->
+    <div class="mb-6">
+      <h3 class="text-neonGreen font-semibold mb-3">Phase 4 — App Won't Build</h3>
+      <p class="text-gray-300 text-sm mb-3">SSH fixed. Now: <code class="text-red-400 text-sm">ModuleNotFoundError: No module named 'flask'</code></p>
+      <div class="space-y-2 text-sm">
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(4,'A')">A. Delete the project and start over</div>
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(4,'B')">B. Run: pip install flask</div>
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(4,'C')">C. Restart the server</div>
+      </div>
+      <p id="p4" class="mt-2 text-sm"></p>
+    </div>
+
+    <!-- Phase 5 -->
+    <div class="mb-6">
+      <h3 class="text-neonGreen font-semibold mb-3">Phase 5 — Security Alert</h3>
+      <p class="text-gray-300 text-sm mb-3">App runs. Then you receive: <span class="text-red-400">"Developer's GitHub account logged in from Brazil — possible compromise."</span></p>
+      <div class="space-y-2 text-sm">
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(5,'A')">A. Immediately revoke GitHub tokens, reset password, enable 2FA, check for unauthorized commits</div>
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(5,'B')">B. Wait and see if more alerts come</div>
+        <div class="option p-3 border border-neonBlue/40 rounded" onclick="phase(5,'C')">C. Delete the GitHub account</div>
+      </div>
+      <p id="p5" class="mt-2 text-sm"></p>
+    </div>
+
+    <!-- Score Display -->
+    <div id="scoreCard" class="hidden bg-black/60 border border-neonGreen/60 rounded-lg p-6 text-center mb-6">
+      <h2 class="text-2xl font-bold text-neonGreen mb-2">Mission Complete!</h2>
+      <p id="scoreText" class="text-gray-300 mb-2"></p>
+      <p id="xpText" class="text-neonBlue font-semibold"></p>
+      <p id="rank" class="text-neonGreen text-xl font-bold mt-3"></p>
+    </div>
+
+    <!-- Final Explanation -->
+    <div id="reportSection" class="hidden mb-6">
+      <h3 class="text-neonGreen font-semibold mb-2">Final Mission Report</h3>
+      <p class="text-gray-300 text-sm mb-3">Write a brief summary of all 5 issues and how you resolved them:</p>
+      <textarea id="finalReport" rows="6" class="w-full bg-black/60 border border-neonBlue/60 rounded-lg p-3 text-neonGreen font-mono text-sm" placeholder="Developer's laptop had explorer.exe crash (fixed via Task Manager). Project files were in misspelled folder 'Projects' (renamed). DNS flush resolved SSH hostname issue. Installed missing flask dependency. Revoked compromised GitHub credentials and enabled 2FA."></textarea>
+      <button onclick="submitReport()" class="mt-3 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+        🏆 Submit Final Report & Claim Level 0 Badge
+      </button>
+      <p id="reportFeedback" class="mt-3 text-neonGreen font-semibold"></p>
+    </div>
+
+    <button onclick="window.location.href='../index.html'" class="mt-4 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition text-sm">
+      ← Back to Level 0 Dashboard
+    </button>
+  </div>
+
+  <script>
+    const correctAnswers = { 1: 'B', 2: 'B', 3: 'A', 4: 'B', 5: 'A' };
+    const explanations = {
+      '1B': '✅ Phase 1 cleared! explorer.exe crash identified and resolved via Task Manager.',
+      '1wrong': '❌ Phase 1: The issue was a crashed explorer.exe shell — minimal, targeted fix needed.',
+      '2B': '✅ Phase 2 cleared! Typo in folder name found and corrected. Zero data loss.',
+      '2wrong': '❌ Phase 2: Always check for typos in paths before assuming files are lost.',
+      '3A': '✅ Phase 3 cleared! DNS flush and config check — proper network diagnosis.',
+      '3wrong': '❌ Phase 3: Network hardware is fine — this is a DNS resolution issue.',
+      '4B': '✅ Phase 4 cleared! Missing Python dependency installed with pip.',
+      '4wrong': '❌ Phase 4: ModuleNotFoundError = missing library. Install with pip.',
+      '5A': '✅ Phase 5 cleared! Security incident contained. Credentials revoked, 2FA enabled.',
+      '5wrong': '❌ Phase 5: An active compromise must be contained immediately — never wait.'
+    };
+    let score = 0;
+    const phases = {};
+    function phase(n, choice) {
+      if (phases[n]) return;
+      phases[n] = choice;
+      const correct = correctAnswers[n];
+      const el = document.getElementById('p' + n);
+      if (choice === correct) {
+        el.textContent = explanations[n + choice];
+        el.className = 'mt-2 text-sm text-neonGreen';
+        score++;
+      } else {
+        el.textContent = explanations[n + 'wrong'];
+        el.className = 'mt-2 text-sm text-red-400';
+      }
+      if (Object.keys(phases).length === 5) {
+        showResults();
+      }
+    }
+    function showResults() {
+      const card = document.getElementById('scoreCard');
+      card.classList.remove('hidden');
+      document.getElementById('reportSection').classList.remove('hidden');
+      let xp = score * 200;
+      let xpTotal = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
+      xpTotal += xp;
+      localStorage.setItem("nodezero_xp", String(xpTotal));
+      document.getElementById('scoreText').textContent = `Score: ${score}/5 phases resolved correctly`;
+      document.getElementById('xpText').textContent = `+${xp} XP earned this mission | Total XP: ${xpTotal}`;
+      const ranks = { 5: '🥇 RANK: Level 0 Certified — Ready for Level 1', 4: '🥈 RANK: Solid Foundation — Review and retry', 3: '🥉 RANK: Learning in Progress — Review missed phases', 2: 'Keep studying — Review all rooms before proceeding', 1: 'Restart from Room 0.1 — Build your foundation' };
+      document.getElementById('rank').textContent = ranks[score] || ranks[1];
+      if (score >= 4) localStorage.setItem("level0_badge", "true");
+    }
+    function submitReport() {
+      const text = document.getElementById('finalReport').value.trim();
+      if (text.length < 30) { document.getElementById('reportFeedback').textContent = '⚠️ Please write a complete report.'; return; }
+      localStorage.setItem("level0_final_report", text);
+      let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10); xp += 100;
+      localStorage.setItem("nodezero_xp", String(xp));
+      localStorage.setItem("level0_complete", "true");
+      document.getElementById('reportFeedback').textContent = '🏆 Level 0 Complete! Badge unlocked. +100 XP bonus. Welcome to Level 1.';
+    }
+  </script>
+</body>
+</html>

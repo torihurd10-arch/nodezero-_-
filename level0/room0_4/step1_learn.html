@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 1 — Learn: File Systems</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-4xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 1 — Learn</h1>
+    <h2 class="text-xl text-neonBlue mb-4">Files, Folders, Paths & Extensions</h2>
+    <p class="text-gray-300 mb-6">
+      Every piece of data on your computer is stored as a file. Files live in folders (directories),
+      and every file has an address called a path.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300 mb-6 text-left">
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">📁 Files & Folders</h3>
+        <ul class="text-sm space-y-1 list-disc list-inside">
+          <li>Files store data: text, images, programs, audio</li>
+          <li>Folders organize files into groups</li>
+          <li>Folders can contain other folders (subfolders)</li>
+          <li>Every drive starts at a root: C:\ on Windows, / on Linux</li>
+        </ul>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">🔗 Paths</h3>
+        <ul class="text-sm space-y-1 list-disc list-inside">
+          <li><span class="text-neonBlue">Absolute path:</span> Full address from root — C:\Users\Tori\resume.pdf</li>
+          <li><span class="text-neonBlue">Relative path:</span> From current location — ../Documents/resume.pdf</li>
+          <li>/ separates folders on Linux/macOS</li>
+          <li>\ separates folders on Windows</li>
+        </ul>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">📎 Extensions</h3>
+        <ul class="text-sm space-y-1 list-disc list-inside">
+          <li>.txt — plain text</li>
+          <li>.html — web page</li>
+          <li>.exe — executable program (Windows)</li>
+          <li>.pdf — portable document</li>
+          <li>.jpg / .png — images</li>
+        </ul>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">🔒 Permissions</h3>
+        <ul class="text-sm space-y-1 list-disc list-inside">
+          <li>Read — can view the file</li>
+          <li>Write — can edit the file</li>
+          <li>Execute — can run the file as a program</li>
+          <li>Permissions prevent unauthorized access</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex gap-3 justify-center">
+      <button onclick="window.location.href='room0_4.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">← Back</button>
+      <button onclick="window.location.href='step2_see.html'" class="px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step →</button>
+    </div>
+  </div>
+</body>
+</html>

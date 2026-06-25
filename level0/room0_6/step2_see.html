@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 2 — See: CLI Commands</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 2 — See</h1>
+    <p class="text-gray-300 mb-4">Click a command to see what it does and when to use it:</p>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mb-6 font-mono text-sm">
+      <button onclick="show('pwd')" class="p-2 border border-neonBlue/40 rounded hover:border-neonGreen text-neonGreen">pwd</button>
+      <button onclick="show('ls')" class="p-2 border border-neonBlue/40 rounded hover:border-neonGreen text-neonGreen">ls / dir</button>
+      <button onclick="show('cd')" class="p-2 border border-neonBlue/40 rounded hover:border-neonGreen text-neonGreen">cd</button>
+      <button onclick="show('mkdir')" class="p-2 border border-neonBlue/40 rounded hover:border-neonGreen text-neonGreen">mkdir</button>
+      <button onclick="show('ping')" class="p-2 border border-neonBlue/40 rounded hover:border-neonGreen text-neonGreen">ping</button>
+      <button onclick="show('cat')" class="p-2 border border-neonBlue/40 rounded hover:border-neonGreen text-neonGreen">cat</button>
+    </div>
+    <div id="info" class="bg-black/60 border border-neonGreen/40 rounded p-4 text-gray-300 text-sm min-h-[5rem] mb-6">
+      <p class="text-gray-500">Click a command above to see details.</p>
+    </div>
+    <div class="flex gap-3">
+      <button onclick="window.location.href='step1_learn.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+      <button onclick="window.location.href='step3_do.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    </div>
+  </div>
+  <script>
+    const details = {
+      pwd: '<strong class="text-neonGreen">pwd</strong> — Print Working Directory<br>Shows you exactly where you are in the file system.<br><span class="text-neonBlue">When to use:</span> When you\'re lost and need to know your current location.',
+      ls: '<strong class="text-neonGreen">ls</strong> (Linux/macOS) / <strong class="text-neonGreen">dir</strong> (Windows)<br>Lists all files and folders in the current directory.<br><span class="text-neonBlue">When to use:</span> To see what\'s in a folder before navigating.',
+      cd: '<strong class="text-neonGreen">cd foldername</strong> — Change Directory<br>Moves you into the specified folder. <code>cd ..</code> goes up one level.<br><span class="text-neonBlue">When to use:</span> Navigation — like clicking a folder in a GUI.',
+      mkdir: '<strong class="text-neonGreen">mkdir name</strong> — Make Directory<br>Creates a new folder with the given name.<br><span class="text-neonBlue">When to use:</span> Setting up project structures, creating backup folders.',
+      ping: '<strong class="text-neonGreen">ping hostname</strong><br>Sends test packets to check if a host is reachable. Shows response time.<br><span class="text-neonBlue">When to use:</span> First step in network troubleshooting.',
+      cat: '<strong class="text-neonGreen">cat filename</strong><br>Displays the contents of a file directly in the terminal.<br><span class="text-neonBlue">When to use:</span> Quickly view config files, logs, or text files.'
+    };
+    function show(k) { document.getElementById('info').innerHTML = details[k]; }
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 2 — See: File Tree</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 2 — See</h1>
+    <p class="text-gray-300 mb-4">This is a typical file system tree. Click any item to see its full path:</p>
+    <div class="font-mono text-sm text-gray-300 bg-black/60 border border-neonBlue/30 rounded p-4 mb-4">
+      <p class="text-neonGreen cursor-pointer hover:text-neonBlue" onclick="showPath('C:\\')">📁 C:\</p>
+      <p class="pl-4 cursor-pointer hover:text-neonBlue" onclick="showPath('C:\\Users\\')">📁 Users\</p>
+      <p class="pl-8 cursor-pointer hover:text-neonBlue" onclick="showPath('C:\\Users\\Tori\\')">📁 Tori\</p>
+      <p class="pl-12 cursor-pointer hover:text-neonBlue" onclick="showPath('C:\\Users\\Tori\\Documents\\')">📁 Documents\</p>
+      <p class="pl-16 cursor-pointer hover:text-neonBlue" onclick="showPath('C:\\Users\\Tori\\Documents\\resume.pdf')">📄 resume.pdf</p>
+      <p class="pl-16 cursor-pointer hover:text-neonBlue" onclick="showPath('C:\\Users\\Tori\\Documents\\notes.txt')">📄 notes.txt</p>
+      <p class="pl-12 cursor-pointer hover:text-neonBlue" onclick="showPath('C:\\Users\\Tori\\Downloads\\')">📁 Downloads\</p>
+      <p class="pl-16 cursor-pointer hover:text-neonBlue" onclick="showPath('C:\\Users\\Tori\\Downloads\\setup.exe')">⚙️ setup.exe</p>
+    </div>
+    <p id="pathInfo" class="text-neonGreen font-semibold mb-4 min-h-[2rem]"></p>
+    <div class="mt-4 flex gap-3">
+      <button onclick="window.location.href='step1_learn.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+      <button onclick="window.location.href='step3_do.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    </div>
+  </div>
+  <script>
+    function showPath(path) {
+      document.getElementById('pathInfo').textContent = 'Full path: ' + path;
+    }
+  </script>
+</body>
+</html>

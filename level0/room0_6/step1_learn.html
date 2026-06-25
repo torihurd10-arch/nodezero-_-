@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 1 — Learn: The Command Line</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    code { background: rgba(0,200,255,0.1); padding: 1px 5px; border-radius: 4px; color: #00FF9C; }
+  </style>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-4xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 1 — Learn</h1>
+    <h2 class="text-xl text-neonBlue mb-4">The Command Line Interface</h2>
+    <p class="text-gray-300 mb-6">The terminal (CLI) lets you control a computer by typing commands. Every IT professional and developer uses it daily. It's faster and more powerful than clicking through menus.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300 mb-6 text-left">
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">📂 Navigation</h3>
+        <p class="text-sm"><code>pwd</code> — Print Working Directory (where am I?)</p>
+        <p class="text-sm mt-1"><code>ls</code> / <code>dir</code> — List files in current folder</p>
+        <p class="text-sm mt-1"><code>cd foldername</code> — Change into a folder</p>
+        <p class="text-sm mt-1"><code>cd ..</code> — Go up one folder level</p>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">📝 File Operations</h3>
+        <p class="text-sm"><code>mkdir name</code> — Create a new folder</p>
+        <p class="text-sm mt-1"><code>touch file.txt</code> — Create a new file (Linux/macOS)</p>
+        <p class="text-sm mt-1"><code>cp source dest</code> — Copy a file</p>
+        <p class="text-sm mt-1"><code>rm file.txt</code> — Delete a file</p>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">🌐 Network Commands</h3>
+        <p class="text-sm"><code>ping google.com</code> — Test connectivity</p>
+        <p class="text-sm mt-1"><code>ipconfig</code> / <code>ifconfig</code> — Show network settings</p>
+        <p class="text-sm mt-1"><code>nslookup domain.com</code> — Look up DNS</p>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">⚙️ System</h3>
+        <p class="text-sm"><code>cls</code> / <code>clear</code> — Clear the screen</p>
+        <p class="text-sm mt-1"><code>echo text</code> — Print text to screen</p>
+        <p class="text-sm mt-1"><code>cat file.txt</code> — Show file contents</p>
+        <p class="text-sm mt-1"><code>sudo</code> — Run as administrator (Linux)</p>
+      </div>
+    </div>
+    <div class="flex gap-3 justify-center">
+      <button onclick="window.location.href='room0_6.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">← Back</button>
+      <button onclick="window.location.href='step2_see.html'" class="px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step →</button>
+    </div>
+  </div>
+</body>
+</html>

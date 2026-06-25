@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 6 — Fix: Incident Response</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .option:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
+  </style>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 6 — Fix</h1>
+    <h2 class="text-xl text-neonBlue mb-4">Incident Response Steps</h2>
+    <p class="text-gray-300 mb-4">You've contained the breach. Now put the response steps in the correct order by clicking them 1-4:</p>
+    <div id="steps" class="space-y-2 text-gray-300"></div>
+    <p id="feedback" class="text-neonGreen font-semibold mt-4"></p>
+    <button onclick="checkOrder()" class="mt-2 px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Check Order</button>
+    <button onclick="window.location.href='step7_explain.html'" class="mt-6 block mx-auto px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step → Explain</button>
+    <button onclick="window.location.href='step5_break.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">← Back</button>
+  </div>
+  <script>
+    const items = [
+      { id: 'notify', text: 'Notify management and affected user' },
+      { id: 'contain', text: 'Revoke compromised credentials and kill active sessions' },
+      { id: 'investigate', text: 'Investigate scope — what was accessed, what was forwarded?' },
+      { id: 'prevent', text: 'Enforce 2FA and phishing training to prevent recurrence' }
+    ];
+    const correctOrder = ['contain','notify','investigate','prevent'];
+    let selected = [];
+    function render() {
+      const el = document.getElementById('steps');
+      el.innerHTML = '';
+      items.forEach(item => {
+        const idx = selected.indexOf(item.id);
+        const div = document.createElement('div');
+        div.className = 'p-3 border rounded cursor-pointer ' + (idx >= 0 ? 'border-neonGreen bg-neonGreen/10' : 'border-neonBlue/40 hover:border-neonGreen');
+        div.textContent = (idx >= 0 ? (idx + 1) + '. ' : '○ ') + item.text;
+        div.onclick = () => { if (idx >= 0) selected.splice(idx, 1); else if (selected.length < 4) selected.push(item.id); render(); };
+        el.appendChild(div);
+      });
+    }
+    function checkOrder() {
+      if (selected.length < 4) { document.getElementById('feedback').textContent = '⚠️ Select all 4 steps first.'; return; }
+      const ok = selected.every((id, i) => id === correctOrder[i]);
+      document.getElementById('feedback').textContent = ok ? '✅ Correct response order! Contain → Notify → Investigate → Prevent.' : '❌ Hint: Contain first, then notify, investigate, and prevent.';
+      document.getElementById('feedback').className = ok ? 'text-neonGreen font-semibold mt-4' : 'text-red-400 font-semibold mt-4';
+      if (ok) { let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10); xp += 50; localStorage.setItem("nodezero_xp", String(xp)); }
+    }
+    render();
+  </script>
+</body>
+</html>

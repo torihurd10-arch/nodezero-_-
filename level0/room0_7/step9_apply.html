@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 9 — Apply: Dev/DevOps Ticket</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .clickable:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
+  </style>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-4xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 9 — Apply to a Job</h1>
+    <h2 class="text-xl text-neonBlue mb-4">DevOps Deployment Ticket</h2>
+    <p class="text-gray-300 mb-6">
+      A developer pushes new code to the server. The deployment fails with:
+      <span class="text-red-400 font-mono block mt-2">npm ERR! Cannot find module 'express'</span>
+      What is your first action as the DevOps engineer on call?
+    </p>
+    <div class="space-y-4 text-left text-gray-300">
+      <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="hc('install')">📦 Run npm install on the server to install missing dependencies</div>
+      <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="hc('revert')">↩️ Immediately roll back to the previous version without investigating</div>
+      <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="hc('reboot')">🔄 Reboot the server</div>
+    </div>
+    <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
+    <button onclick="finish()" class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">✅ Finish Room 0.7</button>
+    <button onclick="window.location.href='step8_repeat.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">← Back</button>
+  </div>
+  <script>
+    function hc(a) {
+      const fb = document.getElementById('feedback');
+      if (a === 'install') {
+        fb.textContent = '✅ Correct! The node_modules folder was likely not included in the deployment. Running npm install downloads all dependencies from package.json. Deployment fixed.';
+        let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10); xp += 100;
+        localStorage.setItem("nodezero_xp", String(xp));
+        localStorage.setItem("room0_7_complete", "true");
+      } else if (a === 'revert') {
+        fb.textContent = '⚠️ Rolling back is a last resort. A missing dependency is a simple fix — diagnose first.';
+      } else {
+        fb.textContent = '❌ Rebooting won\'t install missing packages. Address the root cause.';
+      }
+    }
+    function finish() { window.location.href = '../../index.html'; }
+  </script>
+</body>
+</html>

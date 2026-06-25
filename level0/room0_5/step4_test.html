@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 4 — Test: Networking Quiz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .option:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
+  </style>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 4 — Test</h1>
+    <h2 class="text-xl text-neonBlue mb-4">Networking Quiz</h2>
+    <div class="space-y-6 text-left text-gray-300">
+      <div>
+        <p class="mb-2">1️⃣ What does DNS stand for?</p>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(1,'A')">A. Domain Name System</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(1,'B')">B. Data Network Service</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(1,'C')">C. Digital Node Server</div>
+        <p id="q1Feedback" class="mt-2 text-sm"></p>
+      </div>
+      <div>
+        <p class="mb-2">2️⃣ Which port does HTTPS use by default?</p>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(2,'A')">A. 80</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(2,'B')">B. 443</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(2,'C')">C. 22</div>
+        <p id="q2Feedback" class="mt-2 text-sm"></p>
+      </div>
+      <div>
+        <p class="mb-2">3️⃣ An IP address identifies what?</p>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(3,'A')">A. A file on a hard drive</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(3,'B')">B. A device's location on a network</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(3,'C')">C. A program's version number</div>
+        <p id="q3Feedback" class="mt-2 text-sm"></p>
+      </div>
+    </div>
+    <p id="resultBox" class="mt-6 text-neonGreen font-semibold"></p>
+    <button onclick="window.location.href='step5_break.html'" class="mt-4 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step → Break</button>
+    <button onclick="window.location.href='step3_do.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">← Back</button>
+  </div>
+  <script>
+    const correct = { 1: 'A', 2: 'B', 3: 'B' }; let score = 0; const ans = {};
+    function ca(q, c) {
+      if (ans[q]) return; ans[q] = true;
+      const fb = document.getElementById('q' + q + 'Feedback');
+      if (c === correct[q]) { fb.textContent = '✅ Correct!'; fb.className = 'mt-2 text-sm text-neonGreen'; score++; }
+      else { fb.textContent = '❌ Review Step 1.'; fb.className = 'mt-2 text-sm text-red-400'; }
+      if (Object.keys(ans).length === 3) {
+        let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10); xp += score * 25;
+        localStorage.setItem("nodezero_xp", String(xp));
+        document.getElementById("resultBox").textContent = `Score: ${score}/3 — You earned ${score * 25} XP!`;
+      }
+    }
+  </script>
+</body>
+</html>

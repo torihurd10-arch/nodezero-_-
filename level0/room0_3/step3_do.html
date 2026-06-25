@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 3 — Do: OS Matching</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 3 — Do</h1>
+    <p class="text-gray-300 mb-4">Match each scenario to the correct OS. Click the best answer:</p>
+    <div class="space-y-6 text-gray-300">
+      <div>
+        <p class="mb-2 font-semibold">1️⃣ A company's web server needs to run 24/7 with minimal cost. Which OS?</p>
+        <div class="flex gap-3 flex-wrap">
+          <button onclick="check(1,'Windows','wrong')" class="px-4 py-2 border border-neonBlue/40 rounded hover:border-neonGreen">Windows</button>
+          <button onclick="check(1,'Linux','correct')" class="px-4 py-2 border border-neonBlue/40 rounded hover:border-neonGreen">Linux</button>
+          <button onclick="check(1,'macOS','wrong')" class="px-4 py-2 border border-neonBlue/40 rounded hover:border-neonGreen">macOS</button>
+        </div>
+        <p id="f1" class="mt-2 text-sm"></p>
+      </div>
+      <div>
+        <p class="mb-2 font-semibold">2️⃣ A graphic designer's studio uses Apple hardware. Which OS?</p>
+        <div class="flex gap-3 flex-wrap">
+          <button onclick="check(2,'Windows','wrong')" class="px-4 py-2 border border-neonBlue/40 rounded hover:border-neonGreen">Windows</button>
+          <button onclick="check(2,'Linux','wrong')" class="px-4 py-2 border border-neonBlue/40 rounded hover:border-neonGreen">Linux</button>
+          <button onclick="check(2,'macOS','correct')" class="px-4 py-2 border border-neonBlue/40 rounded hover:border-neonGreen">macOS</button>
+        </div>
+        <p id="f2" class="mt-2 text-sm"></p>
+      </div>
+      <div>
+        <p class="mb-2 font-semibold">3️⃣ A corporate office with 500 employee PCs joined to a domain. Which OS?</p>
+        <div class="flex gap-3 flex-wrap">
+          <button onclick="check(3,'Windows','correct')" class="px-4 py-2 border border-neonBlue/40 rounded hover:border-neonGreen">Windows</button>
+          <button onclick="check(3,'Linux','wrong')" class="px-4 py-2 border border-neonBlue/40 rounded hover:border-neonGreen">Linux</button>
+          <button onclick="check(3,'macOS','wrong')" class="px-4 py-2 border border-neonBlue/40 rounded hover:border-neonGreen">macOS</button>
+        </div>
+        <p id="f3" class="mt-2 text-sm"></p>
+      </div>
+    </div>
+    <div class="mt-6 flex gap-3">
+      <button onclick="window.location.href='step2_see.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+      <button onclick="window.location.href='step4_test.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    </div>
+  </div>
+  <script>
+    function check(q, label, result) {
+      const el = document.getElementById('f' + q);
+      if (result === 'correct') {
+        el.textContent = '✅ Correct! ' + label + ' is the right choice for this scenario.';
+        el.className = 'mt-2 text-sm text-neonGreen';
+      } else {
+        el.textContent = '❌ Not quite. Think about which OS fits best for that environment.';
+        el.className = 'mt-2 text-sm text-red-400';
+      }
+    }
+  </script>
+</body>
+</html>

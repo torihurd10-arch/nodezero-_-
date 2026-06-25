@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 3 — Do: CLI Challenge</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 3 — Do</h1>
+    <p class="text-gray-300 mb-2">You're in the terminal. For each prompt, type the correct command:</p>
+    <div class="space-y-6 mt-4">
+      <div>
+        <p class="text-gray-300 mb-2">1️⃣ You want to see what folder you're currently in. What do you type?</p>
+        <input id="a1" type="text" class="w-full bg-black/60 border border-neonBlue/60 rounded p-2 font-mono text-neonGreen" placeholder="Type your command..." />
+        <button onclick="check(1)" class="mt-2 px-4 py-1 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/10 text-sm">Check</button>
+        <p id="f1" class="mt-1 text-sm"></p>
+      </div>
+      <div>
+        <p class="text-gray-300 mb-2">2️⃣ You want to list all files in the current directory (Linux). What do you type?</p>
+        <input id="a2" type="text" class="w-full bg-black/60 border border-neonBlue/60 rounded p-2 font-mono text-neonGreen" placeholder="Type your command..." />
+        <button onclick="check(2)" class="mt-2 px-4 py-1 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/10 text-sm">Check</button>
+        <p id="f2" class="mt-1 text-sm"></p>
+      </div>
+      <div>
+        <p class="text-gray-300 mb-2">3️⃣ You want to create a folder called "projects". What do you type?</p>
+        <input id="a3" type="text" class="w-full bg-black/60 border border-neonBlue/60 rounded p-2 font-mono text-neonGreen" placeholder="Type your command..." />
+        <button onclick="check(3)" class="mt-2 px-4 py-1 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/10 text-sm">Check</button>
+        <p id="f3" class="mt-1 text-sm"></p>
+      </div>
+    </div>
+    <div class="mt-6 flex gap-3">
+      <button onclick="window.location.href='step2_see.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+      <button onclick="window.location.href='step4_test.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    </div>
+  </div>
+  <script>
+    const correct = { 1: ['pwd'], 2: ['ls', 'ls -l', 'ls -a', 'ls -la'], 3: ['mkdir projects'] };
+    function check(q) {
+      const val = document.getElementById('a' + q).value.trim().toLowerCase();
+      const el = document.getElementById('f' + q);
+      const ok = correct[q].some(c => val === c);
+      if (ok) { el.textContent = '✅ Correct!'; el.className = 'mt-1 text-sm text-neonGreen'; }
+      else { el.textContent = '❌ Not quite. Hint: ' + correct[q][0]; el.className = 'mt-1 text-sm text-red-400'; }
+    }
+  </script>
+</body>
+</html>

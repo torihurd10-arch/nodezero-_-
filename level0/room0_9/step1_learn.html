@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 1 — Learn: System Architecture Review</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-4xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 1 — Learn</h1>
+    <h2 class="text-xl text-neonBlue mb-4">Everything Connects — Level 0 Review</h2>
+    <p class="text-gray-300 mb-6">You've learned each piece separately. Now see how they form one system:</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-gray-300 mb-6 text-left text-sm">
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-3">
+        <h3 class="text-neonGreen font-semibold mb-1">0.1 Hardware</h3>
+        <p>CPU, RAM, Storage, Monitor — the physical foundation everything runs on.</p>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-3">
+        <h3 class="text-neonGreen font-semibold mb-1">0.2 Inside the Machine</h3>
+        <p>Data paths, performance bottlenecks, how hardware components interact at speed.</p>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-3">
+        <h3 class="text-neonGreen font-semibold mb-1">0.3 Operating System</h3>
+        <p>The bridge between hardware and software. Manages resources, processes, users.</p>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-3">
+        <h3 class="text-neonGreen font-semibold mb-1">0.4 File Systems</h3>
+        <p>How data is organized, addressed, and protected on storage devices.</p>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-3">
+        <h3 class="text-neonGreen font-semibold mb-1">0.5 Networking</h3>
+        <p>IP, DNS, HTTP — how devices find each other and exchange information.</p>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-3">
+        <h3 class="text-neonGreen font-semibold mb-1">0.6 Command Line</h3>
+        <p>Direct control of the OS through typed commands. The power tool of IT.</p>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-3">
+        <h3 class="text-neonGreen font-semibold mb-1">0.7 Software</h3>
+        <p>Source code → dependencies → compile/run → deploy. The software lifecycle.</p>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-3">
+        <h3 class="text-neonGreen font-semibold mb-1">0.8 Security</h3>
+        <p>Passwords, encryption, phishing, 2FA — protecting every layer of the stack.</p>
+      </div>
+      <div class="bg-black/60 border border-neonGreen/40 rounded-lg p-3">
+        <h3 class="text-neonGreen font-semibold mb-1">0.9 This Room</h3>
+        <p>Integrate all 8 areas. Real IT problems span multiple domains simultaneously.</p>
+      </div>
+    </div>
+    <div class="flex gap-3 justify-center">
+      <button onclick="window.location.href='room0_9.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">← Back</button>
+      <button onclick="window.location.href='step2_see.html'" class="px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step →</button>
+    </div>
+  </div>
+</body>
+</html>

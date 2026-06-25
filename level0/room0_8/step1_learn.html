@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 1 — Learn: Security Fundamentals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-4xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 1 — Learn</h1>
+    <h2 class="text-xl text-neonBlue mb-4">Security Fundamentals</h2>
+    <p class="text-gray-300 mb-6">Cybersecurity protects computers, networks, and data from attacks. Understanding these fundamentals is essential for every IT role.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300 mb-6 text-left">
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">🔑 Passwords</h3>
+        <ul class="text-sm space-y-1 list-disc list-inside">
+          <li>Use long, unique passwords for every account</li>
+          <li>Never reuse passwords across services</li>
+          <li>Use a password manager (Bitwarden, 1Password)</li>
+          <li>12+ characters with mixed types</li>
+        </ul>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">🔐 Encryption</h3>
+        <ul class="text-sm space-y-1 list-disc list-inside">
+          <li>Converts data to unreadable ciphertext</li>
+          <li>HTTPS encrypts web traffic</li>
+          <li>At-rest encryption protects stored data</li>
+          <li>End-to-end encryption: only sender/receiver can read</li>
+        </ul>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">🎣 Phishing</h3>
+        <ul class="text-sm space-y-1 list-disc list-inside">
+          <li>Fake emails/sites designed to steal credentials</li>
+          <li>Check sender's real email address</li>
+          <li>Hover over links before clicking</li>
+          <li>Never enter passwords on unfamiliar sites</li>
+        </ul>
+      </div>
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">🛡️ 2FA & Firewalls</h3>
+        <ul class="text-sm space-y-1 list-disc list-inside">
+          <li>2FA adds a second verification step beyond password</li>
+          <li>Even if your password leaks, 2FA blocks attackers</li>
+          <li>Firewalls filter traffic in/out of a network</li>
+          <li>Block unauthorized connections to your systems</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex gap-3 justify-center">
+      <button onclick="window.location.href='room0_8.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">← Back</button>
+      <button onclick="window.location.href='step2_see.html'" class="px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step →</button>
+    </div>
+  </div>
+</body>
+</html>

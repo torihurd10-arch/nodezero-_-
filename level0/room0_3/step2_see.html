@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 2 — See: OS Comparison</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 2 — See</h1>
+    <p class="text-gray-300 mb-4">Click each OS to see where it's used in the real world:</p>
+    <div class="grid md:grid-cols-3 gap-4 text-gray-300 mb-6">
+      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="showOS('windows')">
+        <h2 class="text-neonGreen font-semibold">🪟 Windows</h2>
+        <p class="text-sm">Click to see usage</p>
+      </div>
+      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="showOS('linux')">
+        <h2 class="text-neonGreen font-semibold">🐧 Linux</h2>
+        <p class="text-sm">Click to see usage</p>
+      </div>
+      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="showOS('macos')">
+        <h2 class="text-neonGreen font-semibold">🍎 macOS</h2>
+        <p class="text-sm">Click to see usage</p>
+      </div>
+    </div>
+    <p id="osInfo" class="text-neonGreen font-semibold mb-6 min-h-[3rem]"></p>
+    <div class="mt-6 flex gap-3">
+      <button onclick="window.location.href='step1_learn.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+      <button onclick="window.location.href='step3_do.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    </div>
+  </div>
+  <script>
+    function showOS(os) {
+      const info = {
+        windows: "Windows: Used in 90%+ of corporate desktops. You'll encounter it on every help-desk job. Active Directory, Group Policy, and Remote Desktop are key Windows skills.",
+        linux: "Linux: Powers 96% of the world's top 1 million web servers. DevOps engineers, sysadmins, and cloud engineers work with Linux daily. Ubuntu and CentOS are most common.",
+        macos: "macOS: Standard in design, music, and tech companies. Built on Unix — so CLI skills transfer directly. Developers love it for its built-in terminal."
+      };
+      document.getElementById("osInfo").textContent = info[os];
+    }
+  </script>
+</body>
+</html>

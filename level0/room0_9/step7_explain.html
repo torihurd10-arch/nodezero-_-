@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 7 — Explain: Full Incident Report</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    textarea { background-color: rgba(0,0,0,0.6); border: 1px solid #00C8FF; color: #00FF9C; }
+  </style>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 7 — Explain</h1>
+    <h2 class="text-xl text-neonBlue mb-4">Write the Full Incident Report</h2>
+    <p class="text-gray-300 mb-2">Include: What failed, root cause, impact, resolution, and prevention.</p>
+    <p class="text-neonBlue text-sm mb-4">This is the type of postmortem report real engineers write after outages.</p>
+    <textarea id="explanation" rows="8" class="w-full rounded-lg p-3 mb-4" placeholder="Incident Report:
+Date/Time: [time]
+Summary: Multiple services went down including the web app, database, and logging.
+Root Cause: Server disk reached 98% capacity, preventing all write operations.
+Impact: All users unable to log in for approximately 30 minutes.
+Resolution: Cleared old log files using log rotation, restarted app and DB services. Site restored.
+Prevention: Configured disk space alerts at 80% threshold. Implemented automated log rotation policy."></textarea>
+    <button onclick="save()" class="px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">✅ Submit Report</button>
+    <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
+    <button onclick="window.location.href='step8_repeat.html'" class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step → Repeat</button>
+    <button onclick="window.location.href='step6_fix.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">← Back</button>
+  </div>
+  <script>
+    function save() {
+      const text = document.getElementById("explanation").value.trim();
+      if (text.length < 30) { document.getElementById("feedback").textContent = "⚠️ Please write a complete incident report."; return; }
+      localStorage.setItem("room0_9_explanation", text);
+      let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10); xp += 50;
+      localStorage.setItem("nodezero_xp", String(xp));
+      document.getElementById("feedback").textContent = "✅ Incident report submitted! +50 XP for professional documentation.";
+    }
+  </script>
+</body>
+</html>

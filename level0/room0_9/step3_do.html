@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 3 — Do: System Diagnostic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 3 — Do</h1>
+    <p class="text-gray-300 mb-4">A user reports their computer is "slow and can't load any websites." Match each symptom to the likely cause:</p>
+    <div class="space-y-5 text-gray-300">
+      <div>
+        <p class="mb-2 font-semibold">1️⃣ "Everything is slow — apps take forever to open"</p>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="check(1,'hw','correct')" class="px-3 py-1 border border-neonBlue/40 rounded hover:border-neonGreen text-sm">Hardware (RAM/CPU)</button>
+          <button onclick="check(1,'net','wrong')" class="px-3 py-1 border border-neonBlue/40 rounded hover:border-neonGreen text-sm">Network</button>
+          <button onclick="check(1,'sec','wrong')" class="px-3 py-1 border border-neonBlue/40 rounded hover:border-neonGreen text-sm">Security</button>
+        </div>
+        <p id="f1" class="mt-1 text-sm"></p>
+      </div>
+      <div>
+        <p class="mb-2 font-semibold">2️⃣ "Websites won't load but apps like Notepad work fine"</p>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="check(2,'hw','wrong')" class="px-3 py-1 border border-neonBlue/40 rounded hover:border-neonGreen text-sm">Hardware</button>
+          <button onclick="check(2,'net','correct')" class="px-3 py-1 border border-neonBlue/40 rounded hover:border-neonGreen text-sm">Network/DNS</button>
+          <button onclick="check(2,'sec','wrong')" class="px-3 py-1 border border-neonBlue/40 rounded hover:border-neonGreen text-sm">Security</button>
+        </div>
+        <p id="f2" class="mt-1 text-sm"></p>
+      </div>
+      <div>
+        <p class="mb-2 font-semibold">3️⃣ "The antivirus shows a new process using 90% CPU that I didn't install"</p>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="check(3,'hw','wrong')" class="px-3 py-1 border border-neonBlue/40 rounded hover:border-neonGreen text-sm">Hardware</button>
+          <button onclick="check(3,'net','wrong')" class="px-3 py-1 border border-neonBlue/40 rounded hover:border-neonGreen text-sm">Network</button>
+          <button onclick="check(3,'sec','correct')" class="px-3 py-1 border border-neonBlue/40 rounded hover:border-neonGreen text-sm">Security (Malware)</button>
+        </div>
+        <p id="f3" class="mt-1 text-sm"></p>
+      </div>
+    </div>
+    <div class="mt-6 flex gap-3">
+      <button onclick="window.location.href='step2_see.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+      <button onclick="window.location.href='step4_test.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    </div>
+  </div>
+  <script>
+    function check(q, choice, result) {
+      const el = document.getElementById('f' + q);
+      const msgs = {
+        1: { correct: '✅ Hardware! Slow apps = insufficient RAM or CPU overload. Check Task Manager.', wrong: '❌ Network issues show as websites failing, not apps being slow.' },
+        2: { correct: '✅ Network/DNS! Notepad works = OS is fine. Websites fail = connectivity or DNS issue.', wrong: '❌ Hardware would slow everything, not just web browsing.' },
+        3: { correct: '✅ Security! An unknown process consuming CPU is a classic malware/cryptominer indicator.', wrong: '❌ Hardware/network issues wouldn\'t explain an unknown process appearing.' }
+      };
+      el.textContent = msgs[q][result];
+      el.className = result === 'correct' ? 'mt-1 text-sm text-neonGreen' : 'mt-1 text-sm text-red-400';
+    }
+  </script>
+</body>
+</html>

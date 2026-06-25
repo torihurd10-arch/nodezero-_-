@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 6 — Fix: Correct the Path</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 6 — Fix</h1>
+    <h2 class="text-xl text-neonBlue mb-4">Type the Corrected Path</h2>
+    <p class="text-gray-300 mb-4">Broken path: <code class="text-red-400">C:\Users\Tori\Documnets\script.py</code></p>
+    <p class="text-gray-300 mb-6">Type the corrected path below:</p>
+    <input id="pathInput" type="text" class="w-full bg-black/60 border border-neonBlue/60 rounded p-3 font-mono text-neonGreen mb-4" placeholder="C:\Users\Tori\...\script.py" />
+    <button onclick="checkFix()" class="px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Check Fix</button>
+    <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
+    <button onclick="window.location.href='step7_explain.html'" class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step → Explain</button>
+    <button onclick="window.location.href='step5_break.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">← Back</button>
+  </div>
+  <script>
+    function checkFix() {
+      const val = document.getElementById('pathInput').value.trim();
+      const fb = document.getElementById('feedback');
+      if (val.toLowerCase().includes('documents') && !val.toLowerCase().includes('documnets')) {
+        fb.textContent = '✅ Fixed! Correcting "Documnets" to "Documents" resolves the file not found error.';
+        fb.className = 'text-neonGreen font-semibold mt-6';
+        let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10); xp += 50;
+        localStorage.setItem("nodezero_xp", String(xp));
+      } else {
+        fb.textContent = '❌ Check the spelling of "Documents" in your path.';
+        fb.className = 'text-red-400 font-semibold mt-6';
+      }
+    }
+  </script>
+</body>
+</html>

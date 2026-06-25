@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 3 — Do: Spot the Bug</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 3 — Do</h1>
+    <p class="text-gray-300 mb-4">Each code snippet below has a bug. Click the line that contains the error:</p>
+    <div class="space-y-8">
+      <div>
+        <p class="text-neonBlue mb-2">Snippet 1 — Python:</p>
+        <div class="bg-black rounded p-3 font-mono text-sm space-y-1">
+          <p class="cursor-pointer hover:bg-neonBlue/10 px-2 rounded" onclick="check('1a','wrong')">def greet(name):</p>
+          <p class="cursor-pointer hover:bg-neonBlue/10 px-2 rounded" onclick="check('1b','wrong')">    message = "Hello, " + name</p>
+          <p class="cursor-pointer hover:bg-neonBlue/10 px-2 rounded" onclick="check('1c','correct')">    print(massage)</p>
+          <p class="cursor-pointer hover:bg-neonBlue/10 px-2 rounded" onclick="check('1d','wrong')">greet("Tori")</p>
+        </div>
+        <p id="f1" class="mt-2 text-sm"></p>
+      </div>
+      <div>
+        <p class="text-neonBlue mb-2">Snippet 2 — JavaScript:</p>
+        <div class="bg-black rounded p-3 font-mono text-sm space-y-1">
+          <p class="cursor-pointer hover:bg-neonBlue/10 px-2 rounded" onclick="check('2a','wrong')">function add(a, b) {</p>
+          <p class="cursor-pointer hover:bg-neonBlue/10 px-2 rounded" onclick="check('2b','correct')">    return a - b;</p>
+          <p class="cursor-pointer hover:bg-neonBlue/10 px-2 rounded" onclick="check('2c','wrong')">}</p>
+          <p class="cursor-pointer hover:bg-neonBlue/10 px-2 rounded" onclick="check('2d','wrong')">console.log(add(5, 3));</p>
+        </div>
+        <p id="f2" class="mt-2 text-sm"></p>
+      </div>
+    </div>
+    <div class="mt-6 flex gap-3">
+      <button onclick="window.location.href='step2_see.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+      <button onclick="window.location.href='step4_test.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    </div>
+  </div>
+  <script>
+    function check(id, result) {
+      const qNum = id[0];
+      const el = document.getElementById('f' + qNum);
+      if (result === 'correct') {
+        if (qNum === '1') el.textContent = '✅ Correct! "massage" is a typo — it should be "message".';
+        else el.textContent = '✅ Correct! The function should return a + b, not a - b.';
+        el.className = 'mt-2 text-sm text-neonGreen';
+      } else {
+        el.textContent = '❌ Look more carefully at the logic and variable names.';
+        el.className = 'mt-2 text-sm text-red-400';
+      }
+    }
+  </script>
+</body>
+</html>

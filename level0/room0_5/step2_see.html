@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 2 — See: Network Flow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 2 — See</h1>
+    <p class="text-gray-300 mb-4">Follow the journey of a web request. Click each step:</p>
+    <div class="space-y-3 text-sm">
+      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('browser')">1️⃣ Browser — You type "nodezero.io"</div>
+      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('dns')">2️⃣ DNS Lookup — What IP is nodezero.io?</div>
+      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('router')">3️⃣ Router — Routes the packet to the internet</div>
+      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('server')">4️⃣ Web Server — Receives request on port 443</div>
+      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('response')">5️⃣ Response — HTML is sent back to your browser</div>
+    </div>
+    <p id="info" class="text-neonGreen font-semibold mt-4 min-h-[3rem]"></p>
+    <div class="mt-6 flex gap-3">
+      <button onclick="window.location.href='step1_learn.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+      <button onclick="window.location.href='step3_do.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    </div>
+  </div>
+  <script>
+    const details = {
+      browser: "Your browser needs an IP address before it can connect. It sends a DNS query to your configured DNS server (often your router or 8.8.8.8).",
+      dns: "The DNS server looks up the domain name and returns an IP: 192.0.2.1. This happens in milliseconds.",
+      router: "Your router reads the destination IP and forwards the data packet toward the correct path across the internet.",
+      server: "The web server listens on port 443 (HTTPS). It receives your request and prepares the HTML response.",
+      response: "The server sends back the HTML. Your browser parses it and renders the page you see."
+    };
+    function show(k) { document.getElementById('info').textContent = details[k]; }
+  </script>
+</body>
+</html>
