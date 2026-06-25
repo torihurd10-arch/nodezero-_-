@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 8 — Repeat</title>
+  <title>Step 8 — Repeat: Review and Reinforce</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -17,21 +17,98 @@
       }
     };
   </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .option:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
+  </style>
 </head>
-<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
-  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
     <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 8 — Repeat</h1>
-    <p class="text-gray-300 mb-4">Repeat the core idea until it feels automatic:</p>
-    <div class="space-y-2 text-gray-300">
-      <p>• Input goes in.</p>
-      <p>• The system processes it.</p>
-      <p>• Output comes out.</p>
+    <h2 class="text-xl text-neonBlue mb-4">Quick Review Quiz</h2>
+
+    <p class="text-gray-300 mb-6">
+      Let’s reinforce what you’ve learned. Answer these quick questions to confirm your understanding before applying it to a real job scenario.
+    </p>
+
+    <div id="quiz" class="space-y-6 text-left text-gray-300">
+      <div>
+        <p class="mb-2">1️⃣ What are the two main parts of a computer?</p>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(1,'A')">A. Hardware and Software</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(1,'B')">B. Monitor and Keyboard</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(1,'C')">C. RAM and Storage</div>
+      </div>
+
+      <div>
+        <p class="mb-2">2️⃣ What should you do if the monitor shows no display?</p>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(2,'A')">A. Reconnect the monitor cable</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(2,'B')">B. Replace the CPU</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(2,'C')">C. Ignore the problem</div>
+      </div>
+
+      <div>
+        <p class="mb-2">3️⃣ Why is documentation important after a fix?</p>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(3,'A')">A. It helps others understand what was done</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(3,'B')">B. It wastes time</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(3,'C')">C. It’s optional</div>
+      </div>
     </div>
-    <p class="text-gray-400 mt-4">This is the rhythm of everyday computing.</p>
-    <div class="mt-6 flex gap-3">
-      <button onclick="window.location.href='step7_explain.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
-      <button onclick="window.location.href='step9_apply.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
-    </div>
+
+    <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
+
+    <button onclick="nextStep()"
+            class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+      Next Step → Apply to a Job
+    </button>
+
+    <button onclick="goBack()"
+            class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">
+      ← Back to Room
+    </button>
   </div>
+
+  <script>
+    const answers = {1:'A',2:'A',3:'A'};
+    let score = 0;
+    let answered = 0;
+
+    function checkAnswer(q, choice) {
+      answered++;
+      if (choice === answers[q]) {
+        score++;
+        document.getElementById("feedback").textContent = "✅ Correct!";
+      } else {
+        document.getElementById("feedback").textContent = "❌ Incorrect — review your notes.";
+      }
+
+      if (answered === 3) {
+        const percent = Math.round((score / 3) * 100);
+        document.getElementById("feedback").textContent =
+          `Quiz complete — Score: ${percent}%`;
+
+        if (percent >= 80) {
+          let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
+          xp += 75;
+          localStorage.setItem("nodezero_xp", String(xp));
+          document.getElementById("feedback").textContent +=
+            " 🎉 You earned 75 XP!";
+        } else {
+          document.getElementById("feedback").textContent +=
+            " ⚠️ Score below 80% — review and retry.";
+        }
+      }
+    }
+
+    function nextStep() {
+      window.location.href = "step9_apply.html";
+    }
+
+    function goBack() {
+      window.location.href = "room0_1.html";
+    }
+  </script>
 </body>
 </html>
