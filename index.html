@@ -84,22 +84,27 @@
   </div>
 
   <script>
+    // Update mission console dynamically
     function updateMissionConsole() {
       const xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
       const level = Math.floor(xp / 200);
       const progress = Math.min((xp / 1600) * 100, 100).toFixed(1);
       const earning = 30000 + level * 7000;
 
-      document.getElementById("learningProgress").textContent = `Learning Progress: ${progress}%`;
-      document.getElementById("earningPotential").textContent = `Estimated Earning Potential: $${earning.toLocaleString()} – $${(earning + 5000).toLocaleString()} / yr`;
+      document.getElementById("learningProgress").textContent =
+        `Learning Progress: ${progress}%`;
+      document.getElementById("earningPotential").textContent =
+        `Estimated Earning Potential: $${earning.toLocaleString()} – $${(earning + 5000).toLocaleString()} / yr`;
     }
 
-    function resetProgress() {
-      localStorage.clear();
-      alert("Progress reset. Start again from Level 0.");
-      window.location.reload();
-    }
+    // Listen for XP changes from lessons
+    window.addEventListener("storage", (event) => {
+      if (event.key === "nodezero_xp") {
+        updateMissionConsole();
+      }
+    });
 
+    // Initial load
     updateMissionConsole();
   </script>
 </body>
