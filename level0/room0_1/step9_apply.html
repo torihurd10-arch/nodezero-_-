@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 9 — Apply to a Job</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDark: "#050816",
+            neonGreen: "#00FF9C",
+            neonBlue: "#00C8FF"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 9 — Apply to a Job</h1>
+    <p class="text-gray-300 mb-4">In IT, this matters because users often describe symptoms in plain language.</p>
+    <p class="text-gray-400">A technician must turn “the screen is blank” into a clear troubleshooting path: check power, connect monitor, test startup, and verify the system response.</p>
+    <p class="text-gray-300 mt-4">That is the job: understand the computer, understand the problem, and guide the fix.</p>
+    <div class="mt-6 flex gap-3">
+      <button onclick="window.location.href='step8_repeat.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+      <button onclick="window.location.href='room0_1.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Finish Room</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Room 0.1 — What is a Computer?</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDark: "#050816",
+            neonGreen: "#00FF9C",
+            neonBlue: "#00C8FF"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6 text-center">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Room 0.1 — What is a Computer?</h1>
+    <p class="text-gray-300 mb-6">
+      Begin your first mission: understand what makes a computer work — hardware, software, and how they communicate.
+    </p>
+
+    <div class="space-y-2 text-left text-gray-300">
+      <p>✅ Step 1 — Learn</p>
+      <p>✅ Step 2 — See</p>
+      <p>✅ Step 3 — Do</p>
+      <p>✅ Step 4 — Test</p>
+      <p>✅ Step 5 — Break</p>
+      <p>✅ Step 6 — Fix</p>
+      <p>✅ Step 7 — Explain</p>
+      <p>✅ Step 8 — Repeat</p>
+      <p>✅ Step 9 — Apply to a Job</p>
+    </div>
+
+    <button onclick="window.location.href='step1_learn.html'"
+            class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+      Start Lesson
+    </button>
+  </div>
+</body>
+</html>

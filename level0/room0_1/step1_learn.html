@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 1 — Learn</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDark: "#050816",
+            neonGreen: "#00FF9C",
+            neonBlue: "#00C8FF"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 1 — Learn</h1>
+    <p class="text-gray-300 mb-4">A computer is a machine that takes input, processes it, and gives output.</p>
+    <div class="space-y-3 text-gray-300">
+      <p><span class="text-neonGreen">Input:</span> You press keys, click a mouse, or speak.</p>
+      <p><span class="text-neonGreen">Process:</span> The CPU and software follow instructions.</p>
+      <p><span class="text-neonGreen">Output:</span> The screen shows text, the speaker plays sound, or the printer prints.</p>
+    </div>
+    <p class="text-gray-400 mt-4">Think of it like a digital helper: it takes instructions, follows them, and reports back.</p>
+    <div class="mt-6 flex gap-3">
+      <button onclick="window.location.href='room0_1.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+      <button onclick="window.location.href='step2_see.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    </div>
+  </div>
+</body>
+</html>

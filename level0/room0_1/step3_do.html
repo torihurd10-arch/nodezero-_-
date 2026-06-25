@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 3 — Do</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDark: "#050816",
+            neonGreen: "#00FF9C",
+            neonBlue: "#00C8FF"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 3 — Do</h1>
+    <p class="text-gray-300 mb-4">Try this simple exercise:</p>
+    <ol class="list-decimal list-inside text-gray-300 space-y-2">
+      <li>Open a text editor.</li>
+      <li>Type one sentence: “The computer follows my instructions.”</li>
+      <li>Save the file.</li>
+    </ol>
+    <p class="text-gray-400 mt-4">That tiny action shows how input becomes output through software.</p>
+    <div class="mt-6 flex gap-3">
+      <button onclick="window.location.href='step2_see.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+      <button onclick="window.location.href='step4_test.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    </div>
+  </div>
+</body>
+</html>

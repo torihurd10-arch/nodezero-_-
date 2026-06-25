@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 6 — Fix</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDark: "#050816",
+            neonGreen: "#00FF9C",
+            neonBlue: "#00C8FF"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 6 — Fix</h1>
+    <p class="text-gray-300 mb-4">A practical fix routine:</p>
+    <ul class="list-disc list-inside text-gray-300 space-y-2">
+      <li>Check the power cable and screen connection.</li>
+      <li>Restart the computer if the system is frozen.</li>
+      <li>Confirm the program launched correctly.</li>
+    </ul>
+    <p class="text-gray-400 mt-4">Small checks often solve the biggest problems.</p>
+    <div class="mt-6 flex gap-3">
+      <button onclick="window.location.href='step5_break.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
+      <button onclick="window.location.href='step7_explain.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
+    </div>
+  </div>
+</body>
+</html>
