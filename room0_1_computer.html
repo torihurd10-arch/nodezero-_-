@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NodeZero — What is a Computer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDark: "#050816",
+            neonGreen: "#00FF9C",
+            neonBlue: "#00C8FF"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen">
+  <div class="max-w-4xl mx-auto px-4 py-6">
+    <div class="flex items-center justify-between mb-4">
+      <h1 class="text-2xl font-bold text-neonBlue">Level 0 — Section 1: What is a Computer?</h1>
+      <button onclick="window.location.href='index.html'"
+              class="text-xs border border-gray-500 px-2 py-1 rounded hover:bg-gray-800">Back to Dashboard</button>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-lg font-semibold text-neonGreen mb-2">Learn</h2>
+      <p class="text-gray-300">
+        A computer is a machine that takes input, processes it, and gives output.
+        Hardware is the physical part you can touch.
+        Software is the instructions that tell the hardware what to do.
+      </p>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-lg font-semibold text-neonBlue mb-2">See</h2>
+      <p class="text-gray-300 mb-2">Click each part to learn what it does:</p>
+      <div id="parts" class="grid grid-cols-2 gap-3">
+        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="CPU — The brain that processes instructions.">CPU</button>
+        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="RAM — Short-term memory used while programs are running.">RAM</button>
+        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="Storage — Long-term space for files, apps, and documents.">Storage</button>
+        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="Monitor — Shows the output so you can see text and images.">Monitor</button>
+        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="Keyboard — Lets you type letters, numbers, and commands.">Keyboard</button>
+        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="Mouse — Helps you click and move around the screen.">Mouse</button>
+      </div>
+
+      <div id="feedbackBox" class="mt-4 rounded border border-neonGreen/30 bg-neonGreen/10 p-4 text-sm text-gray-200">
+        Click a part to read a short explanation.
+      </div>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-lg font-semibold text-neonGreen mb-2">Do</h2>
+      <p class="text-gray-300">Try clicking two parts and saying which one helps with input and which one shows output.</p>
+    </div>
+
+    <div class="bg-black/60 border border-neonGreen/60 rounded-lg p-4 shadow-[0_0_20px_rgba(0,255,156,0.2)]">
+      <h2 class="text-lg font-semibold text-neonBlue mb-2">Job Connection</h2>
+      <p class="text-gray-300">
+        In IT support, knowing what a computer is made of helps you explain problems more clearly.
+        If a user says the screen is blank, you can think about the monitor, cables, power, and display settings.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const feedbackBox = document.getElementById("feedbackBox");
+    document.querySelectorAll(".partBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        feedbackBox.textContent = button.dataset.info;
+      });
+    });
+  </script>
+</body>
+</html>
