@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 1 — Learn</title>
+  <title>Step 1 — Learn: What is a Computer?</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -17,21 +17,53 @@
       }
     };
   </script>
+  <style>
+    .glow-border { box-shadow: 0 0 20px #00FF9C; }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
 </head>
-<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
-  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
+
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
     <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 1 — Learn</h1>
-    <p class="text-gray-300 mb-4">A computer is a machine that takes input, processes it, and gives output.</p>
-    <div class="space-y-3 text-gray-300">
-      <p><span class="text-neonGreen">Input:</span> You press keys, click a mouse, or speak.</p>
-      <p><span class="text-neonGreen">Process:</span> The CPU and software follow instructions.</p>
-      <p><span class="text-neonGreen">Output:</span> The screen shows text, the speaker plays sound, or the printer prints.</p>
+    <h2 class="text-xl text-neonBlue mb-4">What is a Computer?</h2>
+
+    <p class="text-gray-300 mb-6">
+      A computer is a machine that processes information. It takes input, performs calculations, and produces output.
+      Every computer has two main parts: <span class="text-neonGreen">hardware</span> (the physical components you can touch)
+      and <span class="text-neonBlue">software</span> (the programs that tell the hardware what to do).
+    </p>
+
+    <div class="grid grid-cols-2 gap-4 text-gray-300 mb-6">
+      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">Hardware</h3>
+        <p>CPU — the brain<br>RAM — short-term memory<br>Storage — long-term memory<br>Monitor — output device</p>
+      </div>
+      <div class="bg-black/60 border border-neonGreen/40 rounded-lg p-4">
+        <h3 class="text-neonBlue font-semibold mb-2">Software</h3>
+        <p>Operating System — controls hardware<br>Applications — perform tasks<br>Drivers — connect hardware and software</p>
+      </div>
     </div>
-    <p class="text-gray-400 mt-4">Think of it like a digital helper: it takes instructions, follows them, and reports back.</p>
-    <div class="mt-6 flex gap-3">
-      <button onclick="window.location.href='room0_1.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
-      <button onclick="window.location.href='step2_see.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
-    </div>
+
+    <button onclick="nextStep()"
+            class="mt-4 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+      Next Step → See
+    </button>
+
+    <button onclick="goBack()"
+            class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">
+      ← Back to Room
+    </button>
   </div>
+
+  <script>
+    function nextStep() {
+      window.location.href = "step2_see.html";
+    }
+    function goBack() {
+      window.location.href = "room0_1.html";
+    }
+  </script>
 </body>
 </html>
