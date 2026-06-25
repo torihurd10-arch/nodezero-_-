@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NodeZero – >_0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDark: "#050816",
+            neonGreen: "#00FF9C",
+            neonBlue: "#00C8FF"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen">
+  <div class="max-w-5xl mx-auto px-4 py-6">
+    <div class="bg-black/70 border border-neonBlue rounded-lg p-4 mb-6 shadow-[0_0_25px_rgba(0,200,255,0.4)]">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-neonGreen font-mono text-lg">>_0</span>
+        <span class="text-xs text-gray-400">NodeZero Training Network</span>
+      </div>
+      <pre id="terminalText" class="font-mono text-sm text-gray-100 whitespace-pre-wrap min-h-[180px]"></pre>
+      <button id="beginMissionBtn"
+              class="mt-4 inline-block px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+        Begin Mission
+      </button>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-3 mb-6">
+      <div class="bg-black/60 border border-neonBlue/60 rounded-lg p-4 shadow-[0_0_20px_rgba(0,200,255,0.2)]">
+        <h2 class="text-sm text-gray-300 mb-2">Operator Status</h2>
+        <p class="text-2xl font-semibold text-neonBlue" id="levelText">Level 0</p>
+        <p class="text-xs text-gray-400 mb-2" id="xpText">0 XP</p>
+        <div class="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
+          <div id="xpBar" class="bg-neonBlue h-2 w-0"></div>
+        </div>
+        <p class="text-xs text-gray-400 mt-2" id="streakText">Streak: 0 days</p>
+        <button id="resetProgressBtn"
+                class="mt-4 inline-block text-xs text-gray-300 border border-gray-500 px-3 py-1 rounded hover:bg-gray-800">
+          Reset Progress
+        </button>
+      </div>
+
+      <div class="bg-black/60 border border-neonGreen/60 rounded-lg p-4 shadow-[0_0_20px_rgba(0,255,156,0.2)]">
+        <h2 class="text-sm text-gray-300 mb-2">Next Mission</h2>
+        <p class="text-lg font-semibold text-neonGreen" id="nextRoomTitle">Room 0.1 – Files & Folders</p>
+        <p class="text-xs text-gray-400 mb-2" id="nextRoomDesc">Learn basic file and folder navigation.</p>
+        <button id="goToRoomsBtn"
+                class="mt-2 inline-block px-3 py-1 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition text-xs">
+          View Rooms
+        </button>
+      </div>
+
+      <div class="bg-black/60 border border-neonBlue/60 rounded-lg p-4 shadow-[0_0_20px_rgba(0,200,255,0.2)]">
+        <h2 class="text-sm text-gray-300 mb-2">Phase 0 Progress</h2>
+        <p class="text-xs text-gray-400 mb-1" id="phaseProgressText">0% complete</p>
+        <div class="w-full bg-gray-800 rounded-full h-2 overflow-hidden mb-2">
+          <div id="phaseBar" class="bg-neonGreen h-2 w-0"></div>
+        </div>
+        <p class="text-xs text-gray-500">Complete all Room 0 missions to unlock Phase 1.</p>
+      </div>
+    </div>
+
+    <section id="roomsSection" class="hidden">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-semibold text-gray-100">Phase 0 – Not New to Computers Anymore</h2>
+        <button id="backToDashboardBtn"
+                class="text-xs text-gray-300 border border-gray-500 px-2 py-1 rounded hover:bg-gray-800">
+          Back to Dashboard
+        </button>
+      </div>
+      <div id="roomsGrid" class="grid gap-4 md:grid-cols-2"></div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
