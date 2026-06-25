@@ -63,10 +63,42 @@ const LEVELS = [
       {
         id: "room1_1",
         title: "Room 1.1 — User Accounts",
-        description: "Create users, understand admin vs standard.",
+        description: "Learn how to create and manage user accounts in Windows.",
         level: 1,
         difficulty: "Beginner",
         order: 1
+      },
+      {
+        id: "room1_2",
+        title: "Room 1.2 — Permissions & Access",
+        description: "Understand admin vs standard accounts and folder permissions.",
+        level: 1,
+        difficulty: "Beginner",
+        order: 2
+      },
+      {
+        id: "room1_3",
+        title: "Room 1.3 — Control Panel & Settings",
+        description: "Explore Control Panel and Windows Settings to customize your system.",
+        level: 1,
+        difficulty: "Beginner",
+        order: 3
+      },
+      {
+        id: "room1_4",
+        title: "Room 1.4 — Folder Sharing",
+        description: "Share folders between users and learn basic networking permissions.",
+        level: 1,
+        difficulty: "Beginner",
+        order: 4
+      },
+      {
+        id: "room1_5",
+        title: "Room 1.5 — Personalization",
+        description: "Change desktop background, theme, and display settings.",
+        level: 1,
+        difficulty: "Beginner",
+        order: 5
       }
     ]
   }
