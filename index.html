@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>NodeZero – >_0</title>
+  <title>NodeZero — Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -20,76 +20,87 @@
   </script>
 </head>
 <body class="bg-bgDark text-gray-100 min-h-screen">
-  <div class="max-w-5xl mx-auto px-4 py-6">
-    <div class="bg-black/70 border border-neonBlue rounded-lg p-4 mb-6 shadow-[0_0_25px_rgba(0,200,255,0.4)]">
-      <div class="flex items-center justify-between mb-2">
-        <span class="text-neonGreen font-mono text-lg">>_0</span>
-        <div class="flex items-center gap-2">
-          <button onclick="window.location.href='glossary.html'"
-                  class="text-xs border border-neonBlue px-2 py-1 rounded hover:bg-black/40">
-            Glossary
-          </button>
-          <button onclick="window.location.href='tickets.html'"
-                  class="text-xs border border-neonGreen px-2 py-1 rounded hover:bg-black/40">
-            IT Tickets
-          </button>
-          <span class="text-xs text-gray-400">NodeZero Training Network</span>
-        </div>
+  <div class="max-w-6xl mx-auto px-4 py-6 space-y-6">
+    <div class="flex items-center justify-between">
+      <span class="text-neonGreen font-mono text-lg">>_ NodeZero Training Network</span>
+      <div class="flex items-center gap-2">
+        <button onclick="window.location.href='glossary.html'"
+                class="text-xs border border-neonBlue px-2 py-1 rounded hover:bg-black/40">Glossary</button>
+        <button onclick="window.location.href='tickets.html'"
+                class="text-xs border border-neonGreen px-2 py-1 rounded hover:bg-black/40">IT Tickets</button>
       </div>
-      <pre id="terminalText" class="font-mono text-sm text-gray-100 whitespace-pre-wrap min-h-[180px]"></pre>
-      <button id="beginMissionBtn"
-              class="mt-4 inline-block px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+    </div>
+
+    <div class="bg-black/80 border border-neonBlue/60 rounded-lg p-4 font-mono text-sm text-neonGreen" id="missionConsole">
+      <p id="missionText">Initializing NodeZero...<br>Loading mission data...<br>Welcome, Operator.<br>Your training begins now.</p>
+      <p id="learningProgress" class="mt-2 text-gray-300">Learning Progress: 0%</p>
+      <p id="earningPotential" class="text-gray-300">Estimated Earning Potential: $0 – $0 / yr</p>
+    </div>
+
+    <div class="bg-black/60 border border-neonBlue/60 rounded-lg p-4">
+      <h2 class="text-lg font-semibold text-neonBlue mb-2">Current Mission</h2>
+      <p id="currentMission" class="text-gray-300">Room 0.1 — What is a Computer</p>
+      <button onclick="window.location.href='room0_1_computer.html'"
+              class="mt-2 px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
         Begin Mission
       </button>
     </div>
 
-    <div class="grid gap-4 md:grid-cols-3 mb-6">
-      <div class="bg-black/60 border border-neonBlue/60 rounded-lg p-4 shadow-[0_0_20px_rgba(0,200,255,0.2)]">
-        <h2 class="text-sm text-gray-300 mb-2">Operator Status</h2>
-        <p class="text-2xl font-semibold text-neonBlue" id="levelText">Level 0</p>
-        <p class="text-xs text-gray-400 mb-2" id="xpText">0 XP</p>
-        <div class="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
-          <div id="xpBar" class="bg-neonBlue h-2 w-0"></div>
-        </div>
-        <p class="text-xs text-gray-400 mt-2" id="streakText">Streak: 0 days</p>
-        <button id="resetProgressBtn"
-                class="mt-4 inline-block text-xs text-gray-300 border border-gray-500 px-3 py-1 rounded hover:bg-gray-800">
-          Reset Progress
-        </button>
-      </div>
-
-      <div class="bg-black/60 border border-neonGreen/60 rounded-lg p-4 shadow-[0_0_20px_rgba(0,255,156,0.2)]">
-        <h2 class="text-sm text-gray-300 mb-2">Next Mission</h2>
-        <p class="text-lg font-semibold text-neonGreen" id="nextRoomTitle">Room 0.1 – Files & Folders</p>
-        <p class="text-xs text-gray-400 mb-2" id="nextRoomDesc">Learn basic file and folder navigation.</p>
-        <button id="goToRoomsBtn"
-                class="mt-2 inline-block px-3 py-1 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition text-xs">
-          View Rooms
-        </button>
-      </div>
-
-      <div class="bg-black/60 border border-neonBlue/60 rounded-lg p-4 shadow-[0_0_20px_rgba(0,200,255,0.2)]">
-        <h2 class="text-sm text-gray-300 mb-2">Phase 0 Progress</h2>
-        <p class="text-xs text-gray-400 mb-1" id="phaseProgressText">0% complete</p>
-        <div class="w-full bg-gray-800 rounded-full h-2 overflow-hidden mb-2">
-          <div id="phaseBar" class="bg-neonGreen h-2 w-0"></div>
-        </div>
-        <p class="text-xs text-gray-500">Complete all Room 0 missions to unlock Phase 1.</p>
-      </div>
+    <div class="bg-black/60 border border-neonGreen/60 rounded-lg p-4">
+      <h2 class="text-lg font-semibold text-neonGreen mb-2">Next Mission</h2>
+      <p id="nextMission" class="text-gray-300">Room 0.2 — Keyboard and Typing Basics</p>
+      <button onclick="window.location.href='room0_2_typing.html'"
+              class="mt-2 px-4 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">
+        View Lesson
+      </button>
     </div>
 
-    <section id="roomsSection" class="hidden">
-      <div class="flex items-center justify-between mb-3">
-        <h2 class="text-lg font-semibold text-gray-100">Phase 0 – Not New to Computers Anymore</h2>
-        <button id="backToDashboardBtn"
-                class="text-xs text-gray-300 border border-gray-500 px-2 py-1 rounded hover:bg-gray-800">
-          Back to Dashboard
-        </button>
+    <div class="grid grid-cols-3 gap-4">
+      <div class="bg-black/60 border border-neonBlue/60 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">Operator Status</h3>
+        <p class="text-gray-300">Level 0</p>
+        <p class="text-gray-300">XP: 0</p>
+        <p class="text-gray-300">Streak: 0 days</p>
+        <button onclick="resetProgress()" class="mt-2 text-xs border border-gray-500 px-2 py-1 rounded hover:bg-gray-800">Reset Progress</button>
       </div>
-      <div id="roomsGrid" class="grid gap-4 md:grid-cols-2"></div>
-    </section>
+
+      <div class="bg-black/60 border border-neonGreen/60 rounded-lg p-4">
+        <h3 class="text-neonBlue font-semibold mb-2">Knowledge Tracker</h3>
+        <ul class="list-disc pl-5 text-gray-300 text-sm">
+          <li>Knowledge ✅</li>
+          <li>Skill ✅</li>
+          <li>Troubleshooting ⚙️</li>
+          <li>Independence ⚙️</li>
+          <li>Job Readiness ⚙️</li>
+        </ul>
+      </div>
+
+      <div class="bg-black/60 border border-neonBlue/60 rounded-lg p-4">
+        <h3 class="text-neonGreen font-semibold mb-2">Phase 0 Progress</h3>
+        <p class="text-gray-300">0 % complete</p>
+        <p class="text-gray-400 text-sm">Complete all Level 0 missions to unlock Level 1.</p>
+      </div>
+    </div>
   </div>
 
-  <script src="app.js"></script>
+  <script>
+    function updateMissionConsole() {
+      const xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
+      const level = Math.floor(xp / 200);
+      const progress = Math.min((xp / 1600) * 100, 100).toFixed(1);
+      const earning = 30000 + level * 7000;
+
+      document.getElementById("learningProgress").textContent = `Learning Progress: ${progress}%`;
+      document.getElementById("earningPotential").textContent = `Estimated Earning Potential: $${earning.toLocaleString()} – $${(earning + 5000).toLocaleString()} / yr`;
+    }
+
+    function resetProgress() {
+      localStorage.clear();
+      alert("Progress reset. Start again from Level 0.");
+      window.location.reload();
+    }
+
+    updateMissionConsole();
+  </script>
 </body>
 </html>
