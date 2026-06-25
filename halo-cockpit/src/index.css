@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-hudBg text-gray-200;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.halo-card {
+  @apply rounded-xl border border-haloBlue/30 bg-hudPanel/60 p-4 shadow-halo backdrop-blur-xs;
+}
+
+.halo-title {
+  @apply font-bold tracking-wide text-haloBlue;
+}
+
+.halo-glow {
+  text-shadow: 0 0 8px rgba(76, 201, 240, 0.8);
+}
+
+.focus-mode .focus-hide {
+  @apply hidden;
+}
