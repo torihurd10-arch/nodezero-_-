@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NodeZero – Glossary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDark: "#050816",
+            neonGreen: "#00FF9C",
+            neonBlue: "#00C8FF"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-bgDark text-gray-100 min-h-screen">
+  <div class="max-w-4xl mx-auto px-4 py-6">
+    <div class="flex items-center justify-between mb-4">
+      <h1 class="text-2xl font-bold text-neonBlue">Beginner Glossary</h1>
+      <button onclick="goBack()" class="text-xs border border-gray-500 px-2 py-1 rounded hover:bg-gray-800">
+        Back to Dashboard
+      </button>
+    </div>
+
+    <input id="searchBox"
+           class="w-full mb-4 px-3 py-2 rounded bg-black/60 border border-gray-600 text-sm"
+           placeholder="Search a word like DNS, IP, RAM..." />
+
+    <div id="termsContainer" class="space-y-4"></div>
+  </div>
+
+  <script>
+    const TERMS = [
+      {
+        word: "DNS",
+        plain: "Internet phonebook.",
+        why: "Without it, websites won’t load even if internet works.",
+        where: "Browser errors, network troubleshooting, IT tickets.",
+        jobExample: "Internet works but websites don’t load.",
+        miniLab: "Open Command Prompt and run: nslookup google.com"
+      },
+      {
+        word: "IP Address",
+        plain: "Home address for a device on a network.",
+        why: "Needed to send data to the right device.",
+        where: "Network settings, ipconfig, router pages.",
+        jobExample: "User can’t connect; you check if they have a valid IP.",
+        miniLab: "Run ipconfig and find your IPv4 address."
+      }
+    ];
+
+    const container = document.getElementById("termsContainer");
+    const searchBox = document.getElementById("searchBox");
+
+    function renderTerms(filter = "") {
+      container.innerHTML = "";
+      TERMS
+        .filter(term => term.word.toLowerCase().includes(filter.toLowerCase()))
+        .forEach(term => {
+          const div = document.createElement("div");
+          div.className = "bg-black/60 border border-neonBlue/60 rounded-lg p-4";
+          div.innerHTML = `
+            <h2 class="text-neonGreen font-semibold mb-1">${term.word}</h2>
+            <p class="text-sm text-gray-200"><span class="font-semibold">Plain English:</span> ${term.plain}</p>
+            <p class="text-sm text-gray-200 mt-1"><span class="font-semibold">Why it matters:</span> ${term.why}</p>
+            <p class="text-sm text-gray-200 mt-1"><span class="font-semibold">Where you'll see it:</span> ${term.where}</p>
+            <p class="text-sm text-gray-200 mt-1"><span class="font-semibold">Real job example:</span> ${term.jobExample}</p>
+            <p class="text-sm text-gray-200 mt-1"><span class="font-semibold">Mini lab:</span> ${term.miniLab}</p>
+          `;
+          container.appendChild(div);
+        });
+    }
+
+    searchBox.addEventListener("input", () => {
+      renderTerms(searchBox.value);
+    });
+
+    function goBack() {
+      window.location.href = "index.html";
+    }
+
+    renderTerms();
+  </script>
+</body>
+</html>

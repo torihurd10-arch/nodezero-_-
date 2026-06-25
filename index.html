@@ -24,7 +24,13 @@
     <div class="bg-black/70 border border-neonBlue rounded-lg p-4 mb-6 shadow-[0_0_25px_rgba(0,200,255,0.4)]">
       <div class="flex items-center justify-between mb-2">
         <span class="text-neonGreen font-mono text-lg">>_0</span>
-        <span class="text-xs text-gray-400">NodeZero Training Network</span>
+        <div class="flex items-center gap-2">
+          <button onclick="window.location.href='glossary.html'"
+                  class="text-xs border border-neonBlue px-2 py-1 rounded hover:bg-black/40">
+            Glossary
+          </button>
+          <span class="text-xs text-gray-400">NodeZero Training Network</span>
+        </div>
       </div>
       <pre id="terminalText" class="font-mono text-sm text-gray-100 whitespace-pre-wrap min-h-[180px]"></pre>
       <button id="beginMissionBtn"

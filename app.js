@@ -7,11 +7,84 @@ const terminalLines = [
   "Your training begins now."
 ];
 
-const rooms = [
-  { id: "room0_1", title: "Room 0.1 — Files & Folders", description: "Stop being new to files, folders, and basic navigation.", difficulty: "Beginner", phase: 0, order: 1 },
-  { id: "room0_2", title: "Room 0.2 — User Accounts", description: "Understand local users and admin vs standard.", difficulty: "Beginner", phase: 0, order: 2 },
-  { id: "room0_3", title: "Room 0.3 — Networking Basics", description: "Learn IP, ping, and DNS at a basic level.", difficulty: "Beginner", phase: 0, order: 3 }
+const LEVELS = [
+  {
+    id: 0,
+    name: "Level 0 — Computer Fundamentals",
+    description: "Stop being new to computers. Files, folders, apps, and basic control.",
+    rooms: [
+      {
+        id: "room0_1",
+        title: "Room 0.1 — Files & Folders",
+        description: "Create, rename, delete, and understand files and folders.",
+        level: 0,
+        difficulty: "Beginner",
+        order: 1
+      },
+      {
+        id: "room0_2",
+        title: "Room 0.2 — Install & Uninstall",
+        description: "Download, install, and remove software safely.",
+        level: 0,
+        difficulty: "Beginner",
+        order: 2
+      },
+      {
+        id: "room0_3",
+        title: "Room 0.3 — Networking Basics",
+        description: "Learn IP, ping, and DNS at a basic level.",
+        level: 0,
+        difficulty: "Beginner",
+        order: 3
+      }
+    ]
+  },
+  {
+    id: 1,
+    name: "Level 1 — Windows Basics",
+    description: "Users, settings, and basic control of Windows.",
+    rooms: [
+      {
+        id: "room1_1",
+        title: "Room 1.1 — User Accounts",
+        description: "Create users, understand admin vs standard.",
+        level: 1,
+        difficulty: "Beginner",
+        order: 1
+      }
+    ]
+  }
 ];
+
+const rooms = LEVELS.flatMap(level => level.rooms);
+const TICKETS = [
+  {
+    id: "ticket1",
+    title: "New employee: Create account",
+    levelHint: "Level 7 – Active Directory",
+    steps: [
+      "Create a new user in Active Directory.",
+      "Add them to the HR group.",
+      "Give them access to the shared HR folder."
+    ]
+  },
+  {
+    id: "ticket2",
+    title: "Internet not working",
+    levelHint: "Level 3 – Networking Fundamentals",
+    steps: [
+      "Check if the PC is connected to Wi-Fi or Ethernet.",
+      "Run ipconfig and check IP address.",
+      "Ping 8.8.8.8.",
+      "Ping google.com.",
+      "Decide if it’s DNS or full internet outage."
+    ]
+  }
+];
+
+window.LEVELS = LEVELS;
+window.rooms = rooms;
+window.TICKETS = TICKETS;
 
 const STORAGE_KEY_PROGRESS = "nodezero_progress";
 const STORAGE_KEY_XP = "nodezero_xp";
@@ -108,7 +181,7 @@ function updateDashboard() {
   document.getElementById("xpBar").style.width = `${xp % 100}%`;
 
   const progress = getProgress();
-  const phaseRooms = rooms.filter(r => r.phase === 0);
+  const phaseRooms = rooms.filter(r => r.level === 0);
   const completedCount = phaseRooms.filter(r => progress[r.id]).length;
   const phasePercent = phaseRooms.length ? Math.round((completedCount / phaseRooms.length) * 100) : 0;
 
@@ -151,7 +224,7 @@ function renderRooms() {
   grid.innerHTML = "";
   const progress = getProgress();
 
-  rooms.sort((a, b) => a.order - b.order).forEach(room => {
+  [...rooms].sort((a, b) => a.order - b.order).forEach(room => {
     const completed = Boolean(progress[room.id]);
     const card = document.createElement("div");
     card.className = "bg-white/5 border border-white/10 rounded-xl p-4";
@@ -206,6 +279,11 @@ function setupEventListeners() {
 }
 
 function init() {
+  const dashboard = document.getElementById("roomsGrid");
+  if (!dashboard) {
+    return;
+  }
+
   updateDashboard();
   renderRooms();
   setupEventListeners();
