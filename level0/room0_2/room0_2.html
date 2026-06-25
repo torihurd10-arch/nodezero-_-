@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Room 0.2 — Inside the Machine</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDark: "#050816",
+            neonGreen: "#00FF9C",
+            neonBlue: "#00C8FF"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6 text-center">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Room 0.2 — Inside the Machine</h1>
+    <p class="text-gray-300 mb-6">
+      Learn how data travels through the CPU, memory, and storage.
+      Understand how performance bottlenecks happen and how to fix them.
+    </p>
+
+    <div class="space-y-2 text-left text-gray-300">
+      <p>✅ Step 1 — Learn the Data Path</p>
+      <p>✅ Step 2 — See CPU and RAM in Action</p>
+      <p>✅ Step 3 — Do a Performance Test</p>
+      <p>✅ Step 4 — Test Your Knowledge</p>
+      <p>✅ Step 5 — Break the System</p>
+      <p>✅ Step 6 — Fix the Bottleneck</p>
+      <p>✅ Step 7 — Explain the Optimization</p>
+      <p>✅ Step 8 — Repeat the Process</p>
+      <p>✅ Step 9 — Apply to a Job Scenario</p>
+    </div>
+
+    <button onclick="window.location.href='step1_learn.html'"
+            class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+      Start Lesson
+    </button>
+  </div>
+</body>
+</html>
