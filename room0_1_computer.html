@@ -31,8 +31,8 @@
       <h2 class="text-lg font-semibold text-neonGreen mb-2">Learn</h2>
       <p class="text-gray-300">
         A computer is a machine that takes input, processes it, and gives output.
-        Hardware is the physical part you can touch.
-        Software is the instructions that tell the hardware what to do.
+        Hardware = physical parts you can touch.
+        Software = instructions that tell hardware what to do.
       </p>
     </div>
 
@@ -41,37 +41,85 @@
       <p class="text-gray-300 mb-2">Click each part to learn what it does:</p>
       <div id="parts" class="grid grid-cols-2 gap-3">
         <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="CPU — The brain that processes instructions.">CPU</button>
-        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="RAM — Short-term memory used while programs are running.">RAM</button>
-        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="Storage — Long-term space for files, apps, and documents.">Storage</button>
-        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="Monitor — Shows the output so you can see text and images.">Monitor</button>
-        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="Keyboard — Lets you type letters, numbers, and commands.">Keyboard</button>
-        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="Mouse — Helps you click and move around the screen.">Mouse</button>
+        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="RAM — Short-term memory that stores data while programs run.">RAM</button>
+        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="Storage — Long-term memory that keeps files and programs.">Storage</button>
+        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="Monitor — Displays what the computer is doing.">Monitor</button>
+        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="Keyboard — Lets you type commands and text.">Keyboard</button>
+        <button class="partBtn border border-neonGreen rounded p-2 hover:bg-neonGreen/10" data-info="Mouse — Lets you click, drag, and select things.">Mouse</button>
       </div>
-
-      <div id="feedbackBox" class="mt-4 rounded border border-neonGreen/30 bg-neonGreen/10 p-4 text-sm text-gray-200">
-        Click a part to read a short explanation.
-      </div>
+      <p id="infoBox" class="mt-3 text-gray-200 italic"></p>
     </div>
 
     <div class="mb-6">
       <h2 class="text-lg font-semibold text-neonGreen mb-2">Do</h2>
-      <p class="text-gray-300">Try clicking two parts and saying which one helps with input and which one shows output.</p>
+      <p class="text-gray-300">Look around your own computer. Identify each part physically.
+      Say out loud: “This is the CPU. This is the monitor.”</p>
     </div>
 
-    <div class="bg-black/60 border border-neonGreen/60 rounded-lg p-4 shadow-[0_0_20px_rgba(0,255,156,0.2)]">
-      <h2 class="text-lg font-semibold text-neonBlue mb-2">Job Connection</h2>
-      <p class="text-gray-300">
-        In IT support, knowing what a computer is made of helps you explain problems more clearly.
-        If a user says the screen is blank, you can think about the monitor, cables, power, and display settings.
-      </p>
+    <div class="mb-6">
+      <h2 class="text-lg font-semibold text-neonBlue mb-2">Test</h2>
+      <p class="text-gray-300">Without looking at notes, explain what each part does.
+      If you forget one, click it again above.</p>
     </div>
+
+    <div class="mb-6">
+      <h2 class="text-lg font-semibold text-neonGreen mb-2">Break</h2>
+      <p class="text-gray-300">Imagine unplugging the monitor — what happens?
+      You can’t see output. That’s a safe “break.”</p>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-lg font-semibold text-neonBlue mb-2">Fix</h2>
+      <p class="text-gray-300">Plug it back in. The display returns.
+      That’s troubleshooting — finding what’s wrong and fixing it.</p>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-lg font-semibold text-neonGreen mb-2">Explain</h2>
+      <p class="text-gray-300">Answer out loud:</p>
+      <ul class="list-disc pl-5 text-gray-300">
+        <li>What is a computer?</li>
+        <li>Why does it exist?</li>
+        <li>Where will I use this knowledge at work?</li>
+        <li>How do I know it’s working?</li>
+        <li>What breaks if it’s wrong?</li>
+      </ul>
+    </div>
+
+    <div class="mb-6 bg-black/60 border border-neonBlue/60 rounded-lg p-4">
+      <h2 class="text-lg font-semibold text-neonGreen mb-2">Apply to a Job</h2>
+      <p class="text-gray-300 mb-2"><span class="font-semibold">Help Desk:</span> Identify hardware issues when users say “My computer won’t turn on.”</p>
+      <p class="text-gray-300 mb-2"><span class="font-semibold">Field Tech:</span> Replace faulty parts like RAM or hard drives.</p>
+      <p class="text-gray-300 mb-2"><span class="font-semibold">Sysadmin:</span> Understand how hardware affects performance.</p>
+      <p class="text-gray-300 mb-2"><span class="font-semibold">Endpoint Engineer:</span> Automate hardware inventory collection.</p>
+
+      <h3 class="text-neonBlue font-semibold mt-3">Interview Question:</h3>
+      <p class="text-gray-300">“Explain the difference between hardware and software.”</p>
+
+      <h3 class="text-neonBlue font-semibold mt-3">Real Ticket:</h3>
+      <p class="text-gray-300">User says: “My computer turns on but nothing shows on screen.”
+      You check the monitor connection first.</p>
+
+      <h3 class="text-neonBlue font-semibold mt-3">Can You Do It?</h3>
+      <ul class="list-disc pl-5 text-gray-300">
+        <li>□ I can explain it.</li>
+        <li>□ I can do it.</li>
+        <li>□ I can troubleshoot it.</li>
+        <li>□ I can do it without notes.</li>
+        <li>□ I can teach someone else.</li>
+      </ul>
+    </div>
+
+    <button onclick="window.location.href='room.html?id=room0_2'"
+            class="mt-4 inline-block px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+      Next Lesson →
+    </button>
   </div>
 
   <script>
-    const feedbackBox = document.getElementById("feedbackBox");
-    document.querySelectorAll(".partBtn").forEach(button => {
-      button.addEventListener("click", () => {
-        feedbackBox.textContent = button.dataset.info;
+    document.querySelectorAll(".partBtn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.getElementById("infoBox").textContent = btn.dataset.info;
       });
     });
   </script>
