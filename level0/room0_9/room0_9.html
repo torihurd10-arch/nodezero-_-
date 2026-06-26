@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Room 0.9 — Putting It All Together</title>
+  <title>Room 0.9 â€” Putting It All Together</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,21 +12,21 @@
 </head>
 <body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
   <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6 text-center">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Room 0.9 — Putting It All Together</h1>
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Room 0.9 â€” Putting It All Together</h1>
     <p class="text-gray-300 mb-6">
       Connect every concept from Level 0. See how hardware, OS, files, networks,
-      CLI, software, and security work as one system — then prove it with a final mission.
+      CLI, software, and security work as one system â€” then prove it with a final mission.
     </p>
     <div class="space-y-2 text-left text-gray-300">
-      <p>✅ Step 1 — Review All Level 0 Concepts</p>
-      <p>✅ Step 2 — See the Full System Diagram</p>
-      <p>✅ Step 3 — Do a Full System Diagnostic</p>
-      <p>✅ Step 4 — Comprehensive Level 0 Quiz</p>
-      <p>✅ Step 5 — Break: Cascading System Failure</p>
-      <p>✅ Step 6 — Fix: Systematic Troubleshooting</p>
-      <p>✅ Step 7 — Write a Full Incident Report</p>
-      <p>✅ Step 8 — Final Concept Review</p>
-      <p>✅ Step 9 — Final Mission Prep</p>
+      <p>âœ… Step 1 â€” Review All Level 0 Concepts</p>
+      <p>âœ… Step 2 â€” See the Full System Diagram</p>
+      <p>âœ… Step 3 â€” Do a Full System Diagnostic</p>
+      <p>âœ… Step 4 â€” Comprehensive Level 0 Quiz</p>
+      <p>âœ… Step 5 â€” Break: Cascading System Failure</p>
+      <p>âœ… Step 6 â€” Fix: Systematic Troubleshooting</p>
+      <p>âœ… Step 7 â€” Write a Full Incident Report</p>
+      <p>âœ… Step 8 â€” Final Concept Review</p>
+      <p>âœ… Step 9 â€” Final Mission Prep</p>
     </div>
     <button onclick="window.location.href='step1_learn.html'"
             class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
@@ -35,8 +35,15 @@
     <br/>
     <button onclick="window.location.href='../../index.html'"
             class="mt-3 px-4 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition text-sm">
-      ← Level 0 Dashboard
+      â† Level 0 Dashboard
     </button>
+  </div>
+  <!-- Global Nav -->
+  <div class="fixed bottom-4 right-4 flex flex-col gap-2 z-50">
+    <a href="../../glossary.html" class="px-3 py-1.5 bg-bgDark/90 border border-neonGreen/60 text-neonGreen text-xs rounded-lg hover:bg-neonGreen/10 backdrop-blur shadow-lg">Glossary</a>
+    <a href="../../projects.html" class="px-3 py-1.5 bg-bgDark/90 border border-neonBlue/60 text-neonBlue text-xs rounded-lg hover:bg-neonBlue/10 backdrop-blur shadow-lg">Projects</a>
+    <button onclick="if(confirm('Reset all progress?')){localStorage.clear();window.location.href='../../index.html';}" class="px-3 py-1.5 bg-bgDark/90 border border-red-500/60 text-red-400 text-xs rounded-lg hover:bg-red-500/10 backdrop-blur shadow-lg">Reset</button>
   </div>
 </body>
 </html>
+

@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 2 — See: Network Flow</title>
+  <title>Step 2 â€” See: Network Flow</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,14 +12,14 @@
 </head>
 <body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
   <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 2 — See</h1>
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 2 â€” See</h1>
     <p class="text-gray-300 mb-4">Follow the journey of a web request. Click each step:</p>
     <div class="space-y-3 text-sm">
-      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('browser')">1️⃣ Browser — You type "nodezero.io"</div>
-      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('dns')">2️⃣ DNS Lookup — What IP is nodezero.io?</div>
-      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('router')">3️⃣ Router — Routes the packet to the internet</div>
-      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('server')">4️⃣ Web Server — Receives request on port 443</div>
-      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('response')">5️⃣ Response — HTML is sent back to your browser</div>
+      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('browser')">1ï¸âƒ£ Browser â€” You type "nodezero.io"</div>
+      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('dns')">2ï¸âƒ£ DNS Lookup â€” What IP is nodezero.io?</div>
+      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('router')">3ï¸âƒ£ Router â€” Routes the packet to the internet</div>
+      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('server')">4ï¸âƒ£ Web Server â€” Receives request on port 443</div>
+      <div class="border border-neonBlue/40 rounded p-3 cursor-pointer hover:border-neonGreen" onclick="show('response')">5ï¸âƒ£ Response â€” HTML is sent back to your browser</div>
     </div>
     <p id="info" class="text-neonGreen font-semibold mt-4 min-h-[3rem]"></p>
     <div class="mt-6 flex gap-3">
@@ -37,5 +37,10 @@
     };
     function show(k) { document.getElementById('info').textContent = details[k]; }
   </script>
-</body>
+  <div style="position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:999;">
+    <a href="../../glossary.html" style="padding:4px 10px;border:1px solid rgba(0,255,156,0.6);color:#00FF9C;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Glossary</a>
+    <a href="../../projects.html" style="padding:4px 10px;border:1px solid rgba(0,200,255,0.6);color:#00C8FF;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Projects</a>
+    <a href="../../index.html" style="padding:4px 10px;border:1px solid rgba(150,150,150,0.4);color:#9ca3af;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Dashboard</a>
+  </div></body>
 </html>
+

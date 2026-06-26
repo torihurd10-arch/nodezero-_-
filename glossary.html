@@ -1,91 +1,148 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>NodeZero – Glossary</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8"/>
+  <title>NodeZero -- Level 0 Glossary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            bgDark: "#050816",
-            neonGreen: "#00FF9C",
-            neonBlue: "#00C8FF"
-          }
-        }
-      }
-    };
-  </script>
+  <script>tailwind.config={theme:{extend:{colors:{bgDark:"#050816",neonGreen:"#00FF9C",neonBlue:"#00C8FF"}}}};</script>
+  <style>
+    .glow{box-shadow:0 0 15px rgba(0,255,156,0.25);}
+    .fade-in{animation:fadeIn 0.8s ease-in;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+    .card-flip{perspective:800px;}
+    .card-inner{transition:transform 0.6s;transform-style:preserve-3d;position:relative;}
+    .card-inner.flipped{transform:rotateY(180deg);}
+    .card-face{backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+    .card-back{transform:rotateY(180deg);}
+    .tag{display:inline-block;font-size:0.65rem;padding:1px 6px;border-radius:9999px;}
+  </style>
 </head>
 <body class="bg-bgDark text-gray-100 min-h-screen">
-  <div class="max-w-4xl mx-auto px-4 py-6">
-    <div class="flex items-center justify-between mb-4">
-      <h1 class="text-2xl font-bold text-neonBlue">Beginner Glossary</h1>
-      <button onclick="goBack()" class="text-xs border border-gray-500 px-2 py-1 rounded hover:bg-gray-800">
-        Back to Dashboard
-      </button>
+  <header class="border-b border-neonGreen/20 px-6 py-4 flex items-center justify-between sticky top-0 bg-bgDark/95 backdrop-blur z-10">
+    <div>
+      <h1 class="text-xl font-bold text-neonGreen">NodeZero Glossary</h1>
+      <p class="text-xs text-gray-500">Level 0 -- All Terms Defined</p>
     </div>
-
-    <input id="searchBox"
-           class="w-full mb-4 px-3 py-2 rounded bg-black/60 border border-gray-600 text-sm"
-           placeholder="Search a word like DNS, IP, RAM..." />
-
-    <div id="termsContainer" class="space-y-4"></div>
+    <div class="flex gap-2 flex-wrap justify-end">
+      <a href="index.html" class="px-3 py-1.5 border border-neonBlue/60 text-neonBlue text-xs rounded hover:bg-neonBlue/10">Dashboard</a>
+      <a href="projects.html" class="px-3 py-1.5 border border-neonGreen/60 text-neonGreen text-xs rounded hover:bg-neonGreen/10">Projects</a>
+      <button onclick="resetProgress()" class="px-3 py-1.5 border border-red-500/60 text-red-400 text-xs rounded hover:bg-red-500/10">Reset</button>
+    </div>
+  </header>
+  <div class="max-w-5xl mx-auto px-6 py-8">
+    <div class="flex gap-3 mb-6 justify-center flex-wrap">
+      <button onclick="setMode('browse')" class="px-5 py-2 border border-neonGreen text-neonGreen rounded-lg hover:bg-neonGreen/10 text-sm font-semibold">Browse</button>
+      <button onclick="setMode('flashcard')" class="px-5 py-2 border border-neonBlue text-neonBlue rounded-lg hover:bg-neonBlue/10 text-sm font-semibold">Flashcards</button>
+      <button onclick="setMode('quiz')" class="px-5 py-2 border border-yellow-500 text-yellow-400 rounded-lg hover:bg-yellow-500/10 text-sm font-semibold">Quick Quiz</button>
+    </div>
+    <div id="search-bar" class="mb-4">
+      <input id="searchInput" oninput="filterTerms()" type="text" placeholder="Search terms..." class="w-full bg-black/60 border border-neonBlue/40 rounded-lg p-3 text-neonGreen placeholder-gray-600 text-sm focus:outline-none focus:border-neonGreen"/>
+    </div>
+    <div id="filter-tags" class="flex gap-2 mb-6 flex-wrap">
+      <button onclick="filterTag('')" class="tag border border-neonGreen/60 text-neonGreen hover:bg-neonGreen/10">All</button>
+      <button onclick="filterTag('hardware')" class="tag border border-orange-500/60 text-orange-400 hover:bg-orange-500/10">Hardware</button>
+      <button onclick="filterTag('os')" class="tag border border-purple-500/60 text-purple-400 hover:bg-purple-500/10">OS</button>
+      <button onclick="filterTag('network')" class="tag border border-blue-500/60 text-blue-400 hover:bg-blue-500/10">Networking</button>
+      <button onclick="filterTag('cli')" class="tag border border-neonGreen/60 text-neonGreen hover:bg-neonGreen/10">CLI</button>
+      <button onclick="filterTag('software')" class="tag border border-yellow-500/60 text-yellow-400 hover:bg-yellow-500/10">Software</button>
+      <button onclick="filterTag('security')" class="tag border border-red-500/60 text-red-400 hover:bg-red-500/10">Security</button>
+    </div>
+    <div id="browse-mode"><div id="terms-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 fade-in"></div></div>
+    <div id="flashcard-mode" class="hidden">
+      <div class="text-center mb-4">
+        <p class="text-gray-400 text-sm">Card <span id="fc-current">1</span> of <span id="fc-total">0</span> -- Click to flip</p>
+        <div class="flex gap-2 justify-center mt-2">
+          <button onclick="prevCard()" class="px-4 py-1.5 border border-neonBlue/60 text-neonBlue text-sm rounded hover:bg-neonBlue/10">Prev</button>
+          <button onclick="nextCard()" class="px-4 py-1.5 border border-neonGreen/60 text-neonGreen text-sm rounded hover:bg-neonGreen/10">Next</button>
+          <button onclick="shuffleCards()" class="px-4 py-1.5 border border-yellow-500/60 text-yellow-400 text-sm rounded hover:bg-yellow-500/10">Shuffle</button>
+        </div>
+      </div>
+      <div class="card-flip max-w-lg mx-auto h-48 cursor-pointer" onclick="flipCard()">
+        <div class="card-inner w-full h-full" id="card-inner">
+          <div class="card-face absolute inset-0 bg-black/80 border border-neonGreen/60 rounded-xl glow flex flex-col items-center justify-center p-6">
+            <p class="text-xs text-neonBlue font-mono mb-2">TERM</p>
+            <p id="fc-front" class="text-2xl font-bold text-neonGreen text-center"></p>
+            <p class="text-xs text-gray-500 mt-4">Click to reveal definition</p>
+          </div>
+          <div class="card-back card-face absolute inset-0 bg-black/80 border border-neonBlue/60 rounded-xl flex flex-col items-center justify-center p-6">
+            <p class="text-xs text-neonGreen font-mono mb-2">DEFINITION</p>
+            <p id="fc-back" class="text-sm text-gray-200 text-center leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-3 justify-center mt-6">
+        <button onclick="markKnown(true)" class="px-6 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 text-sm">Got it</button>
+        <button onclick="markKnown(false)" class="px-6 py-2 bg-red-500/10 border border-red-500/60 text-red-400 rounded hover:bg-red-500/20 text-sm">Review again</button>
+      </div>
+      <p id="fc-score" class="text-center text-neonBlue text-sm mt-4"></p>
+    </div>
+    <div id="quiz-mode" class="hidden max-w-2xl mx-auto">
+      <div id="quiz-container"></div>
+      <p id="quiz-result" class="text-center text-neonGreen font-semibold mt-6"></p>
+      <button onclick="initQuiz()" class="mt-4 block mx-auto px-6 py-2 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/10 text-sm">New Quiz</button>
+    </div>
   </div>
-
   <script>
-    const TERMS = [
-      {
-        word: "DNS",
-        plain: "Internet phonebook.",
-        why: "Without it, websites won’t load even if internet works.",
-        where: "Browser errors, network troubleshooting, IT tickets.",
-        jobExample: "Internet works but websites don’t load.",
-        miniLab: "Open Command Prompt and run: nslookup google.com"
-      },
-      {
-        word: "IP Address",
-        plain: "Home address for a device on a network.",
-        why: "Needed to send data to the right device.",
-        where: "Network settings, ipconfig, router pages.",
-        jobExample: "User can’t connect; you check if they have a valid IP.",
-        miniLab: "Run ipconfig and find your IPv4 address."
-      }
+    const terms=[
+      {term:"CPU",tag:"hardware",def:"Central Processing Unit -- the brain of the computer. Executes billions of instructions per second.",example:"Intel Core i7, AMD Ryzen 5",why:"Every IT job involves troubleshooting high CPU usage. Knowing what the CPU does helps identify which process is hogging resources.",memory:"CPU = Core brain. Think: C = Compute"},
+      {term:"RAM",tag:"hardware",def:"Random Access Memory -- fast temporary storage for active programs. Data is lost when power is off.",example:"8GB DDR4 RAM running Chrome and VS Code",why:"When RAM fills up, systems slow to a crawl. RAM issues are in the top 5 help-desk complaints.",memory:"RAM = desk surface. You clear it when you leave."},
+      {term:"HDD",tag:"hardware",def:"Hard Disk Drive -- mechanical spinning disk storage. Permanent but slow (100MB/s read).",example:"Old laptop boots in 5 minutes = likely has an HDD",why:"Replacing HDDs with SSDs is a common quick-win for IT support.",memory:"HDD = spinning disk. Slow because it physically moves."},
+      {term:"SSD",tag:"hardware",def:"Solid State Drive -- flash-based storage. Fast (500MB/s-7GB/s) with no moving parts.",example:"NVMe SSD boots Windows in under 15 seconds",why:"SSDs are standard in modern systems. You'll recommend upgrades regularly.",memory:"SSD = flash chips. No spinning = much faster."},
+      {term:"Operating System",tag:"os",def:"Software that manages all hardware and software. Controls memory, processes, files, and devices.",example:"Windows 11, Ubuntu Linux, macOS",why:"Every computer runs an OS. Understanding each is fundamental to any IT role.",memory:"OS = referee. Manages who gets CPU time, RAM, and disk."},
+      {term:"Windows",tag:"os",def:"Microsoft's OS used on 90%+ of corporate desktops. Features Active Directory, Group Policy, PowerShell.",example:"Corporate office with 500 employees all using Windows 11",why:"Most help-desk and sysadmin roles are Windows-based.",memory:"Windows = corporate standard. Recognizable by the Start menu."},
+      {term:"Linux",tag:"os",def:"Open-source Unix-based OS. Powers 96% of the world's web servers and cloud infrastructure.",example:"Ubuntu server running a web application in AWS",why:"DevOps, cloud, and server admin roles all require Linux.",memory:"Linux = server OS. Terminal-heavy, open-source, free."},
+      {term:"macOS",tag:"os",def:"Apple's Unix-based OS. Popular with developers and creative professionals.",example:"Developer using macOS for its built-in terminal and Homebrew",why:"Common in tech companies. Unix base means CLI skills transfer to Linux.",memory:"macOS = Apple + Unix. Best of both worlds for developers."},
+      {term:"File System",tag:"os",def:"How an OS organizes and retrieves files on storage. Windows=NTFS, Linux=ext4.",example:"C:\\ is the root of the Windows NTFS file system",why:"Understanding file systems helps you recover data and manage storage.",memory:"File system = filing cabinet. Decides how files are organized."},
+      {term:"Absolute Path",tag:"os",def:"The complete path from the root of the drive. Unambiguous regardless of current location.",example:"C:\\Users\\Tori\\Documents\\resume.pdf",why:"Scripts and configs require exact paths. A wrong path = file not found.",memory:"Absolute = full address. Start from the root, end at the file."},
+      {term:"IP Address",tag:"network",def:"Unique numerical label for every network device. IPv4: 4 numbers (192.168.1.1).",example:"Your router is often 192.168.1.1",why:"Every network problem involves IP addresses. Daily IT task.",memory:"IP = postal address for computers."},
+      {term:"DNS",tag:"network",def:"Domain Name System -- translates domain names (google.com) into IP addresses (142.250.80.46).",example:"When google.com won't load but its IP works: DNS is broken",why:"DNS failures are a top network troubleshooting topic.",memory:"DNS = phone book of the internet. Name to number."},
+      {term:"HTTP",tag:"network",def:"HyperText Transfer Protocol -- how browsers request web pages. Unencrypted, port 80.",example:"http://oldsite.com -- no encryption",why:"Every web developer and network engineer works with HTTP.",memory:"HTTP = how the web talks."},
+      {term:"HTTPS",tag:"network",def:"HTTP Secure -- HTTP with TLS encryption. Protects data in transit. Port 443.",example:"https://bank.com -- your login is encrypted",why:"Security requirement. Sites without HTTPS are vulnerable.",memory:"HTTPS = HTTP + Secure. S = encryption padlock."},
+      {term:"Port",tag:"network",def:"A numbered communication channel. HTTP=80, HTTPS=443, SSH=22, DNS=53.",example:"Firewall blocks port 22 -- no SSH access",why:"Network troubleshooting and firewall rules all involve ports.",memory:"Port = a specific door into a server. Each service has its own door."},
+      {term:"Terminal",tag:"cli",def:"Interface where you type commands to control the computer. Also called CLI or console.",example:"PowerShell on Windows, Terminal on macOS/Linux",why:"Every IT/dev role uses the terminal daily.",memory:"Terminal = text control panel. No clicking, just commands."},
+      {term:"Shell",tag:"cli",def:"Program that interprets and executes terminal commands. Bash (Linux), PowerShell (Windows).",example:"#!/bin/bash tells Linux to use Bash",why:"Automation and scripting use shell commands.",memory:"Shell = the command interpreter. Your words become computer action."},
+      {term:"pwd",tag:"cli",def:"Print Working Directory -- shows your current location in the file system.",example:"$ pwd shows /home/tori/Documents",why:"First command when you are lost in the terminal.",memory:"pwd = where am I?"},
+      {term:"cd",tag:"cli",def:"Change Directory -- moves you into a different folder. cd .. goes up one level.",example:"cd /var/log moves into the log folder",why:"Navigation is fundamental to all terminal work.",memory:"cd = change location. Like clicking a folder but typed."},
+      {term:"sudo",tag:"cli",def:"Superuser Do -- runs a command with administrator privileges on Linux/macOS.",example:"sudo apt update updates packages as root",why:"System admin tasks require elevated privileges. sudo is everywhere.",memory:"sudo = super user powers. With great power comes responsibility."},
+      {term:"Source Code",tag:"software",def:"Human-readable instructions written in a programming language. Stored as text files.",example:"app.py in Python, app.js in JavaScript",why:"All software starts as source code. Understanding this helps debug.",memory:"Source code = the recipe. Must be compiled or interpreted to run."},
+      {term:"Compiler",tag:"software",def:"Tool that translates source code into machine code all at once before running.",example:"gcc compiles C code into an executable binary",why:"Build errors come from compilers. Common in dev/DevOps roles.",memory:"Compiler = translator. Converts human language to machine language."},
+      {term:"Dependency",tag:"software",def:"An external library your code requires to run.",example:"import requests in Python requires requests library installed",why:"ModuleNotFoundError means missing dependency. pip install fixes this.",memory:"Dependency = ingredient. Your code won't work without all ingredients."},
+      {term:"Package Manager",tag:"software",def:"Tool that installs and manages software dependencies. pip (Python), npm (Node.js), apt (Linux).",example:"pip install flask installs the Flask web framework",why:"First step when setting up any dev environment.",memory:"Package manager = app store for code libraries."},
+      {term:"Encryption",tag:"security",def:"Converting readable data (plaintext) into unreadable ciphertext to protect it.",example:"HTTPS encrypts login credentials so sniffers cannot read them",why:"Security fundamental. Encryption is in every security job description.",memory:"Encryption = a lock on data. Only the right key opens it."},
+      {term:"Phishing",tag:"security",def:"Fake emails or sites designed to steal credentials or install malware.",example:"Email from paypa1.com asking to verify your account",why:"Most data breaches start with phishing. Recognizing it is core security.",memory:"Phishing = fishing for your password. Fake bait, real theft."},
+      {term:"2FA",tag:"security",def:"Two-Factor Authentication -- a second verification step beyond a password.",example:"Bank login: password + 6-digit SMS code",why:"Mandatory in enterprise environments. Protects against credential theft.",memory:"2FA = two keys to open one door."},
+      {term:"Firewall",tag:"security",def:"Security system that monitors and controls network traffic based on predefined rules.",example:"Firewall blocks all traffic on port 22 except trusted IPs",why:"Every server and corporate network has a firewall.",memory:"Firewall = security guard at the network door."},
+      {term:"Malware",tag:"security",def:"Malicious software designed to damage or gain unauthorized access to systems.",example:"Trojan disguised as a game installer that steals passwords",why:"Identifying and removing malware is a core IT skill.",memory:"Malware = bad software. Mal = bad."},
+      {term:"Ransomware",tag:"security",def:"Malware that encrypts files and demands payment to restore access.",example:"WannaCry encrypted hospitals worldwide in 2017",why:"Backup strategy and incident response are the defenses.",memory:"Ransomware = digital kidnapper. Takes files hostage."},
+      {term:"SSH",tag:"cli",def:"Secure Shell -- encrypted protocol for remote server access via command line. Port 22.",example:"ssh tori@192.168.1.50 opens remote terminal",why:"Every sysadmin and DevOps engineer uses SSH daily.",memory:"SSH = remote control for servers via terminal."},
+      {term:"VPN",tag:"security",def:"Virtual Private Network -- encrypts all traffic between device and server, hiding IP.",example:"Remote worker connects via VPN to access company intranet",why:"Standard in enterprise remote work. IT sets up and troubleshoots VPNs.",memory:"VPN = private encrypted tunnel through the internet."}
     ];
-
-    const container = document.getElementById("termsContainer");
-    const searchBox = document.getElementById("searchBox");
-
-    function renderTerms(filter = "") {
-      container.innerHTML = "";
-      TERMS
-        .filter(term => term.word.toLowerCase().includes(filter.toLowerCase()))
-        .forEach(term => {
-          const div = document.createElement("div");
-          div.className = "bg-black/60 border border-neonBlue/60 rounded-lg p-4";
-          div.innerHTML = `
-            <h2 class="text-neonGreen font-semibold mb-1">${term.word}</h2>
-            <p class="text-sm text-gray-200"><span class="font-semibold">Plain English:</span> ${term.plain}</p>
-            <p class="text-sm text-gray-200 mt-1"><span class="font-semibold">Why it matters:</span> ${term.why}</p>
-            <p class="text-sm text-gray-200 mt-1"><span class="font-semibold">Where you'll see it:</span> ${term.where}</p>
-            <p class="text-sm text-gray-200 mt-1"><span class="font-semibold">Real job example:</span> ${term.jobExample}</p>
-            <p class="text-sm text-gray-200 mt-1"><span class="font-semibold">Mini lab:</span> ${term.miniLab}</p>
-          `;
-          container.appendChild(div);
-        });
+    let filteredTerms=[...terms];
+    let shuffledDeck=[...terms];
+    let fcIndex=0,fcFlipped=false,fcScores={known:0,review:0};
+    function renderBrowse(){
+      const grid=document.getElementById('terms-grid');grid.innerHTML='';
+      const tagColors={hardware:'border-orange-500/60 text-orange-400',os:'border-purple-500/60 text-purple-400',network:'border-blue-500/60 text-blue-400',cli:'border-neonGreen/60 text-neonGreen',software:'border-yellow-500/60 text-yellow-400',security:'border-red-500/60 text-red-400'};
+      filteredTerms.forEach(t=>{
+        const col=tagColors[t.tag]||'border-gray-600 text-gray-400';
+        grid.innerHTML+=`<div class="bg-black/80 border border-neonBlue/30 rounded-lg p-4 hover:border-neonGreen/60 transition-all"><div class="flex items-start justify-between mb-2"><h3 class="text-neonGreen font-bold text-lg">${t.term}</h3><span class="tag border ${col} ml-2">${t.tag}</span></div><p class="text-gray-300 text-sm mb-3">${t.def}</p><details class="text-sm"><summary class="text-neonBlue cursor-pointer hover:text-neonGreen">Show more</summary><div class="mt-2 space-y-1 text-gray-400"><p><span class="text-neonGreen">Example:</span> ${t.example}</p><p><span class="text-neonBlue">Why it matters:</span> ${t.why}</p><p><span class="text-yellow-400">Memory tip:</span> ${t.memory}</p></div></details></div>`;
+      });
     }
-
-    searchBox.addEventListener("input", () => {
-      renderTerms(searchBox.value);
-    });
-
-    function goBack() {
-      window.location.href = "index.html";
-    }
-
-    renderTerms();
+    function filterTerms(){const q=document.getElementById('searchInput').value.toLowerCase();filteredTerms=terms.filter(t=>t.term.toLowerCase().includes(q)||t.def.toLowerCase().includes(q)||t.tag.toLowerCase().includes(q));renderBrowse();}
+    function filterTag(tag){filteredTerms=tag?terms.filter(t=>t.tag===tag):[...terms];document.getElementById('searchInput').value='';renderBrowse();}
+    function initFlashcards(){shuffledDeck=[...terms];fcIndex=0;fcFlipped=false;fcScores={known:0,review:0};showCard();document.getElementById('fc-total').textContent=shuffledDeck.length;}
+    function showCard(){const t=shuffledDeck[fcIndex];document.getElementById('fc-front').textContent=t.term;document.getElementById('fc-back').textContent=t.def;document.getElementById('fc-current').textContent=fcIndex+1;document.getElementById('card-inner').classList.remove('flipped');fcFlipped=false;}
+    function flipCard(){fcFlipped=!fcFlipped;document.getElementById('card-inner').classList.toggle('flipped',fcFlipped);}
+    function nextCard(){if(fcIndex<shuffledDeck.length-1){fcIndex++;showCard();}}
+    function prevCard(){if(fcIndex>0){fcIndex--;showCard();}}
+    function shuffleCards(){for(let i=shuffledDeck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffledDeck[i],shuffledDeck[j]]=[shuffledDeck[j],shuffledDeck[i]];}fcIndex=0;fcScores={known:0,review:0};showCard();}
+    function markKnown(k){if(k)fcScores.known++;else fcScores.review++;document.getElementById('fc-score').textContent=`Known: ${fcScores.known}  |  Review: ${fcScores.review}`;if(fcIndex<shuffledDeck.length-1){fcIndex++;showCard();}else{let x=parseInt(localStorage.getItem('nodezero_xp')||'0',10);x+=fcScores.known*2;localStorage.setItem('nodezero_xp',String(x));document.getElementById('fc-score').textContent=`Done! Known: ${fcScores.known}/${shuffledDeck.length} -- +${fcScores.known*2} XP!`;}}
+    function initQuiz(){const pool=[...terms].sort(()=>Math.random()-0.5).slice(0,6);const c=document.getElementById('quiz-container');c.innerHTML='';document.getElementById('quiz-result').textContent='';window._qPool=pool;window._qScore=0;window._qAnswered=0;pool.forEach((t,i)=>{const wrong=terms.filter(x=>x.term!==t.term).sort(()=>Math.random()-0.5).slice(0,3);const opts=[...wrong,t].sort(()=>Math.random()-0.5);c.innerHTML+=`<div class="bg-black/80 border border-neonBlue/30 rounded-lg p-4 mb-4"><p class="text-gray-300 text-sm mb-3 font-semibold">${i+1}. What is <span class="text-neonGreen">${t.term}</span>?</p>${opts.map(o=>`<div onclick="checkQ(this,'${t.term}','${o.term.replace(/'/g,"\\x27")}')" class="quiz-opt p-2 border border-neonBlue/30 rounded text-sm text-gray-300 mb-2 cursor-pointer hover:bg-neonGreen/10">${o.def.substring(0,90)}...</div>`).join('')}</div>`;});}
+    function checkQ(el,correct,chosen){if(el.dataset.a)return;el.dataset.a='1';el.parentElement.querySelectorAll('.quiz-opt').forEach(o=>o.style.pointerEvents='none');if(correct===chosen){el.classList.add('border-neonGreen','bg-neonGreen/10','text-neonGreen');window._qScore++;}else{el.classList.add('border-red-500','bg-red-500/10','text-red-400');}window._qAnswered++;if(window._qAnswered>=(window._qPool||[]).length){let x=parseInt(localStorage.getItem('nodezero_xp')||'0',10);x+=window._qScore*15;localStorage.setItem('nodezero_xp',String(x));document.getElementById('quiz-result').textContent=`Score: ${window._qScore}/${window._qPool.length} -- +${window._qScore*15} XP earned!`;}}
+    function setMode(m){document.getElementById('browse-mode').classList.toggle('hidden',m!=='browse');document.getElementById('flashcard-mode').classList.toggle('hidden',m!=='flashcard');document.getElementById('quiz-mode').classList.toggle('hidden',m!=='quiz');document.getElementById('search-bar').classList.toggle('hidden',m!=='browse');document.getElementById('filter-tags').classList.toggle('hidden',m!=='browse');if(m==='flashcard')initFlashcards();if(m==='quiz')initQuiz();}
+    function resetProgress(){if(confirm('Reset ALL Level 0 progress? This clears XP, rooms, and saved answers.')){localStorage.clear();alert('Progress reset!');window.location.href='index.html';}}
+    renderBrowse();
   </script>
 </body>
 </html>

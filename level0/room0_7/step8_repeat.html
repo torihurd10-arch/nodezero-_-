@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 8 — Repeat: Software Review</title>
+  <title>Step 8 â€” Repeat: Software Review</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -18,18 +18,18 @@
 </head>
 <body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
   <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 8 — Repeat</h1>
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 8 â€” Repeat</h1>
     <h2 class="text-xl text-neonBlue mb-4">Software Quick Review</h2>
     <div class="space-y-6 text-left text-gray-300">
       <div>
-        <p class="mb-2">1️⃣ npm is the package manager for which language?</p>
+        <p class="mb-2">1ï¸âƒ£ npm is the package manager for which language?</p>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="ck(1,'A')">A. Python</div>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="ck(1,'B')">B. JavaScript / Node.js</div>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="ck(1,'C')">C. Java</div>
         <p id="f1" class="mt-1 text-sm"></p>
       </div>
       <div>
-        <p class="mb-2">2️⃣ A compiler converts source code to what?</p>
+        <p class="mb-2">2ï¸âƒ£ A compiler converts source code to what?</p>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="ck(2,'A')">A. A text document</div>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="ck(2,'B')">B. Machine code or bytecode that a computer can execute</div>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="ck(2,'C')">C. An HTML page</div>
@@ -37,18 +37,23 @@
       </div>
     </div>
     <p id="result" class="mt-6 text-neonGreen font-semibold"></p>
-    <button onclick="window.location.href='step9_apply.html'" class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step → Apply</button>
-    <button onclick="window.location.href='step7_explain.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">← Back</button>
+    <button onclick="window.location.href='step9_apply.html'" class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step â†’ Apply</button>
+    <button onclick="window.location.href='step7_explain.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">â† Back</button>
   </div>
   <script>
     const correct = { 1: 'B', 2: 'B' }; const ans = {}; let s = 0;
     function ck(q, c) {
       if (ans[q]) return; ans[q] = true;
       const el = document.getElementById('f' + q);
-      if (c === correct[q]) { el.textContent = '✅ Correct!'; el.className = 'mt-1 text-sm text-neonGreen'; s++; }
-      else { el.textContent = '❌ Review Step 1.'; el.className = 'mt-1 text-sm text-red-400'; }
-      if (Object.keys(ans).length === 2) document.getElementById('result').textContent = s === 2 ? '🎯 Perfect! Ready for the job scenario.' : '📖 Review and continue.';
+      if (c === correct[q]) { el.textContent = 'âœ… Correct!'; el.className = 'mt-1 text-sm text-neonGreen'; s++; }
+      else { el.textContent = 'âŒ Review Step 1.'; el.className = 'mt-1 text-sm text-red-400'; }
+      if (Object.keys(ans).length === 2) document.getElementById('result').textContent = s === 2 ? 'ðŸŽ¯ Perfect! Ready for the job scenario.' : 'ðŸ“– Review and continue.';
     }
   </script>
-</body>
+  <div style="position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:999;">
+    <a href="../../glossary.html" style="padding:4px 10px;border:1px solid rgba(0,255,156,0.6);color:#00FF9C;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Glossary</a>
+    <a href="../../projects.html" style="padding:4px 10px;border:1px solid rgba(0,200,255,0.6);color:#00C8FF;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Projects</a>
+    <a href="../../index.html" style="padding:4px 10px;border:1px solid rgba(150,150,150,0.4);color:#9ca3af;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Dashboard</a>
+  </div></body>
 </html>
+

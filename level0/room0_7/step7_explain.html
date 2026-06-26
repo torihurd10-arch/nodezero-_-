@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 7 — Explain: Software Fix</title>
+  <title>Step 7 â€” Explain: Software Fix</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -18,24 +18,29 @@
 </head>
 <body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
   <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 7 — Explain</h1>
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 7 â€” Explain</h1>
     <h2 class="text-xl text-neonBlue mb-4">Document the Software Fix</h2>
     <p class="text-gray-300 mb-6">Write a brief summary of the error and resolution. This is what you'd put in a ticket or pull request comment.</p>
     <textarea id="explanation" rows="5" class="w-full rounded-lg p-3 mb-4" placeholder="Example: Application failed to start with ModuleNotFoundError: No module named 'requests'. The requests library was not installed in the environment. Resolved by running pip install requests. Application now starts successfully."></textarea>
-    <button onclick="save()" class="px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">✅ Save Explanation</button>
+    <button onclick="save()" class="px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">âœ… Save Explanation</button>
     <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
-    <button onclick="window.location.href='step8_repeat.html'" class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step → Repeat</button>
-    <button onclick="window.location.href='step6_fix.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">← Back</button>
+    <button onclick="window.location.href='step8_repeat.html'" class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step â†’ Repeat</button>
+    <button onclick="window.location.href='step6_fix.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">â† Back</button>
   </div>
   <script>
     function save() {
       const text = document.getElementById("explanation").value.trim();
-      if (text.length < 20) { document.getElementById("feedback").textContent = "⚠️ Please write at least one full sentence."; return; }
+      if (text.length < 20) { document.getElementById("feedback").textContent = "âš ï¸ Please write at least one full sentence."; return; }
       localStorage.setItem("room0_7_explanation", text);
       let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10); xp += 25;
       localStorage.setItem("nodezero_xp", String(xp));
-      document.getElementById("feedback").textContent = "✅ Explanation saved! +25 XP";
+      document.getElementById("feedback").textContent = "âœ… Explanation saved! +25 XP";
     }
   </script>
-</body>
+  <div style="position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:999;">
+    <a href="../../glossary.html" style="padding:4px 10px;border:1px solid rgba(0,255,156,0.6);color:#00FF9C;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Glossary</a>
+    <a href="../../projects.html" style="padding:4px 10px;border:1px solid rgba(0,200,255,0.6);color:#00C8FF;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Projects</a>
+    <a href="../../index.html" style="padding:4px 10px;border:1px solid rgba(150,150,150,0.4);color:#9ca3af;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Dashboard</a>
+  </div></body>
 </html>
+

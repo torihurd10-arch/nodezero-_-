@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 3 — Do: Spot the Bug</title>
+  <title>Step 3 â€” Do: Spot the Bug</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,11 +12,11 @@
 </head>
 <body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
   <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 3 — Do</h1>
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 3 â€” Do</h1>
     <p class="text-gray-300 mb-4">Each code snippet below has a bug. Click the line that contains the error:</p>
     <div class="space-y-8">
       <div>
-        <p class="text-neonBlue mb-2">Snippet 1 — Python:</p>
+        <p class="text-neonBlue mb-2">Snippet 1 â€” Python:</p>
         <div class="bg-black rounded p-3 font-mono text-sm space-y-1">
           <p class="cursor-pointer hover:bg-neonBlue/10 px-2 rounded" onclick="check('1a','wrong')">def greet(name):</p>
           <p class="cursor-pointer hover:bg-neonBlue/10 px-2 rounded" onclick="check('1b','wrong')">    message = "Hello, " + name</p>
@@ -26,7 +26,7 @@
         <p id="f1" class="mt-2 text-sm"></p>
       </div>
       <div>
-        <p class="text-neonBlue mb-2">Snippet 2 — JavaScript:</p>
+        <p class="text-neonBlue mb-2">Snippet 2 â€” JavaScript:</p>
         <div class="bg-black rounded p-3 font-mono text-sm space-y-1">
           <p class="cursor-pointer hover:bg-neonBlue/10 px-2 rounded" onclick="check('2a','wrong')">function add(a, b) {</p>
           <p class="cursor-pointer hover:bg-neonBlue/10 px-2 rounded" onclick="check('2b','correct')">    return a - b;</p>
@@ -46,14 +46,19 @@
       const qNum = id[0];
       const el = document.getElementById('f' + qNum);
       if (result === 'correct') {
-        if (qNum === '1') el.textContent = '✅ Correct! "massage" is a typo — it should be "message".';
-        else el.textContent = '✅ Correct! The function should return a + b, not a - b.';
+        if (qNum === '1') el.textContent = 'âœ… Correct! "massage" is a typo â€” it should be "message".';
+        else el.textContent = 'âœ… Correct! The function should return a + b, not a - b.';
         el.className = 'mt-2 text-sm text-neonGreen';
       } else {
-        el.textContent = '❌ Look more carefully at the logic and variable names.';
+        el.textContent = 'âŒ Look more carefully at the logic and variable names.';
         el.className = 'mt-2 text-sm text-red-400';
       }
     }
   </script>
-</body>
+  <div style="position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:999;">
+    <a href="../../glossary.html" style="padding:4px 10px;border:1px solid rgba(0,255,156,0.6);color:#00FF9C;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Glossary</a>
+    <a href="../../projects.html" style="padding:4px 10px;border:1px solid rgba(0,200,255,0.6);color:#00C8FF;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Projects</a>
+    <a href="../../index.html" style="padding:4px 10px;border:1px solid rgba(150,150,150,0.4);color:#9ca3af;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Dashboard</a>
+  </div></body>
 </html>
+

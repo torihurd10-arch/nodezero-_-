@@ -29,10 +29,15 @@
       <h1 class="text-2xl font-bold text-neonGreen">NodeZero</h1>
       <p class="text-xs text-gray-500">Build It. Break It. Learn It.</p>
     </div>
-    <div class="text-right">
-      <p class="text-neonBlue font-semibold text-sm">XP: <span id="xpDisplay">0</span></p>
-      <div class="w-32 h-1.5 bg-black/60 border border-neonBlue/20 rounded-full overflow-hidden mt-1">
-        <div id="xpBar" class="xp-bar-fill h-full rounded-full" style="width:0%"></div>
+    <div class="flex items-center gap-3 flex-wrap justify-end">
+      <a href="glossary.html" class="px-3 py-1.5 border border-neonGreen/60 text-neonGreen text-xs rounded hover:bg-neonGreen/10">Glossary</a>
+      <a href="projects.html" class="px-3 py-1.5 border border-neonBlue/60 text-neonBlue text-xs rounded hover:bg-neonBlue/10">Projects</a>
+      <button onclick="resetProgress()" class="px-3 py-1.5 border border-red-500/60 text-red-400 text-xs rounded hover:bg-red-500/10">↺ Reset</button>
+      <div class="text-right">
+        <p class="text-neonBlue font-semibold text-sm">XP: <span id="xpDisplay">0</span></p>
+        <div class="w-24 h-1.5 bg-black/60 border border-neonBlue/20 rounded-full overflow-hidden mt-1">
+          <div id="xpBar" class="xp-bar-fill h-full rounded-full" style="width:0%"></div>
+        </div>
       </div>
     </div>
   </header>
@@ -43,6 +48,11 @@
     <h2 class="text-3xl font-bold text-neonGreen mb-3">Your Learning Mission</h2>
     <p class="text-gray-400 max-w-2xl mx-auto text-sm mb-2">Complete 9 rooms to build a complete IT foundation. Every room follows the same cycle:</p>
     <p class="text-neonBlue text-xs font-mono">Learn → See → Do → Test → Break → Fix → Explain → Repeat → Apply to a Job</p>
+    <div class="flex gap-3 justify-center mt-4 flex-wrap">
+      <a href="glossary.html" class="px-5 py-2 border border-neonGreen text-neonGreen rounded-lg hover:bg-neonGreen/10 text-sm">Glossary</a>
+      <a href="projects.html" class="px-5 py-2 border border-neonBlue text-neonBlue rounded-lg hover:bg-neonBlue/10 text-sm">Projects</a>
+      <a href="level0/final_mission.html" class="px-5 py-2 border border-yellow-500 text-yellow-400 rounded-lg hover:bg-yellow-500/10 text-sm">Final Mission</a>
+    </div>
   </section>
 
   <!-- Room Progress Bar -->
@@ -268,6 +278,15 @@
     // Badge
     if (localStorage.getItem('level0_badge') === 'true') {
       document.getElementById('completionBadge').classList.remove('hidden');
+    }
+
+    // Reset function
+    function resetProgress() {
+      if (confirm('Reset ALL Level 0 progress?\n\nThis will clear:\n• XP\n• Completed rooms\n• Saved answers\n• Step checkmarks\n\nThis cannot be undone.')) {
+        localStorage.clear();
+        alert('Progress reset! Starting fresh.');
+        window.location.reload();
+      }
     }
   </script>
 </body>

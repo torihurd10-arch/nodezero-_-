@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 2 — See: Threat Types</title>
+  <title>Step 2 â€” See: Threat Types</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,15 +12,15 @@
 </head>
 <body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
   <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 2 — See</h1>
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 2 â€” See</h1>
     <p class="text-gray-300 mb-4">Click each threat type to understand how it works:</p>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
-      <button onclick="show('phishing')" class="p-3 border border-neonBlue/40 rounded hover:border-neonGreen text-sm text-left">🎣 Phishing</button>
-      <button onclick="show('malware')" class="p-3 border border-neonBlue/40 rounded hover:border-neonGreen text-sm text-left">🦠 Malware</button>
-      <button onclick="show('ransomware')" class="p-3 border border-neonBlue/40 rounded hover:border-neonGreen text-sm text-left">💰 Ransomware</button>
-      <button onclick="show('bruteforce')" class="p-3 border border-neonBlue/40 rounded hover:border-neonGreen text-sm text-left">🔨 Brute Force</button>
-      <button onclick="show('mitm')" class="p-3 border border-neonBlue/40 rounded hover:border-neonGreen text-sm text-left">👤 Man-in-the-Middle</button>
-      <button onclick="show('social')" class="p-3 border border-neonBlue/40 rounded hover:border-neonGreen text-sm text-left">🗣️ Social Engineering</button>
+      <button onclick="show('phishing')" class="p-3 border border-neonBlue/40 rounded hover:border-neonGreen text-sm text-left">ðŸŽ£ Phishing</button>
+      <button onclick="show('malware')" class="p-3 border border-neonBlue/40 rounded hover:border-neonGreen text-sm text-left">ðŸ¦  Malware</button>
+      <button onclick="show('ransomware')" class="p-3 border border-neonBlue/40 rounded hover:border-neonGreen text-sm text-left">ðŸ’° Ransomware</button>
+      <button onclick="show('bruteforce')" class="p-3 border border-neonBlue/40 rounded hover:border-neonGreen text-sm text-left">ðŸ”¨ Brute Force</button>
+      <button onclick="show('mitm')" class="p-3 border border-neonBlue/40 rounded hover:border-neonGreen text-sm text-left">ðŸ‘¤ Man-in-the-Middle</button>
+      <button onclick="show('social')" class="p-3 border border-neonBlue/40 rounded hover:border-neonGreen text-sm text-left">ðŸ—£ï¸ Social Engineering</button>
     </div>
     <div id="info" class="bg-black/60 border border-neonGreen/40 rounded p-4 text-gray-300 text-sm min-h-[5rem] mb-6">
       <p class="text-gray-500">Click a threat above.</p>
@@ -37,9 +37,14 @@
       ransomware: 'Ransomware: A type of malware that encrypts your files and demands payment to restore access. Backup your data regularly to protect against this.',
       bruteforce: 'Brute Force: Automated tools try thousands of password combinations per second. Long, complex passwords and account lockout policies defend against this.',
       mitm: 'Man-in-the-Middle: An attacker intercepts communication between two parties. Using HTTPS and VPNs helps prevent this on public networks.',
-      social: 'Social Engineering: Manipulating people psychologically to reveal information or grant access. "Your account will be suspended — click here." Always verify requests through official channels.'
+      social: 'Social Engineering: Manipulating people psychologically to reveal information or grant access. "Your account will be suspended â€” click here." Always verify requests through official channels.'
     };
     function show(k) { document.getElementById('info').textContent = details[k]; }
   </script>
-</body>
+  <div style="position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:999;">
+    <a href="../../glossary.html" style="padding:4px 10px;border:1px solid rgba(0,255,156,0.6);color:#00FF9C;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Glossary</a>
+    <a href="../../projects.html" style="padding:4px 10px;border:1px solid rgba(0,200,255,0.6);color:#00C8FF;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Projects</a>
+    <a href="../../index.html" style="padding:4px 10px;border:1px solid rgba(150,150,150,0.4);color:#9ca3af;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Dashboard</a>
+  </div></body>
 </html>
+

@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 5 — Break: Cascading Failure</title>
+  <title>Step 5 â€” Break: Cascading Failure</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -18,36 +18,41 @@
 </head>
 <body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
   <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6 text-center glow-border fade-in">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 5 — Break</h1>
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 5 â€” Break</h1>
     <h2 class="text-xl text-neonBlue mb-4">Cascading System Failure</h2>
     <div class="bg-black border border-red-500/60 rounded p-4 mb-6 text-left text-sm space-y-1">
-      <p class="text-red-400">🚨 Multiple alerts received:</p>
-      <p class="text-gray-400">• Web server: 502 Bad Gateway errors</p>
-      <p class="text-gray-400">• Database: Disk 98% full</p>
-      <p class="text-gray-400">• App logs: Cannot write to /var/log/app.log — Permission denied</p>
-      <p class="text-gray-400">• Users: Cannot log in to the application</p>
+      <p class="text-red-400">ðŸš¨ Multiple alerts received:</p>
+      <p class="text-gray-400">â€¢ Web server: 502 Bad Gateway errors</p>
+      <p class="text-gray-400">â€¢ Database: Disk 98% full</p>
+      <p class="text-gray-400">â€¢ App logs: Cannot write to /var/log/app.log â€” Permission denied</p>
+      <p class="text-gray-400">â€¢ Users: Cannot log in to the application</p>
     </div>
     <p class="text-gray-300 mb-6">Multiple things are wrong at once. What is the ROOT CAUSE that likely triggered everything else?</p>
     <div class="space-y-4 text-left text-gray-300">
       <div class="option p-3 border border-neonBlue/40 rounded" onclick="checkAnswer('A')">A. The web server software needs to be reinstalled</div>
-      <div class="option p-3 border border-neonBlue/40 rounded" onclick="checkAnswer('B')">B. The disk is full — logs can't write, the database fails, the app crashes cascading to the web server</div>
+      <div class="option p-3 border border-neonBlue/40 rounded" onclick="checkAnswer('B')">B. The disk is full â€” logs can't write, the database fails, the app crashes cascading to the web server</div>
       <div class="option p-3 border border-neonBlue/40 rounded" onclick="checkAnswer('C')">C. A user account has wrong permissions</div>
     </div>
     <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
-    <button onclick="window.location.href='step6_fix.html'" class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step → Fix</button>
-    <button onclick="window.location.href='step4_test.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">← Back</button>
+    <button onclick="window.location.href='step6_fix.html'" class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step â†’ Fix</button>
+    <button onclick="window.location.href='step4_test.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">â† Back</button>
   </div>
   <script>
     function checkAnswer(c) {
       const fb = document.getElementById('feedback');
       if (c === 'B') {
-        fb.textContent = '✅ Correct! A full disk is a classic root cause of cascading failures. When disk fills: logs fail → app crashes → DB corrupts → web server returns 502. Always check disk space first.';
+        fb.textContent = 'âœ… Correct! A full disk is a classic root cause of cascading failures. When disk fills: logs fail â†’ app crashes â†’ DB corrupts â†’ web server returns 502. Always check disk space first.';
         fb.className = 'text-neonGreen font-semibold mt-6';
       } else {
-        fb.textContent = '❌ Look at the disk usage alert — 98% full. A full disk prevents ALL write operations across every system.';
+        fb.textContent = 'âŒ Look at the disk usage alert â€” 98% full. A full disk prevents ALL write operations across every system.';
         fb.className = 'text-red-400 font-semibold mt-6';
       }
     }
   </script>
-</body>
+  <div style="position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:999;">
+    <a href="../../glossary.html" style="padding:4px 10px;border:1px solid rgba(0,255,156,0.6);color:#00FF9C;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Glossary</a>
+    <a href="../../projects.html" style="padding:4px 10px;border:1px solid rgba(0,200,255,0.6);color:#00C8FF;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Projects</a>
+    <a href="../../index.html" style="padding:4px 10px;border:1px solid rgba(150,150,150,0.4);color:#9ca3af;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Dashboard</a>
+  </div></body>
 </html>
+
