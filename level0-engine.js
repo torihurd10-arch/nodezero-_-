@@ -1,6 +1,7 @@
 (function () {
   const XP_KEY = "nodezero_xp";
   const STATE_KEY = "nodezero_level0_state_v3";
+  const XP_LEVEL_SIZE = 200;
 
   const STEP_NAMES = ["Watch", "Copy", "Repeat", "Explain", "Break", "Fix", "Repeat Again", "Skill Check", "Unlock"];
   const STEP_FILES = [
@@ -18,7 +19,7 @@
   const ROOM_DATA = [
     {
       id: "0_1",
-      title: "What is a Computer?",
+      title: "Meet Your Computer",
       summary: "Hardware, software, CPU, RAM, and storage.",
       word: { term: "CPU", plain: "the part that follows instructions and does the work", where: "When apps open, move, or freeze", why: "It is the main worker inside the computer." },
       watch: ["Input starts the job", "CPU processes instructions", "RAM holds active data", "Storage keeps things after power off"],
@@ -44,7 +45,7 @@
     },
     {
       id: "0_2",
-      title: "Inside the Machine",
+      title: "Files & Folders",
       summary: "Find the bottleneck before the system stalls.",
       word: { term: "Bottleneck", plain: "the slow part that holds everything back", where: "100% CPU, low RAM, full disk", why: "Fix the slowest part first." },
       watch: ["CPU can hit 100%", "RAM can run out", "Storage can fill up", "The slowest part controls the speed"],
@@ -70,7 +71,7 @@
     },
     {
       id: "0_3",
-      title: "Operating Systems",
+      title: "Keyboard Shortcuts",
       summary: "Windows, Linux, and macOS control the machine.",
       word: { term: "Operating system", plain: "the boss software that controls hardware and runs apps", where: "Windows, Linux, macOS, Android", why: "Apps cannot talk to hardware without it." },
       watch: ["The OS starts first", "It manages windows and files", "It talks to hardware through drivers", "It keeps apps separated"],
@@ -96,7 +97,7 @@
     },
     {
       id: "0_4",
-      title: "File Systems",
+      title: "Windows Navigation",
       summary: "Find files, paths, extensions, and permissions.",
       word: { term: "Path", plain: "the address of a file or folder", where: "C:\\Users\\Name\\Documents or /home/name", why: "A wrong path means file not found." },
       watch: ["Folders hold files", "Paths point to locations", "Extensions tell file type", "Permissions control access"],
@@ -122,7 +123,7 @@
     },
     {
       id: "0_5",
-      title: "Networking Basics",
+      title: "Install Software",
       summary: "Names, IPs, HTTP, and ports work together.",
       word: { term: "DNS", plain: "the phone book that turns names into IP addresses", where: "When a website name loads before the page opens", why: "Names must resolve before the connection works." },
       watch: ["Name goes to DNS", "IP reaches the server", "HTTP asks for data", "Ports choose the service"],
@@ -148,7 +149,7 @@
     },
     {
       id: "0_6",
-      title: "The Command Line",
+      title: "Command Prompt",
       summary: "Use a shell to move faster and automate work.",
       word: { term: "Shell", plain: "a text window that listens to commands", where: "Terminal, PowerShell, Bash", why: "It lets you work faster with text." },
       watch: ["cd moves folders", "dir or ls shows files", "pwd shows location", "Tab can finish names"],
@@ -174,7 +175,7 @@
     },
     {
       id: "0_7",
-      title: "How Software Gets Made",
+      title: "Networking Basics",
       summary: "Source code, dependencies, and build steps.",
       word: { term: "Dependency", plain: "another piece of software your project needs", where: "npm install, pip install, package.json", why: "Missing pieces break builds." },
       watch: ["Source code is the instructions", "Dependencies add features", "Compilers or interpreters run it", "Build errors often name the missing piece"],
@@ -200,7 +201,7 @@
     },
     {
       id: "0_8",
-      title: "Security Fundamentals",
+      title: "Troubleshooting",
       summary: "Protect accounts, devices, and people.",
       word: { term: "2FA", plain: "a second check after the password", where: "Authenticator app, code, security key", why: "Passwords alone are not enough." },
       watch: ["Look for phishing", "Use strong passwords", "Enable 2FA", "Lock down stolen tokens fast"],
@@ -226,7 +227,7 @@
     },
     {
       id: "0_9",
-      title: "Putting It All Together",
+      title: "PowerShell Introduction",
       summary: "Use every skill in one support ticket.",
       word: { term: "Triage", plain: "sort the biggest problem first", where: "A user has several issues at once", why: "Fix the blocker before the bonus problem." },
       watch: ["Collect clues", "Test one fix at a time", "Check the layer that failed", "Keep the user moving"],
@@ -290,12 +291,73 @@
     return Number.parseInt(localStorage.getItem(XP_KEY) || "0", 10) || 0;
   }
 
+  let lastXp = getXp();
+
   function setXp(value) {
     localStorage.setItem(XP_KEY, String(Math.max(0, value)));
   }
 
   function addXp(amount) {
     setXp(getXp() + amount);
+  }
+
+  function xpPercent(xpValue) {
+    return Math.round(((Math.max(0, xpValue) % XP_LEVEL_SIZE) / XP_LEVEL_SIZE) * 100);
+  }
+
+  function playXpChime() {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const context = new AudioCtx();
+    const now = context.currentTime;
+
+    const gain = context.createGain();
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.08, now + 0.03);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.6);
+    gain.connect(context.destination);
+
+    const oscA = context.createOscillator();
+    oscA.type = "sine";
+    oscA.frequency.setValueAtTime(440, now);
+    oscA.frequency.exponentialRampToValueAtTime(660, now + 0.25);
+    oscA.connect(gain);
+
+    const oscB = context.createOscillator();
+    oscB.type = "triangle";
+    oscB.frequency.setValueAtTime(550, now + 0.08);
+    oscB.frequency.exponentialRampToValueAtTime(880, now + 0.35);
+    oscB.connect(gain);
+
+    oscA.start(now);
+    oscB.start(now + 0.08);
+    oscA.stop(now + 0.35);
+    oscB.stop(now + 0.6);
+  }
+
+  function triggerXpFeedback(previousXp, currentXp) {
+    const before = xpPercent(previousXp);
+    const after = xpPercent(currentXp);
+
+    document.querySelectorAll("[data-xp-fill]").forEach((bar) => {
+      bar.style.width = `${before}%`;
+      bar.classList.remove("xp-boost");
+      void bar.offsetWidth;
+      bar.style.width = `${after}%`;
+      bar.classList.add("xp-boost");
+      window.setTimeout(() => bar.classList.remove("xp-boost"), 700);
+    });
+
+    const burst = document.querySelector("[data-xp-burst]");
+    if (burst) {
+      burst.textContent = `+${currentXp - previousXp} XP`;
+      burst.classList.remove("show");
+      void burst.offsetWidth;
+      burst.classList.add("show");
+      window.setTimeout(() => burst.classList.remove("show"), 900);
+    }
+
+    playXpChime();
   }
 
   function roomIndex(roomId) {
@@ -374,6 +436,11 @@
               <span class="chip">Rooms ${roomsDone}/9</span>
               <span class="chip">Steps ${stepsDone}/81</span>
             </div>
+            <div class="xp-hud panel">
+              <div class="xp-head"><span>XP Core</span><strong>${xp}</strong></div>
+              <div class="progress-bar xp-track"><div class="progress-fill" data-xp-fill style="width:${xpPercent(xp)}%"></div></div>
+              <div class="xp-burst" data-xp-burst aria-live="polite"></div>
+            </div>
           </div>
         </header>
         <main class="page">${content}</main>
@@ -427,6 +494,15 @@
         <div class="section-header"><h3 class="section-title">Rooms</h3><span class="subtle">Nine modules. One habit loop each.</span></div>
         <div class="card-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;">
           ${ROOM_DATA.map((room) => roomCard(room, data)).join("")}
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-header"><h3 class="section-title">Mission Control</h3><span class="subtle">Fast launch to core actions.</span></div>
+        <div class="panel choice-row">
+          <a class="button" href="${prefix()}level0/room0_1/step1_learn.html">Start Room 0.1</a>
+          <a class="button" href="${prefix()}glossary.html">Glossary</a>
+          <a class="button" href="${prefix()}projects.html">Projects</a>
+          <a class="button" href="${prefix()}level0/final_mission.html">Final Mission</a>
         </div>
       </section>
       <section class="section">
@@ -590,6 +666,7 @@
                 <a class="button" href="${prev}">Previous</a>
                 <a class="button" href="${next}">Next</a>
                 <a class="button" href="${prefix()}index.html">Dashboard</a>
+                <a class="button" href="${folderPrefix(room.id)}${folder(room.id)}.html">Back to Room</a>
               </div>
             </article>
           </div>
@@ -940,14 +1017,27 @@
   }
 
   function render() {
+    const previousXp = lastXp;
     const data = state();
-    if (page() === "dashboard") return shell(renderDashboard(data), data);
-    if (page() === "glossary") return shell(renderGlossary(), data);
-    if (page() === "projects") return shell(renderProjects(), data);
-    if (page() === "final") return shell(renderFinal(data), data);
-    const room = ROOM_DATA[roomIndex(roomId())];
-    if (page() === "room") return shell(roomLanding(room, data), data);
-    return shell(renderStep(room, data, stepIndex()), data);
+    if (page() === "dashboard") {
+      shell(renderDashboard(data), data);
+    } else if (page() === "glossary") {
+      shell(renderGlossary(), data);
+    } else if (page() === "projects") {
+      shell(renderProjects(), data);
+    } else if (page() === "final") {
+      shell(renderFinal(data), data);
+    } else {
+      const room = ROOM_DATA[roomIndex(roomId())];
+      if (page() === "room") shell(roomLanding(room, data), data);
+      else shell(renderStep(room, data, stepIndex()), data);
+    }
+
+    const currentXp = getXp();
+    if (currentXp > previousXp) {
+      triggerXpFeedback(previousXp, currentXp);
+    }
+    lastXp = currentXp;
   }
 
   render();
