@@ -1,14 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../../style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NodeZero - Room 0.3</title>
-  <script>window.__NODEZERO_PAGE__ = { type: 'room', rootPrefix: '../../' };</script>
-  <script src="../../level0-engine.js" defer></script>
+  <meta charset="UTF-8" />
+    <title>Room 0.3 — Operating Systems</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
+    };
+  </script>
 </head>
-<body data-page="room" data-room='0_3' data-root-prefix="../../">
-  <div id="app"></div>
+<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6 text-center">
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Room 0.3 — Operating Systems</h1>
+    <p class="text-gray-300 mb-6">
+      Discover how Windows, Linux, and macOS control your hardware and software.
+      Learn to diagnose OS failures and get systems back online.
+    </p>
+    <div class="space-y-2 text-left text-gray-300">
+      <p>✓ Step 1 — Learn the OS Basics</p>
+      <p>✓ Step 2 — See Windows vs Linux vs macOS</p>
+      <p>✓ Step 3 — Do an OS Matching Exercise</p>
+      <p>✓ Step 4 — Test Your Knowledge</p>
+      <p>✓ Step 5 — Break: No GUI on Boot</p>
+      <p>✓ Step 6 — Fix the Boot Failure</p>
+      <p>✓ Step 7 — Explain the OS Issue</p>
+      <p>✓ Step 8 — Repeat the Key Concepts</p>
+      <p>✓ Step 9 — Apply to a Help-Desk Ticket</p>
+    </div>
+    <button onclick="window.location.href='step1_learn.html'"
+            class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
+      Start Lesson
+    </button>
+    <br/>
+    <button onclick="window.location.href='../../index.html'"
+            class="mt-3 px-4 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition text-sm">
+      ↑ Level 0 Dashboard
+    </button>
+  </div>
+  <!-- Global Nav -->
+  <div class="fixed bottom-4 right-4 flex flex-col gap-2 z-50">
+    <a href="../../glossary.html" class="px-3 py-1.5 bg-bgDark/90 border border-neonGreen/60 text-neonGreen text-xs rounded-lg hover:bg-neonGreen/10 backdrop-blur shadow-lg">Glossary</a>
+    <a href="../../projects.html" class="px-3 py-1.5 bg-bgDark/90 border border-neonBlue/60 text-neonBlue text-xs rounded-lg hover:bg-neonBlue/10 backdrop-blur shadow-lg">Projects</a>
+    <button onclick="if(confirm('Reset all progress?')){localStorage.clear();window.location.href='../../index.html';}" class="px-3 py-1.5 bg-bgDark/90 border border-red-500/60 text-red-400 text-xs rounded-lg hover:bg-red-500/10 backdrop-blur shadow-lg">Reset</button>
+  </div>
 </body>
 </html>
+
+
