@@ -418,6 +418,24 @@
     return document.body.dataset.rootPrefix || "";
   }
 
+  function ensureStylesheet() {
+    const href = `${prefix()}style.css`;
+    const link = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).find((node) => {
+      const currentHref = node.getAttribute("href") || "";
+      return currentHref.endsWith("style.css");
+    });
+
+    if (link) {
+      link.setAttribute("href", href);
+      return;
+    }
+
+    const stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = href;
+    document.head.appendChild(stylesheet);
+  }
+
   function page() {
     return document.body.dataset.page || "dashboard";
   }
@@ -1235,6 +1253,7 @@
   function render() {
     const previousXp = lastXp;
     const data = state();
+    ensureStylesheet();
     if (page() === "dashboard") {
       shell(renderDashboard(data), data);
     } else if (page() === "glossary") {
