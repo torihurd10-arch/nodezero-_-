@@ -329,6 +329,252 @@
 			],
 			"problemMatcher": [],
 			"group": "build"
+		},
+		{
+			"label": "Git status short final prep",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Final UTF8 and head validation",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"_final_validate_utf8.ps1"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Git status before final commit",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Stage final style update",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"add",
+				"--",
+				"style.css"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Commit requested final message",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"commit",
+				"-m",
+				"Finalized Level 0 Halo cockpit visuals, fixed encoding, added learning systems"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Push requested final commit",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"push",
+				"origin",
+				"main"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Post-push status final",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Inspect style history",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"log",
+				"--oneline",
+				"--",
+				"style.css",
+				"level0-engine.js"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Current git status",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Diff current vs previous style",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"diff",
+				"b4fc29a",
+				"HEAD",
+				"--",
+				"style.css"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Restore original cockpit style",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"restore",
+				"--source",
+				"b4fc29a",
+				"--",
+				"style.css"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Check style changed",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short",
+				"style.css"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Inspect style diff now",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"diff",
+				"--",
+				"style.css"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify HTML encoding integrity",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"_verify_html_integrity.ps1"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify charset only",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"_verify_charset_only.ps1"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Status before restore commit",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Stage restored style",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"add",
+				"--",
+				"style.css"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Commit restored cockpit",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"commit",
+				"-m",
+				"Restored original Halo cockpit visuals and finalized Level 0 learning system"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Push restored cockpit commit",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"push",
+				"origin",
+				"main"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Post-push status check",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short"
+			],
+			"problemMatcher": [],
+			"group": "build"
 		}
 	]
 }
