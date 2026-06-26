@@ -3,7 +3,7 @@
 :root {
   --hud-blue: #00bfff;
   --hud-cyan: #66e6ff;
-  --hud-dark: #050a16;
+  --hud-dark: #0a0f1a;
   --hud-dark-soft: #091328;
   --hud-panel: rgba(0, 191, 255, 0.12);
   --hud-panel-strong: rgba(0, 191, 255, 0.2);
@@ -24,7 +24,7 @@ body {
   background:
     radial-gradient(circle at 50% -20%, rgba(0, 191, 255, 0.2), transparent 45%),
     radial-gradient(circle at 50% 120%, rgba(0, 191, 255, 0.08), transparent 42%),
-    linear-gradient(180deg, #02050e 0%, #040b18 100%);
+    linear-gradient(180deg, #0a0f1a 0%, #0b1322 100%);
   font-family: "Rajdhani", "Segoe UI", sans-serif;
   letter-spacing: 0.02em;
 }

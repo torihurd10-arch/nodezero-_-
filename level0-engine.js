@@ -456,22 +456,62 @@
     return ROOM_DATA.reduce((total, room) => total + Object.values(roomState(data, room.id).steps).filter(Boolean).length, 0);
   }
 
+  function getUnlockedRooms(data) {
+    const unlocked = [];
+    ROOM_DATA.forEach((room, index) => {
+      if (index === 0) {
+        unlocked.push(room.id);
+        return;
+      }
+      const previousRoom = ROOM_DATA[index - 1];
+      if (roomState(data, previousRoom.id).done) {
+        unlocked.push(room.id);
+      }
+    });
+    return unlocked;
+  }
+
+  function isRoomUnlocked(data, roomIdValue) {
+    return getUnlockedRooms(data).includes(roomIdValue);
+  }
+
+  function getUnlockedSteps(roomStateValue) {
+    const unlocked = [1];
+    for (let step = 2; step <= STEP_NAMES.length; step += 1) {
+      if (roomStateValue.steps[step - 1]) {
+        unlocked.push(step);
+      } else {
+        break;
+      }
+    }
+    return unlocked;
+  }
+
+  function isStepUnlocked(roomStateValue, step) {
+    return getUnlockedSteps(roomStateValue).includes(step);
+  }
+
   function nav() {
+    const data = state();
     const currentPage = page();
     const isStepPage = currentPage === "step";
     const isRoomPage = currentPage === "room";
     const currentRoomId = roomId();
     const currentStep = stepIndex();
     const roomBase = `${prefix()}level0/${folder(currentRoomId)}/`;
+    const currentRoomState = roomState(data, currentRoomId);
+    const nextStepUnlocked = isStepPage ? isStepUnlocked(currentRoomState, currentStep + 1) : false;
     const prevHref = isStepPage
       ? (currentStep === 1 ? `${roomBase}${folder(currentRoomId)}.html` : `${roomBase}${STEP_FILES[currentStep - 2]}`)
       : "#";
     const nextHref = isStepPage
-      ? (currentStep === 9 ? `${prefix()}index.html` : `${roomBase}${STEP_FILES[currentStep]}`)
+      ? (currentStep === 9 ? `${prefix()}index.html` : (nextStepUnlocked ? `${roomBase}${STEP_FILES[currentStep]}` : "#"))
       : "#";
     const backRoomHref = (isStepPage || isRoomPage) ? `${roomBase}${folder(currentRoomId)}.html` : "#";
     const prevDisabled = isStepPage ? "" : " aria-disabled=\"true\" onclick=\"return false;\" style=\"opacity:.5;pointer-events:none\"";
-    const nextDisabled = isStepPage ? "" : " aria-disabled=\"true\" onclick=\"return false;\" style=\"opacity:.5;pointer-events:none\"";
+    const nextDisabled = isStepPage && (currentStep === 9 || nextStepUnlocked)
+      ? ""
+      : " aria-disabled=\"true\" onclick=\"return false;\" style=\"opacity:.5;pointer-events:none\"";
     const roomDisabled = (isStepPage || isRoomPage) ? "" : " aria-disabled=\"true\" onclick=\"return false;\" style=\"opacity:.5;pointer-events:none\"";
     return `
       <div class="nav-row">
@@ -543,6 +583,7 @@
     const roomsDone = cardDoneCount(data);
     const stepsDone = stepDoneCount(data);
     const percent = Math.round((roomsDone / ROOM_DATA.length) * 100);
+    const unlockedRooms = new Set(getUnlockedRooms(data));
     return `
       ${hero("Build the habit loop.", "Watch, copy, repeat, explain, break, fix, repeat again, skill check, unlock. Every room keeps the text short and the interaction constant.", `
         <div class="panel stat-box"><strong>${xp}</strong><span>Total XP</span></div>
@@ -561,28 +602,32 @@
       <section class="section" id="rooms">
         <div class="section-header"><h3 class="section-title">Rooms</h3><span class="subtle">Nine modules. One habit loop each.</span></div>
         <div class="card-grid" style="display:grid;grid-template-columns:1fr;gap:12px;max-width:860px;margin:0 auto;">
-          ${ROOM_DATA.map((room) => roomCard(room, data)).join("")}
+          ${ROOM_DATA.map((room) => roomCard(room, data, unlockedRooms.has(room.id))).join("")}
         </div>
       </section>
       <section class="section">
         <div class="section-header"><h3 class="section-title">Final Mission</h3><span class="subtle">Use everything together.</span></div>
-        <div class="panel"><p>Five short support phases. Fix what matters first. Write the final report to complete Level 0.</p><div style="margin-top:14px"><a class="button" href="${prefix()}level0/final_mission.html">Launch Final Mission</a></div></div>
+        <div class="panel"><p>Five short support phases. Fix what matters first. Write the final report to complete Level 0.</p><div style="margin-top:14px">${roomsDone === ROOM_DATA.length ? `<a class="button" href="${prefix()}level0/final_mission.html">Launch Final Mission</a>` : `<button class="button" aria-disabled="true" style="opacity:.5;pointer-events:none">Locked until all rooms are complete</button>`}</div></div>
       </section>
     `;
   }
 
-  function roomCard(room, data) {
+  function roomCard(room, data, unlocked) {
     const roomStateValue = roomState(data, room.id);
     const done = roomStateValue.done;
     const steps = STEP_NAMES.map((name, index) => `<span class="step-pill ${roomStateValue.steps[index + 1] ? "done" : ""}">${index + 1}</span>`).join("");
+    const openButton = unlocked
+      ? `<a class="button" href="${prefix()}level0/${folder(room.id)}/${folder(room.id)}.html">${done ? "Review room" : "Open room"}</a>`
+      : `<button class="button" aria-disabled="true" style="opacity:.5;pointer-events:none">Locked: complete previous room</button>`;
     return `
-      <a class="room-card ${done ? "active" : ""}" href="${prefix()}level0/${folder(room.id)}/${folder(room.id)}.html">
+      <article class="room-card ${done ? "active" : ""}">
         <div class="room-meta"><span class="chip">Room ${room.id.replace("_", ".")}</span><span class="chip">${done ? "done" : "open"}</span></div>
         <h3>${escapeHtml(room.title)}</h3>
         <p>${escapeHtml(room.summary)}</p>
         <div class="room-step-line">${steps}</div>
         <div class="chip-row">${STEP_NAMES.map((name) => `<span class="chip">${escapeHtml(name)}</span>`).join("")}</div>
-      </a>
+        <div class="choice-row" style="margin-top:12px">${openButton}</div>
+      </article>
     `;
   }
 
@@ -623,7 +668,7 @@
         </div>
       </section>
       <section class="section">
-        <div class="card-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;">
+        <div class="card-grid" style="display:grid;grid-template-columns:1fr;gap:12px;max-width:860px;margin:0 auto;">
           ${terms.map((entry) => glossaryCard(entry.term, entry, entry.label)).join("")}
         </div>
       </section>
@@ -644,34 +689,39 @@
   }
 
   function renderProjects() {
+    const data = state();
+    const masteryUnlocked = cardDoneCount(data) === ROOM_DATA.length;
     return `
       ${hero("Small wins. Real practice.", "These are quick projects that match the room skills so the learning stays active.", `
         <div class="panel stat-box"><strong>${PROJECTS.length}</strong><span>Starter projects</span></div>
         <div class="panel stat-box"><strong>9</strong><span>Modules feeding them</span></div>
       `)}
       <section class="section">
-        <div class="card-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
-          ${PROJECTS.map((project) => `
-            <article class="project-card">
-              <div class="room-meta"><span class="chip">Project</span><span class="chip">NodeZero</span></div>
-              <h3>${escapeHtml(project.name)}</h3>
-              <p style="margin-top:8px"><strong>Outcome:</strong> ${escapeHtml(project.outcome)}</p>
-              <p style="margin-top:8px"><strong>Steps:</strong></p>
-              <ol style="margin-top:4px;padding-left:18px">
-                ${project.steps.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
-              </ol>
-              <p style="margin-top:8px"><strong>Verification:</strong> ${escapeHtml(project.verify)}</p>
-              <p style="margin-top:8px"><strong>Job connection:</strong> ${escapeHtml(project.job)}</p>
-              <p style="margin-top:8px"><strong>Reward:</strong> +${project.xp} XP</p>
-            </article>
-          `).join("")}
-        </div>
+        ${masteryUnlocked ? `
+          <div class="card-grid" style="display:grid;grid-template-columns:1fr;gap:12px;max-width:860px;margin:0 auto;">
+            ${PROJECTS.map((project) => `
+              <article class="project-card">
+                <div class="room-meta"><span class="chip">Project</span><span class="chip">NodeZero</span></div>
+                <h3>${escapeHtml(project.name)}</h3>
+                <p style="margin-top:8px"><strong>Outcome:</strong> ${escapeHtml(project.outcome)}</p>
+                <p style="margin-top:8px"><strong>Steps:</strong></p>
+                <ol style="margin-top:4px;padding-left:18px">
+                  ${project.steps.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+                </ol>
+                <p style="margin-top:8px"><strong>Verification:</strong> ${escapeHtml(project.verify)}</p>
+                <p style="margin-top:8px"><strong>Job connection:</strong> ${escapeHtml(project.job)}</p>
+                <p style="margin-top:8px"><strong>Reward:</strong> +${project.xp} XP</p>
+              </article>
+            `).join("")}
+          </div>
+        ` : `<div class="panel"><p>Projects unlock after mastery. Complete all Level 0 rooms first.</p></div>`}
       </section>
     `;
   }
 
   function roomLanding(room, data) {
     const roomStateValue = roomState(data, room.id);
+    const unlockedSteps = new Set(getUnlockedSteps(roomStateValue));
     const stepDone = Object.values(roomStateValue.steps).filter(Boolean).length;
     return `
       ${hero(`Room ${room.id.replace("_", ".")} — ${room.title}`, room.summary, `
@@ -691,14 +741,21 @@
             </div>
           </article>
           <article class="panel">
-            <div class="kicker">Start</div>
-            <h3>Begin the room</h3>
-            <p class="note">Use the nine-step loop. Go step by step. Keep the screen moving.</p>
+            <div class="kicker">Room steps</div>
+            <h3>TryHackMe-style flow</h3>
+            <p class="note">Complete each step to unlock the next one.</p>
+            <div class="lesson-stack" style="margin-top:12px">
+              ${STEP_NAMES.map((name, index) => {
+                const step = index + 1;
+                const unlocked = unlockedSteps.has(step);
+                const done = !!roomStateValue.steps[step];
+                const href = `${folderPrefix(room.id)}${STEP_FILES[index]}`;
+                return `<div class="ticket-box"><div class="room-meta"><span class="chip">Step ${step}</span><span class="chip">${done ? "done" : (unlocked ? "open" : "locked")}</span></div><h3>${escapeHtml(name)}</h3><div class="choice-row" style="margin-top:8px">${unlocked ? `<a class="button" href="${href}">${done ? "Review step" : "Open step"}</a>` : `<button class="button" aria-disabled="true" style="opacity:.5;pointer-events:none">Locked</button>`}</div></div>`;
+              }).join("")}
+            </div>
             <div class="choice-row" style="margin-top:14px">
-              <a class="button" href="${folderPrefix(room.id)}step1_learn.html">Start lesson</a>
               <a class="button" href="${prefix()}index.html#rooms">Back to rooms</a>
             </div>
-            <div class="room-step-line" style="margin-top:14px">${STEP_NAMES.map((name, index) => `<span class="step-pill ${roomStateValue.steps[index + 1] ? "done" : ""}">${index + 1}. ${escapeHtml(name)}</span>`).join("")}</div>
           </article>
         </div>
       </section>
@@ -711,8 +768,27 @@
 
   function renderStep(room, data, stepNumber) {
     const roomStateValue = roomState(data, room.id);
+    if (!isStepUnlocked(roomStateValue, stepNumber)) {
+      return `
+        ${hero(`Room ${room.id.replace("_", ".")} locked step`, "Complete the previous step to unlock this page.", `
+          <div class="panel stat-box"><strong>${stepNumber - 1}</strong><span>Needed step</span></div>
+          <div class="panel stat-box"><strong>${Object.values(roomStateValue.steps).filter(Boolean).length}</strong><span>Current progress</span></div>
+        `)}
+        <section class="section">
+          <div class="panel">
+            <h3>Step locked</h3>
+            <p class="note">This step opens after you complete the previous one.</p>
+            <div class="choice-row" style="margin-top:12px">
+              <a class="button" href="${folderPrefix(room.id)}${folder(room.id)}.html">Back to Room</a>
+              <a class="button" href="${prefix()}index.html">Back to Dashboard</a>
+            </div>
+          </div>
+        </section>
+      `;
+    }
     const prev = stepNumber === 1 ? `${folderPrefix(room.id)}${folder(room.id)}.html` : `${folderPrefix(room.id)}${STEP_FILES[stepNumber - 2]}`;
-    const next = stepNumber === 9 ? `${prefix()}index.html` : `${folderPrefix(room.id)}${STEP_FILES[stepNumber]}`;
+    const nextUnlocked = stepNumber === 9 || isStepUnlocked(roomStateValue, stepNumber + 1);
+    const next = stepNumber === 9 ? `${prefix()}index.html` : (nextUnlocked ? `${folderPrefix(room.id)}${STEP_FILES[stepNumber]}` : `${folderPrefix(room.id)}${folder(room.id)}.html`);
     const stepTitle = STEP_NAMES[stepNumber - 1];
     const statusId = `status-${room.id}-${stepNumber}`;
     const stepState = roomStateValue.steps;
@@ -1169,8 +1245,27 @@
       shell(renderFinal(data), data);
     } else {
       const room = ROOM_DATA[roomIndex(roomId())];
-      if (page() === "room") shell(roomLanding(room, data), data);
-      else shell(renderStep(room, data, stepIndex()), data);
+      if (!room || !isRoomUnlocked(data, room.id)) {
+        shell(`
+          ${hero("Room locked", "Complete the previous room to unlock this one.", `
+            <div class="panel stat-box"><strong>${cardDoneCount(data)}</strong><span>Rooms complete</span></div>
+            <div class="panel stat-box"><strong>${ROOM_DATA.length}</strong><span>Total rooms</span></div>
+          `)}
+          <section class="section">
+            <div class="panel">
+              <h3>This room is currently locked</h3>
+              <p class="note">Go back to the dashboard and finish the earlier room first.</p>
+              <div class="choice-row" style="margin-top:12px">
+                <a class="button" href="${prefix()}index.html">Back to Dashboard</a>
+              </div>
+            </div>
+          </section>
+        `, data);
+      } else if (page() === "room") {
+        shell(roomLanding(room, data), data);
+      } else {
+        shell(renderStep(room, data, stepIndex()), data);
+      }
     }
 
     const currentXp = getXp();
