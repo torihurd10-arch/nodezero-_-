@@ -1,0 +1,85 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Fix UTF-8 Encoding in HTML Files",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"fix-utf8-encoding.js"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Fix UTF-8 Encoding with Python",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"fix_utf8_encoding.py"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Check Git",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"--version"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Fix UTF-8 Encoding",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"fix-utf8-encoding.ps1"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Fix UTF-8 Encoding with PS",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"fix-utf8-encoding.ps1"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Test Bash",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-c",
+				"echo 'Git Bash available'"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Fix UTF-8 with Batch",
+			"type": "shell",
+			"command": "fix-utf8-encoding.bat",
+			"group": "build"
+		},
+		{
+			"label": "Fix UTF-8 via CMD",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"c:\\Users\\torih\\Documents\\nodezero\\fix-utf8-encoding.bat"
+			],
+			"group": "build"
+		}
+	]
+}
