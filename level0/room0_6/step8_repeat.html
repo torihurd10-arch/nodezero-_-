@@ -1,59 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 8 â€” Repeat: CLI Review</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
-    };
-  </script>
-  <style>
-    .glow-border { box-shadow: 0 0 20px #00FF9C; }
-    .fade-in { animation: fadeIn 1.2s ease-in; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .option:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NodeZero - Room 0.6 Step 8</title>
+  <script>window.__NODEZERO_PAGE__ = { type: 'step', rootPrefix: '../../' };</script>
+  <script src="../../level0-engine.js" defer></script>
 </head>
-<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
-  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 8 â€” Repeat</h1>
-    <h2 class="text-xl text-neonBlue mb-4">CLI Quick Review</h2>
-    <div class="space-y-6 text-left text-gray-300">
-      <div>
-        <p class="mb-2">1ï¸âƒ£ You're in /home/tori and want to go to /home. What do you type?</p>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ck(1,'A')">A. cd ..</div>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ck(1,'B')">B. ls /home</div>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ck(1,'C')">C. mkdir home</div>
-        <p id="f1" class="mt-1 text-sm"></p>
-      </div>
-      <div>
-        <p class="mb-2">2ï¸âƒ£ Which command shows your network configuration on Windows?</p>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ck(2,'A')">A. netconfig</div>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ck(2,'B')">B. ipconfig</div>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ck(2,'C')">C. showip</div>
-        <p id="f2" class="mt-1 text-sm"></p>
-      </div>
-    </div>
-    <p id="result" class="mt-6 text-neonGreen font-semibold"></p>
-    <button onclick="window.location.href='step9_apply.html'" class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step â†’ Apply</button>
-    <button onclick="window.location.href='step7_explain.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">â† Back</button>
-  </div>
-  <script>
-    const correct = { 1: 'A', 2: 'B' }; const ans = {}; let s = 0;
-    function ck(q, c) {
-      if (ans[q]) return; ans[q] = true;
-      const el = document.getElementById('f' + q);
-      if (c === correct[q]) { el.textContent = 'âœ… Correct!'; el.className = 'mt-1 text-sm text-neonGreen'; s++; }
-      else { el.textContent = 'âŒ Review Step 1.'; el.className = 'mt-1 text-sm text-red-400'; }
-      if (Object.keys(ans).length === 2) document.getElementById('result').textContent = s === 2 ? 'ðŸŽ¯ Perfect! Ready for the job scenario.' : 'ðŸ“– Review and continue.';
-    }
-  </script>
-  <div style="position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:999;">
-    <a href="../../glossary.html" style="padding:4px 10px;border:1px solid rgba(0,255,156,0.6);color:#00FF9C;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Glossary</a>
-    <a href="../../projects.html" style="padding:4px 10px;border:1px solid rgba(0,200,255,0.6);color:#00C8FF;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Projects</a>
-    <a href="../../index.html" style="padding:4px 10px;border:1px solid rgba(150,150,150,0.4);color:#9ca3af;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Dashboard</a>
-  </div></body>
+<body data-page="step" data-room='0_6' data-step='8' data-root-prefix="../../">
+  <div id="app"></div>
+</body>
 </html>
-

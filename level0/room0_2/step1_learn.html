@@ -1,63 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 1 — Learn: Inside the Machine</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config={theme:{extend:{colors:{bgDark:"#050816",neonGreen:"#00FF9C",neonBlue:"#00C8FF"}}}};</script>
-  <style>.glow-border{box-shadow:0 0 20px #00FF9C;}.fade-in{animation:fadeIn 1.2s ease-in;}@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}code{background:rgba(0,200,255,0.1);padding:1px 5px;border-radius:4px;color:#00FF9C;}</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NodeZero - Room 0.2 Step 1</title>
+  <script>window.__NODEZERO_PAGE__ = { type: 'step', rootPrefix: '../../' };</script>
+  <script src="../../level0-engine.js" defer></script>
 </head>
-<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
-  <div class="max-w-4xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 glow-border fade-in">
-    <p class="text-neonBlue text-xs font-mono mb-2">ROOM 0.2 // STEP 1 OF 9</p>
-    <h1 class="text-3xl font-bold text-neonGreen mb-2">Step 1 — Learn</h1>
-    <h2 class="text-xl text-neonBlue mb-4">Inside the Machine: CPU, RAM & Storage</h2>
-    <p class="text-gray-300 mb-6">Every program you run follows a precise data path through your computer. Understanding this path lets you diagnose performance problems instantly.</p>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300 mb-6 text-left">
-      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
-        <h3 class="text-neonGreen font-semibold mb-2">🧠 CPU (Processor)</h3>
-        <ul class="text-sm space-y-1 list-disc list-inside">
-          <li>Executes instructions — billions per second</li>
-          <li>Has its own tiny ultra-fast memory: <strong>cache</strong> (L1/L2/L3)</li>
-          <li>Bottleneck: 100% CPU = system freezes or lags</li>
-          <li>Multiple cores = multiple simultaneous tasks</li>
-        </ul>
-      </div>
-      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
-        <h3 class="text-neonGreen font-semibold mb-2">⚡ RAM (Memory)</h3>
-        <ul class="text-sm space-y-1 list-disc list-inside">
-          <li>Holds active programs and data — very fast</li>
-          <li>Volatile: data disappears when power is off</li>
-          <li>Low RAM forces OS to use disk as "virtual memory" — very slow</li>
-          <li>More RAM = more programs running smoothly at once</li>
-        </ul>
-      </div>
-      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
-        <h3 class="text-neonGreen font-semibold mb-2">💾 Storage (HDD/SSD)</h3>
-        <ul class="text-sm space-y-1 list-disc list-inside">
-          <li>Permanent storage — survives power off</li>
-          <li>HDD: spinning disk, slow (100MB/s read)</li>
-          <li>SSD: flash chips, fast (500MB/s-7GB/s read)</li>
-          <li>Full disk = OS can't write temp files → crashes</li>
-        </ul>
-      </div>
-      <div class="bg-black/60 border border-neonBlue/40 rounded-lg p-4">
-        <h3 class="text-neonGreen font-semibold mb-2">📊 The Data Path</h3>
-        <p class="text-sm">Storage → RAM → CPU Cache → CPU Registers → Back to RAM → Storage</p>
-        <p class="text-sm mt-2">Speed order (fastest to slowest):<br/>CPU Cache > RAM > SSD > HDD</p>
-      </div>
-    </div>
-    <div class="flex gap-3 justify-center flex-wrap">
-      <a href="../../index.html" class="px-4 py-2 border border-gray-600 rounded text-gray-400 hover:bg-black/40 text-sm">⌂ Dashboard</a>
-      <a href="room0_2.html" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40 text-sm">← Room</a>
-      <a href="step2_see.html" class="px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step →</a>
-    </div>
-  </div>
-  <script>let s=new Set(JSON.parse(localStorage.getItem("r02_steps")||"[]"));s.add(1);localStorage.setItem("r02_steps",JSON.stringify([...s]));let x=parseInt(localStorage.getItem("nodezero_xp")||"0",10);if(!localStorage.getItem("r02_s1_done")){x+=10;localStorage.setItem("nodezero_xp",String(x));localStorage.setItem("r02_s1_done","1");}</script>
-  <div style="position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:999;">
-    <a href="../../glossary.html" style="padding:4px 10px;border:1px solid rgba(0,255,156,0.6);color:#00FF9C;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Glossary</a>
-    <a href="../../projects.html" style="padding:4px 10px;border:1px solid rgba(0,200,255,0.6);color:#00C8FF;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Projects</a>
-    <a href="../../index.html" style="padding:4px 10px;border:1px solid rgba(150,150,150,0.4);color:#9ca3af;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Dashboard</a>
-  </div></body>
+<body data-page="step" data-room='0_2' data-step='1' data-root-prefix="../../">
+  <div id="app"></div>
+</body>
 </html>
-

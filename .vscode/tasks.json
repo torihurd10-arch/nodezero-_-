@@ -80,6 +80,40 @@
 				"c:\\Users\\torih\\Documents\\nodezero\\fix-utf8-encoding.bat"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Rewrite Level 0 Wrappers",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"rewrite-level0-wrappers.ps1"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Rewrite Level 0 Wrappers 2",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"rewrite-level0-wrappers.ps1"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
 		}
 	]
 }

@@ -1,58 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 5 â€” Break: Account Compromised</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
-    };
-  </script>
-  <style>
-    .glow-border { box-shadow: 0 0 20px #00FF9C; }
-    .fade-in { animation: fadeIn 1.2s ease-in; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .option:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NodeZero - Room 0.8 Step 5</title>
+  <script>window.__NODEZERO_PAGE__ = { type: 'step', rootPrefix: '../../' };</script>
+  <script src="../../level0-engine.js" defer></script>
 </head>
-<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
-  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6 text-center glow-border fade-in">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 5 â€” Break</h1>
-    <h2 class="text-xl text-neonBlue mb-4">Security Breach Scenario</h2>
-    <div class="bg-black border border-red-500/60 rounded p-4 mb-6 text-left text-sm">
-      <p class="text-red-400 font-semibold">ðŸš¨ ALERT: Suspicious login detected</p>
-      <p class="text-gray-400 mt-2">An employee clicked a phishing link and entered their credentials on a fake login page. Their company email account is now being accessed from an unknown IP in a foreign country. Emails are being forwarded to an external address.</p>
-    </div>
-    <p class="text-gray-300 mb-6">This is an active account compromise. What is the FIRST thing you should do?</p>
-    <div class="space-y-4 text-left text-gray-300">
-      <div class="option p-3 border border-neonBlue/40 rounded" onclick="checkAnswer('A')">A. Send the employee an email warning them</div>
-      <div class="option p-3 border border-neonBlue/40 rounded" onclick="checkAnswer('B')">B. Immediately revoke the compromised account's access / reset credentials and kill active sessions</div>
-      <div class="option p-3 border border-neonBlue/40 rounded" onclick="checkAnswer('C')">C. Wait and monitor to gather more information before acting</div>
-    </div>
-    <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
-    <button onclick="window.location.href='step6_fix.html'" class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step â†’ Fix</button>
-    <button onclick="window.location.href='step4_test.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">â† Back</button>
-  </div>
-  <script>
-    function checkAnswer(c) {
-      const fb = document.getElementById('feedback');
-      if (c === 'B') {
-        fb.textContent = 'âœ… Correct! Contain first. Revoke access immediately to stop ongoing damage. Every second of delay means more data at risk.';
-        fb.className = 'text-neonGreen font-semibold mt-6';
-      } else if (c === 'A') {
-        fb.textContent = 'âš ï¸ The attacker may intercept that email â€” the account is compromised. Act on systems level first.';
-        fb.className = 'text-yellow-400 font-semibold mt-6';
-      } else {
-        fb.textContent = 'âŒ Waiting during an active breach allows more damage. Time is critical in incident response.';
-        fb.className = 'text-red-400 font-semibold mt-6';
-      }
-    }
-  </script>
-  <div style="position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:999;">
-    <a href="../../glossary.html" style="padding:4px 10px;border:1px solid rgba(0,255,156,0.6);color:#00FF9C;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Glossary</a>
-    <a href="../../projects.html" style="padding:4px 10px;border:1px solid rgba(0,200,255,0.6);color:#00C8FF;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Projects</a>
-    <a href="../../index.html" style="padding:4px 10px;border:1px solid rgba(150,150,150,0.4);color:#9ca3af;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Dashboard</a>
-  </div></body>
+<body data-page="step" data-room='0_8' data-step='5' data-root-prefix="../../">
+  <div id="app"></div>
+</body>
 </html>
-

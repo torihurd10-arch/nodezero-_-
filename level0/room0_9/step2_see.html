@@ -1,50 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 2 â€” See: System Diagram</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
-    };
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NodeZero - Room 0.9 Step 2</title>
+  <script>window.__NODEZERO_PAGE__ = { type: 'step', rootPrefix: '../../' };</script>
+  <script src="../../level0-engine.js" defer></script>
 </head>
-<body class="bg-bgDark text-gray-100 min-h-screen flex items-center justify-center">
-  <div class="max-w-3xl w-full bg-black/80 border border-neonBlue/60 rounded-lg p-6">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 2 â€” See</h1>
-    <p class="text-gray-300 mb-4">Click each layer to see how it connects to the others:</p>
-    <div class="space-y-2 mb-6 font-mono text-sm">
-      <div class="border border-neonBlue/40 rounded p-2 cursor-pointer hover:border-neonGreen" onclick="show('user')">ðŸ‘¤ User â€” Types a URL in a browser</div>
-      <div class="border border-neonBlue/40 rounded p-2 cursor-pointer hover:border-neonGreen" onclick="show('os')">ðŸ–¥ï¸ OS â€” Manages the process, allocates RAM</div>
-      <div class="border border-neonBlue/40 rounded p-2 cursor-pointer hover:border-neonGreen" onclick="show('network')">ðŸŒ Network Stack â€” Routes packets via DNS and IP</div>
-      <div class="border border-neonBlue/40 rounded p-2 cursor-pointer hover:border-neonGreen" onclick="show('server')">â˜ï¸ Remote Server â€” Running Linux + web software</div>
-      <div class="border border-neonBlue/40 rounded p-2 cursor-pointer hover:border-neonGreen" onclick="show('fs')">ðŸ“ File System â€” Serves the HTML file from disk</div>
-      <div class="border border-neonBlue/40 rounded p-2 cursor-pointer hover:border-neonGreen" onclick="show('security')">ðŸ” Security â€” HTTPS encrypts the entire journey</div>
-    </div>
-    <div id="info" class="bg-black/60 border border-neonGreen/40 rounded p-4 text-gray-300 text-sm min-h-[4rem] mb-4">
-      <p class="text-gray-500">Click a layer above.</p>
-    </div>
-    <div class="flex gap-3">
-      <button onclick="window.location.href='step1_learn.html'" class="px-4 py-2 border border-neonBlue rounded text-neonBlue hover:bg-black/40">Back</button>
-      <button onclick="window.location.href='step3_do.html'" class="px-4 py-2 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20">Next Step</button>
-    </div>
-  </div>
-  <script>
-    const details = {
-      user: 'The user interacts with software via a GUI or CLI. Their action triggers a chain of events across every layer below.',
-      os: 'The OS receives the browser\'s system call, allocates memory, manages the TCP/IP networking stack, and schedules CPU time.',
-      network: 'DNS resolves the domain to an IP. The packet travels through routers, through your ISP, across the internet to the destination server.',
-      server: 'A remote Linux server receives the request on port 443. A web server process (nginx, Apache) handles the incoming HTTP request.',
-      fs: 'The web server reads the requested HTML file from the server\'s file system and sends it back in the HTTP response.',
-      security: 'HTTPS (TLS) encrypts all data in transit. Certificates verify the server\'s identity. Without this layer, anyone between you and the server could read your data.'
-    };
-    function show(k) { document.getElementById('info').textContent = details[k]; }
-  </script>
-  <div style="position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:999;">
-    <a href="../../glossary.html" style="padding:4px 10px;border:1px solid rgba(0,255,156,0.6);color:#00FF9C;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Glossary</a>
-    <a href="../../projects.html" style="padding:4px 10px;border:1px solid rgba(0,200,255,0.6);color:#00C8FF;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Projects</a>
-    <a href="../../index.html" style="padding:4px 10px;border:1px solid rgba(150,150,150,0.4);color:#9ca3af;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Dashboard</a>
-  </div></body>
+<body data-page="step" data-room='0_9' data-step='2' data-root-prefix="../../">
+  <div id="app"></div>
+</body>
 </html>
-

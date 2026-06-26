@@ -1,77 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 4 â€” Test: Level 0 Comprehensive Quiz</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
-    };
-  </script>
-  <style>
-    .glow-border { box-shadow: 0 0 20px #00FF9C; }
-    .fade-in { animation: fadeIn 1.2s ease-in; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .option:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NodeZero - Room 0.9 Step 4</title>
+  <script>window.__NODEZERO_PAGE__ = { type: 'step', rootPrefix: '../../' };</script>
+  <script src="../../level0-engine.js" defer></script>
 </head>
-<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
-  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 4 â€” Test</h1>
-    <h2 class="text-xl text-neonBlue mb-4">Level 0 Comprehensive Quiz</h2>
-    <div class="space-y-5 text-left text-gray-300">
-      <div>
-        <p class="mb-2">1ï¸âƒ£ What does the OS do when you run a program?</p>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(1,'A')">A. Sends it to the printer</div>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(1,'B')">B. Allocates CPU time and RAM, loads it from storage</div>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(1,'C')">C. Encrypts the file</div>
-        <p id="q1Feedback" class="mt-1 text-sm"></p>
-      </div>
-      <div>
-        <p class="mb-2">2ï¸âƒ£ You type "ping 8.8.8.8" and get responses. What does this confirm?</p>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(2,'A')">A. Your files are backed up</div>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(2,'B')">B. Your network can reach the internet (IP connectivity works)</div>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(2,'C')">C. DNS is working correctly</div>
-        <p id="q2Feedback" class="mt-1 text-sm"></p>
-      </div>
-      <div>
-        <p class="mb-2">3ï¸âƒ£ A website uses HTTPS. What does this guarantee?</p>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(3,'A')">A. The site is run by a legitimate company</div>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(3,'B')">B. Traffic between your browser and the server is encrypted</div>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(3,'C')">C. The site has no bugs</div>
-        <p id="q3Feedback" class="mt-1 text-sm"></p>
-      </div>
-      <div>
-        <p class="mb-2">4ï¸âƒ£ A developer gets "npm ERR! Cannot find module". The fix is:</p>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(4,'A')">A. npm install</div>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(4,'B')">B. Restart the server</div>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="ca(4,'C')">C. Delete node_modules</div>
-        <p id="q4Feedback" class="mt-1 text-sm"></p>
-      </div>
-    </div>
-    <p id="resultBox" class="mt-6 text-neonGreen font-semibold"></p>
-    <button onclick="window.location.href='step5_break.html'" class="mt-4 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step â†’ Break</button>
-    <button onclick="window.location.href='step3_do.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">â† Back</button>
-  </div>
-  <script>
-    const correct = { 1: 'B', 2: 'B', 3: 'B', 4: 'A' }; let score = 0; const ans = {};
-    function ca(q, c) {
-      if (ans[q]) return; ans[q] = true;
-      const fb = document.getElementById('q' + q + 'Feedback');
-      if (c === correct[q]) { fb.textContent = 'âœ… Correct!'; fb.className = 'mt-1 text-sm text-neonGreen'; score++; }
-      else { fb.textContent = 'âŒ Review the relevant room.'; fb.className = 'mt-1 text-sm text-red-400'; }
-      if (Object.keys(ans).length === 4) {
-        let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10); xp += score * 25;
-        localStorage.setItem("nodezero_xp", String(xp));
-        document.getElementById("resultBox").textContent = `Score: ${score}/4 â€” You earned ${score * 25} XP!`;
-      }
-    }
-  </script>
-  <div style="position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:999;">
-    <a href="../../glossary.html" style="padding:4px 10px;border:1px solid rgba(0,255,156,0.6);color:#00FF9C;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Glossary</a>
-    <a href="../../projects.html" style="padding:4px 10px;border:1px solid rgba(0,200,255,0.6);color:#00C8FF;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Projects</a>
-    <a href="../../index.html" style="padding:4px 10px;border:1px solid rgba(150,150,150,0.4);color:#9ca3af;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Dashboard</a>
-  </div></body>
+<body data-page="step" data-room='0_9' data-step='4' data-root-prefix="../../">
+  <div id="app"></div>
+</body>
 </html>
-

@@ -1,100 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 9 â€” Apply: Real-World Help-Desk Scenario</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            bgDark: "#050816",
-            neonGreen: "#00FF9C",
-            neonBlue: "#00C8FF"
-          }
-        }
-      }
-    };
-  </script>
-  <style>
-    .glow-border { box-shadow: 0 0 20px #00FF9C; }
-    .fade-in { animation: fadeIn 1.2s ease-in; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .clickable:hover { background-color: rgba(0,255,156,0.1); cursor: pointer; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NodeZero - Room 0.1 Step 9</title>
+  <script>window.__NODEZERO_PAGE__ = { type: 'step', rootPrefix: '../../' };</script>
+  <script src="../../level0-engine.js" defer></script>
 </head>
-
-<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
-  <div class="max-w-4xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 9 â€” Apply to a Job</h1>
-    <h2 class="text-xl text-neonBlue mb-4">Help-Desk Ticket Simulation</h2>
-
-    <p class="text-gray-300 mb-6">
-      Youâ€™re working as a Help-Desk Technician.
-      A user reports: <span class="text-neonGreen">â€œMy monitor is black, but the computer seems to be running.â€</span>
-      Choose how youâ€™ll handle this ticket.
-    </p>
-
-    <div class="space-y-4 text-left text-gray-300">
-      <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="handleChoice('diagnose')">
-        ðŸ§  Diagnose the problem first
-      </div>
-      <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="handleChoice('replace')">
-        ðŸ”§ Replace the monitor immediately
-      </div>
-      <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="handleChoice('ignore')">
-        ðŸš« Ignore the ticket
-      </div>
-    </div>
-
-    <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
-
-    <button onclick="finishRoom()"
-            class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
-      âœ… Finish Room 0.1
-    </button>
-
-    <button onclick="goBack()"
-            class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">
-      â† Back to Room
-    </button>
-  </div>
-
-  <script>
-    function handleChoice(action) {
-      if (action === 'diagnose') {
-        document.getElementById("feedback").textContent =
-          "âœ… Correct â€” you start by diagnosing the issue. You check cables, confirm power, and identify the unplugged monitor cable.";
-        let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
-        xp += 100;
-        localStorage.setItem("nodezero_xp", String(xp));
-        localStorage.setItem("room0_1_complete", "true");
-      } else if (action === 'replace') {
-        document.getElementById("feedback").textContent =
-          "âš ï¸ Replacing hardware without diagnosis wastes resources. Try again.";
-      } else {
-        document.getElementById("feedback").textContent =
-          "âŒ Ignoring tickets leads to unresolved issues. Not acceptable.";
-      }
-    }
-
-    function finishRoom() {
-      localStorage.setItem('room0_1_complete', 'true');
-      let xp = parseInt(localStorage.getItem('nodezero_xp') || '0', 10);
-      xp += 20;
-      localStorage.setItem('nodezero_xp', String(xp));
-      window.location.href = '../../index.html';
-    }
-
-    function goBack() {
-      window.location.href = 'room0_1.html';
-    }
-  </script>
-  <div style="position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:999;">
-    <a href="../../glossary.html" style="padding:4px 10px;border:1px solid rgba(0,255,156,0.6);color:#00FF9C;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Glossary</a>
-    <a href="../../projects.html" style="padding:4px 10px;border:1px solid rgba(0,200,255,0.6);color:#00C8FF;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Projects</a>
-    <a href="../../index.html" style="padding:4px 10px;border:1px solid rgba(150,150,150,0.4);color:#9ca3af;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Dashboard</a>
-  </div></body>
+<body data-page="step" data-room='0_1' data-step='9' data-root-prefix="../../">
+  <div id="app"></div>
+</body>
 </html>
-

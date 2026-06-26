@@ -1,51 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 6 â€” Fix: Correct the Path</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
-    };
-  </script>
-  <style>
-    .glow-border { box-shadow: 0 0 20px #00FF9C; }
-    .fade-in { animation: fadeIn 1.2s ease-in; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NodeZero - Room 0.4 Step 6</title>
+  <script>window.__NODEZERO_PAGE__ = { type: 'step', rootPrefix: '../../' };</script>
+  <script src="../../level0-engine.js" defer></script>
 </head>
-<body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
-  <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 6 â€” Fix</h1>
-    <h2 class="text-xl text-neonBlue mb-4">Type the Corrected Path</h2>
-    <p class="text-gray-300 mb-4">Broken path: <code class="text-red-400">C:\Users\Tori\Documnets\script.py</code></p>
-    <p class="text-gray-300 mb-6">Type the corrected path below:</p>
-    <input id="pathInput" type="text" class="w-full bg-black/60 border border-neonBlue/60 rounded p-3 font-mono text-neonGreen mb-4" placeholder="C:\Users\Tori\...\script.py" />
-    <button onclick="checkFix()" class="px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Check Fix</button>
-    <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
-    <button onclick="window.location.href='step7_explain.html'" class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">Next Step â†’ Explain</button>
-    <button onclick="window.location.href='step5_break.html'" class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">â† Back</button>
-  </div>
-  <script>
-    function checkFix() {
-      const val = document.getElementById('pathInput').value.trim();
-      const fb = document.getElementById('feedback');
-      if (val.toLowerCase().includes('documents') && !val.toLowerCase().includes('documnets')) {
-        fb.textContent = 'âœ… Fixed! Correcting "Documnets" to "Documents" resolves the file not found error.';
-        fb.className = 'text-neonGreen font-semibold mt-6';
-        let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10); xp += 50;
-        localStorage.setItem("nodezero_xp", String(xp));
-      } else {
-        fb.textContent = 'âŒ Check the spelling of "Documents" in your path.';
-        fb.className = 'text-red-400 font-semibold mt-6';
-      }
-    }
-  </script>
-  <div style="position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:999;">
-    <a href="../../glossary.html" style="padding:4px 10px;border:1px solid rgba(0,255,156,0.6);color:#00FF9C;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Glossary</a>
-    <a href="../../projects.html" style="padding:4px 10px;border:1px solid rgba(0,200,255,0.6);color:#00C8FF;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Projects</a>
-    <a href="../../index.html" style="padding:4px 10px;border:1px solid rgba(150,150,150,0.4);color:#9ca3af;font-size:11px;border-radius:6px;background:rgba(5,8,22,0.9);text-decoration:none;">Dashboard</a>
-  </div></body>
+<body data-page="step" data-room='0_4' data-step='6' data-root-prefix="../../">
+  <div id="app"></div>
+</body>
 </html>
-
