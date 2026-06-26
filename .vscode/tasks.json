@@ -114,6 +114,221 @@
 				"$tsc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Apply HUD and UTF8 fixes",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"fix_hud_and_encoding.ps1"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Validate HTML head tags",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-Command",
+				"$files = Get-ChildItem -Recurse -File -Filter *.html; $missingCharset=@(); $missingStyle=@(); foreach($f in $files){ $c = Get-Content -Raw -Path $f.FullName; if($c -notmatch '(?is)<meta\\s+charset\\s*=\\s*[\"'']?utf-8'){ $missingCharset += $f.FullName }; if($c -notmatch '(?is)<link\\s+[^>]*href\\s*=\\s*[\"''][^\"'']*style\\.css'){ $missingStyle += $f.FullName } }; Write-Output \"missing charset: $($missingCharset.Count)\"; $missingCharset | Select-Object -First 20; Write-Output \"missing style: $($missingStyle.Count)\"; $missingStyle | Select-Object -First 20"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Validate HTML heads via script",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"validate_html_heads.ps1"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Insert charset meta in HTML",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"add_charset_meta.ps1"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Revalidate HTML heads",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"validate_html_heads.ps1"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Check mojibake leftovers",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"check_mojibake.ps1"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Repair head newline artifact",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"repair_head_newline_artifact.ps1"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Final head validation",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-Command",
+				"$files=Get-ChildItem -Recurse -File -Filter *.html; $mc=0; $ms=0; foreach($f in $files){$c=Get-Content -Raw $f.FullName; if($c -notmatch '(?is)<meta\\s+charset\\s*=\\s*[\"'']?utf-8'){$mc++}; if($c -notmatch '(?is)<link\\s+[^>]*href\\s*=\\s*[\"''][^\"'']*style\\.css'){$ms++}}; Write-Output \"missing charset: $mc\"; Write-Output \"missing style: $ms\""
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Validate HTML heads final",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"validate_html_heads.ps1"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Git status short",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Stage Level0 cockpit changes",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"add",
+				"--",
+				"*.html",
+				"level0/**/*.html",
+				"level0-engine.js",
+				"style.css"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Commit Level0 cockpit changes",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"commit",
+				"-m",
+				"Finalized Level 0 Halo cockpit system, fixed encoding, added global learning features"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Push main branch",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"push",
+				"origin",
+				"main"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Check live site status",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-Command",
+				"$u='https://torihurd10-arch.github.io/nodezero-_-/'; $r=Invoke-WebRequest -Uri $u -UseBasicParsing; Write-Output \"status: $($r.StatusCode)\"; if($r.Content -match '<title>(.*?)</title>'){ Write-Output \"title: $($matches[1])\" }"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Check pages API",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-Command",
+				"$api='https://api.github.com/repos/torihurd10-arch/nodezero-_-/pages'; try { $r=Invoke-WebRequest -Uri $api -UseBasicParsing -Headers @{'User-Agent'='nodezero-check'}; Write-Output \"status: $($r.StatusCode)\"; Write-Output $r.Content } catch { if($_.Exception.Response){ Write-Output \"status: $($_.Exception.Response.StatusCode.value__)\" }; Write-Output $_.Exception.Message }"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Post-push git status",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short"
+			],
+			"problemMatcher": [],
+			"group": "build"
 		}
 	]
 }
