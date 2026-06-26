@@ -2,146 +2,272 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>NodeZero — Level 0 Dashboard</title>
+  <title>NodeZero -- Level 0 Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" }
-        }
-      }
+      theme: { extend: { colors: { bgDark: "#050816", neonGreen: "#00FF9C", neonBlue: "#00C8FF" } } }
     };
   </script>
   <style>
     .glow { box-shadow: 0 0 15px rgba(0,255,156,0.3); }
     .glow:hover { box-shadow: 0 0 25px rgba(0,255,156,0.6); }
     .fade-in { animation: fadeIn 1.2s ease-in; }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
     .room-card { transition: all 0.2s ease; }
     .room-card:hover { transform: translateY(-2px); }
-    .complete-badge { background: rgba(0,255,156,0.15); border-color: rgba(0,255,156,0.6); }
+    .done-card { background: rgba(0,255,156,0.08); border-color: rgba(0,255,156,0.5) !important; }
+    .xp-bar-fill { background: linear-gradient(90deg, #00FF9C, #00C8FF); transition: width 0.8s ease; }
   </style>
 </head>
 <body class="bg-bgDark text-gray-100 min-h-screen">
-  <header class="border-b border-neonGreen/20 px-6 py-4 flex items-center justify-between">
+
+  <!-- Header -->
+  <header class="border-b border-neonGreen/20 px-6 py-4 flex items-center justify-between sticky top-0 bg-bgDark/95 backdrop-blur z-10">
     <div>
       <h1 class="text-2xl font-bold text-neonGreen">NodeZero</h1>
       <p class="text-xs text-gray-500">Build It. Break It. Learn It.</p>
     </div>
     <div class="text-right">
       <p class="text-neonBlue font-semibold text-sm">XP: <span id="xpDisplay">0</span></p>
-      <p class="text-xs text-gray-500">Level 0 — IT Foundations</p>
+      <div class="w-32 h-1.5 bg-black/60 border border-neonBlue/20 rounded-full overflow-hidden mt-1">
+        <div id="xpBar" class="xp-bar-fill h-full rounded-full" style="width:0%"></div>
+      </div>
     </div>
   </header>
-  <section class="text-center py-10 px-6 fade-in">
-    <p class="text-neonBlue text-sm font-mono mb-2">LEVEL 0 // IT FOUNDATIONS</p>
-    <h2 class="text-4xl font-bold text-neonGreen mb-4">Your Learning Mission</h2>
-    <p class="text-gray-300 max-w-2xl mx-auto mb-2">Complete all 9 rooms to build a complete foundation in IT. Each room follows the proven learning cycle:</p>
-    <p class="text-neonBlue text-sm font-mono">Learn → See → Do → Test → Break → Fix → Explain → Repeat → Apply to a Job</p>
+
+  <!-- Hero -->
+  <section class="text-center py-8 px-6 fade-in">
+    <p class="text-neonBlue text-xs font-mono mb-2">LEVEL 0 // IT FOUNDATIONS</p>
+    <h2 class="text-3xl font-bold text-neonGreen mb-3">Your Learning Mission</h2>
+    <p class="text-gray-400 max-w-2xl mx-auto text-sm mb-2">Complete 9 rooms to build a complete IT foundation. Every room follows the same cycle:</p>
+    <p class="text-neonBlue text-xs font-mono">Learn → See → Do → Test → Break → Fix → Explain → Repeat → Apply to a Job</p>
   </section>
-  <div class="px-6 mb-8 max-w-4xl mx-auto">
+
+  <!-- Room Progress Bar -->
+  <div class="px-6 mb-6 max-w-4xl mx-auto">
     <div class="flex justify-between text-xs text-gray-500 mb-1">
       <span>Level 0 Progress</span>
       <span id="progressText">0 / 9 Rooms</span>
     </div>
     <div class="h-2 bg-black/60 border border-neonBlue/20 rounded-full overflow-hidden">
-      <div id="progressBar" class="h-full bg-neonGreen rounded-full transition-all duration-500" style="width:0%"></div>
+      <div id="progressBar" class="xp-bar-fill h-full rounded-full" style="width:0%"></div>
     </div>
   </div>
+
+  <!-- Stats Row -->
+  <div class="px-6 mb-6 max-w-4xl mx-auto grid grid-cols-3 gap-3 text-center">
+    <div class="bg-black/60 border border-neonBlue/20 rounded-lg p-3">
+      <p class="text-2xl font-bold text-neonGreen" id="statRooms">0</p>
+      <p class="text-xs text-gray-500">Rooms Done</p>
+    </div>
+    <div class="bg-black/60 border border-neonBlue/20 rounded-lg p-3">
+      <p class="text-2xl font-bold text-neonBlue" id="statXP">0</p>
+      <p class="text-xs text-gray-500">Total XP</p>
+    </div>
+    <div class="bg-black/60 border border-neonBlue/20 rounded-lg p-3">
+      <p class="text-2xl font-bold text-neonGreen" id="statSteps">0</p>
+      <p class="text-xs text-gray-500">Steps Done</p>
+    </div>
+  </div>
+
+  <!-- Room Grid -->
   <main class="px-6 pb-12 max-w-4xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-      <a href="level0/room0_1/room0_1.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-1">
-        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.1</span><span id="badge-0-1" class="hidden text-xs text-neonGreen">✅</span></div>
+
+      <a href="level0/room0_1/room0_1.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block" id="card-0-1">
+        <div class="flex items-start justify-between mb-2">
+          <span class="text-neonBlue text-xs font-mono">Room 0.1</span>
+          <span id="badge-0-1" class="hidden text-xs bg-neonGreen/20 text-neonGreen px-2 py-0.5 rounded">DONE</span>
+        </div>
         <h3 class="text-neonGreen font-semibold mb-1">What is a Computer?</h3>
-        <p class="text-gray-400 text-xs">Hardware, software, CPU, RAM, storage — the fundamentals every IT job requires.</p>
-        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+        <p class="text-gray-400 text-xs mb-3">Hardware, software, CPU, RAM, storage -- the fundamentals every IT job requires.</p>
+        <div id="steps-0-1" class="flex gap-1 flex-wrap mb-2"></div>
+        <p class="text-neonBlue text-xs">-- Start Lesson</p>
       </a>
-      <a href="level0/room0_2/room0_2.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-2">
-        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.2</span><span id="badge-0-2" class="hidden text-xs text-neonGreen">✅</span></div>
+
+      <a href="level0/room0_2/room0_2.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block" id="card-0-2">
+        <div class="flex items-start justify-between mb-2">
+          <span class="text-neonBlue text-xs font-mono">Room 0.2</span>
+          <span id="badge-0-2" class="hidden text-xs bg-neonGreen/20 text-neonGreen px-2 py-0.5 rounded">DONE</span>
+        </div>
         <h3 class="text-neonGreen font-semibold mb-1">Inside the Machine</h3>
-        <p class="text-gray-400 text-xs">Data paths, CPU/RAM interaction, performance bottlenecks and how to fix them.</p>
-        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+        <p class="text-gray-400 text-xs mb-3">CPU, RAM, storage data paths -- performance bottlenecks and how to fix them.</p>
+        <div id="steps-0-2" class="flex gap-1 flex-wrap mb-2"></div>
+        <p class="text-neonBlue text-xs">-- Start Lesson</p>
       </a>
-      <a href="level0/room0_3/room0_3.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-3">
-        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.3</span><span id="badge-0-3" class="hidden text-xs text-neonGreen">✅</span></div>
+
+      <a href="level0/room0_3/room0_3.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block" id="card-0-3">
+        <div class="flex items-start justify-between mb-2">
+          <span class="text-neonBlue text-xs font-mono">Room 0.3</span>
+          <span id="badge-0-3" class="hidden text-xs bg-neonGreen/20 text-neonGreen px-2 py-0.5 rounded">DONE</span>
+        </div>
         <h3 class="text-neonGreen font-semibold mb-1">Operating Systems</h3>
-        <p class="text-gray-400 text-xs">Windows, Linux, macOS — what they do, where they're used, and how to fix OS failures.</p>
-        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+        <p class="text-gray-400 text-xs mb-3">Windows, Linux, macOS -- what they do, where they're used, and how to fix OS failures.</p>
+        <div id="steps-0-3" class="flex gap-1 flex-wrap mb-2"></div>
+        <p class="text-neonBlue text-xs">-- Start Lesson</p>
       </a>
-      <a href="level0/room0_4/room0_4.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-4">
-        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.4</span><span id="badge-0-4" class="hidden text-xs text-neonGreen">✅</span></div>
+
+      <a href="level0/room0_4/room0_4.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block" id="card-0-4">
+        <div class="flex items-start justify-between mb-2">
+          <span class="text-neonBlue text-xs font-mono">Room 0.4</span>
+          <span id="badge-0-4" class="hidden text-xs bg-neonGreen/20 text-neonGreen px-2 py-0.5 rounded">DONE</span>
+        </div>
         <h3 class="text-neonGreen font-semibold mb-1">File Systems</h3>
-        <p class="text-gray-400 text-xs">Files, folders, paths, extensions, permissions — and fixing file not found errors.</p>
-        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+        <p class="text-gray-400 text-xs mb-3">Files, folders, paths, extensions, permissions -- and fixing file not found errors.</p>
+        <div id="steps-0-4" class="flex gap-1 flex-wrap mb-2"></div>
+        <p class="text-neonBlue text-xs">-- Start Lesson</p>
       </a>
-      <a href="level0/room0_5/room0_5.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-5">
-        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.5</span><span id="badge-0-5" class="hidden text-xs text-neonGreen">✅</span></div>
+
+      <a href="level0/room0_5/room0_5.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block" id="card-0-5">
+        <div class="flex items-start justify-between mb-2">
+          <span class="text-neonBlue text-xs font-mono">Room 0.5</span>
+          <span id="badge-0-5" class="hidden text-xs bg-neonGreen/20 text-neonGreen px-2 py-0.5 rounded">DONE</span>
+        </div>
         <h3 class="text-neonGreen font-semibold mb-1">Networking Basics</h3>
-        <p class="text-gray-400 text-xs">IP addresses, DNS, HTTP/HTTPS, ports — and diagnosing network failures.</p>
-        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+        <p class="text-gray-400 text-xs mb-3">IP addresses, DNS, HTTP/HTTPS, ports -- and diagnosing network failures.</p>
+        <div id="steps-0-5" class="flex gap-1 flex-wrap mb-2"></div>
+        <p class="text-neonBlue text-xs">-- Start Lesson</p>
       </a>
-      <a href="level0/room0_6/room0_6.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-6">
-        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.6</span><span id="badge-0-6" class="hidden text-xs text-neonGreen">✅</span></div>
+
+      <a href="level0/room0_6/room0_6.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block" id="card-0-6">
+        <div class="flex items-start justify-between mb-2">
+          <span class="text-neonBlue text-xs font-mono">Room 0.6</span>
+          <span id="badge-0-6" class="hidden text-xs bg-neonGreen/20 text-neonGreen px-2 py-0.5 rounded">DONE</span>
+        </div>
         <h3 class="text-neonGreen font-semibold mb-1">The Command Line</h3>
-        <p class="text-gray-400 text-xs">Terminal, CLI commands, navigation, permissions — the power tool of every IT pro.</p>
-        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+        <p class="text-gray-400 text-xs mb-3">Terminal, CLI commands, navigation, permissions -- the power tool of every IT pro.</p>
+        <div id="steps-0-6" class="flex gap-1 flex-wrap mb-2"></div>
+        <p class="text-neonBlue text-xs">-- Start Lesson</p>
       </a>
-      <a href="level0/room0_7/room0_7.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-7">
-        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.7</span><span id="badge-0-7" class="hidden text-xs text-neonGreen">✅</span></div>
+
+      <a href="level0/room0_7/room0_7.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block" id="card-0-7">
+        <div class="flex items-start justify-between mb-2">
+          <span class="text-neonBlue text-xs font-mono">Room 0.7</span>
+          <span id="badge-0-7" class="hidden text-xs bg-neonGreen/20 text-neonGreen px-2 py-0.5 rounded">DONE</span>
+        </div>
         <h3 class="text-neonGreen font-semibold mb-1">How Software Gets Made</h3>
-        <p class="text-gray-400 text-xs">Source code, compilers, interpreters, dependencies — and fixing build errors.</p>
-        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+        <p class="text-gray-400 text-xs mb-3">Source code, compilers, interpreters, dependencies -- and fixing build errors.</p>
+        <div id="steps-0-7" class="flex gap-1 flex-wrap mb-2"></div>
+        <p class="text-neonBlue text-xs">-- Start Lesson</p>
       </a>
-      <a href="level0/room0_8/room0_8.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-8">
-        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.8</span><span id="badge-0-8" class="hidden text-xs text-neonGreen">✅</span></div>
+
+      <a href="level0/room0_8/room0_8.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block" id="card-0-8">
+        <div class="flex items-start justify-between mb-2">
+          <span class="text-neonBlue text-xs font-mono">Room 0.8</span>
+          <span id="badge-0-8" class="hidden text-xs bg-neonGreen/20 text-neonGreen px-2 py-0.5 rounded">DONE</span>
+        </div>
         <h3 class="text-neonGreen font-semibold mb-1">Security Fundamentals</h3>
-        <p class="text-gray-400 text-xs">Passwords, phishing, encryption, 2FA, incident response — protect every layer.</p>
-        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+        <p class="text-gray-400 text-xs mb-3">Passwords, phishing, encryption, 2FA, incident response -- protect every layer.</p>
+        <div id="steps-0-8" class="flex gap-1 flex-wrap mb-2"></div>
+        <p class="text-neonBlue text-xs">-- Start Lesson</p>
       </a>
-      <a href="level0/room0_9/room0_9.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block hover:border-neonGreen" id="card-0-9">
-        <div class="flex items-start justify-between mb-2"><span class="text-neonBlue text-xs font-mono">Room 0.9</span><span id="badge-0-9" class="hidden text-xs text-neonGreen">✅</span></div>
+
+      <a href="level0/room0_9/room0_9.html" class="room-card glow bg-black/80 border border-neonBlue/40 rounded-lg p-4 block" id="card-0-9">
+        <div class="flex items-start justify-between mb-2">
+          <span class="text-neonBlue text-xs font-mono">Room 0.9</span>
+          <span id="badge-0-9" class="hidden text-xs bg-neonGreen/20 text-neonGreen px-2 py-0.5 rounded">DONE</span>
+        </div>
         <h3 class="text-neonGreen font-semibold mb-1">Putting It All Together</h3>
-        <p class="text-gray-400 text-xs">Full system architecture, cascading failures, cross-domain diagnostics.</p>
-        <p class="text-neonBlue text-xs mt-3">→ Start Lesson</p>
+        <p class="text-gray-400 text-xs mb-3">Full system architecture, cascading failures, cross-domain diagnostics.</p>
+        <div id="steps-0-9" class="flex gap-1 flex-wrap mb-2"></div>
+        <p class="text-neonBlue text-xs">-- Start Lesson</p>
       </a>
+
     </div>
+
+    <!-- Final Mission -->
     <div class="bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center mb-6">
       <p class="text-neonBlue text-xs font-mono mb-1">FINAL CHALLENGE</p>
-      <h3 class="text-2xl font-bold text-neonGreen mb-2">Level 0 Final Mission Ticket</h3>
-      <p class="text-gray-300 text-sm mb-4">A full 5-phase scenario covering all Level 0 domains simultaneously. Prove you can diagnose and resolve real IT problems under pressure.</p>
-      <a href="level0/final_mission.html" class="inline-block px-8 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded-lg hover:bg-neonGreen/20 transition font-semibold">Launch Final Mission →</a>
+      <h3 class="text-2xl font-bold text-neonGreen mb-2">Level 0 Final Mission</h3>
+      <p class="text-gray-400 text-sm mb-4">5-phase scenario combining all Level 0 knowledge. Prove you can diagnose and resolve real IT problems.</p>
+      <a href="level0/final_mission.html" class="inline-block px-8 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded-lg hover:bg-neonGreen/20 transition font-semibold">
+        Launch Final Mission
+      </a>
     </div>
-    <div id="completionBadge" class="hidden mt-6 bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center">
+
+    <!-- Badge -->
+    <div id="completionBadge" class="hidden mt-4 bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center">
       <p class="text-4xl mb-2">🏆</p>
       <h3 class="text-2xl font-bold text-neonGreen mb-1">Level 0 Complete!</h3>
-      <p class="text-gray-300 text-sm">You earned the IT Foundations badge. Level 1 unlocked.</p>
-      <p class="text-neonBlue font-semibold mt-2">Total XP: <span id="finalXp">0</span></p>
+      <p class="text-gray-300 text-sm">IT Foundations badge earned. Level 1 unlocked.</p>
     </div>
   </main>
+
   <footer class="border-t border-neonGreen/10 px-6 py-4 text-center text-xs text-gray-600">
-    NodeZero — Build It. Break It. Learn It. | Level 0: IT Foundations
+    NodeZero -- Build It. Break It. Learn It. | Level 0: IT Foundations
   </footer>
+
   <script>
-    const xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
-    document.getElementById("xpDisplay").textContent = xp;
-    const rooms = ["0_1","0_2","0_3","0_4","0_5","0_6","0_7","0_8","0_9"];
-    let completed = 0;
+    // XP display
+    const xp = parseInt(localStorage.getItem('nodezero_xp') || '0', 10);
+    document.getElementById('xpDisplay').textContent = xp;
+    document.getElementById('statXP').textContent = xp;
+    // XP bar caps at 2000 XP for Level 0
+    document.getElementById('xpBar').style.width = Math.min(100, Math.round(xp / 20)) + '%';
+
+    // Step keys map (r01 = old format, r02_steps = new format)
+    const stepKeys = {
+      '0_1': null, // room0_1 doesn't use the step set pattern
+      '0_2': 'r02_steps',
+      '0_3': null,
+      '0_4': null,
+      '0_5': null,
+      '0_6': null,
+      '0_7': null,
+      '0_8': null,
+      '0_9': null
+    };
+
+    const rooms = ['0_1','0_2','0_3','0_4','0_5','0_6','0_7','0_8','0_9'];
+    let completedRooms = 0;
+    let totalSteps = 0;
+
     rooms.forEach(r => {
-      if (localStorage.getItem("room" + r + "_complete") === "true") {
-        const badge = document.getElementById("badge-" + r.replace("_","-"));
-        if (badge) { badge.classList.remove("hidden"); completed++; }
-        const card = document.getElementById("card-" + r.replace("_","-"));
-        if (card) card.classList.add("complete-badge");
+      const rKey = 'room' + r + '_complete';
+      const done = localStorage.getItem(rKey) === 'true';
+      const cardId = 'card-' + r.replace('_','-');
+      const badgeId = 'badge-' + r.replace('_','-');
+      const stepsId = 'steps-' + r.replace('_','-');
+
+      if (done) {
+        completedRooms++;
+        const card = document.getElementById(cardId);
+        const badge = document.getElementById(badgeId);
+        if (card) card.classList.add('done-card');
+        if (badge) badge.classList.remove('hidden');
+      }
+
+      // Show step dots for room0_2 (which tracks steps in r02_steps)
+      const stepKey = stepKeys[r];
+      if (stepKey) {
+        const steps = new Set(JSON.parse(localStorage.getItem(stepKey) || '[]'));
+        const container = document.getElementById(stepsId);
+        if (container) {
+          for (let i = 1; i <= 9; i++) {
+            const dot = document.createElement('span');
+            dot.className = steps.has(i)
+              ? 'w-2 h-2 rounded-full bg-neonGreen inline-block'
+              : 'w-2 h-2 rounded-full bg-gray-700 inline-block';
+            dot.title = 'Step ' + i + (steps.has(i) ? ' - Complete' : ' - Not started');
+            container.appendChild(dot);
+            if (steps.has(i)) totalSteps++;
+          }
+        }
       }
     });
-    const pct = Math.round((completed / 9) * 100);
-    document.getElementById("progressBar").style.width = pct + "%";
-    document.getElementById("progressText").textContent = completed + " / 9 Rooms";
-    if (localStorage.getItem("level0_badge") === "true") {
-      document.getElementById("completionBadge").classList.remove("hidden");
-      document.getElementById("finalXp").textContent = xp;
+
+    // Update stats
+    const pct = Math.round((completedRooms / 9) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressText').textContent = completedRooms + ' / 9 Rooms';
+    document.getElementById('statRooms').textContent = completedRooms;
+    document.getElementById('statSteps').textContent = totalSteps;
+
+    // Badge
+    if (localStorage.getItem('level0_badge') === 'true') {
+      document.getElementById('completionBadge').classList.remove('hidden');
     }
   </script>
 </body>

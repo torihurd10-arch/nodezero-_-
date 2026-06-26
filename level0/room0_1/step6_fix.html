@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 6 — Fix: Reconnect the Monitor</title>
+  <title>Step 6 â€” Fix: Reconnect the Monitor</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -27,23 +27,23 @@
 
 <body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
   <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 6 — Fix</h1>
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 6 â€” Fix</h1>
     <h2 class="text-xl text-neonBlue mb-4">Reconnect the Monitor Cable</h2>
 
     <p class="text-gray-300 mb-6">
-      You’ve diagnosed that the monitor cable was unplugged.
+      Youâ€™ve diagnosed that the monitor cable was unplugged.
       Now perform the fix by reconnecting it to restore the display.
     </p>
 
     <div class="space-y-4 text-left text-gray-300">
       <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="performFix('plug')">
-        🔌 Reconnect the monitor cable
+        ðŸ”Œ Reconnect the monitor cable
       </div>
       <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="performFix('restart')">
-        🔄 Restart the computer
+        ðŸ”„ Restart the computer
       </div>
       <div class="clickable p-3 border border-neonBlue/40 rounded" onclick="performFix('ignore')">
-        🚫 Ignore the problem
+        ðŸš« Ignore the problem
       </div>
     </div>
 
@@ -51,12 +51,13 @@
 
     <button onclick="nextStep()"
             class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
-      Next Step → Explain
+      Next Step â†’ Explain
     </button>
 
+    <a href="../../index.html" class="px-4 py-2 border border-gray-600 rounded text-gray-400 hover:bg-black/40 text-sm">Dashboard</a>
     <button onclick="goBack()"
             class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">
-      ← Back to Room
+      â† Back to Room
     </button>
   </div>
 
@@ -64,17 +65,17 @@
     function performFix(action) {
       if (action === 'plug') {
         document.getElementById("feedback").textContent =
-          "✅ Display restored! The monitor shows the desktop again.";
+          "âœ… Display restored! The monitor shows the desktop again.";
         let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
         xp += 50;
         localStorage.setItem("nodezero_xp", String(xp));
         localStorage.setItem("room0_1_fixComplete", "true");
       } else if (action === 'restart') {
         document.getElementById("feedback").textContent =
-          "⚠️ Restarting didn’t help — the cable is still unplugged.";
+          "âš ï¸ Restarting didnâ€™t help â€” the cable is still unplugged.";
       } else {
         document.getElementById("feedback").textContent =
-          "❌ Ignoring the issue won’t fix the display.";
+          "âŒ Ignoring the issue wonâ€™t fix the display.";
       }
     }
 
@@ -88,3 +89,4 @@
   </script>
 </body>
 </html>
+

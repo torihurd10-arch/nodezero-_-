@@ -80,16 +80,15 @@
     }
 
     function finishRoom() {
-      if (localStorage.getItem("room0_1_complete") === "true") {
-        alert("🎉 Room 0.1 Complete! You’ve earned 100 XP and unlocked Room 0.2.");
-        window.location.href = "../room0_2/room0_2.html";
-      } else {
-        alert("⚠️ Finish the scenario correctly before completing the room.");
-      }
+      localStorage.setItem('room0_1_complete', 'true');
+      let xp = parseInt(localStorage.getItem('nodezero_xp') || '0', 10);
+      xp += 20;
+      localStorage.setItem('nodezero_xp', String(xp));
+      window.location.href = '../../index.html';
     }
 
     function goBack() {
-      window.location.href = "room0_1.html";
+      window.location.href = 'room0_1.html';
     }
   </script>
 </body>

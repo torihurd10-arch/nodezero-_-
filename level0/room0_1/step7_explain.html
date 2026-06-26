@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 7 — Explain: Describe the Fix</title>
+  <title>Step 7 â€” Explain: Describe the Fix</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -27,7 +27,7 @@
 
 <body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
   <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 7 — Explain</h1>
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 7 â€” Explain</h1>
     <h2 class="text-xl text-neonBlue mb-4">Describe What Happened and How You Fixed It</h2>
 
     <p class="text-gray-300 mb-6">
@@ -39,19 +39,20 @@
 
     <button onclick="saveExplanation()"
             class="px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
-      ✅ Save Explanation
+      âœ… Save Explanation
     </button>
 
     <p id="feedback" class="text-neonGreen font-semibold mt-6"></p>
 
     <button onclick="nextStep()"
             class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
-      Next Step → Repeat
+      Next Step â†’ Repeat
     </button>
 
+    <a href="../../index.html" class="px-4 py-2 border border-gray-600 rounded text-gray-400 hover:bg-black/40 text-sm">Dashboard</a>
     <button onclick="goBack()"
             class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">
-      ← Back to Room
+      â† Back to Room
     </button>
   </div>
 
@@ -60,7 +61,7 @@
       const text = document.getElementById("explanation").value.trim();
       if (text.length < 20) {
         document.getElementById("feedback").textContent =
-          "⚠️ Please write at least one full sentence describing the fix.";
+          "âš ï¸ Please write at least one full sentence describing the fix.";
         return;
       }
       localStorage.setItem("room0_1_explanation", text);
@@ -68,7 +69,7 @@
       xp += 25;
       localStorage.setItem("nodezero_xp", String(xp));
       document.getElementById("feedback").textContent =
-        "✅ Explanation saved! You earned 25 XP for documentation.";
+        "âœ… Explanation saved! You earned 25 XP for documentation.";
     }
 
     function nextStep() {
@@ -81,3 +82,4 @@
   </script>
 </body>
 </html>
+

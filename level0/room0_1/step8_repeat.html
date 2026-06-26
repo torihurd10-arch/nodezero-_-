@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Step 8 — Repeat: Review and Reinforce</title>
+  <title>Step 8 â€” Repeat: Review and Reinforce</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -27,33 +27,33 @@
 
 <body class="bg-bgDark text-gray-100 min-h-screen flex flex-col items-center justify-center">
   <div class="max-w-3xl w-full bg-black/80 border border-neonGreen/60 rounded-lg p-6 text-center glow-border fade-in">
-    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 8 — Repeat</h1>
+    <h1 class="text-3xl font-bold text-neonGreen mb-4">Step 8 â€” Repeat</h1>
     <h2 class="text-xl text-neonBlue mb-4">Quick Review Quiz</h2>
 
     <p class="text-gray-300 mb-6">
-      Let’s reinforce what you’ve learned. Answer these quick questions to confirm your understanding before applying it to a real job scenario.
+      Letâ€™s reinforce what youâ€™ve learned. Answer these quick questions to confirm your understanding before applying it to a real job scenario.
     </p>
 
     <div id="quiz" class="space-y-6 text-left text-gray-300">
       <div>
-        <p class="mb-2">1️⃣ What are the two main parts of a computer?</p>
+        <p class="mb-2">1ï¸âƒ£ What are the two main parts of a computer?</p>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(1,'A')">A. Hardware and Software</div>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(1,'B')">B. Monitor and Keyboard</div>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(1,'C')">C. RAM and Storage</div>
       </div>
 
       <div>
-        <p class="mb-2">2️⃣ What should you do if the monitor shows no display?</p>
+        <p class="mb-2">2ï¸âƒ£ What should you do if the monitor shows no display?</p>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(2,'A')">A. Reconnect the monitor cable</div>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(2,'B')">B. Replace the CPU</div>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(2,'C')">C. Ignore the problem</div>
       </div>
 
       <div>
-        <p class="mb-2">3️⃣ Why is documentation important after a fix?</p>
+        <p class="mb-2">3ï¸âƒ£ Why is documentation important after a fix?</p>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(3,'A')">A. It helps others understand what was done</div>
         <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(3,'B')">B. It wastes time</div>
-        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(3,'C')">C. It’s optional</div>
+        <div class="option p-2 border border-neonBlue/40 rounded" onclick="checkAnswer(3,'C')">C. Itâ€™s optional</div>
       </div>
     </div>
 
@@ -61,12 +61,13 @@
 
     <button onclick="nextStep()"
             class="mt-6 px-6 py-3 bg-neonGreen/10 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen/20 transition">
-      Next Step → Apply to a Job
+      Next Step â†’ Apply to a Job
     </button>
 
+    <a href="../../index.html" class="px-4 py-2 border border-gray-600 rounded text-gray-400 hover:bg-black/40 text-sm">Dashboard</a>
     <button onclick="goBack()"
             class="mt-2 px-6 py-2 bg-neonBlue/10 border border-neonBlue text-neonBlue rounded hover:bg-neonBlue/20 transition">
-      ← Back to Room
+      â† Back to Room
     </button>
   </div>
 
@@ -79,25 +80,25 @@
       answered++;
       if (choice === answers[q]) {
         score++;
-        document.getElementById("feedback").textContent = "✅ Correct!";
+        document.getElementById("feedback").textContent = "âœ… Correct!";
       } else {
-        document.getElementById("feedback").textContent = "❌ Incorrect — review your notes.";
+        document.getElementById("feedback").textContent = "âŒ Incorrect â€” review your notes.";
       }
 
       if (answered === 3) {
         const percent = Math.round((score / 3) * 100);
         document.getElementById("feedback").textContent =
-          `Quiz complete — Score: ${percent}%`;
+          `Quiz complete â€” Score: ${percent}%`;
 
         if (percent >= 80) {
           let xp = parseInt(localStorage.getItem("nodezero_xp") || "0", 10);
           xp += 75;
           localStorage.setItem("nodezero_xp", String(xp));
           document.getElementById("feedback").textContent +=
-            " 🎉 You earned 75 XP!";
+            " ðŸŽ‰ You earned 75 XP!";
         } else {
           document.getElementById("feedback").textContent +=
-            " ⚠️ Score below 80% — review and retry.";
+            " âš ï¸ Score below 80% â€” review and retry.";
         }
       }
     }
@@ -112,3 +113,4 @@
   </script>
 </body>
 </html>
+
