@@ -2,6 +2,8 @@
   const XP_KEY = "nodezero_xp";
   const STATE_KEY = "nodezero_level0_state_v3";
   const XP_LEVEL_SIZE = 200;
+  const STEP_XP = 10;
+  const ROOM_COMPLETE_XP = 20;
 
   const STEP_NAMES = ["Watch", "Copy", "Repeat", "Explain", "Break", "Fix", "Repeat Again", "Skill Check", "Unlock"];
   const STEP_FILES = [
@@ -262,11 +264,46 @@
   ];
 
   const PROJECTS = [
-    { name: "Room 0.1 Card", outcome: "Explain CPU, RAM, and storage in one minute." },
-    { name: "Room 0.4 File Map", outcome: "Build a path tree for a fake project folder." },
-    { name: "Room 0.5 DNS Drill", outcome: "Trace a name to an IP and port." },
-    { name: "Room 0.6 Shell Sprint", outcome: "Move, list, and find files from the terminal." },
-    { name: "Room 0.8 Security Check", outcome: "Spot phishing and lock down accounts." }
+    {
+      name: "PC Basics Lab",
+      outcome: "Explain CPU, RAM, and storage in plain language.",
+      steps: ["Open Task Manager", "Identify CPU, Memory, and Disk panels", "Write one sentence per part"],
+      verify: "A friend can read your notes and explain each part back to you.",
+      job: "Help desk calls where users report slowness.",
+      xp: 40
+    },
+    {
+      name: "File Path Recovery",
+      outcome: "Recover a missing file by correcting a wrong path.",
+      steps: ["Create nested folders", "Move a test file", "Break the path", "Fix the path and reopen the file"],
+      verify: "You can open the file from both File Explorer and full path.",
+      job: "Support tickets for missing shared files.",
+      xp: 40
+    },
+    {
+      name: "DNS Check Drill",
+      outcome: "Prove whether a website issue is DNS or full outage.",
+      steps: ["Ping a public IP", "Ping a domain name", "Compare results", "Write root cause"],
+      verify: "Your notes correctly identify DNS-only failure vs full failure.",
+      job: "Network triage and incident response.",
+      xp: 50
+    },
+    {
+      name: "Terminal Navigation Sprint",
+      outcome: "Move, list, and locate files using shell commands only.",
+      steps: ["Use cd to move folders", "Use dir/ls to list contents", "Use pwd to verify location"],
+      verify: "You complete the path challenge without clicking through folders.",
+      job: "Daily sysadmin and automation workflows.",
+      xp: 35
+    },
+    {
+      name: "Account Security Lockdown",
+      outcome: "Contain a suspicious account quickly and safely.",
+      steps: ["Identify phishing signs", "Reset password", "Revoke sessions/tokens", "Enable 2FA"],
+      verify: "You document the containment timeline and prevention steps.",
+      job: "SOC and IT support security escalations.",
+      xp: 50
+    }
   ];
 
   function state() {
@@ -394,7 +431,21 @@
   }
 
   function stepXp(step) {
-    return { 2: 10, 3: 15, 4: 10, 6: 15, 7: 15 }[step] || 0;
+    return STEP_XP;
+  }
+
+  function completeStep(roomStateValue, step) {
+    if (!roomStateValue.steps[step]) {
+      addXp(stepXp(step));
+    }
+    roomStateValue.steps[step] = true;
+  }
+
+  function completeRoom(roomStateValue) {
+    if (!roomStateValue.done) {
+      addXp(ROOM_COMPLETE_XP);
+    }
+    roomStateValue.done = true;
   }
 
   function cardDoneCount(data) {
@@ -406,11 +457,28 @@
   }
 
   function nav() {
+    const currentPage = page();
+    const isStepPage = currentPage === "step";
+    const isRoomPage = currentPage === "room";
+    const currentRoomId = roomId();
+    const currentStep = stepIndex();
+    const roomBase = `${prefix()}level0/${folder(currentRoomId)}/`;
+    const prevHref = isStepPage
+      ? (currentStep === 1 ? `${roomBase}${folder(currentRoomId)}.html` : `${roomBase}${STEP_FILES[currentStep - 2]}`)
+      : "#";
+    const nextHref = isStepPage
+      ? (currentStep === 9 ? `${prefix()}index.html` : `${roomBase}${STEP_FILES[currentStep]}`)
+      : "#";
+    const backRoomHref = (isStepPage || isRoomPage) ? `${roomBase}${folder(currentRoomId)}.html` : "#";
+    const prevDisabled = isStepPage ? "" : " aria-disabled=\"true\" onclick=\"return false;\" style=\"opacity:.5;pointer-events:none\"";
+    const nextDisabled = isStepPage ? "" : " aria-disabled=\"true\" onclick=\"return false;\" style=\"opacity:.5;pointer-events:none\"";
+    const roomDisabled = (isStepPage || isRoomPage) ? "" : " aria-disabled=\"true\" onclick=\"return false;\" style=\"opacity:.5;pointer-events:none\"";
     return `
       <div class="nav-row">
         <a class="nav-button primary" href="${prefix()}index.html">Dashboard</a>
-        <a class="nav-button alt" href="${prefix()}index.html#rooms">Rooms</a>
-        <a class="nav-button alt" href="${prefix()}index.html#steps">Steps</a>
+        <a class="nav-button alt" href="${backRoomHref}"${roomDisabled}>Back to Room</a>
+        <a class="nav-button alt" href="${prevHref}"${prevDisabled}>Previous Step</a>
+        <a class="nav-button alt" href="${nextHref}"${nextDisabled}>Next Step</a>
         <a class="nav-button primary" href="${prefix()}glossary.html">Glossary</a>
         <a class="nav-button alt" href="${prefix()}projects.html">Projects</a>
         <button class="nav-button warn" data-action="reset">Reset</button>
@@ -492,17 +560,8 @@
       </section>
       <section class="section" id="rooms">
         <div class="section-header"><h3 class="section-title">Rooms</h3><span class="subtle">Nine modules. One habit loop each.</span></div>
-        <div class="card-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;">
+        <div class="card-grid" style="display:grid;grid-template-columns:1fr;gap:12px;max-width:860px;margin:0 auto;">
           ${ROOM_DATA.map((room) => roomCard(room, data)).join("")}
-        </div>
-      </section>
-      <section class="section">
-        <div class="section-header"><h3 class="section-title">Mission Control</h3><span class="subtle">Fast launch to core actions.</span></div>
-        <div class="panel choice-row">
-          <a class="button" href="${prefix()}level0/room0_1/step1_learn.html">Start Room 0.1</a>
-          <a class="button" href="${prefix()}glossary.html">Glossary</a>
-          <a class="button" href="${prefix()}projects.html">Projects</a>
-          <a class="button" href="${prefix()}level0/final_mission.html">Final Mission</a>
         </div>
       </section>
       <section class="section">
@@ -532,15 +591,40 @@
   }
 
   function renderGlossary() {
+    const terms = ROOM_DATA.map((room) => ({
+      term: room.word.term,
+      plain: room.word.plain,
+      where: room.word.where,
+      why: room.word.why,
+      remember: `Link ${room.word.term} to this short cue: ${room.word.plain}`,
+      label: room.title
+    })).concat(EXTRA_GLOSSARY.map((entry) => ({
+      term: entry.term,
+      plain: entry.plain,
+      where: entry.where,
+      why: entry.why,
+      remember: `Say: ${entry.term} -> ${entry.plain}`,
+      label: "Extra"
+    })));
     return `
       ${hero("Plain English first.", "Each term uses the same translation habit: word, plain English, where you see it, why it matters.", `
-        <div class="panel stat-box"><strong>${ROOM_DATA.length + EXTRA_GLOSSARY.length}</strong><span>Terms</span></div>
+        <div class="panel stat-box"><strong>${terms.length}</strong><span>Terms</span></div>
         <div class="panel stat-box"><strong>${ROOM_DATA.length}</strong><span>Room words</span></div>
       `)}
       <section class="section">
+        <div class="panel">
+          <div class="section-header"><h3 class="section-title">Flashcard Mode</h3><span class="subtle">Front: term. Back: definition, example, why, memory cue.</span></div>
+          <div class="choice-row" style="margin-top:12px">
+            <button class="button" data-action="flash-prev">Previous</button>
+            <button class="button" data-action="flash-flip">Flip Card</button>
+            <button class="button" data-action="flash-next">Next</button>
+          </div>
+          <article class="glossary-card" id="flashcard" data-flash-index="0" data-flash-side="front" style="margin-top:12px"></article>
+        </div>
+      </section>
+      <section class="section">
         <div class="card-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;">
-          ${ROOM_DATA.map((room) => glossaryCard(room.word.term, room.word, room.title)).join("")}
-          ${EXTRA_GLOSSARY.map((entry) => glossaryCard(entry.term, entry, "Extra")).join("")}
+          ${terms.map((entry) => glossaryCard(entry.term, entry, entry.label)).join("")}
         </div>
       </section>
     `;
@@ -552,8 +636,9 @@
         <div class="room-meta"><span class="chip">${escapeHtml(label)}</span><span class="chip">${escapeHtml(term)}</span></div>
         <h3>${escapeHtml(term)}</h3>
         <p style="margin-top:8px"><strong>Plain English:</strong> ${escapeHtml(data.plain)}</p>
-        <p style="margin-top:8px"><strong>Where I see it:</strong> ${escapeHtml(data.where)}</p>
+        <p style="margin-top:8px"><strong>Real-world example:</strong> ${escapeHtml(data.where)}</p>
         <p style="margin-top:8px"><strong>Why it matters:</strong> ${escapeHtml(data.why)}</p>
+        <p style="margin-top:8px"><strong>How to remember it:</strong> ${escapeHtml(data.remember || `Say ${term} in one short sentence.`)}</p>
       </article>
     `;
   }
@@ -570,7 +655,14 @@
             <article class="project-card">
               <div class="room-meta"><span class="chip">Project</span><span class="chip">NodeZero</span></div>
               <h3>${escapeHtml(project.name)}</h3>
-              <p style="margin-top:8px">${escapeHtml(project.outcome)}</p>
+              <p style="margin-top:8px"><strong>Outcome:</strong> ${escapeHtml(project.outcome)}</p>
+              <p style="margin-top:8px"><strong>Steps:</strong></p>
+              <ol style="margin-top:4px;padding-left:18px">
+                ${project.steps.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+              </ol>
+              <p style="margin-top:8px"><strong>Verification:</strong> ${escapeHtml(project.verify)}</p>
+              <p style="margin-top:8px"><strong>Job connection:</strong> ${escapeHtml(project.job)}</p>
+              <p style="margin-top:8px"><strong>Reward:</strong> +${project.xp} XP</p>
             </article>
           `).join("")}
         </div>
@@ -838,18 +930,70 @@
   function bind() {
     document.querySelectorAll("[data-action='reset']").forEach((button) => button.addEventListener("click", () => {
       if (!window.confirm("Reset all Level 0 progress?")) return;
-      localStorage.removeItem(STATE_KEY);
-      localStorage.removeItem(XP_KEY);
-      localStorage.removeItem("level0_complete");
+      localStorage.clear();
       location.href = `${prefix()}index.html`;
     }));
+
+    const flashTerms = ROOM_DATA.map((room) => ({
+      term: room.word.term,
+      plain: room.word.plain,
+      where: room.word.where,
+      why: room.word.why,
+      remember: `Link ${room.word.term} to this cue: ${room.word.plain}`
+    })).concat(EXTRA_GLOSSARY.map((entry) => ({
+      term: entry.term,
+      plain: entry.plain,
+      where: entry.where,
+      why: entry.why,
+      remember: `Say ${entry.term} -> ${entry.plain}`
+    })));
+
+    function paintFlashcard() {
+      const card = document.getElementById("flashcard");
+      if (!card || !flashTerms.length) return;
+      const index = Number.parseInt(card.dataset.flashIndex || "0", 10) % flashTerms.length;
+      const side = card.dataset.flashSide || "front";
+      const item = flashTerms[index];
+      if (side === "front") {
+        card.innerHTML = `<div class="kicker">Card ${index + 1}/${flashTerms.length}</div><h3>${escapeHtml(item.term)}</h3><p class="note">Think of the plain-English meaning, then flip.</p>`;
+      } else {
+        card.innerHTML = `<div class="kicker">Back</div><h3>${escapeHtml(item.term)}</h3><p style="margin-top:8px"><strong>Plain English:</strong> ${escapeHtml(item.plain)}</p><p style="margin-top:8px"><strong>Example:</strong> ${escapeHtml(item.where)}</p><p style="margin-top:8px"><strong>Why it matters:</strong> ${escapeHtml(item.why)}</p><p style="margin-top:8px"><strong>How to remember:</strong> ${escapeHtml(item.remember)}</p>`;
+      }
+    }
+
+    document.querySelectorAll("[data-action='flash-flip']").forEach((button) => button.addEventListener("click", () => {
+      const card = document.getElementById("flashcard");
+      if (!card) return;
+      card.dataset.flashSide = card.dataset.flashSide === "front" ? "back" : "front";
+      paintFlashcard();
+    }));
+
+    document.querySelectorAll("[data-action='flash-next']").forEach((button) => button.addEventListener("click", () => {
+      const card = document.getElementById("flashcard");
+      if (!card || !flashTerms.length) return;
+      const index = Number.parseInt(card.dataset.flashIndex || "0", 10);
+      card.dataset.flashIndex = String((index + 1) % flashTerms.length);
+      card.dataset.flashSide = "front";
+      paintFlashcard();
+    }));
+
+    document.querySelectorAll("[data-action='flash-prev']").forEach((button) => button.addEventListener("click", () => {
+      const card = document.getElementById("flashcard");
+      if (!card || !flashTerms.length) return;
+      const index = Number.parseInt(card.dataset.flashIndex || "0", 10);
+      card.dataset.flashIndex = String((index - 1 + flashTerms.length) % flashTerms.length);
+      card.dataset.flashSide = "front";
+      paintFlashcard();
+    }));
+
+    paintFlashcard();
 
     document.querySelectorAll("[data-action='watch']").forEach((button) => button.addEventListener("click", () => {
       const data = state();
       const room = roomState(data, button.dataset.room);
-      room.steps[1] = true;
+      completeStep(room, 1);
       saveState(data);
-      writeStatus(`status-${button.dataset.room}-1`, "Watch step complete.", true);
+      writeStatus(`status-${button.dataset.room}-1`, "Watch step complete. XP earned.", true);
       render();
     }));
 
@@ -861,8 +1005,7 @@
       const value = normalize(input?.value || "");
       roomStateValue.copy = input?.value || "";
       if (value.includes(normalize(room.copy.answer)) || normalize(room.copy.answer).includes(value)) {
-        if (!roomStateValue.steps[2]) addXp(stepXp(2));
-        roomStateValue.steps[2] = true;
+        completeStep(roomStateValue, 2);
         saveState(data);
         writeStatus(`status-${button.dataset.room}-2`, "Copy step complete. XP earned.", true);
         render();
@@ -893,12 +1036,10 @@
       const current = room.repeats[attempt];
       if (choice === current.answer) {
         roomStateValue.repeat[attempt] = true;
-        if (!roomStateValue.steps[3] && attempt < 3) addXp(stepXp(3));
-        if (!roomStateValue.steps[7] && attempt >= 3) addXp(stepXp(7));
-        if (attempt < 3) roomStateValue.steps[3] = true;
-        if (attempt >= 3) roomStateValue.steps[7] = true;
+        if (attempt < 3) completeStep(roomStateValue, 3);
+        if (attempt >= 3) completeStep(roomStateValue, 7);
         saveState(data);
-        writeStatus(`status-${button.dataset.room}-${attempt}`, "Repeat step complete.", true);
+        writeStatus(`status-${button.dataset.room}-${attempt}`, "Repeat step complete. XP earned.", true);
         render();
       } else {
         writeStatus(`status-${button.dataset.room}-${attempt}`, current.hint, false);
@@ -914,8 +1055,7 @@
       roomStateValue.explain = input?.value || "";
       const answer = normalize(room.explain.answer);
       if (value.length >= 18 && value.split(" ").some((word) => answer.includes(word))) {
-        if (!roomStateValue.steps[4]) addXp(stepXp(4));
-        roomStateValue.steps[4] = true;
+        completeStep(roomStateValue, 4);
         saveState(data);
         writeStatus(`status-${button.dataset.room}-4`, "Explain step complete. XP earned.", true);
         render();
@@ -935,9 +1075,9 @@
       const roomStateValue = roomState(data, button.dataset.room);
       const choice = Number.parseInt(button.dataset.choice, 10);
       if (choice === room.breakTicket.answer) {
-        roomStateValue.steps[5] = true;
+        completeStep(roomStateValue, 5);
         saveState(data);
-        writeStatus(`status-${button.dataset.room}-5`, "Break step complete.", true);
+        writeStatus(`status-${button.dataset.room}-5`, "Break step complete. XP earned.", true);
         render();
       } else {
         writeStatus(`status-${button.dataset.room}-5`, "Wrong clue. Pick the first safe check.", false);
@@ -950,8 +1090,7 @@
       const roomStateValue = roomState(data, button.dataset.room);
       const choice = Number.parseInt(button.dataset.choice, 10);
       if (choice === room.fixTicket.answer) {
-        roomStateValue.steps[6] = true;
-        addXp(stepXp(6));
+        completeStep(roomStateValue, 6);
         saveState(data);
         writeStatus(`status-${button.dataset.room}-6`, "Fix step complete. XP earned.", true);
         render();
@@ -968,10 +1107,11 @@
       const choice = Number.parseInt(button.dataset.choice, 10);
       roomStateValue.skill[button.dataset.question] = choice === question.answer;
       if (room.skill.questions.every((item, index) => roomStateValue.skill[index])) {
-        roomStateValue.steps[8] = true;
-        roomStateValue.done = true;
+        completeStep(roomStateValue, 8);
+        completeStep(roomStateValue, 9);
+        completeRoom(roomStateValue);
         saveState(data);
-        writeStatus(`status-${button.dataset.room}-8`, "Skill check complete. Room unlocked.", true);
+        writeStatus(`status-${button.dataset.room}-8`, `Skill check complete. Room unlocked. +${ROOM_COMPLETE_XP} room bonus.`, true);
         render();
       } else {
         saveState(data);
