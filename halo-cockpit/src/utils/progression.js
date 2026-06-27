@@ -13,5 +13,8 @@ export function getCurrentMissionId(missions, completedMissions) {
 }
 
 export function getLevelLabel(level) {
-  return level === 0 ? 'Level 0 - Computer Fundamentals' : 'Level 1 - Windows Fundamentals'
+  if (level === 0) {
+    return 'Level 0 - Computer Fundamentals'
+  }
+  return `Level ${level}`
 }

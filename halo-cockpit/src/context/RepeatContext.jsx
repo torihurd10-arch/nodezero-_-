@@ -9,13 +9,15 @@ export function RepeatProvider({ children }) {
   const { repeatQueue, weakAreas, repetitions, confidence } = useProgress()
 
   const calls = useMemo(() => {
-    return Object.entries(repeatQueue).map(([missionId, items]) => ({
-      mission: getMissionById(missionId),
-      items,
-      weakAreas: weakAreas[missionId] || [],
-      repetitions: repetitions[missionId] || 0,
-      confidence,
-    }))
+    return Object.entries(repeatQueue)
+      .map(([missionId, items]) => ({
+        mission: getMissionById(missionId),
+        items,
+        weakAreas: weakAreas[missionId] || [],
+        repetitions: repetitions[missionId] || 0,
+        confidence,
+      }))
+      .filter((entry) => Boolean(entry.mission))
   }, [confidence, getMissionById, repeatQueue, repetitions, weakAreas])
 
   return <RepeatContext.Provider value={{ calls }}>{children}</RepeatContext.Provider>

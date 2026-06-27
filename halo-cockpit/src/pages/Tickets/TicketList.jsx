@@ -9,6 +9,7 @@ export default function TicketList() {
   const { missions, getMissionById } = useMission()
   const progress = useProgress()
   const currentMission = getMissionById(progress.currentMissionId)
+  const level0Missions = missions.filter((mission) => mission.level === 0)
 
   return (
     <div className="app-shell">
@@ -25,7 +26,7 @@ export default function TicketList() {
       />
       <main className="layout-stack">
         <section className="ticket-grid">
-          {missions.map((mission) => {
+          {level0Missions.map((mission) => {
             const open = progress.isTicketUnlocked(mission.id)
             const resolved = Boolean(progress.ticketStatus[mission.id])
             return (

@@ -10,7 +10,8 @@ export default function MissionList() {
   const { missions } = useMission()
   const { resetAll, xp, confidence, currentMissionId, rank, streak, promotionProgress, unlockedMissions, currentMissionId: activeMissionId } = useProgress()
   const currentMission = missions.find((mission) => mission.id === activeMissionId)
-  const levels = [...new Set(missions.map((mission) => mission.level))]
+  const level0Missions = missions.filter((mission) => mission.level === 0)
+  const levels = [...new Set(level0Missions.map((mission) => mission.level))]
 
   return (
     <div className="app-shell">
@@ -30,7 +31,7 @@ export default function MissionList() {
           <section key={level} className="panel">
             <h2 className="panel-title">{getLevelLabel(level)}</h2>
             <div className="mission-grid">
-              {missions.filter((mission) => mission.level === level).map((mission) => {
+              {level0Missions.filter((mission) => mission.level === level).map((mission) => {
                 const open = unlockedMissions.includes(mission.id)
                 return (
                   <Card key={mission.id} className={open ? '' : 'disabled'}>
