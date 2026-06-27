@@ -1,0 +1,37 @@
+{
+  "id": "room0_1",
+  "level": 0,
+  "npc": "Grandma",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "The Missing Homework",
+  "ticket": "Grandma says her homework file disappeared before printing.",
+  "clue": "The file is probably in the wrong folder, not deleted.",
+  "tooltip": "Use File Explorer search first, then check the file path.",
+  "whyItMatters": "Users panic when files seem missing. Fast recovery builds trust.",
+  "careerConnection": "Help desk technicians solve missing file tickets every day.",
+  "videoUrl": "https://www.youtube.com/embed/8OrcQ6nA6j4",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/Windows_11_File_Explorer.png",
+  "interactiveDemo": {
+    "prompt": "Where should you check first?",
+    "options": ["File Explorer Search", "Reinstall Windows", "Turn off the monitor"],
+    "correctIndex": 0,
+    "hint": "Start with the safest and fastest check."
+  },
+  "actionTask": {
+    "instructions": "Search for the homework file, open its location, and move it into a clear Homework folder.",
+    "expectedResult": "The file is found and stored in the right folder.",
+    "screenshotExample": "Explorer showing the file path and the restored folder."
+  },
+  "repeatTask": "Repeat the search-and-move flow with fewer hints.",
+  "breakFixTask": "Move the file into the wrong folder on purpose, then fix it.",
+  "explainQuestions": ["What happened?", "Why?", "How would you use it?"],
+  "verificationChecklist": ["Did it work?", "Can you do it again?", "Can you explain it?", "Can you troubleshoot it?", "Can you do it without help?"],
+  "ticketCompletion": "Grandma is happy. Homework found and path explained.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {"word": "Path", "plain": "The address of a file or folder.", "where": "Explorer address bar", "why": "Wrong path means wrong file.", "example": "C:/Users/Name/Documents"},
+    {"word": "Search", "plain": "Looking for a file by name.", "where": "Explorer search box", "why": "Saves time when folders are messy.", "example": "Search homework"}
+  ]
+}

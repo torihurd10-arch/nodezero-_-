@@ -1,0 +1,12 @@
+[
+  {"word":"Path","plain":"The address of a file or folder.","where":"Explorer address bar","why":"Wrong path means wrong file.","example":"C:/Users/Name/Documents"},
+  {"word":"File","plain":"A saved item like a document or picture.","where":"Desktop and folders","why":"Most support tickets involve files.","example":"report.docx"},
+  {"word":"Folder","plain":"A container that holds files.","where":"File Explorer","why":"Good folder habits prevent lost work.","example":"Documents"},
+  {"word":"Install","plain":"Add software to a computer.","where":"Setup wizard","why":"Users need apps to work.","example":"Install Chrome"},
+  {"word":"Uninstall","plain":"Remove software safely.","where":"Settings > Apps","why":"Fixes broken apps and clears leftovers.","example":"Uninstall toolbar app"},
+  {"word":"Process","plain":"A program that is running right now.","where":"Task Manager","why":"High process usage can slow a computer.","example":"Browser using 80% CPU"},
+  {"word":"Permission","plain":"A rule for what a user can do.","where":"Security tab","why":"Protects data and controls access.","example":"Read-only"},
+  {"word":"Share","plain":"Allow someone else to access a folder.","where":"Sharing tab","why":"Teams need shared files.","example":"Shared reports folder"},
+  {"word":"Accessibility","plain":"Settings that make a computer easier to use.","where":"Windows Settings","why":"Improves comfort and productivity.","example":"Larger text size"},
+  {"word":"Confidence","plain":"How sure you feel about a skill.","where":"Dashboard","why":"Low confidence means more review.","example":"I need a reminder"}
+]

@@ -1,0 +1,37 @@
+{
+  "id": "room0_5",
+  "level": 0,
+  "npc": "Boss",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "Why Is The Computer So Slow?",
+  "ticket": "A training machine is very slow during normal work.",
+  "clue": "Check CPU and memory before guessing.",
+  "tooltip": "Task Manager shows what uses the most resources.",
+  "whyItMatters": "Slow systems hurt productivity and frustrate users.",
+  "careerConnection": "Performance triage is a common help desk task.",
+  "videoUrl": "https://www.youtube.com/embed/V6jY7x4wL0Y",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Windows_11_Task_Manager.png",
+  "interactiveDemo": {
+    "prompt": "Where do you start?",
+    "options": ["Task Manager", "Registry edits", "Random reboot loops"],
+    "correctIndex": 0,
+    "hint": "Measure before changing."
+  },
+  "actionTask": {
+    "instructions": "Sort Task Manager by CPU usage and identify the heaviest process.",
+    "expectedResult": "You can name the top process and explain the impact.",
+    "screenshotExample": "Task Manager process list sorted by CPU."
+  },
+  "repeatTask": "Repeat the diagnosis while another heavy app is open.",
+  "breakFixTask": "End the wrong safe process, then relaunch and recover.",
+  "explainQuestions": ["What happened?", "Why?", "How would you use it?"],
+  "verificationChecklist": ["Did it work?", "Can you do it again?", "Can you explain it?", "Can you troubleshoot it?", "Can you do it without help?"],
+  "ticketCompletion": "System performance is improved and documented.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {"word": "Process", "plain": "A running program.", "where": "Task Manager", "why": "It can reveal what is slowing the PC.", "example": "Browser process"},
+    {"word": "CPU", "plain": "The part of the computer that does work.", "where": "Task Manager performance tab", "why": "High CPU can make everything slow.", "example": "CPU at 90 percent"}
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "room1_5",
+  "level": 1,
+  "npc": "Sarah",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "Make The Computer Yours",
+  "ticket": "Sarah says the screen is hard to read and wants the computer adjusted.",
+  "clue": "Small display changes can solve big usability pain.",
+  "tooltip": "Use personalization and accessibility settings safely.",
+  "whyItMatters": "Readable setups reduce mistakes and fatigue.",
+  "careerConnection": "IT support improves user productivity through profile tuning.",
+  "videoUrl": "https://www.youtube.com/embed/7xQm5dN1hWk",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Windows_11_Personalization_Settings.png",
+  "interactiveDemo": {
+    "prompt": "Best first adjustment for readability?",
+    "options": ["Increase text size", "Change wallpaper only", "Turn off the monitor"],
+    "correctIndex": 0,
+    "hint": "Fix readability before style."
+  },
+  "actionTask": {
+    "instructions": "Adjust text size and theme, then verify readability with the user.",
+    "expectedResult": "The display feels clearer and easier to use.",
+    "screenshotExample": "Personalization and accessibility settings open side by side."
+  },
+  "repeatTask": "Repeat with another safe personalization setting.",
+  "breakFixTask": "Set unreadable scaling, then restore a comfortable value.",
+  "explainQuestions": ["What happened?", "Why?", "How would you use it?"],
+  "verificationChecklist": ["Did it work?", "Can you do it again?", "Can you explain it?", "Can you troubleshoot it?", "Can you do it without help?"],
+  "ticketCompletion": "Sarah now has a comfortable and readable setup.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {"word": "Accessibility", "plain": "Settings that make computers easier to use.", "where": "Windows Settings", "why": "Improves comfort and productivity.", "example": "Larger text"}
+  ]
+}

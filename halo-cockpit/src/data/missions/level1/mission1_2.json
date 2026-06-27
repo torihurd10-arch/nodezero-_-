@@ -1,0 +1,36 @@
+{
+  "id": "room1_2",
+  "level": 1,
+  "npc": "Boss",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "The Folder Nobody Can Open",
+  "ticket": "The team folder says Access Denied. Fix it without over-permissioning.",
+  "clue": "Least privilege is safer than full control.",
+  "tooltip": "Check Security permissions before changing ownership.",
+  "whyItMatters": "Correct access keeps work moving and data safe.",
+  "careerConnection": "Permissions troubleshooting is core endpoint support work.",
+  "videoUrl": "https://www.youtube.com/embed/Y5vVfVjX8x8",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Windows_Security_Tab.png",
+  "interactiveDemo": {
+    "prompt": "Safer fix?",
+    "options": ["Grant minimum needed access", "Give Everyone full control", "Disable security"],
+    "correctIndex": 0,
+    "hint": "Least privilege protects data."
+  },
+  "actionTask": {
+    "instructions": "Grant the right user read access and retest the folder.",
+    "expectedResult": "The right user can open the folder with limited access.",
+    "screenshotExample": "Security tab showing the correct group entry."
+  },
+  "repeatTask": "Repeat on a second test folder.",
+  "breakFixTask": "Apply a deny entry by mistake, then remove it.",
+  "explainQuestions": ["What happened?", "Why?", "How would you use it?"],
+  "verificationChecklist": ["Did it work?", "Can you do it again?", "Can you explain it?", "Can you troubleshoot it?", "Can you do it without help?"],
+  "ticketCompletion": "Folder access is restored with safe permissions.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {"word": "Permission", "plain": "A rule for what users can do.", "where": "Security tab", "why": "Protects data and controls access.", "example": "Read-only"}
+  ]
+}

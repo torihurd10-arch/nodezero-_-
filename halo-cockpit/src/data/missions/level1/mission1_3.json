@@ -1,0 +1,36 @@
+{
+  "id": "room1_3",
+  "level": 1,
+  "npc": "Mike",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "Find The Setting",
+  "ticket": "Mike cannot find where to change an app setting.",
+  "clue": "Some options live in Settings, others in Control Panel.",
+  "tooltip": "Search both interfaces before escalating.",
+  "whyItMatters": "Users need quick navigation guidance.",
+  "careerConnection": "Support roles constantly locate hidden settings.",
+  "videoUrl": "https://www.youtube.com/embed/gquwQ4B1vS0",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Windows_11_Control_Panel.png",
+  "interactiveDemo": {
+    "prompt": "Where might an older app setting still live?",
+    "options": ["Control Panel", "Task Manager", "Recycle Bin"],
+    "correctIndex": 0,
+    "hint": "Windows keeps some legacy paths."
+  },
+  "actionTask": {
+    "instructions": "Find the uninstall or default-app path in both Settings and Control Panel.",
+    "expectedResult": "You can navigate both tools without help.",
+    "screenshotExample": "Settings and Control Panel windows both open."
+  },
+  "repeatTask": "Repeat the navigation flow with fewer hints.",
+  "breakFixTask": "Change the wrong safe setting, then restore it.",
+  "explainQuestions": ["What happened?", "Why?", "How would you use it?"],
+  "verificationChecklist": ["Did it work?", "Can you do it again?", "Can you explain it?", "Can you troubleshoot it?", "Can you do it without help?"],
+  "ticketCompletion": "Mike can find the correct settings path.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {"word": "Control Panel", "plain": "Classic Windows settings area.", "where": "Windows search", "why": "Some options are only there.", "example": "Programs and Features"}
+  ]
+}

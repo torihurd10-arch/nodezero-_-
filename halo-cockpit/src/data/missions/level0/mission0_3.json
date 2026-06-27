@@ -1,0 +1,37 @@
+{
+  "id": "room0_3",
+  "level": 0,
+  "npc": "Boss",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "The Mouse That Stopped Working",
+  "ticket": "A training PC lost mouse control during a practice session.",
+  "clue": "Check the simple causes before trying big fixes.",
+  "tooltip": "Use keyboard fallback and basic hardware checks first.",
+  "whyItMatters": "Input issues block all work.",
+  "careerConnection": "Technicians triage peripherals during first-line support.",
+  "videoUrl": "https://www.youtube.com/embed/1ArVtCQqQRE",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Computer_keyboard_and_mouse.jpg",
+  "interactiveDemo": {
+    "prompt": "What is the safest first test?",
+    "options": ["Check cable or battery", "Replace motherboard", "Factory reset the PC"],
+    "correctIndex": 0,
+    "hint": "Start with the smallest reversible check."
+  },
+  "actionTask": {
+    "instructions": "Use keyboard navigation to confirm pointer settings and restore mouse control.",
+    "expectedResult": "Mouse or pointer control is usable again.",
+    "screenshotExample": "Mouse settings screen with normal pointer speed."
+  },
+  "repeatTask": "Repeat the same recovery path with fewer hints.",
+  "breakFixTask": "Set pointer speed too low, then fix it.",
+  "explainQuestions": ["What happened?", "Why?", "How would you use it?"],
+  "verificationChecklist": ["Did it work?", "Can you do it again?", "Can you explain it?", "Can you troubleshoot it?", "Can you do it without help?"],
+  "ticketCompletion": "The training PC input works again and the learner stayed calm.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {"word": "Shortcut", "plain": "A key combo that does something fast.", "where": "Keyboard navigation", "why": "Lets you keep working without the mouse.", "example": "Alt + Tab"},
+    {"word": "Pointer", "plain": "The arrow you move on the screen.", "where": "Desktop and apps", "why": "You cannot click anything without it.", "example": "Move the pointer to a button"}
+  ]
+}

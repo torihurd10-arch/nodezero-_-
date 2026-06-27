@@ -1,0 +1,36 @@
+{
+  "id": "room1_1",
+  "level": 1,
+  "npc": "Sarah",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "Sarah Forgot Her Password",
+  "ticket": "Sarah cannot sign in and needs urgent access.",
+  "clue": "Account recovery starts with identity verification.",
+  "tooltip": "Reset the password safely and test sign-in.",
+  "whyItMatters": "Login issues block all work.",
+  "careerConnection": "Password reset is one of the most common support calls.",
+  "videoUrl": "https://www.youtube.com/embed/WYz9zv2nH9M",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Windows_11_Accounts_Settings.png",
+  "interactiveDemo": {
+    "prompt": "What comes first?",
+    "options": ["Verify identity", "Share admin password", "Disable account forever"],
+    "correctIndex": 0,
+    "hint": "Security before speed."
+  },
+  "actionTask": {
+    "instructions": "Reset a test password and confirm successful sign-in.",
+    "expectedResult": "The test user can sign in with the new password.",
+    "screenshotExample": "Accounts settings showing the target account."
+  },
+  "repeatTask": "Repeat reset flow with fewer hints.",
+  "breakFixTask": "Set a wrong temporary password, then correct it.",
+  "explainQuestions": ["What happened?", "Why?", "How would you use it?"],
+  "verificationChecklist": ["Did it work?", "Can you do it again?", "Can you explain it?", "Can you troubleshoot it?", "Can you do it without help?"],
+  "ticketCompletion": "Sarah signs in successfully and securely.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {"word": "User Account", "plain": "A personal sign-in profile.", "where": "Windows Accounts", "why": "Keeps users separate and secure.", "example": "Sarah account"}
+  ]
+}

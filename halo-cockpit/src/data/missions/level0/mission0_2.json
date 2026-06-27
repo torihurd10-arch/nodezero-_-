@@ -1,0 +1,37 @@
+{
+  "id": "room0_2",
+  "level": 0,
+  "npc": "Mike",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "The Program That Won't Install",
+  "ticket": "Mike needs a browser update but the installer keeps failing.",
+  "clue": "The installer source and permissions matter.",
+  "tooltip": "Use trusted installers and verify the app in Settings > Apps.",
+  "whyItMatters": "Unsafe installs create malware and broken systems.",
+  "careerConnection": "Endpoint support safely installs and removes approved tools.",
+  "videoUrl": "https://www.youtube.com/embed/5JfN4V0vS9Y",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Windows_11_Apps_Settings.png",
+  "interactiveDemo": {
+    "prompt": "Best first action?",
+    "options": ["Use approved source", "Download random copy", "Disable antivirus forever"],
+    "correctIndex": 0,
+    "hint": "Safety first, then speed."
+  },
+  "actionTask": {
+    "instructions": "Install one approved app, open it, and verify it appears in the Apps list.",
+    "expectedResult": "The app installs and launches correctly.",
+    "screenshotExample": "Settings > Apps listing the installed application."
+  },
+  "repeatTask": "Install and uninstall another safe app with fewer hints.",
+  "breakFixTask": "Leave a broken shortcut behind after uninstall, then clean it up.",
+  "explainQuestions": ["What happened?", "Why?", "How would you use it?"],
+  "verificationChecklist": ["Did it work?", "Can you do it again?", "Can you explain it?", "Can you troubleshoot it?", "Can you do it without help?"],
+  "ticketCompletion": "Mike can use the app and the install process is documented.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {"word": "Install", "plain": "Add software to a computer.", "where": "Setup wizard", "why": "Users need apps to work.", "example": "Install Chrome"},
+    {"word": "Uninstall", "plain": "Remove software safely.", "where": "Settings > Apps", "why": "Fixes broken apps.", "example": "Uninstall old toolbar"}
+  ]
+}

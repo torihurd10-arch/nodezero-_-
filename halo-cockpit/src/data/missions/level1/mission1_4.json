@@ -1,0 +1,36 @@
+{
+  "id": "room1_4",
+  "level": 1,
+  "npc": "Grandma",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "Share The Family Photos",
+  "ticket": "Grandma wants a photo folder shared with Sarah only.",
+  "clue": "Sharing and security permissions both affect access.",
+  "tooltip": "Test access with a non-owner account.",
+  "whyItMatters": "Shared data must be usable and safe.",
+  "careerConnection": "Folder sharing setup is common in support operations.",
+  "videoUrl": "https://www.youtube.com/embed/xQ8QXW9m8mA",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/36/Windows_Folder_Sharing.png",
+  "interactiveDemo": {
+    "prompt": "Best sharing approach?",
+    "options": ["Share with a specific user", "Share with Everyone full control", "Turn off password protection forever"],
+    "correctIndex": 0,
+    "hint": "Specific access is safer."
+  },
+  "actionTask": {
+    "instructions": "Share one folder with one test user and verify read access.",
+    "expectedResult": "The intended user can open the folder safely.",
+    "screenshotExample": "Sharing dialog showing the selected user."
+  },
+  "repeatTask": "Repeat the sharing setup with fewer hints.",
+  "breakFixTask": "Remove the user from sharing, then add them back.",
+  "explainQuestions": ["What happened?", "Why?", "How would you use it?"],
+  "verificationChecklist": ["Did it work?", "Can you do it again?", "Can you explain it?", "Can you troubleshoot it?", "Can you do it without help?"],
+  "ticketCompletion": "Family photos are shared correctly and safely.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {"word": "Share", "plain": "Allow network folder access.", "where": "Sharing tab", "why": "Lets the right people use files.", "example": "Share photos folder"}
+  ]
+}

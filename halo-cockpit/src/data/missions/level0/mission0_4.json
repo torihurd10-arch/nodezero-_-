@@ -1,0 +1,37 @@
+{
+  "id": "room0_4",
+  "level": 0,
+  "npc": "Grandma",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "Find Grandma's Pictures",
+  "ticket": "Grandma cannot find her family pictures after moving folders.",
+  "clue": "Pictures are likely moved, not erased.",
+  "tooltip": "Use Explorer filters and sort by date modified.",
+  "whyItMatters": "Recovering personal files builds user trust.",
+  "careerConnection": "Support roles regularly recover misplaced files.",
+  "videoUrl": "https://www.youtube.com/embed/dAlyKuVY5gE",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Windows_11_File_Explorer_Command_Bar.png",
+  "interactiveDemo": {
+    "prompt": "Best way to narrow the search?",
+    "options": ["Filter by type and date", "Rename every file", "Delete old folders"],
+    "correctIndex": 0,
+    "hint": "Reduce noise before browsing randomly."
+  },
+  "actionTask": {
+    "instructions": "Search for picture files, sort by date, and restore them to a clear Pictures folder.",
+    "expectedResult": "The correct photo set is restored to one location.",
+    "screenshotExample": "Explorer sorted by date with the right folder selected."
+  },
+  "repeatTask": "Repeat the photo search with another target file.",
+  "breakFixTask": "Place the wrong image in the family folder, then fix it.",
+  "explainQuestions": ["What happened?", "Why?", "How would you use it?"],
+  "verificationChecklist": ["Did it work?", "Can you do it again?", "Can you explain it?", "Can you troubleshoot it?", "Can you do it without help?"],
+  "ticketCompletion": "Grandma has her pictures back in the right place.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {"word": "Filter", "plain": "A way to narrow what you see.", "where": "Explorer search tools", "why": "Finds the right file faster.", "example": "Type: Picture"},
+    {"word": "Downloads", "plain": "The folder where downloads usually go.", "where": "Explorer sidebar", "why": "Lost files often end up there.", "example": "Check Downloads first"}
+  ]
+}

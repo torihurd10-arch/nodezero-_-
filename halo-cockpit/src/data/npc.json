@@ -1,0 +1,30 @@
+[
+  {
+    "id": "sarah",
+    "name": "Sarah",
+    "role": "Office User",
+    "traits": ["forgets passwords", "loses files under pressure"],
+    "dialogueStyle": "Direct and anxious"
+  },
+  {
+    "id": "mike",
+    "name": "Mike",
+    "role": "Creative User",
+    "traits": ["downloads random software", "clicks fast without reading"],
+    "dialogueStyle": "Casual and rushed"
+  },
+  {
+    "id": "grandma",
+    "name": "Grandma",
+    "role": "Family User",
+    "traits": ["calls everything the Google", "misplaces pictures"],
+    "dialogueStyle": "Warm and confused"
+  },
+  {
+    "id": "boss",
+    "name": "Boss",
+    "role": "Team Lead",
+    "traits": ["assigns tickets", "tracks promotions"],
+    "dialogueStyle": "Short and practical"
+  }
+]
