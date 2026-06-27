@@ -1,0 +1,52 @@
+{
+  "id": "room0_10",
+  "level": 0,
+  "npc": "Grandma",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "End the Frozen App",
+  "ticket": "Grandma says her screen is 'stuck forever'.",
+  "clue": "The app is frozen.",
+  "tooltip": "Task Manager can force close apps.",
+  "whyItMatters": "Frozen apps are common.",
+  "careerConnection": "IT resolves freezes constantly.",
+  "videoUrl": "https://www.youtube.com/embed/V6jY7x4wL0Y",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Windows_11_Task_Manager.png",
+  "interactiveDemo": {
+    "prompt": "What if an app stops responding?",
+    "options": ["Force close it in Task Manager", "Throw away the PC", "Delete System32"],
+    "correctIndex": 0,
+    "hint": "Use the built-in task tool to end it safely."
+  },
+  "actionTask": {
+    "instructions": "Force close 'PhotoViewer.exe'.",
+    "expectedResult": "Desktop becomes responsive.",
+    "screenshotExample": "force_close.png"
+  },
+  "repeatTask": "Force close a second frozen app.",
+  "breakFixTask": "Task Manager won't open. Use Ctrl+Shift+Esc.",
+  "explainQuestions": [
+    "Why do apps freeze?",
+    "How do you fix them?",
+    "When should you NOT force close?"
+  ],
+  "verificationChecklist": [
+    "Did it work?",
+    "Can you repeat it?",
+    "Can you explain it?",
+    "Can you troubleshoot it?",
+    "Can you do it without hints?"
+  ],
+  "ticketCompletion": "Grandma’s computer works again.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {
+      "word": "frozen app",
+      "plain": "A program that stops responding.",
+      "where": "Desktop or open windows",
+      "why": "You may need to force close it.",
+      "example": "Photo viewer stops clicking"
+    }
+  ]
+}

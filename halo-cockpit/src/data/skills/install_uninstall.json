@@ -1,0 +1,29 @@
+{
+  "id": "skill_install_uninstall",
+  "skillName": "Install & Uninstall Programs",
+  "difficulty": "Beginner",
+  "prerequisites": ["Files & Folders"],
+  "learningObjectives": [
+    "Run installers safely",
+    "Verify installed apps",
+    "Remove unwanted apps"
+  ],
+  "vocabulary": ["installer", "install", "uninstall", "Apps & Features"],
+  "plainEnglishDefinitions": [
+    {"word": "installer", "plain": "A program that adds another program to your computer."},
+    {"word": "uninstall", "plain": "Remove a program from a computer."}
+  ],
+  "realJobUses": ["Install approved software and remove unwanted apps"],
+  "commonMistakes": ["Closing installers too fast", "Downloading from unsafe sources"],
+  "relatedSkills": ["Task Manager Basics"],
+  "examples": ["Install Setup.exe", "Uninstall WeirdApp 3.0"],
+  "analogies": ["An installer is like a setup guide putting tools into the right drawers."],
+  "handsOnTasks": ["Install an app and confirm it appears in Start Menu"],
+  "breakFixTasks": ["Handle SmartScreen block or missing uninstaller"],
+  "ticketIdeas": ["The Program That Won’t Install", "Clean Up Old Programs"],
+  "automationOpportunities": ["Silent install after understanding manual install"],
+  "reviewQuestions": ["What is an installer?", "Why uninstall unused apps?"],
+  "miniGameIdeas": ["Choose the Correct Tool", "Break/Fix", "Scenario Quiz"],
+  "supportedGameTypes": ["Mission Ticket", "Desktop Simulation", "Settings Simulation"],
+  "missionIds": ["room0_3", "room0_4"]
+}

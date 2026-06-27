@@ -1,0 +1,30 @@
+{
+  "id": "skill_files_and_folders",
+  "skillName": "Files & Folders",
+  "difficulty": "Beginner",
+  "prerequisites": [],
+  "learningObjectives": [
+    "Find files in common folders",
+    "Understand default save locations",
+    "Move files to correct folders"
+  ],
+  "vocabulary": ["folder", "file", "path", "Downloads", "Documents"],
+  "plainEnglishDefinitions": [
+    {"word": "folder", "plain": "A container that holds files."},
+    {"word": "file", "plain": "A saved item like a document or picture."},
+    {"word": "path", "plain": "The address of a file or folder."}
+  ],
+  "realJobUses": ["Find lost user files quickly"],
+  "commonMistakes": ["Searching random folders first", "Confusing browser downloads with saved files"],
+  "relatedSkills": ["File Explorer Navigation"],
+  "examples": ["Find Homework.docx", "Restore vacation.jpg to Pictures"],
+  "analogies": ["Folders are labeled drawers and files are papers inside them."],
+  "handsOnTasks": ["Open Documents and Downloads to locate files"],
+  "breakFixTasks": ["Move a file to the wrong folder and restore it"],
+  "ticketIdeas": ["The Missing Homework", "Find Grandma’s Pictures"],
+  "automationOpportunities": ["Bulk file cleanup after manual sorting"],
+  "reviewQuestions": ["What is a folder?", "Where do downloads usually go?"],
+  "miniGameIdeas": ["Matching", "Spot the mistake", "Timed ticket"],
+  "supportedGameTypes": ["Mission Ticket", "File Explorer Simulation", "Matching"],
+  "missionIds": ["room0_1", "room0_2"]
+}

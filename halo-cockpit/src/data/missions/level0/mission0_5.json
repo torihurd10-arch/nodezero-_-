@@ -1,37 +1,52 @@
 {
   "id": "room0_5",
   "level": 0,
-  "npc": "Boss",
+  "npc": "Sarah",
   "difficulty": "Easy",
   "estimatedMinutes": 7,
-  "title": "Why Is The Computer So Slow?",
-  "ticket": "A training machine is very slow during normal work.",
-  "clue": "Check CPU and memory before guessing.",
-  "tooltip": "Task Manager shows what uses the most resources.",
-  "whyItMatters": "Slow systems hurt productivity and frustrate users.",
-  "careerConnection": "Performance triage is a common help desk task.",
-  "videoUrl": "https://www.youtube.com/embed/V6jY7x4wL0Y",
-  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Windows_11_Task_Manager.png",
+  "title": "The Mouse That Stopped Working",
+  "ticket": "Sarah says her mouse 'just died'.",
+  "clue": "It might be unplugged.",
+  "tooltip": "Check physical connections first.",
+  "whyItMatters": "Most IT problems are simple.",
+  "careerConnection": "Technicians troubleshoot peripherals constantly.",
+  "videoUrl": "https://www.youtube.com/embed/1ArVtCQqQRE",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Computer_keyboard_and_mouse.jpg",
   "interactiveDemo": {
-    "prompt": "Where do you start?",
-    "options": ["Task Manager", "Registry edits", "Random reboot loops"],
+    "prompt": "What should you check first?",
+    "options": ["Mouse cable or connection", "Factory reset PC", "Delete drivers"],
     "correctIndex": 0,
-    "hint": "Measure before changing."
+    "hint": "Start with the physical basics."
   },
   "actionTask": {
-    "instructions": "Sort Task Manager by CPU usage and identify the heaviest process.",
-    "expectedResult": "You can name the top process and explain the impact.",
-    "screenshotExample": "Task Manager process list sorted by CPU."
+    "instructions": "Reconnect the mouse cable.",
+    "expectedResult": "Cursor moves again.",
+    "screenshotExample": "mouse_fix.png"
   },
-  "repeatTask": "Repeat the diagnosis while another heavy app is open.",
-  "breakFixTask": "End the wrong safe process, then relaunch and recover.",
-  "explainQuestions": ["What happened?", "Why?", "How would you use it?"],
-  "verificationChecklist": ["Did it work?", "Can you do it again?", "Can you explain it?", "Can you troubleshoot it?", "Can you do it without help?"],
-  "ticketCompletion": "System performance is improved and documented.",
+  "repeatTask": "Fix a wireless mouse.",
+  "breakFixTask": "Battery dead. Replace it.",
+  "explainQuestions": [
+    "Why check cables first?",
+    "What are common mouse issues?",
+    "How do you troubleshoot peripherals?"
+  ],
+  "verificationChecklist": [
+    "Did it work?",
+    "Can you repeat it?",
+    "Can you explain it?",
+    "Can you troubleshoot it?",
+    "Can you do it without hints?"
+  ],
+  "ticketCompletion": "Sarah’s mouse works again.",
   "xpReward": 10,
   "confidenceReward": 1,
   "translationTerms": [
-    {"word": "Process", "plain": "A running program.", "where": "Task Manager", "why": "It can reveal what is slowing the PC.", "example": "Browser process"},
-    {"word": "CPU", "plain": "The part of the computer that does work.", "where": "Task Manager performance tab", "why": "High CPU can make everything slow.", "example": "CPU at 90 percent"}
+    {
+      "word": "peripheral",
+      "plain": "A device connected to the computer, like a mouse or keyboard.",
+      "where": "USB devices, accessories",
+      "why": "Many user problems come from peripherals.",
+      "example": "Mouse, keyboard, printer"
+    }
   ]
 }

@@ -1,0 +1,29 @@
+{
+  "id": "skill_file_explorer",
+  "skillName": "File Explorer Navigation",
+  "difficulty": "Beginner",
+  "prerequisites": ["Files & Folders"],
+  "learningObjectives": [
+    "Navigate using breadcrumbs",
+    "Find key folders quickly",
+    "Customize Quick Access"
+  ],
+  "vocabulary": ["breadcrumb", "Quick Access", "navigation", "hidden items"],
+  "plainEnglishDefinitions": [
+    {"word": "breadcrumb", "plain": "The path bar that shows where you are in folders."},
+    {"word": "Quick Access", "plain": "A File Explorer area for favorite folders."}
+  ],
+  "realJobUses": ["Guide users through complex folder structures"],
+  "commonMistakes": ["Getting lost in deep folders", "Ignoring Quick Access"],
+  "relatedSkills": ["Files & Folders"],
+  "examples": ["Navigate back to Documents", "Pin School to Quick Access"],
+  "analogies": ["Breadcrumbs are trail markers showing how you got here."],
+  "handsOnTasks": ["Use breadcrumb bar and pin a folder"],
+  "breakFixTasks": ["Turn off hidden items or reset Quick Access"],
+  "ticketIdeas": ["Lost in File Explorer", "Favorite Folders"],
+  "automationOpportunities": ["Manual folder habits before scripted cleanup"],
+  "reviewQuestions": ["What is a file path?", "Why pin folders?"],
+  "miniGameIdeas": ["File Explorer Simulation", "Ordering Steps", "Matching"],
+  "supportedGameTypes": ["Mission Ticket", "File Explorer Simulation", "Drag & Drop"],
+  "missionIds": ["room0_7", "room0_8"]
+}

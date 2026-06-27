@@ -1,0 +1,52 @@
+{
+  "id": "room0_8",
+  "level": 0,
+  "npc": "Sarah",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "Favorite Folders",
+  "ticket": "Sarah wants quick access to her School folder.",
+  "clue": "Quick Access can pin folders.",
+  "tooltip": "Pinning saves time.",
+  "whyItMatters": "IT teaches users efficiency.",
+  "careerConnection": "Technicians customize user environments.",
+  "videoUrl": "https://www.youtube.com/embed/dAlyKuVY5gE",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Windows_11_File_Explorer_Command_Bar.png",
+  "interactiveDemo": {
+    "prompt": "What helps a folder stay easy to open later?",
+    "options": ["Pin it to Quick Access", "Rename Windows", "Delete the Desktop"],
+    "correctIndex": 0,
+    "hint": "Explorer has a favorites area for common folders."
+  },
+  "actionTask": {
+    "instructions": "Pin School folder to Quick Access.",
+    "expectedResult": "School appears in Quick Access.",
+    "screenshotExample": "pin_folder.png"
+  },
+  "repeatTask": "Pin Pictures folder.",
+  "breakFixTask": "Quick Access broken. Reset it.",
+  "explainQuestions": [
+    "Why pin folders?",
+    "How does it help users?",
+    "How do you customize File Explorer?"
+  ],
+  "verificationChecklist": [
+    "Did it work?",
+    "Can you repeat it?",
+    "Can you explain it?",
+    "Can you troubleshoot it?",
+    "Can you do it without hints?"
+  ],
+  "ticketCompletion": "Sarah accesses her folder quickly.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {
+      "word": "Quick Access",
+      "plain": "A File Explorer area for favorite folders.",
+      "where": "Left side of File Explorer",
+      "why": "Saves time opening common places.",
+      "example": "Pin School folder"
+    }
+  ]
+}

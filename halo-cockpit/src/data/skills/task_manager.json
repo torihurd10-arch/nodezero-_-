@@ -1,0 +1,29 @@
+{
+  "id": "skill_task_manager",
+  "skillName": "Task Manager Basics",
+  "difficulty": "Beginner",
+  "prerequisites": ["Install & Uninstall Programs"],
+  "learningObjectives": [
+    "Find heavy processes",
+    "Force close frozen apps safely",
+    "Use Task Manager for first-pass troubleshooting"
+  ],
+  "vocabulary": ["Task Manager", "process", "CPU", "frozen app"],
+  "plainEnglishDefinitions": [
+    {"word": "process", "plain": "A running program."},
+    {"word": "CPU", "plain": "The part of the computer doing the work right now."}
+  ],
+  "realJobUses": ["Diagnose performance and freezing issues"],
+  "commonMistakes": ["Ending the wrong process", "Guessing before checking usage"],
+  "relatedSkills": ["Install & Uninstall Programs"],
+  "examples": ["End HeavyApp.exe", "Force close PhotoViewer.exe"],
+  "analogies": ["Task Manager is the control room showing what the computer is busy doing."],
+  "handsOnTasks": ["Sort by CPU and end a safe test app"],
+  "breakFixTasks": ["Open Task Manager with Ctrl+Shift+Esc when normal path fails"],
+  "ticketIdeas": ["Why Is The Computer So Slow?", "End the Frozen App"],
+  "automationOpportunities": ["Manual diagnosis first, then monitoring or scripted cleanup"],
+  "reviewQuestions": ["What causes slow computers?", "When should you not force close an app?"],
+  "miniGameIdeas": ["Task Manager Simulation", "Timed Ticket", "Boss Challenge"],
+  "supportedGameTypes": ["Mission Ticket", "Task Manager Simulation", "Scenario Quiz"],
+  "missionIds": ["room0_9", "room0_10"]
+}

@@ -1,37 +1,52 @@
 {
   "id": "room0_3",
   "level": 0,
-  "npc": "Boss",
+  "npc": "Mike",
   "difficulty": "Easy",
   "estimatedMinutes": 7,
-  "title": "The Mouse That Stopped Working",
-  "ticket": "A training PC lost mouse control during a practice session.",
-  "clue": "Check the simple causes before trying big fixes.",
-  "tooltip": "Use keyboard fallback and basic hardware checks first.",
-  "whyItMatters": "Input issues block all work.",
-  "careerConnection": "Technicians triage peripherals during first-line support.",
-  "videoUrl": "https://www.youtube.com/embed/1ArVtCQqQRE",
-  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Computer_keyboard_and_mouse.jpg",
+  "title": "The Program That Won’t Install",
+  "ticket": "Mike tried installing a program but nothing happened.",
+  "clue": "He double-clicked the installer but closed it too fast.",
+  "tooltip": "Installers usually show a setup window.",
+  "whyItMatters": "Users often misinterpret installation steps.",
+  "careerConnection": "IT installs software daily.",
+  "videoUrl": "https://www.youtube.com/embed/5JfN4V0vS9Y",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Windows_11_Apps_Settings.png",
   "interactiveDemo": {
-    "prompt": "What is the safest first test?",
-    "options": ["Check cable or battery", "Replace motherboard", "Factory reset the PC"],
+    "prompt": "What should you look for after opening an installer?",
+    "options": ["A setup window", "A blue screen", "Task Manager only"],
     "correctIndex": 0,
-    "hint": "Start with the smallest reversible check."
+    "hint": "Installers usually guide you with a setup wizard."
   },
   "actionTask": {
-    "instructions": "Use keyboard navigation to confirm pointer settings and restore mouse control.",
-    "expectedResult": "Mouse or pointer control is usable again.",
-    "screenshotExample": "Mouse settings screen with normal pointer speed."
+    "instructions": "Run Setup.exe and complete installation.",
+    "expectedResult": "Program appears in Start Menu.",
+    "screenshotExample": "installer_setup.png"
   },
-  "repeatTask": "Repeat the same recovery path with fewer hints.",
-  "breakFixTask": "Set pointer speed too low, then fix it.",
-  "explainQuestions": ["What happened?", "Why?", "How would you use it?"],
-  "verificationChecklist": ["Did it work?", "Can you do it again?", "Can you explain it?", "Can you troubleshoot it?", "Can you do it without help?"],
-  "ticketCompletion": "The training PC input works again and the learner stayed calm.",
+  "repeatTask": "Install a second small program.",
+  "breakFixTask": "Installer blocked by SmartScreen. Allow it.",
+  "explainQuestions": [
+    "What is an installer?",
+    "Why do programs fail to install?",
+    "How do you fix it?"
+  ],
+  "verificationChecklist": [
+    "Did it work?",
+    "Can you repeat it?",
+    "Can you explain it?",
+    "Can you troubleshoot it?",
+    "Can you do it without hints?"
+  ],
+  "ticketCompletion": "Mike sees the program installed.",
   "xpReward": 10,
   "confidenceReward": 1,
   "translationTerms": [
-    {"word": "Shortcut", "plain": "A key combo that does something fast.", "where": "Keyboard navigation", "why": "Lets you keep working without the mouse.", "example": "Alt + Tab"},
-    {"word": "Pointer", "plain": "The arrow you move on the screen.", "where": "Desktop and apps", "why": "You cannot click anything without it.", "example": "Move the pointer to a button"}
+    {
+      "word": "installer",
+      "plain": "A program that adds another program to your computer.",
+      "where": "Downloads, setup files",
+      "why": "You need it to install apps correctly.",
+      "example": "Setup.exe"
+    }
   ]
 }

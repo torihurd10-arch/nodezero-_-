@@ -1,0 +1,52 @@
+{
+  "id": "room0_7",
+  "level": 0,
+  "npc": "Mike",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "Lost in File Explorer",
+  "ticket": "Mike says 'everything disappeared' in File Explorer.",
+  "clue": "He clicked into a deep folder.",
+  "tooltip": "The breadcrumb bar shows your path.",
+  "whyItMatters": "Navigation is essential for IT.",
+  "careerConnection": "Technicians navigate complex folder structures.",
+  "videoUrl": "https://www.youtube.com/embed/dAlyKuVY5gE",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Windows_11_File_Explorer_Command_Bar.png",
+  "interactiveDemo": {
+    "prompt": "What helps you know where you are in Explorer?",
+    "options": ["Breadcrumb bar", "Task Manager", "Wallpaper"],
+    "correctIndex": 0,
+    "hint": "The path is visible at the top of Explorer."
+  },
+  "actionTask": {
+    "instructions": "Navigate back to Documents.",
+    "expectedResult": "Documents folder is visible.",
+    "screenshotExample": "breadcrumb_back.png"
+  },
+  "repeatTask": "Navigate to Pictures.",
+  "breakFixTask": "Hidden items enabled. Turn them off.",
+  "explainQuestions": [
+    "What is a file path?",
+    "How do you navigate folders?",
+    "Why do users get lost?"
+  ],
+  "verificationChecklist": [
+    "Did it work?",
+    "Can you repeat it?",
+    "Can you explain it?",
+    "Can you troubleshoot it?",
+    "Can you do it without hints?"
+  ],
+  "ticketCompletion": "Mike sees his files again.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {
+      "word": "breadcrumb",
+      "plain": "The path bar that shows where you are in folders.",
+      "where": "Top of File Explorer",
+      "why": "Helps you navigate back quickly.",
+      "example": "This PC > Documents > School"
+    }
+  ]
+}

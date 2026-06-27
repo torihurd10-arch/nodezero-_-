@@ -1,37 +1,52 @@
 {
   "id": "room0_4",
   "level": 0,
-  "npc": "Grandma",
+  "npc": "Mike",
   "difficulty": "Easy",
   "estimatedMinutes": 7,
-  "title": "Find Grandma's Pictures",
-  "ticket": "Grandma cannot find her family pictures after moving folders.",
-  "clue": "Pictures are likely moved, not erased.",
-  "tooltip": "Use Explorer filters and sort by date modified.",
-  "whyItMatters": "Recovering personal files builds user trust.",
-  "careerConnection": "Support roles regularly recover misplaced files.",
-  "videoUrl": "https://www.youtube.com/embed/dAlyKuVY5gE",
-  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Windows_11_File_Explorer_Command_Bar.png",
+  "title": "Clean Up Old Programs",
+  "ticket": "Mike installed too many random apps. His computer is slow.",
+  "clue": "He doesn't know how to uninstall programs.",
+  "tooltip": "Apps & Features lets you remove programs.",
+  "whyItMatters": "IT often removes unwanted software.",
+  "careerConnection": "Help Desk cleans up machines constantly.",
+  "videoUrl": "https://www.youtube.com/embed/gquwQ4B1vS0",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Windows_11_Apps_Settings.png",
   "interactiveDemo": {
-    "prompt": "Best way to narrow the search?",
-    "options": ["Filter by type and date", "Rename every file", "Delete old folders"],
+    "prompt": "Where should you remove unwanted programs?",
+    "options": ["Apps & Features", "Recycle Bin", "Wallpaper settings"],
     "correctIndex": 0,
-    "hint": "Reduce noise before browsing randomly."
+    "hint": "Windows already has a place to remove apps safely."
   },
   "actionTask": {
-    "instructions": "Search for picture files, sort by date, and restore them to a clear Pictures folder.",
-    "expectedResult": "The correct photo set is restored to one location.",
-    "screenshotExample": "Explorer sorted by date with the right folder selected."
+    "instructions": "Uninstall 'WeirdApp 3.0'.",
+    "expectedResult": "WeirdApp 3.0 is removed.",
+    "screenshotExample": "uninstall_app.png"
   },
-  "repeatTask": "Repeat the photo search with another target file.",
-  "breakFixTask": "Place the wrong image in the family folder, then fix it.",
-  "explainQuestions": ["What happened?", "Why?", "How would you use it?"],
-  "verificationChecklist": ["Did it work?", "Can you do it again?", "Can you explain it?", "Can you troubleshoot it?", "Can you do it without help?"],
-  "ticketCompletion": "Grandma has her pictures back in the right place.",
+  "repeatTask": "Uninstall 'OldGame'.",
+  "breakFixTask": "Uninstaller missing. Remove leftover folder manually.",
+  "explainQuestions": [
+    "Why uninstall unused apps?",
+    "What slows computers down?",
+    "How do you remove programs safely?"
+  ],
+  "verificationChecklist": [
+    "Did it work?",
+    "Can you repeat it?",
+    "Can you explain it?",
+    "Can you troubleshoot it?",
+    "Can you do it without hints?"
+  ],
+  "ticketCompletion": "Mike’s computer runs faster.",
   "xpReward": 10,
   "confidenceReward": 1,
   "translationTerms": [
-    {"word": "Filter", "plain": "A way to narrow what you see.", "where": "Explorer search tools", "why": "Finds the right file faster.", "example": "Type: Picture"},
-    {"word": "Downloads", "plain": "The folder where downloads usually go.", "where": "Explorer sidebar", "why": "Lost files often end up there.", "example": "Check Downloads first"}
+    {
+      "word": "uninstall",
+      "plain": "Remove a program from the computer.",
+      "where": "Apps & Features",
+      "why": "Unused apps can cause clutter or slowdowns.",
+      "example": "Remove WeirdApp 3.0"
+    }
   ]
 }

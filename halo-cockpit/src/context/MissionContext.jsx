@@ -15,7 +15,7 @@ function npcForMission(mission) {
 export function MissionProvider({ children }) {
   const missions = useMemo(() => {
     return missionsRaw.map((mission) => {
-      const skill = skillLibrary.find((entry) => entry.id === mission.id) || skillLibrary[0]
+      const skill = skillLibrary.find((entry) => Array.isArray(entry.missionIds) && entry.missionIds.includes(mission.id)) || skillLibrary[0]
       return generateMissionPackage(mission, skill, npcForMission(mission))
     })
   }, [])

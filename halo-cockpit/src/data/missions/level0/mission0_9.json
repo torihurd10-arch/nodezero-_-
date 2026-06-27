@@ -1,0 +1,52 @@
+{
+  "id": "room0_9",
+  "level": 0,
+  "npc": "Mike",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "Why Is The Computer So Slow?",
+  "ticket": "Mike says his computer is 'lagging like crazy'.",
+  "clue": "Too many background apps.",
+  "tooltip": "Task Manager shows running apps.",
+  "whyItMatters": "Performance troubleshooting is core IT.",
+  "careerConnection": "Help Desk uses Task Manager constantly.",
+  "videoUrl": "https://www.youtube.com/embed/V6jY7x4wL0Y",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Windows_11_Task_Manager.png",
+  "interactiveDemo": {
+    "prompt": "What tool shows running apps and CPU use?",
+    "options": ["Task Manager", "Recycle Bin", "Paint"],
+    "correctIndex": 0,
+    "hint": "It lists running processes and usage."
+  },
+  "actionTask": {
+    "instructions": "End the 'HeavyApp.exe' task.",
+    "expectedResult": "CPU usage drops.",
+    "screenshotExample": "taskmanager_endtask.png"
+  },
+  "repeatTask": "Sort by memory usage.",
+  "breakFixTask": "App frozen. Force close it.",
+  "explainQuestions": [
+    "What causes slow computers?",
+    "How does Task Manager help?",
+    "What should you NOT end?"
+  ],
+  "verificationChecklist": [
+    "Did it work?",
+    "Can you repeat it?",
+    "Can you explain it?",
+    "Can you troubleshoot it?",
+    "Can you do it without hints?"
+  ],
+  "ticketCompletion": "Mike’s computer speeds up.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {
+      "word": "Task Manager",
+      "plain": "A tool that shows running apps and resource usage.",
+      "where": "Windows system tools",
+      "why": "Helps diagnose slow or frozen computers.",
+      "example": "End HeavyApp.exe"
+    }
+  ]
+}

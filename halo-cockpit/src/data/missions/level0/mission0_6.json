@@ -1,0 +1,52 @@
+{
+  "id": "room0_6",
+  "level": 0,
+  "npc": "Grandma",
+  "difficulty": "Easy",
+  "estimatedMinutes": 7,
+  "title": "Keyboard Ninja",
+  "ticket": "Grandma says her keyboard 'stopped typing letters'.",
+  "clue": "Caps Lock is on.",
+  "tooltip": "Caps Lock changes typing behavior.",
+  "whyItMatters": "Users often misinterpret keyboard issues.",
+  "careerConnection": "IT fixes typing issues constantly.",
+  "videoUrl": "https://www.youtube.com/embed/1ArVtCQqQRE",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Computer_keyboard_and_mouse.jpg",
+  "interactiveDemo": {
+    "prompt": "What likely changed if letters are all uppercase?",
+    "options": ["Caps Lock is on", "The monitor broke", "The printer jammed"],
+    "correctIndex": 0,
+    "hint": "One keyboard key changes typing case."
+  },
+  "actionTask": {
+    "instructions": "Turn off Caps Lock.",
+    "expectedResult": "Typing returns to normal.",
+    "screenshotExample": "capslock_fix.png"
+  },
+  "repeatTask": "Fix Num Lock issue.",
+  "breakFixTask": "Keyboard unplugged. Reconnect it.",
+  "explainQuestions": [
+    "What does Caps Lock do?",
+    "Why do users get confused?",
+    "How do you troubleshoot typing issues?"
+  ],
+  "verificationChecklist": [
+    "Did it work?",
+    "Can you repeat it?",
+    "Can you explain it?",
+    "Can you troubleshoot it?",
+    "Can you do it without hints?"
+  ],
+  "ticketCompletion": "Grandma can type again.",
+  "xpReward": 10,
+  "confidenceReward": 1,
+  "translationTerms": [
+    {
+      "word": "Caps Lock",
+      "plain": "A key that makes letters uppercase.",
+      "where": "Keyboard",
+      "why": "It changes typing behavior instantly.",
+      "example": "HELLO instead of hello"
+    }
+  ]
+}

@@ -10,6 +10,7 @@ export default function MissionList() {
   const { missions } = useMission()
   const { resetAll, xp, confidence, currentMissionId, rank, streak, promotionProgress, unlockedMissions, currentMissionId: activeMissionId } = useProgress()
   const currentMission = missions.find((mission) => mission.id === activeMissionId)
+  const levels = [...new Set(missions.map((mission) => mission.level))]
 
   return (
     <div className="app-shell">
@@ -25,7 +26,7 @@ export default function MissionList() {
         onReset={resetAll}
       />
       <main className="layout-stack">
-        {[0, 1].map((level) => (
+        {levels.map((level) => (
           <section key={level} className="panel">
             <h2 className="panel-title">{getLevelLabel(level)}</h2>
             <div className="mission-grid">

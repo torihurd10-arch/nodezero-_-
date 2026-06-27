@@ -1,0 +1,29 @@
+{
+  "id": "skill_keyboard_mouse",
+  "skillName": "Keyboard & Mouse Basics",
+  "difficulty": "Beginner",
+  "prerequisites": [],
+  "learningObjectives": [
+    "Check simple peripheral issues first",
+    "Use keyboard fallback",
+    "Fix common typing and pointer problems"
+  ],
+  "vocabulary": ["Caps Lock", "pointer", "peripheral", "shortcut"],
+  "plainEnglishDefinitions": [
+    {"word": "Caps Lock", "plain": "A key that makes letters uppercase."},
+    {"word": "peripheral", "plain": "A device connected to the computer like a mouse or keyboard."}
+  ],
+  "realJobUses": ["Recover input devices during first-line support"],
+  "commonMistakes": ["Skipping cable and battery checks", "Assuming hardware is dead immediately"],
+  "relatedSkills": ["File Explorer Navigation"],
+  "examples": ["Reconnect mouse", "Turn off Caps Lock"],
+  "analogies": ["Peripherals are the tools your hands use to talk to the computer."],
+  "handsOnTasks": ["Reconnect a mouse and verify pointer movement"],
+  "breakFixTasks": ["Replace mouse battery or reconnect keyboard"],
+  "ticketIdeas": ["The Mouse That Stopped Working", "Keyboard Ninja"],
+  "automationOpportunities": ["Manual hardware checks come before automation."],
+  "reviewQuestions": ["Why check cables first?", "What does Caps Lock do?"],
+  "miniGameIdeas": ["Desktop Simulation", "Speed Run", "Spot the Mistake"],
+  "supportedGameTypes": ["Mission Ticket", "Desktop Simulation", "Keyboard Simulation"],
+  "missionIds": ["room0_5", "room0_6"]
+}
