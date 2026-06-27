@@ -1,0 +1,1062 @@
+{
+  "missions": [
+    {
+      "id": "room0_1",
+      "level": 0,
+      "title": "The Missing Homework",
+      "ticket": "Grandma: My homework file is gone. Please help me find it.",
+      "clue": "The file is probably in the wrong folder, not deleted.",
+      "tooltip": "Use File Explorer search first, then check the file path.",
+      "whyItMatters": "Users panic when files seem missing. Fast recovery builds trust.",
+      "careerConnection": "Help desk technicians solve missing file tickets every day.",
+      "videoUrl": "https://www.youtube.com/embed/8OrcQ6nA6j4",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/Windows_11_File_Explorer.png",
+      "interactiveDemo": {
+        "prompt": "Where should you check first?",
+        "options": ["File Explorer Search", "Reinstall Windows", "Turn off monitor"],
+        "correctIndex": 0,
+        "hint": "Start with the safest and fastest check."
+      },
+      "actionTask": "Open File Explorer, search for the file name, and open its folder location.",
+      "repeatTask": "Repeat the same search with another file and fewer hints.",
+      "breakFixTask": "Move the file to the wrong folder. Then fix it by moving it back.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did it happen?",
+        "How would you use this in a real IT job?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Grandma is happy. Homework found and path explained.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Path",
+          "plainEnglish": "The address of a file or folder.",
+          "whereISeeIt": "Explorer address bar",
+          "whyItMatters": "Wrong path means wrong file.",
+          "example": "C:/Users/Name/Documents"
+        },
+        {
+          "word": "File",
+          "plainEnglish": "A saved item like a document.",
+          "whereISeeIt": "Folders and desktop",
+          "whyItMatters": "Most support tasks involve files.",
+          "example": "homework.docx"
+        }
+      ],
+      "npc": "Grandma",
+      "estimatedMinutes": 7,
+      "difficulty": "Easy"
+    },
+    {
+      "id": "room0_2",
+      "level": 0,
+      "title": "The Program That Won't Install",
+      "ticket": "Mike: I keep getting install errors. Can you get this app working?",
+      "clue": "The installer source and permissions matter.",
+      "tooltip": "Use trusted installers and check app status in Settings > Apps.",
+      "whyItMatters": "Unsafe installs create malware and broken systems.",
+      "careerConnection": "Endpoint support safely installs and removes approved tools.",
+      "videoUrl": "https://www.youtube.com/embed/5JfN4V0vS9Y",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Windows_11_Apps_Settings.png",
+      "interactiveDemo": {
+        "prompt": "Best first action?",
+        "options": ["Install from approved source", "Download random copy", "Disable antivirus forever"],
+        "correctIndex": 0,
+        "hint": "Safety first, then speed."
+      },
+      "actionTask": "Install one approved app, open it, then verify it appears in Apps list.",
+      "repeatTask": "Install/uninstall another safe app with fewer hints.",
+      "breakFixTask": "Leave a broken shortcut after uninstall, then clean it up.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did it happen?",
+        "How would you use this in a real IT job?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Mike can use the app. Installation process documented.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Install",
+          "plainEnglish": "Add software to computer.",
+          "whereISeeIt": "App setup screens",
+          "whyItMatters": "Needed for user tools.",
+          "example": "Install browser"
+        },
+        {
+          "word": "Uninstall",
+          "plainEnglish": "Remove software safely.",
+          "whereISeeIt": "Settings > Apps",
+          "whyItMatters": "Fixes app issues.",
+          "example": "Uninstall old app"
+        }
+      ],
+      "npc": "Mike",
+      "estimatedMinutes": 7,
+      "difficulty": "Easy"
+    },
+    {
+      "id": "room0_3",
+      "level": 0,
+      "title": "The Mouse That Stopped Working",
+      "ticket": "Boss: Input is failing on a training PC. Diagnose and recover control.",
+      "clue": "Check simple causes before complex fixes.",
+      "tooltip": "Try keyboard alternatives and basic device checks first.",
+      "whyItMatters": "Quick input recovery keeps users productive.",
+      "careerConnection": "Technicians triage peripherals during first-line support.",
+      "videoUrl": "https://www.youtube.com/embed/1ArVtCQqQRE",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Computer_keyboard_and_mouse.jpg",
+      "interactiveDemo": {
+        "prompt": "What is the safest first test?",
+        "options": ["Check cable/battery", "Factory reset PC", "Replace motherboard"],
+        "correctIndex": 0,
+        "hint": "Start with smallest reversible check."
+      },
+      "actionTask": "Use keyboard navigation to open Settings and verify pointer/device state.",
+      "repeatTask": "Repeat the diagnostic flow with fewer hints.",
+      "breakFixTask": "Disable pointer speed setting by mistake, then restore it.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did it happen?",
+        "How would you use this in a real IT job?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Input control restored. User can work again.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Shortcut",
+          "plainEnglish": "Key combo that does an action fast.",
+          "whereISeeIt": "Keyboard commands",
+          "whyItMatters": "Speeds up troubleshooting.",
+          "example": "Alt + Tab"
+        }
+      ],
+      "npc": "Boss",
+      "estimatedMinutes": 7,
+      "difficulty": "Easy"
+    },
+    {
+      "id": "room0_4",
+      "level": 0,
+      "title": "Find Grandma's Pictures",
+      "ticket": "Grandma: My family pictures disappeared after I moved folders.",
+      "clue": "Pictures are likely moved, not erased.",
+      "tooltip": "Use Explorer filters and sort by date modified.",
+      "whyItMatters": "Recovering personal files builds user trust.",
+      "careerConnection": "Support roles regularly recover misplaced files.",
+      "videoUrl": "https://www.youtube.com/embed/dAlyKuVY5gE",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Windows_11_File_Explorer_Command_Bar.png",
+      "interactiveDemo": {
+        "prompt": "Best way to narrow search?",
+        "options": ["Filter by type/date", "Delete old folders", "Rename all files"],
+        "correctIndex": 0,
+        "hint": "Filters reduce noise quickly."
+      },
+      "actionTask": "Search for image files, sort by date, and restore them to a clear Pictures folder.",
+      "repeatTask": "Repeat with another file type and fewer hints.",
+      "breakFixTask": "Place images in wrong location and move them back correctly.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did it happen?",
+        "How would you use this in a real IT job?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Grandma has her pictures back and knows where to find them.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Filter",
+          "plainEnglish": "Tool to narrow what you see.",
+          "whereISeeIt": "Explorer search",
+          "whyItMatters": "Finds files faster.",
+          "example": "Type: Picture"
+        }
+      ],
+      "npc": "Grandma",
+      "estimatedMinutes": 7,
+      "difficulty": "Easy"
+    },
+    {
+      "id": "room0_5",
+      "level": 0,
+      "title": "Why Is The Computer So Slow?",
+      "ticket": "Boss: A training machine is very slow. Diagnose and stabilize it.",
+      "clue": "Check CPU and memory before guessing.",
+      "tooltip": "Task Manager shows which apps use most resources.",
+      "whyItMatters": "Slow systems hurt productivity and frustrate users.",
+      "careerConnection": "Performance triage is a common help desk task.",
+      "videoUrl": "https://www.youtube.com/embed/V6jY7x4wL0Y",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Windows_11_Task_Manager.png",
+      "interactiveDemo": {
+        "prompt": "Where do you start?",
+        "options": ["Task Manager", "Random reboot loops", "Registry edits"],
+        "correctIndex": 0,
+        "hint": "Measure before changing."
+      },
+      "actionTask": "Open Task Manager, sort by CPU, and identify top process.",
+      "repeatTask": "Repeat while another app is open.",
+      "breakFixTask": "End the wrong safe process, then relaunch and recover.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did it happen?",
+        "How would you use this in a real IT job?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "System performance improved and findings documented.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Process",
+          "plainEnglish": "A running program.",
+          "whereISeeIt": "Task Manager",
+          "whyItMatters": "Can reveal performance issues.",
+          "example": "Browser process high CPU"
+        }
+      ],
+      "npc": "Boss",
+      "estimatedMinutes": 7,
+      "difficulty": "Easy"
+    },
+    {
+      "id": "room1_1",
+      "level": 1,
+      "title": "Sarah Forgot Her Password",
+      "ticket": "Sarah: I can't log in. I forgot my password.",
+      "clue": "Account recovery starts with identity verification.",
+      "tooltip": "Reset password safely and test sign-in.",
+      "whyItMatters": "Login issues block all work.",
+      "careerConnection": "Password reset is one of the most common support calls.",
+      "videoUrl": "https://www.youtube.com/embed/WYz9zv2nH9M",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Windows_11_Accounts_Settings.png",
+      "interactiveDemo": {
+        "prompt": "What comes first?",
+        "options": ["Verify user identity", "Share admin password", "Disable account forever"],
+        "correctIndex": 0,
+        "hint": "Security before speed."
+      },
+      "actionTask": "Reset a local test account password and confirm sign-in.",
+      "repeatTask": "Repeat reset flow with fewer hints.",
+      "breakFixTask": "Set wrong password policy then correct it.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did it happen?",
+        "How would you use it in a real IT job?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Sarah logs in successfully.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "User Account",
+          "plainEnglish": "A personal sign-in profile.",
+          "whereISeeIt": "Windows Accounts",
+          "whyItMatters": "Keeps users secure and separate.",
+          "example": "New employee account"
+        }
+      ],
+      "npc": "Sarah",
+      "estimatedMinutes": 7,
+      "difficulty": "Easy"
+    },
+    {
+      "id": "room1_2",
+      "level": 1,
+      "title": "The Folder Nobody Can Open",
+      "ticket": "Boss: Team folder says Access Denied. Fix it without over-permissioning.",
+      "clue": "Least privilege is safer than full control.",
+      "tooltip": "Check Security tab and permission inheritance.",
+      "whyItMatters": "Correct access keeps work moving and data safe.",
+      "careerConnection": "Permissions troubleshooting is core endpoint support work.",
+      "videoUrl": "https://www.youtube.com/embed/Y5vVfVjX8x8",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Windows_Security_Tab.png",
+      "interactiveDemo": {
+        "prompt": "Safer fix?",
+        "options": ["Grant minimum needed access", "Give Everyone full control", "Disable security"],
+        "correctIndex": 0,
+        "hint": "Least privilege protects data."
+      },
+      "actionTask": "Grant read access to the correct user and verify open works.",
+      "repeatTask": "Repeat on a second folder with fewer hints.",
+      "breakFixTask": "Apply deny entry by mistake, then fix it.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did it happen?",
+        "How would you use it in a real IT job?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Folder access restored with safe permissions.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Permission",
+          "plainEnglish": "Rules for what users can do.",
+          "whereISeeIt": "Security tab",
+          "whyItMatters": "Prevents wrong access.",
+          "example": "Read-only"
+        }
+      ],
+      "npc": "Boss",
+      "estimatedMinutes": 7,
+      "difficulty": "Easy"
+    },
+    {
+      "id": "room1_3",
+      "level": 1,
+      "title": "Find The Setting",
+      "ticket": "Mike: I can't find where to change this setting.",
+      "clue": "Settings and Control Panel both matter.",
+      "tooltip": "Search in both interfaces before escalating.",
+      "whyItMatters": "Users need quick navigation guidance.",
+      "careerConnection": "Support roles constantly locate hidden settings.",
+      "videoUrl": "https://www.youtube.com/embed/gquwQ4B1vS0",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Windows_11_Control_Panel.png",
+      "interactiveDemo": {
+        "prompt": "Where might app settings still live?",
+        "options": ["Control Panel", "Recycle Bin", "BIOS only"],
+        "correctIndex": 0,
+        "hint": "Windows keeps legacy paths."
+      },
+      "actionTask": "Find app uninstall location in both Settings and Control Panel.",
+      "repeatTask": "Repeat navigation with fewer hints.",
+      "breakFixTask": "Change wrong setting and restore it.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did it happen?",
+        "How would you use it in a real IT job?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Mike found the right setting path.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Control Panel",
+          "plainEnglish": "Classic Windows settings area.",
+          "whereISeeIt": "Windows tools",
+          "whyItMatters": "Some options are only here.",
+          "example": "Programs and Features"
+        }
+      ],
+      "npc": "Mike",
+      "estimatedMinutes": 7,
+      "difficulty": "Easy"
+    },
+    {
+      "id": "room1_4",
+      "level": 1,
+      "title": "Share The Family Photos",
+      "ticket": "Grandma: Please share this photo folder with family.",
+      "clue": "Sharing and security permissions both affect access.",
+      "tooltip": "Test access with a non-owner account.",
+      "whyItMatters": "Shared data must be usable and safe.",
+      "careerConnection": "Folder sharing setup is common in support operations.",
+      "videoUrl": "https://www.youtube.com/embed/xQ8QXW9m8mA",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/36/Windows_Folder_Sharing.png",
+      "interactiveDemo": {
+        "prompt": "Best sharing approach?",
+        "options": ["Share with specific user", "Share with Everyone full control", "Turn off password protection forever"],
+        "correctIndex": 0,
+        "hint": "Specific access is safer."
+      },
+      "actionTask": "Share one folder with one test user and verify access.",
+      "repeatTask": "Repeat on another folder with fewer hints.",
+      "breakFixTask": "Break share permissions and restore them.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did it happen?",
+        "How would you use it in a real IT job?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Family photo share works correctly and safely.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Share",
+          "plainEnglish": "Allow network folder access.",
+          "whereISeeIt": "Sharing tab",
+          "whyItMatters": "Enables collaboration.",
+          "example": "Shared team photos"
+        }
+      ],
+      "npc": "Grandma",
+      "estimatedMinutes": 7,
+      "difficulty": "Easy"
+    },
+    {
+      "id": "room1_5",
+      "level": 1,
+      "title": "Make The Computer Yours",
+      "ticket": "Sarah: My screen is hard to read. Can we make it comfortable?",
+      "clue": "Small display changes can solve big usability pain.",
+      "tooltip": "Use personalization and accessibility settings safely.",
+      "whyItMatters": "Readable setups reduce mistakes and fatigue.",
+      "careerConnection": "IT support improves user productivity through profile tuning.",
+      "videoUrl": "https://www.youtube.com/embed/7xQm5dN1hWk",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Windows_11_Personalization_Settings.png",
+      "interactiveDemo": {
+        "prompt": "Best first adjustment for readability?",
+        "options": ["Text scale", "Random wallpaper", "Disable monitor"],
+        "correctIndex": 0,
+        "hint": "Start with readability settings."
+      },
+      "actionTask": "Adjust text size and theme, then verify readability.",
+      "repeatTask": "Repeat with another safe personalization option.",
+      "breakFixTask": "Set unreadable scaling, then restore comfortable value.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did it happen?",
+        "How would you use it in a real IT job?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Sarah now has a comfortable and usable setup.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Accessibility",
+          "plainEnglish": "Settings that make computers easier to use.",
+          "whereISeeIt": "Windows Settings",
+          "whyItMatters": "Improves comfort and productivity.",
+          "example": "Larger text"
+        }
+      ],
+      "npc": "Sarah",
+      "estimatedMinutes": 7,
+      "difficulty": "Easy"
+    }
+  ]
+}
+{
+  "missions": [
+    {
+      "id": "m0_1",
+      "level": 0,
+      "roomId": "room0_1",
+      "title": "The Missing Homework",
+      "npc": "Grandma",
+      "ticket": "Grandma says her homework file disappeared before printing.",
+      "clue": "She saved it yesterday in Documents but clicked around many folders.",
+      "tooltip": "Use File Explorer search and check the file path before moving anything.",
+      "whyItMatters": "Users panic when files go missing. Fast recovery builds trust.",
+      "careerConnection": "Help desk technicians recover lost files all the time.",
+      "videoUrl": "https://www.youtube.com/embed/8OrcQ6nA6j4",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/Windows_11_File_Explorer.png",
+      "interactiveDemo": {
+        "prompt": "Which action should you do first?",
+        "options": [
+          "Search by file name in File Explorer",
+          "Restart Windows immediately",
+          "Delete old folders"
+        ],
+        "correctIndex": 0,
+        "hint": "Start with the safest information-gathering step."
+      },
+      "actionTask": "Find the homework file, open its location, and move it to Documents/Homework.",
+      "repeatTask": "Repeat the same recovery flow without hints.",
+      "breakFixTask": "Move the file to the wrong folder, then fix it and confirm the final path.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did this fix work?",
+        "How would you use this at work?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Grandma can open and print her homework again.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Path",
+          "plainEnglish": "The address of a file or folder.",
+          "whereISeeIt": "Explorer address bar",
+          "whyItMatters": "Wrong path means wrong file.",
+          "example": "C:/Users/Name/Documents/Homework"
+        },
+        {
+          "word": "Search",
+          "plainEnglish": "Looking for a file by name or keyword.",
+          "whereISeeIt": "Explorer search box",
+          "whyItMatters": "Saves time when folders are messy.",
+          "example": "Search report draft"
+        }
+      ]
+    },
+    {
+      "id": "m0_2",
+      "level": 0,
+      "roomId": "room0_2",
+      "title": "The Program That Won't Install",
+      "npc": "Mike",
+      "ticket": "Mike needs a browser update but install keeps failing.",
+      "clue": "He downloaded installers from random websites.",
+      "tooltip": "Use trusted sources and check installer permissions.",
+      "whyItMatters": "Unsafe installs create malware and broken systems.",
+      "careerConnection": "Endpoint support installs approved software safely.",
+      "videoUrl": "https://www.youtube.com/embed/5JfN4V0vS9Y",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Windows_11_Apps_Settings.png",
+      "interactiveDemo": {
+        "prompt": "Best installer source?",
+        "options": [
+          "Official vendor website",
+          "Any ad link",
+          "Unknown forum file"
+        ],
+        "correctIndex": 0,
+        "hint": "Pick the source with verified publisher trust."
+      },
+      "actionTask": "Install one trusted app and confirm it opens.",
+      "repeatTask": "Uninstall and reinstall with fewer hints.",
+      "breakFixTask": "Clean leftover shortcuts after uninstall.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did your fix work?",
+        "How does this help in IT jobs?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Mike's program installs from a trusted source and runs correctly.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Install",
+          "plainEnglish": "Add software to a computer.",
+          "whereISeeIt": "Setup wizard",
+          "whyItMatters": "Correct install prevents future issues.",
+          "example": "Install approved browser"
+        },
+        {
+          "word": "Uninstall",
+          "plainEnglish": "Remove software safely.",
+          "whereISeeIt": "Settings > Apps",
+          "whyItMatters": "Removes broken software and leftovers.",
+          "example": "Uninstall old app version"
+        }
+      ]
+    },
+    {
+      "id": "m0_3",
+      "level": 0,
+      "roomId": "room0_3",
+      "title": "The Mouse That Stopped Working",
+      "npc": "Boss",
+      "ticket": "A staff member says the mouse is not responding.",
+      "clue": "Keyboard still works and cursor froze after USB swap.",
+      "tooltip": "Check simple input settings and reconnect hardware safely.",
+      "whyItMatters": "Input issues block all work.",
+      "careerConnection": "Technicians handle keyboard and mouse failures daily.",
+      "videoUrl": "https://www.youtube.com/embed/1ArVtCQqQRE",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Computer_keyboard_and_mouse.jpg",
+      "interactiveDemo": {
+        "prompt": "First safe troubleshooting step?",
+        "options": [
+          "Reconnect device and test another port",
+          "Factory reset immediately",
+          "Delete drivers without checking"
+        ],
+        "correctIndex": 0,
+        "hint": "Start with reversible checks."
+      },
+      "actionTask": "Reconnect mouse, test pointer speed setting, and confirm response.",
+      "repeatTask": "Repeat troubleshooting path without hints.",
+      "breakFixTask": "Set pointer speed too low, then restore usable speed.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did your fix work?",
+        "How would you explain this to a user?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "User can move and click normally again.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Pointer",
+          "plainEnglish": "The on-screen arrow controlled by mouse.",
+          "whereISeeIt": "Desktop and apps",
+          "whyItMatters": "If pointer fails, user cannot navigate.",
+          "example": "Pointer movement is smooth"
+        },
+        {
+          "word": "USB Port",
+          "plainEnglish": "Connection slot for hardware.",
+          "whereISeeIt": "Laptop/PC sides",
+          "whyItMatters": "Faulty ports can break devices.",
+          "example": "Try another USB port"
+        }
+      ]
+    },
+    {
+      "id": "m0_4",
+      "level": 0,
+      "roomId": "room0_4",
+      "title": "Find Grandma's Pictures",
+      "npc": "Grandma",
+      "ticket": "Grandma cannot find family photos from last week.",
+      "clue": "Photos may be in Downloads or Pictures with similar file names.",
+      "tooltip": "Use Explorer sort and search by date or keyword.",
+      "whyItMatters": "Recovering personal files builds user confidence.",
+      "careerConnection": "Desktop support often locates missing user files.",
+      "videoUrl": "https://www.youtube.com/embed/dAlyKuVY5gE",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Windows_11_File_Explorer_Command_Bar.png",
+      "interactiveDemo": {
+        "prompt": "Best way to narrow photo search?",
+        "options": [
+          "Sort by Date Modified and use keyword",
+          "Open random folders",
+          "Rename everything"
+        ],
+        "correctIndex": 0,
+        "hint": "Use filters before random browsing."
+      },
+      "actionTask": "Find a target photo and place it into Pictures/Family.",
+      "repeatTask": "Repeat with another photo and fewer hints.",
+      "breakFixTask": "Move wrong image into Family folder, then fix it.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did your process work?",
+        "How would this help users at work?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Grandma can view all family photos in one folder.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Sort",
+          "plainEnglish": "Arrange files by rule like date or name.",
+          "whereISeeIt": "Explorer column headers",
+          "whyItMatters": "Finds right files faster.",
+          "example": "Sort by Date Modified"
+        },
+        {
+          "word": "Downloads",
+          "plainEnglish": "Default folder for downloaded files.",
+          "whereISeeIt": "Explorer sidebar",
+          "whyItMatters": "Common place for lost files.",
+          "example": "Check Downloads first"
+        }
+      ]
+    },
+    {
+      "id": "m0_5",
+      "level": 0,
+      "roomId": "room0_5",
+      "title": "Why Is The Computer So Slow?",
+      "npc": "Boss",
+      "ticket": "Computer is very slow during normal work.",
+      "clue": "Several apps start at login and one process spikes CPU.",
+      "tooltip": "Use Task Manager to inspect CPU, memory, and startup impact.",
+      "whyItMatters": "Performance problems are top support tickets.",
+      "careerConnection": "Junior technicians use Task Manager for first diagnosis.",
+      "videoUrl": "https://www.youtube.com/embed/V6jY7x4wL0Y",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Windows_11_Task_Manager.png",
+      "interactiveDemo": {
+        "prompt": "What should you check first?",
+        "options": [
+          "Sort by CPU in Task Manager",
+          "Delete system files",
+          "Install random optimizer"
+        ],
+        "correctIndex": 0,
+        "hint": "Use evidence before making changes."
+      },
+      "actionTask": "Find top CPU process and document the result.",
+      "repeatTask": "Repeat while opening another heavy app.",
+      "breakFixTask": "End wrong non-critical process and reopen app safely.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did your fix work?",
+        "How would you report this to a teammate?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Computer performance is improved and documented.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "CPU",
+          "plainEnglish": "Main processor that runs tasks.",
+          "whereISeeIt": "Task Manager performance tab",
+          "whyItMatters": "High CPU can make systems slow.",
+          "example": "CPU at 90 percent"
+        },
+        {
+          "word": "Startup",
+          "plainEnglish": "Apps that run when computer starts.",
+          "whereISeeIt": "Task Manager startup tab",
+          "whyItMatters": "Too many startup apps slow boot.",
+          "example": "Disable high-impact startup app"
+        }
+      ]
+    },
+    {
+      "id": "m1_1",
+      "level": 1,
+      "roomId": "room1_1",
+      "title": "Sarah Forgot Her Password",
+      "npc": "Sarah",
+      "ticket": "Sarah cannot sign in and needs urgent access.",
+      "clue": "Her account exists but password is unknown.",
+      "tooltip": "Verify identity before any reset.",
+      "whyItMatters": "Account security matters as much as speed.",
+      "careerConnection": "Password resets are core help desk tasks.",
+      "videoUrl": "https://www.youtube.com/embed/WYz9zv2nH9M",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Windows_11_Accounts_Settings.png",
+      "interactiveDemo": {
+        "prompt": "First step before reset?",
+        "options": [
+          "Verify user identity",
+          "Share admin password",
+          "Disable account forever"
+        ],
+        "correctIndex": 0,
+        "hint": "Security first."
+      },
+      "actionTask": "Reset a test password and confirm successful sign-in.",
+      "repeatTask": "Repeat reset flow with fewer hints.",
+      "breakFixTask": "Set wrong temp password, then correct it.",
+      "explainQuestions": [
+        "What happened?",
+        "Why is identity verification important?",
+        "How would you communicate this to a user?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Sarah signs in successfully and securely.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Identity Verification",
+          "plainEnglish": "Confirming the person is who they claim.",
+          "whereISeeIt": "Password reset process",
+          "whyItMatters": "Prevents unauthorized access.",
+          "example": "Verify employee ID"
+        },
+        {
+          "word": "Reset",
+          "plainEnglish": "Set a new password or setting.",
+          "whereISeeIt": "Account tools",
+          "whyItMatters": "Restores access safely.",
+          "example": "Reset account password"
+        }
+      ]
+    },
+    {
+      "id": "m1_2",
+      "level": 1,
+      "roomId": "room1_2",
+      "title": "The Folder Nobody Can Open",
+      "npc": "Boss",
+      "ticket": "Team folder shows Access Denied for multiple users.",
+      "clue": "Permission inheritance changed yesterday.",
+      "tooltip": "Check Security permissions before changing ownership.",
+      "whyItMatters": "Permission issues stop teams from working.",
+      "careerConnection": "Access control is routine endpoint support.",
+      "videoUrl": "https://www.youtube.com/embed/Y5vVfVjX8x8",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Windows_Security_Tab.png",
+      "interactiveDemo": {
+        "prompt": "Best permission model for safety?",
+        "options": [
+          "Least privilege",
+          "Everyone full control",
+          "No permissions"
+        ],
+        "correctIndex": 0,
+        "hint": "Grant only what is needed."
+      },
+      "actionTask": "Grant read access to the correct user group and retest.",
+      "repeatTask": "Repeat on a second test folder.",
+      "breakFixTask": "Accidentally remove needed group, then restore it.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did your fix work?",
+        "How do permissions relate to security?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Team can access folder with correct rights.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Permission",
+          "plainEnglish": "Rules that control access.",
+          "whereISeeIt": "Folder Security tab",
+          "whyItMatters": "Protects data and workflow.",
+          "example": "Read only for intern"
+        },
+        {
+          "word": "Least Privilege",
+          "plainEnglish": "Give only required access.",
+          "whereISeeIt": "Security best practice",
+          "whyItMatters": "Reduces risk and mistakes.",
+          "example": "No admin rights by default"
+        }
+      ]
+    },
+    {
+      "id": "m1_3",
+      "level": 1,
+      "roomId": "room1_3",
+      "title": "Find The Setting",
+      "npc": "Mike",
+      "ticket": "Mike cannot find where to change app defaults.",
+      "clue": "Some options are in Settings, others in Control Panel.",
+      "tooltip": "Check both settings tools based on task type.",
+      "whyItMatters": "Wrong tool wastes support time.",
+      "careerConnection": "Help desk moves between both interfaces constantly.",
+      "videoUrl": "https://www.youtube.com/embed/gquwQ4B1vS0",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Windows_11_Control_Panel.png",
+      "interactiveDemo": {
+        "prompt": "Where to check first for modern app defaults?",
+        "options": [
+          "Settings app",
+          "Device BIOS",
+          "Task Manager"
+        ],
+        "correctIndex": 0,
+        "hint": "Start modern, then fallback classic."
+      },
+      "actionTask": "Find app default settings and change one test association.",
+      "repeatTask": "Repeat with another safe setting.",
+      "breakFixTask": "Set wrong default app then restore the correct one.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did this process work?",
+        "How would you teach this to a user?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Mike can find and update the right setting.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Default App",
+          "plainEnglish": "The app used automatically for a file type.",
+          "whereISeeIt": "Settings > Apps",
+          "whyItMatters": "Wrong defaults frustrate users.",
+          "example": "PDF opens in browser"
+        },
+        {
+          "word": "Control Panel",
+          "plainEnglish": "Classic Windows settings tool.",
+          "whereISeeIt": "Windows search",
+          "whyItMatters": "Some options still live there.",
+          "example": "Programs and Features"
+        }
+      ]
+    },
+    {
+      "id": "m1_4",
+      "level": 1,
+      "roomId": "room1_4",
+      "title": "Share The Family Photos",
+      "npc": "Grandma",
+      "ticket": "Grandma wants family photos shared with Sarah only.",
+      "clue": "Current share is blocked for Sarah.",
+      "tooltip": "Configure share and security permissions together.",
+      "whyItMatters": "Sharing is useful only when access is correct and safe.",
+      "careerConnection": "Desktop support sets shared folders for teams.",
+      "videoUrl": "https://www.youtube.com/embed/xQ8QXW9m8mA",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/36/Windows_Folder_Sharing.png",
+      "interactiveDemo": {
+        "prompt": "Who should get access?",
+        "options": [
+          "Only required user",
+          "Everyone on network",
+          "No one"
+        ],
+        "correctIndex": 0,
+        "hint": "Share as narrowly as possible."
+      },
+      "actionTask": "Share folder with Sarah account and verify open/read access.",
+      "repeatTask": "Repeat with a second folder and fewer hints.",
+      "breakFixTask": "Remove Sarah permission by mistake then restore it.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did this permission setup work?",
+        "How would you secure this in a workplace?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Sarah can access photos and no extra users can.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Share",
+          "plainEnglish": "Give network access to folder.",
+          "whereISeeIt": "Folder Sharing tab",
+          "whyItMatters": "Enables collaboration.",
+          "example": "Share photos folder"
+        },
+        {
+          "word": "Access",
+          "plainEnglish": "Permission to open or edit files.",
+          "whereISeeIt": "Sharing/security settings",
+          "whyItMatters": "Too much or too little causes issues.",
+          "example": "Read access only"
+        }
+      ]
+    },
+    {
+      "id": "m1_5",
+      "level": 1,
+      "roomId": "room1_5",
+      "title": "Make The Computer Yours",
+      "npc": "Sarah",
+      "ticket": "Sarah wants display and accessibility settings adjusted.",
+      "clue": "Text looks too small and colors are hard to read.",
+      "tooltip": "Use personalization and accessibility for usability.",
+      "whyItMatters": "Readable setups reduce mistakes and frustration.",
+      "careerConnection": "Support teams tune user environments for productivity.",
+      "videoUrl": "https://www.youtube.com/embed/7xQm5dN1hWk",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Windows_11_Personalization_Settings.png",
+      "interactiveDemo": {
+        "prompt": "Which change helps readability most quickly?",
+        "options": [
+          "Increase text scale",
+          "Change wallpaper only",
+          "Disable monitor"
+        ],
+        "correctIndex": 0,
+        "hint": "Fix readability first."
+      },
+      "actionTask": "Adjust text size and theme for readability and verify with user.",
+      "repeatTask": "Repeat with one additional personalization setting.",
+      "breakFixTask": "Set unreadable contrast, then restore usable setting.",
+      "explainQuestions": [
+        "What happened?",
+        "Why did this improve usability?",
+        "How would this matter in IT support?"
+      ],
+      "verificationChecklist": [
+        "Can explain",
+        "Can perform",
+        "Can troubleshoot",
+        "Can repeat three times"
+      ],
+      "ticketCompletion": "Sarah can read and use the system comfortably.",
+      "xpReward": 10,
+      "confidenceReward": 1,
+      "translationTerms": [
+        {
+          "word": "Accessibility",
+          "plainEnglish": "Settings that make computer easier to use.",
+          "whereISeeIt": "Accessibility settings",
+          "whyItMatters": "Supports different user needs.",
+          "example": "Larger text scale"
+        },
+        {
+          "word": "Theme",
+          "plainEnglish": "Visual style for colors and backgrounds.",
+          "whereISeeIt": "Personalization settings",
+          "whyItMatters": "Can improve comfort and clarity.",
+          "example": "High-contrast theme"
+        }
+      ]
+    }
+  ]
+}
