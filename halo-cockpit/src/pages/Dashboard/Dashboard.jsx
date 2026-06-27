@@ -67,7 +67,7 @@ export default function Dashboard() {
           <Card className="bg-hudPanel shadow-halo">
             <h2 className="section-title text-haloBlue">Actions</h2>
             <div className="dashboard-actions">
-              <Link className="button" to={`/missions/${currentMissionId}/ticket`}>Continue Mission</Link>
+              <Link className="button" to={currentMissionId ? `/missions/${currentMissionId}/ticket` : '/missions'}>Continue Mission</Link>
               <Link className="button" to="/glossary">Glossary</Link>
               <Link className="button" to="/tickets">Tickets</Link>
               <Link className="button" to="/calls">Repeat Queue</Link>
