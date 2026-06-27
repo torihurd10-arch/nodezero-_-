@@ -53,7 +53,7 @@ export default function MissionPage() {
   const index = sectionOrder.indexOf(section)
   const previousSection = index > 0 ? sectionOrder[index - 1] : null
   const nextSection = index < sectionOrder.length - 1 ? sectionOrder[index + 1] : null
-  const totalSteps = 10
+  const totalSteps = sectionOrder.length
   const stepIndex = Math.min(index + 1, totalSteps)
   const previousDone = previousSection === 'action'
     ? progress.isSectionDone(missionId, 'action') || progress.isSectionDone(missionId, 'do')
@@ -79,7 +79,7 @@ export default function MissionPage() {
         onReset={progress.resetAll}
       />
       <main className="layout-stack">
-        <Panel className="bg-hudPanel shadow-halo">
+        <Panel className="bg-hudPanel shadow-halo mission-step-banner">
           <p className="hero-line"><strong>{mission.title}</strong> - Step {stepIndex} of {totalSteps}</p>
         </Panel>
         <StepComponent

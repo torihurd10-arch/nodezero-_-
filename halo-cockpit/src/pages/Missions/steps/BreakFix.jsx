@@ -1,3 +1,5 @@
+import GlossaryTray from '../../../components/missions/GlossaryTray'
+import MissionSimulator from '../../../components/missions/MissionSimulator'
 import Panel from '../../../components/ui/Panel'
 
 export default function BreakFix({ mission, progress }) {
@@ -6,7 +8,8 @@ export default function BreakFix({ mission, progress }) {
       <Panel title="Break/Fix Challenge">
         <div className="section-body">
           <p>{mission.breakFixTask}</p>
-          <button className="button" type="button" onClick={() => progress.markSectionDone(mission.id, 'breakfix')}>Mark Break/Fix Done</button>
+          <MissionSimulator mission={mission} mode="breakfix" onComplete={() => progress.markSectionDone(mission.id, 'breakfix')} />
+          <GlossaryTray terms={mission.translationTerms} />
         </div>
       </Panel>
     </section>

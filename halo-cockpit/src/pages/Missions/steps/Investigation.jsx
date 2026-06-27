@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import GlossaryTray from '../../../components/missions/GlossaryTray'
+import NpcDialogue from '../../../components/missions/NpcDialogue'
 import Panel from '../../../components/ui/Panel'
 
 export default function Investigation({ mission, progress }) {
@@ -18,6 +20,7 @@ export default function Investigation({ mission, progress }) {
     <section className="mission-frame">
       <Panel title="Investigate">
         <div className="section-body">
+          <NpcDialogue mission={mission} />
           <div className="desktop-sim">
             <div className="desktop-header">
               <strong>Fake Desktop Simulator</strong>
@@ -36,6 +39,7 @@ export default function Investigation({ mission, progress }) {
             <button className="button" type="button" onClick={checkAnswer}>Check</button>
             <button className="button" type="button" onClick={() => setFeedback('feedback-hint')}>Need a Hint?</button>
           </div>
+          <GlossaryTray terms={mission.translationTerms} />
           {feedback ? <p className={feedback}>{feedback === 'feedback-ok' ? '✔ Correct' : feedback === 'feedback-hint' ? `💡 ${mission.interactiveDemo.hint}` : '❌ Try Again'}</p> : null}
         </div>
       </Panel>

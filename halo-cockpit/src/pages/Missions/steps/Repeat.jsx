@@ -9,7 +9,10 @@ export default function Repeat({ mission, progress }) {
           <p>{mission.repeatTask}</p>
           <p><strong>Guided attempt</strong> {'->'} <strong>Hinted attempt</strong> {'->'} <strong>No-hint attempt</strong> {'->'} <strong>Timer challenge</strong> {'->'} <strong>New scenario challenge</strong></p>
           <p><strong>Repeat Count:</strong> {count}/3</p>
-          <button className="button" type="button" onClick={() => progress.logRepeat(mission.id)}>Log Repeat</button>
+          <div className="button-row">
+            <button className="button" type="button" onClick={() => progress.logRepeat(mission.id)}>Log Repeat</button>
+            <button className="button" type="button" onClick={() => progress.scheduleRepeat(mission.id, count >= 2 ? 'yellow' : 'red', count >= 2)}>Schedule Review Call</button>
+          </div>
         </div>
       </Panel>
     </section>

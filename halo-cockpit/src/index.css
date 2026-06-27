@@ -159,6 +159,15 @@ select {
   margin-top: 16px;
 }
 
+.mission-step-banner,
+.mission-frame,
+.panel,
+.card,
+.desktop-sim,
+.modal-card {
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+}
+
 .dashboard-grid,
 .mission-grid,
 .glossary-grid,
@@ -223,6 +232,106 @@ label {
 
 .desktop-sim {
   background: linear-gradient(180deg, rgba(8, 25, 43, 0.96), rgba(12, 32, 54, 0.92));
+}
+
+.sim-layout {
+  gap: 14px;
+}
+
+.glossary-tray {
+  margin-top: 4px;
+}
+
+.npc-dialogue {
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.npc-role {
+  color: var(--good);
+  font-size: 0.9rem;
+  margin: 0 0 6px;
+}
+
+.desktop-icons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.desktop-icon,
+.file-tile,
+.sidebar-link,
+.breadcrumb-link,
+.call-link {
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  background: rgba(13, 37, 62, 0.82);
+  color: var(--text);
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.desktop-icon-badge {
+  display: block;
+  color: #7ecdf8;
+  margin-bottom: 6px;
+}
+
+.explorer-shell {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 12px;
+}
+
+.explorer-sidebar,
+.explorer-pane,
+.task-table {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  background: rgba(7, 20, 34, 0.78);
+}
+
+.file-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.file-tile-active {
+  border-color: var(--good);
+  box-shadow: 0 0 0 1px rgba(137, 240, 189, 0.5);
+}
+
+.breadcrumb-row,
+.sim-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.task-row {
+  display: grid;
+  grid-template-columns: 1.7fr 0.6fr 0.8fr 0.8fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.task-row-head {
+  color: var(--good);
+  font-weight: 600;
+}
+
+.call-link:hover,
+.desktop-icon:hover,
+.file-tile:hover,
+.sidebar-link:hover,
+.breadcrumb-link:hover {
+  background: rgba(28, 72, 112, 0.96);
 }
 
 .desktop-header {
@@ -311,6 +420,14 @@ input[type="search"] {
   color: #7ecdf8;
 }
 
+.border-haloBlue {
+  border-color: #7ecdf8;
+}
+
+.backdrop-blur-xs {
+  backdrop-filter: blur(4px);
+}
+
 .shadow-halo {
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 16px 40px rgba(0, 0, 0, 0.22);
 }
@@ -330,6 +447,12 @@ input[type="search"] {
   .ticket-grid,
   .glossary-grid,
   .calls-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .desktop-icons,
+  .file-grid,
+  .explorer-shell {
     grid-template-columns: 1fr;
   }
 

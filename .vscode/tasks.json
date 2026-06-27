@@ -800,6 +800,17 @@
 				"robocopy '${workspaceFolder}\\halo-cockpit\\dist' '${workspaceFolder}' /E /R:1 /W:1 /NFL /NDL /NJH /NJS /NP; if ($LASTEXITCODE -lt 8) { Copy-Item -Path '${workspaceFolder}\\halo-cockpit\\dist\\index.html' -Destination '${workspaceFolder}\\404.html' -Force; exit 0 } else { exit $LASTEXITCODE }"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Publish dist via robocopy noninteractive 2",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"robocopy '${workspaceFolder}\\halo-cockpit\\dist' '${workspaceFolder}' /E /R:1 /W:1 /NFL /NDL /NJH /NJS /NP; if ($LASTEXITCODE -lt 8) { Copy-Item -Path '${workspaceFolder}\\halo-cockpit\\dist\\index.html' -Destination '${workspaceFolder}\\404.html' -Force; exit 0 } else { exit $LASTEXITCODE }"
+			],
+			"group": "build"
 		}
 	]
 }

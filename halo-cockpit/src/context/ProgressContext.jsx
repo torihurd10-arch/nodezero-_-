@@ -158,7 +158,9 @@ export function ProgressProvider({ children }) {
     const ready = answers.explain && answers.perform && answers.troubleshoot && answers.repeat && answers.withoutHints
     if (ready) {
       markSectionDone(missionId, 'verification')
+      setConfidence((value) => value + 1)
     } else {
+      setConfidence((value) => Math.max(0, value - 1))
       scheduleRepeat(missionId, 'red', false)
     }
     return ready

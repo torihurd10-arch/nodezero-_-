@@ -1,3 +1,5 @@
+import GlossaryTray from '../../../components/missions/GlossaryTray'
+import MissionSimulator from '../../../components/missions/MissionSimulator'
 import Panel from '../../../components/ui/Panel'
 
 export default function Action({ mission, progress }) {
@@ -7,19 +9,15 @@ export default function Action({ mission, progress }) {
         <div className="section-body">
           <p>{mission.actionTask.instructions}</p>
           <p><strong>Expected result:</strong> {mission.actionTask.expectedResult}</p>
-          <div className="media-wrap">
-            <img src={mission.imageUrl} alt={mission.actionTask.screenshotExample} />
-          </div>
-          <button
-            className="button"
-            type="button"
-            onClick={() => {
+          <MissionSimulator
+            mission={mission}
+            mode="action"
+            onComplete={() => {
               progress.markSectionDone(mission.id, 'do')
               progress.markSectionDone(mission.id, 'action')
             }}
-          >
-            Mark Action Done
-          </button>
+          />
+          <GlossaryTray terms={mission.translationTerms} />
         </div>
       </Panel>
     </section>

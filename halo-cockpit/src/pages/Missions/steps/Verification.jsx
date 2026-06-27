@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import GlossaryTray from '../../../components/missions/GlossaryTray'
 import Panel from '../../../components/ui/Panel'
 
 export default function Verification({ mission, progress }) {
@@ -19,12 +20,13 @@ export default function Verification({ mission, progress }) {
     <section className="mission-frame">
       <Panel title="Verification">
         <div className="section-body">
-          <label className="check-row"><input type="checkbox" checked={checks.explain} onChange={() => update('explain')} /> Did it work and can you explain it?</label>
-          <label className="check-row"><input type="checkbox" checked={checks.perform} onChange={() => update('perform')} /> Can you perform it?</label>
-          <label className="check-row"><input type="checkbox" checked={checks.troubleshoot} onChange={() => update('troubleshoot')} /> Can you troubleshoot it?</label>
-          <label className="check-row"><input type="checkbox" checked={checks.repeat} onChange={() => update('repeat')} /> Can you repeat it three times?</label>
-          <label className="check-row"><input type="checkbox" checked={checks.withoutHints} onChange={() => update('withoutHints')} /> Can you do it without hints?</label>
+          <label className="check-row"><input type="checkbox" checked={checks.explain} onChange={() => update('explain')} /> {mission.verificationChecklist[2] || 'Can you explain it?'}</label>
+          <label className="check-row"><input type="checkbox" checked={checks.perform} onChange={() => update('perform')} /> {mission.verificationChecklist[0] || 'Did it work?'}</label>
+          <label className="check-row"><input type="checkbox" checked={checks.troubleshoot} onChange={() => update('troubleshoot')} /> {mission.verificationChecklist[3] || 'Can you troubleshoot it?'}</label>
+          <label className="check-row"><input type="checkbox" checked={checks.repeat} onChange={() => update('repeat')} /> {mission.verificationChecklist[1] || 'Can you repeat it?'}</label>
+          <label className="check-row"><input type="checkbox" checked={checks.withoutHints} onChange={() => update('withoutHints')} /> {mission.verificationChecklist[4] || 'Can you do it without hints?'}</label>
           <button className="button" type="button" onClick={save}>Save Verification</button>
+          <GlossaryTray terms={mission.translationTerms} />
           {feedback ? <p className={feedback}>{feedback === 'feedback-ok' ? '✔ Correct' : '❌ Try Again'}</p> : null}
         </div>
       </Panel>

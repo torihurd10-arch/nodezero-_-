@@ -1,3 +1,4 @@
+import NpcDialogue from '../../../components/missions/NpcDialogue'
 import Panel from '../../../components/ui/Panel'
 
 export default function Completion({ mission, progress }) {
@@ -9,6 +10,7 @@ export default function Completion({ mission, progress }) {
     <section className="mission-frame">
       <Panel title="Customer Happy + Rewards">
         <div className="section-body">
+          <NpcDialogue mission={mission} />
           <p>{mission.ticketCompletion}</p>
           <p><strong>Ticket Ready:</strong> {unlocked ? 'Yes' : 'No'}</p>
           <p><strong>Rewards:</strong> +{mission.xpReward} XP, +{mission.confidenceReward} Confidence, New Tool Unlocked</p>

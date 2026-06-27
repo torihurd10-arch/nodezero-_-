@@ -40,13 +40,17 @@ export default function Dashboard() {
           </Panel>
           <Panel title="Today's Calls" className="bg-hudPanel shadow-halo">
             <ul className="list-clean">
-              {(calls.length ? calls.map((entry) => `${entry.mission?.title}${entry.nextDueDate ? ` (Due ${entry.nextDueDate})` : ''}`) : [
-                'Sarah cannot find Downloads',
-                'Mike cannot install Chrome',
-                'Printer offline',
-              ]).map((item) => (
-                <li key={item}>{item}</li>
-              ))}
+              {calls.length ? calls.map((entry) => (
+                <li key={entry.mission.id}>
+                  <Link className="call-link" to={`/missions/${entry.mission.id}/ticket`}>
+                    {entry.mission.title}{entry.nextDueDate ? ` (Due ${entry.nextDueDate})` : ''}
+                  </Link>
+                </li>
+              )) : [
+                <li key="fallback-sarah">Sarah cannot find Downloads</li>,
+                <li key="fallback-mike">Mike cannot install Chrome</li>,
+                <li key="fallback-printer">Printer offline</li>,
+              ]}
             </ul>
           </Panel>
         </div>
