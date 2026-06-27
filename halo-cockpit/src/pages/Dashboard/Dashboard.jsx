@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Footer from '../../components/HUD/Footer'
 import Header from '../../components/HUD/Header'
 import Card from '../../components/ui/Card'
@@ -7,10 +8,12 @@ import { useProgress } from '../../context/ProgressContext'
 import { useRepeat } from '../../context/RepeatContext'
 
 export default function Dashboard() {
-  const { getMissionById } = useMission()
+  const { getMissionById, npcs } = useMission()
   const { resetAll, xp, confidence, currentMissionId, rank, streak, promotionProgress, repeatQueue } = useProgress()
   const { calls } = useRepeat()
   const currentMission = getMissionById(currentMissionId)
+  const boss = npcs.find((entry) => entry.name === 'Boss')
+  const bossMessage = boss?.favoritePhrases?.[0] || 'Good morning, IT Intern.'
 
   return (
     <div className="app-shell">
@@ -27,17 +30,17 @@ export default function Dashboard() {
       />
       <main className="layout-stack">
         <div className="dashboard-grid">
-          <Panel title="Good Morning, IT Intern.">
-            <p>Today starts with realistic support work, not textbook reading.</p>
+          <Panel title="Good Morning, IT Intern." className="bg-hudPanel shadow-halo">
+            <p>{bossMessage}</p>
             <div className="ticket-banner">
               <p><strong>Current Mission:</strong> {currentMission?.title}</p>
-              <p><strong>Daily Goal:</strong> Finish one mission section, one repeat, and one verification step.</p>
-              <p><strong>Promotion Progress:</strong> {promotionProgress}%</p>
+              <p><strong>Daily Goal:</strong> Clear one mission, one repeat call, and one verification step.</p>
+              <p><strong>Manager Note:</strong> Solve real tickets first, then explain what you fixed.</p>
             </div>
           </Panel>
-          <Panel title="Today's Calls">
+          <Panel title="Today's Calls" className="bg-hudPanel shadow-halo">
             <ul className="list-clean">
-              {(calls.length ? calls.slice(0, 4).map((entry) => entry.mission?.title || entry.items[0]?.reason) : [
+              {(calls.length ? calls.map((entry) => `${entry.mission?.title}${entry.nextDueDate ? ` (Due ${entry.nextDueDate})` : ''}`) : [
                 'Sarah cannot find Downloads',
                 'Mike cannot install Chrome',
                 'Printer offline',
@@ -47,18 +50,28 @@ export default function Dashboard() {
             </ul>
           </Panel>
         </div>
-        <div className="dashboard-grid">
-          <Card>
-            <h2 className="section-title">Confidence System</h2>
-            <p>🟢 I can teach this</p>
-            <p>🟡 I need a reminder</p>
-            <p>🔴 I still don't get it</p>
-            <p>Low confidence adds more calls. High confidence unlocks harder tickets.</p>
+        <div className="dashboard-grid dashboard-side-grid">
+          <Card className="bg-hudPanel shadow-halo">
+            <h2 className="section-title text-haloBlue">XP Bar</h2>
+            <p>{xp} XP earned</p>
+            <h2 className="section-title text-haloBlue">Confidence Meter</h2>
+            <p>{confidence} total confidence</p>
+            <h2 className="section-title text-haloBlue">Current Rank</h2>
+            <p>{rank}</p>
+            <h2 className="section-title text-haloBlue">Streak</h2>
+            <p>{streak} day streak</p>
+            <h2 className="section-title text-haloBlue">Repeat Queue Count</h2>
+            <p>{repeatQueue.length} active repeat calls</p>
+            <p><strong>Promotion Progress:</strong> {promotionProgress}%</p>
           </Card>
-          <Card>
-            <h2 className="section-title">Repeat Queue</h2>
-            <p>{Object.keys(repeatQueue).length} active mission reviews scheduled.</p>
-            <p>Tomorrow, 3 days, 1 week, 2 weeks, 1 month.</p>
+          <Card className="bg-hudPanel shadow-halo">
+            <h2 className="section-title text-haloBlue">Actions</h2>
+            <div className="dashboard-actions">
+              <Link className="button" to={`/missions/${currentMissionId}/ticket`}>Continue Mission</Link>
+              <Link className="button" to="/glossary">Glossary</Link>
+              <Link className="button" to="/tickets">Tickets</Link>
+              <Link className="button" to="/calls">Repeat Queue</Link>
+            </div>
           </Card>
         </div>
       </main>

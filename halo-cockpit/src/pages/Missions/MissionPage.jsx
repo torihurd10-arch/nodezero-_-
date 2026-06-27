@@ -1,6 +1,7 @@
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import Footer from '../../components/HUD/Footer'
 import Header from '../../components/HUD/Header'
+import Panel from '../../components/ui/Panel'
 import { useMission } from '../../context/MissionContext'
 import { useProgress } from '../../context/ProgressContext'
 import Action from './steps/Action'
@@ -52,6 +53,8 @@ export default function MissionPage() {
   const index = sectionOrder.indexOf(section)
   const previousSection = index > 0 ? sectionOrder[index - 1] : null
   const nextSection = index < sectionOrder.length - 1 ? sectionOrder[index + 1] : null
+  const totalSteps = 10
+  const stepIndex = Math.min(index + 1, totalSteps)
 
   if (previousSection && !progress.isSectionDone(missionId, previousSection)) {
     return <Navigate to={`/missions/${missionId}/${previousSection}`} replace />
@@ -66,13 +69,16 @@ export default function MissionPage() {
         xp={progress.xp}
         confidence={progress.confidence}
         mission={mission.title}
-        calls={Math.max(Object.keys(progress.repeatQueue).length, 3)}
+        calls={Math.max(progress.repeatQueue.length, 3)}
         streak={progress.streak}
         promotionProgress={progress.promotionProgress}
         rank={progress.rank}
         onReset={progress.resetAll}
       />
       <main className="layout-stack">
+        <Panel className="bg-hudPanel shadow-halo">
+          <p className="hero-line"><strong>{mission.title}</strong> - Step {stepIndex} of {totalSteps}</p>
+        </Panel>
         <StepComponent
           mission={mission}
           progress={progress}
@@ -80,6 +86,13 @@ export default function MissionPage() {
           previousSection={previousSection}
           nextSection={nextSection}
         />
+        <Panel className="bg-hudPanel shadow-halo">
+          <div className="section-nav">
+            {previousSection ? <Link className="button" to={`/missions/${mission.id}/${previousSection}`}>Back</Link> : <button className="button" type="button" disabled>Back</button>}
+            <Link className="button" to="/">Home</Link>
+            {nextSection ? <Link className="button" to={`/missions/${mission.id}/${nextSection}`}>Next</Link> : <button className="button" type="button" disabled>Next</button>}
+          </div>
+        </Panel>
       </main>
       <Footer />
     </div>

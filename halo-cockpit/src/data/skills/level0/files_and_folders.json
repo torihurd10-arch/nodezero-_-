@@ -1,0 +1,66 @@
+{
+  "skillName": "Files & Folders",
+  "difficulty": "beginner",
+  "prerequisites": [],
+  "learningObjectives": [
+    "Understand what files and folders are",
+    "Create, rename, move, and delete folders",
+    "Find lost files using common locations"
+  ],
+  "vocabulary": ["file", "folder", "directory", "path", "Downloads", "Documents"],
+  "plainDefinitions": {
+    "file": "A single piece of information, like a document or picture.",
+    "folder": "A container that holds files and other folders.",
+    "path": "The route to a file or folder on the computer.",
+    "Downloads": "The place where files from the internet usually go.",
+    "Documents": "A common place where programs save work files."
+  },
+  "realJobUses": [
+    "Helping users find lost documents",
+    "Organizing shared folders",
+    "Cleaning up messy desktops"
+  ],
+  "commonMistakes": [
+    "Saving files in random locations",
+    "Deleting important folders",
+    "Not knowing where downloads go"
+  ],
+  "relatedSkills": ["File Explorer Navigation"],
+  "examples": [
+    "Finding a homework file in Documents",
+    "Moving pictures from Downloads to Pictures"
+  ],
+  "analogies": [
+    "Files are papers, folders are binders on a shelf."
+  ],
+  "handsOnTasks": [
+    "Create a 'School' folder and move homework files into it.",
+    "Rename 'New Folder' to 'Pictures'."
+  ],
+  "breakFixTasks": [
+    "Recover a file that was moved to the wrong folder.",
+    "Fix a messy desktop by organizing files into folders."
+  ],
+  "ticketIdeas": [
+    "User cannot find homework folder.",
+    "User saved a file but doesn't know where."
+  ],
+  "automationOpportunities": [
+    "Later: script to auto-organize files into folders."
+  ],
+  "reviewQuestions": [
+    "Where do downloaded files usually go?",
+    "Why is it important to use folders?"
+  ],
+  "miniGameIdeas": [
+    "Drag-and-drop files into the correct folders.",
+    "Match file types to their best folder."
+  ],
+  "supportedGameTypes": [
+    "Mission Ticket",
+    "File Explorer Simulation",
+    "Drag & Drop",
+    "Scenario Quiz",
+    "Break/Fix"
+  ]
+}

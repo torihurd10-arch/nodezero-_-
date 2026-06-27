@@ -299,12 +299,33 @@ input[type="search"] {
   color: var(--text);
 }
 
+.bg-hudBg {
+  background: var(--bg-soft);
+}
+
+.bg-hudPanel {
+  background: var(--panel);
+}
+
+.text-haloBlue {
+  color: #7ecdf8;
+}
+
+.shadow-halo {
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 16px 40px rgba(0, 0, 0, 0.22);
+}
+
+.dashboard-side-grid {
+  grid-template-columns: 0.8fr 1.2fr;
+}
+
 .footer-row {
   justify-content: center;
 }
 
 @media (max-width: 900px) {
   .dashboard-grid,
+  .dashboard-side-grid,
   .mission-grid,
   .ticket-grid,
   .glossary-grid,

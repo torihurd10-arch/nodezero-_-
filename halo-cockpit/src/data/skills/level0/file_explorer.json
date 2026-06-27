@@ -1,0 +1,62 @@
+{
+  "skillName": "File Explorer Navigation",
+  "difficulty": "beginner",
+  "prerequisites": ["Files & Folders"],
+  "learningObjectives": [
+    "Navigate between common folders",
+    "Use the breadcrumb/path bar",
+    "Pin folders to Quick Access"
+  ],
+  "vocabulary": ["File Explorer", "breadcrumb", "Quick Access", "address bar"],
+  "plainDefinitions": {
+    "File Explorer": "The tool that shows files and folders on your computer.",
+    "breadcrumb": "The path bar that shows where you are."
+  },
+  "realJobUses": [
+    "Finding log files",
+    "Navigating shared drives",
+    "Helping users find their stuff"
+  ],
+  "commonMistakes": [
+    "Getting lost in deep folders",
+    "Not knowing how to go back"
+  ],
+  "relatedSkills": ["Files & Folders"],
+  "examples": [
+    "Navigating from Downloads back to Documents.",
+    "Pinning a frequently used folder."
+  ],
+  "analogies": [
+    "Breadcrumbs are like a trail showing where you walked."
+  ],
+  "handsOnTasks": [
+    "Navigate from Desktop to Documents.",
+    "Pin a 'School' folder to Quick Access."
+  ],
+  "breakFixTasks": [
+    "Fix Quick Access when it shows wrong folders.",
+    "Unhide hidden items if needed."
+  ],
+  "ticketIdeas": [
+    "User says 'everything disappeared' in File Explorer.",
+    "User wants faster access to a folder."
+  ],
+  "automationOpportunities": [
+    "Later: scripts to create folder structures automatically."
+  ],
+  "reviewQuestions": [
+    "How do you go back to a previous folder?",
+    "Why is Quick Access useful?"
+  ],
+  "miniGameIdeas": [
+    "Path-following game in a fake file tree.",
+    "Drag-and-drop to build a folder path."
+  ],
+  "supportedGameTypes": [
+    "Mission Ticket",
+    "File Explorer Simulation",
+    "Drag & Drop",
+    "Scenario Quiz",
+    "Break/Fix"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "skillName": "Task Manager Basics",
+  "difficulty": "beginner",
+  "prerequisites": [],
+  "learningObjectives": [
+    "Open Task Manager",
+    "View CPU and memory usage",
+    "End a frozen app safely"
+  ],
+  "vocabulary": ["Task Manager", "CPU", "memory", "process", "end task"],
+  "plainDefinitions": {
+    "Task Manager": "A tool that shows what programs are running and how much they use.",
+    "CPU": "The computer's brain that does the work.",
+    "memory": "Short-term storage used while programs run."
+  },
+  "realJobUses": [
+    "Troubleshooting slow computers",
+    "Ending frozen apps",
+    "Checking resource usage"
+  ],
+  "commonMistakes": [
+    "Ending important system processes",
+    "Ignoring high CPU usage"
+  ],
+  "relatedSkills": ["Install & Uninstall Programs"],
+  "examples": [
+    "Ending a frozen photo viewer.",
+    "Sorting apps by memory usage."
+  ],
+  "analogies": [
+    "Task Manager is like a control room showing which machines are busy."
+  ],
+  "handsOnTasks": [
+    "Open Task Manager and sort by CPU.",
+    "End a test app safely."
+  ],
+  "breakFixTasks": [
+    "Fix a frozen app by ending its task.",
+    "Use Ctrl+Shift+Esc when Task Manager won't open."
+  ],
+  "ticketIdeas": [
+    "Computer is very slow.",
+    "Screen is stuck on one app."
+  ],
+  "automationOpportunities": [
+    "Later: scripts to monitor and log high CPU apps."
+  ],
+  "reviewQuestions": [
+    "When should you use Task Manager?",
+    "What should you avoid ending?"
+  ],
+  "miniGameIdeas": [
+    "Spot the heavy app in a list.",
+    "Timed challenge to end the right task."
+  ],
+  "supportedGameTypes": [
+    "Mission Ticket",
+    "Task Manager Simulation",
+    "Scenario Quiz",
+    "Break/Fix",
+    "Speed Run"
+  ]
+}

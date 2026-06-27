@@ -1,0 +1,62 @@
+{
+  "skillName": "Install & Uninstall Programs",
+  "difficulty": "beginner",
+  "prerequisites": [],
+  "learningObjectives": [
+    "Run installers correctly",
+    "Recognize when a program is installed",
+    "Uninstall unwanted programs safely"
+  ],
+  "vocabulary": ["installer", "setup", "Apps & Features", "uninstall"],
+  "plainDefinitions": {
+    "installer": "A program that sets up another program on your computer.",
+    "Apps & Features": "Windows settings page where you manage installed programs."
+  },
+  "realJobUses": [
+    "Installing required software for users",
+    "Removing malware or junk programs"
+  ],
+  "commonMistakes": [
+    "Closing installers too early",
+    "Installing from unsafe sources",
+    "Not uninstalling unused apps"
+  ],
+  "relatedSkills": ["Task Manager Basics"],
+  "examples": [
+    "Installing a browser like Chrome.",
+    "Removing a game that slows the computer."
+  ],
+  "analogies": [
+    "An installer is like a delivery person setting up furniture in your house."
+  ],
+  "handsOnTasks": [
+    "Install a simple program from an installer.",
+    "Uninstall an old program from Apps & Features."
+  ],
+  "breakFixTasks": [
+    "Fix a failed install by rerunning the installer.",
+    "Remove leftover folders after uninstall."
+  ],
+  "ticketIdeas": [
+    "Program won't install.",
+    "Computer slow due to too many apps."
+  ],
+  "automationOpportunities": [
+    "Later: silent installs and scripted uninstalls."
+  ],
+  "reviewQuestions": [
+    "Where do you go to uninstall programs?",
+    "How do you know a program installed correctly?"
+  ],
+  "miniGameIdeas": [
+    "Spot the safe vs unsafe installer.",
+    "Order the steps of installing a program."
+  ],
+  "supportedGameTypes": [
+    "Mission Ticket",
+    "Desktop Simulation",
+    "Settings Simulation",
+    "Scenario Quiz",
+    "Break/Fix"
+  ]
+}

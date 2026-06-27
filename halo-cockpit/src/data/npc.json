@@ -1,30 +1,42 @@
-[
-  {
-    "id": "sarah",
-    "name": "Sarah",
-    "role": "Office User",
-    "traits": ["forgets passwords", "loses files under pressure"],
-    "dialogueStyle": "Direct and anxious"
-  },
-  {
-    "id": "mike",
-    "name": "Mike",
-    "role": "Creative User",
-    "traits": ["downloads random software", "clicks fast without reading"],
-    "dialogueStyle": "Casual and rushed"
-  },
-  {
-    "id": "grandma",
-    "name": "Grandma",
-    "role": "Family User",
-    "traits": ["calls everything the Google", "misplaces pictures"],
-    "dialogueStyle": "Warm and confused"
-  },
-  {
-    "id": "boss",
-    "name": "Boss",
-    "role": "Team Lead",
-    "traits": ["assigns tickets", "tracks promotions"],
-    "dialogueStyle": "Short and practical"
-  }
-]
+{
+  "npc": [
+    {
+      "name": "Sarah",
+      "role": "Student",
+      "traits": ["loses files", "forgets passwords", "saves everything on desktop"],
+      "favoritePhrases": [
+        "I swear I saved it!",
+        "Can you help me find my homework?",
+        "My password worked yesterday..."
+      ]
+    },
+    {
+      "name": "Mike",
+      "role": "Coworker",
+      "traits": ["installs random software", "clicks suspicious links"],
+      "favoritePhrases": [
+        "I found this cool program online.",
+        "Now my computer is acting weird."
+      ]
+    },
+    {
+      "name": "Grandma",
+      "role": "Family",
+      "traits": ["calls everything 'the Google'", "loses pictures"],
+      "favoritePhrases": [
+        "My pictures disappeared from the Google.",
+        "Can you make it like it was before?"
+      ]
+    },
+    {
+      "name": "Boss",
+      "role": "Manager",
+      "traits": ["assigns tickets", "gives feedback", "promotes you"],
+      "favoritePhrases": [
+        "Good morning, IT Intern.",
+        "Great work on yesterday's tickets.",
+        "You're ready for harder calls."
+      ]
+    }
+  ]
+}

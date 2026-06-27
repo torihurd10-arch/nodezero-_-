@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { useMission } from './MissionContext'
 import { getCurrentMissionId, getUnlockedMissionIds } from '../utils/progression'
-import { scheduleReview } from '../utils/repeatQueue'
+import { clearRepeatEntry, normalizeRepeatQueue, scheduleRepeatEntry } from '../utils/repeatQueue'
 import { CONFIDENCE_GAIN, COMPLETION_XP, TICKET_OPEN_XP, getPromotionProgress, getRankTitle } from '../utils/xp'
 import { readJson, readNumber, removeKeys, writeJson, writeNumber } from '../utils/storage'
 
@@ -61,7 +61,7 @@ export function ProgressProvider({ children }) {
   const [explainState, setExplainState] = useState(() => readJson(STORAGE.explain, {}))
   const [verifyState, setVerifyState] = useState(() => readJson(STORAGE.verify, {}))
   const [reflectionState, setReflectionState] = useState(() => readJson(STORAGE.reflection, {}))
-  const [repeatQueue, setRepeatQueue] = useState(() => readJson(STORAGE.repeatQueue, {}))
+  const [repeatQueue, setRepeatQueue] = useState(() => normalizeRepeatQueue(readJson(STORAGE.repeatQueue, [])))
   const [streak, setStreak] = useState(() => updateStreak())
 
   const unlockedMissions = useMemo(() => getUnlockedMissionIds(missions, completedMissions), [completedMissions, missions])
@@ -158,6 +158,8 @@ export function ProgressProvider({ children }) {
     const ready = answers.explain && answers.perform && answers.troubleshoot && answers.repeat && answers.withoutHints
     if (ready) {
       markSectionDone(missionId, 'verification')
+    } else {
+      scheduleRepeat(missionId, 'red', false)
     }
     return ready
   }
@@ -180,19 +182,12 @@ export function ProgressProvider({ children }) {
     markSectionDone(missionId, 'rewards')
   }
 
-  function scheduleRepeat(missionId, reason) {
-    setRepeatQueue((current) => ({
-      ...current,
-      [missionId]: scheduleReview(missionId, reason),
-    }))
+  function scheduleRepeat(missionId, confidence = 'red', shouldEscalate = false) {
+    setRepeatQueue((current) => scheduleRepeatEntry(current, missionId, confidence, shouldEscalate))
   }
 
   function clearRepeat(missionId) {
-    setRepeatQueue((current) => {
-      const next = { ...current }
-      delete next[missionId]
-      return next
-    })
+    setRepeatQueue((current) => clearRepeatEntry(current, missionId))
   }
 
   function markWeakAreas(missionId, areas) {
@@ -233,7 +228,7 @@ export function ProgressProvider({ children }) {
     if (!ticketStatus[missionId]) missing.push('ticket')
 
     if (missing.length) {
-      scheduleRepeat(missionId, 'Mission needs reinforcement')
+      scheduleRepeat(missionId, 'red', true)
       markWeakAreas(missionId, missing)
       return { ok: false, missing }
     }

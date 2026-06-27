@@ -1,0 +1,60 @@
+{
+  "skillName": "Keyboard & Mouse Basics",
+  "difficulty": "beginner",
+  "prerequisites": [],
+  "learningObjectives": [
+    "Use basic mouse actions (click, double-click, right-click)",
+    "Understand Caps Lock, Num Lock, and basic keys",
+    "Troubleshoot simple keyboard/mouse issues"
+  ],
+  "vocabulary": ["click", "double-click", "right-click", "Caps Lock", "Num Lock"],
+  "plainDefinitions": {
+    "Caps Lock": "A key that makes all letters uppercase until turned off.",
+    "Num Lock": "A key that turns the number pad on or off."
+  },
+  "realJobUses": [
+    "Helping users when typing looks wrong",
+    "Fixing mouse that doesn't move"
+  ],
+  "commonMistakes": [
+    "Leaving Caps Lock on",
+    "Unplugging mouse or keyboard accidentally"
+  ],
+  "relatedSkills": ["Desktop Simulation"],
+  "examples": [
+    "Fixing a user who types ALL CAPS.",
+    "Reconnecting a mouse cable."
+  ],
+  "analogies": [
+    "Caps Lock is like a permanent 'Shift' key."
+  ],
+  "handsOnTasks": [
+    "Turn Caps Lock on and off and see the difference.",
+    "Practice right-click menus."
+  ],
+  "breakFixTasks": [
+    "Fix a keyboard that 'stopped typing' by checking Caps Lock.",
+    "Reconnect a mouse that was unplugged."
+  ],
+  "ticketIdeas": [
+    "Keyboard typing wrong letters.",
+    "Mouse stopped working."
+  ],
+  "automationOpportunities": [
+    "Later: scripts to detect stuck keys or input issues."
+  ],
+  "reviewQuestions": [
+    "What does Caps Lock do?",
+    "What should you check first when a mouse stops working?"
+  ],
+  "miniGameIdeas": [
+    "Keyboard shortcut matching game.",
+    "Mouse practice mini-game."
+  ],
+  "supportedGameTypes": [
+    "Mission Ticket",
+    "Desktop Simulation",
+    "Scenario Quiz",
+    "Break/Fix"
+  ]
+}

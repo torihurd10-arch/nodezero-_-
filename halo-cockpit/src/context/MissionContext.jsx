@@ -8,14 +8,15 @@ import { generateMissionPackage } from '../utils/missionGenerator'
 const MissionContext = createContext(null)
 
 function npcForMission(mission) {
-  const npcId = (mission.npc || '').toLowerCase().replace(/\s+/g, '')
-  return npcs.find((npc) => npc.id === npcId) || npcs[0]
+  const npcPool = Array.isArray(npcs?.npc) ? npcs.npc : []
+  const missionNpc = (mission.npc || '').toLowerCase().trim()
+  return npcPool.find((entry) => entry.name.toLowerCase() === missionNpc) || npcPool[0] || { name: 'Boss', favoritePhrases: ['Good morning, IT Intern.'] }
 }
 
 export function MissionProvider({ children }) {
   const missions = useMemo(() => {
-    return missionsRaw.map((mission) => {
-      const skill = skillLibrary.find((entry) => Array.isArray(entry.missionIds) && entry.missionIds.includes(mission.id)) || skillLibrary[0]
+    return missionsRaw.map((mission, index) => {
+      const skill = skillLibrary[index % skillLibrary.length] || skillLibrary[0]
       return generateMissionPackage(mission, skill, npcForMission(mission))
     })
   }, [])
@@ -38,7 +39,7 @@ export function MissionProvider({ children }) {
     () => ({
       missions,
       glossary,
-      npcs,
+      npcs: Array.isArray(npcs?.npc) ? npcs.npc : [],
       skillLibrary,
       getMissionById: (missionId) => missions.find((mission) => mission.id === missionId) || null,
     }),

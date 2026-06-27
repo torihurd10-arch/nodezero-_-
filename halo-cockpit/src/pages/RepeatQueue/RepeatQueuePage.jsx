@@ -29,13 +29,10 @@ export default function RepeatQueuePage() {
           {(calls.length ? calls : []).map((call) => (
             <Card key={call.mission.id}>
               <h3 className="section-title">{call.mission.title}</h3>
+              <p><strong>Due:</strong> {call.nextDueDate || 'Today'}</p>
+              <p><strong>Confidence:</strong> {call.confidence}</p>
               <p><strong>Weak Areas:</strong> {call.weakAreas.join(', ') || 'None listed'}</p>
               <p><strong>Repetitions:</strong> {call.repetitions}</p>
-              <ul className="list-clean">
-                {call.items.map((item) => (
-                  <li key={`${call.mission.id}-${item.label}`}>{item.label} - {item.date}</li>
-                ))}
-              </ul>
             </Card>
           ))}
           {!calls.length ? <Card><h3 className="section-title">Today's Calls</h3><p>Sarah forgot password again</p><p>Install Chrome</p><p>Find Downloads folder</p><p>Computer won't shut down</p></Card> : null}

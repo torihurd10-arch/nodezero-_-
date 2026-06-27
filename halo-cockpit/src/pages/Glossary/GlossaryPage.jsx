@@ -27,7 +27,7 @@ export default function GlossaryPage() {
         xp={progress.xp}
         confidence={progress.confidence}
         mission={currentMission?.title || 'No mission'}
-        calls={Math.max(Object.keys(progress.repeatQueue).length, 3)}
+        calls={Math.max(progress.repeatQueue.length, 3)}
         streak={progress.streak}
         promotionProgress={progress.promotionProgress}
         rank={progress.rank}
