@@ -55,8 +55,11 @@ export default function MissionPage() {
   const nextSection = index < sectionOrder.length - 1 ? sectionOrder[index + 1] : null
   const totalSteps = 10
   const stepIndex = Math.min(index + 1, totalSteps)
+  const previousDone = previousSection === 'action'
+    ? progress.isSectionDone(missionId, 'action') || progress.isSectionDone(missionId, 'do')
+    : previousSection ? progress.isSectionDone(missionId, previousSection) : true
 
-  if (previousSection && !progress.isSectionDone(missionId, previousSection)) {
+  if (previousSection && !previousDone) {
     return <Navigate to={`/missions/${missionId}/${previousSection}`} replace />
   }
 

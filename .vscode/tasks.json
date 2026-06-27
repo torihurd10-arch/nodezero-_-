@@ -585,6 +585,221 @@
 				"--all"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Stage NodeZero level rebuild files",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"add",
+				"--",
+				"index.html",
+				"room.html",
+				"step.html",
+				"glossary.html",
+				"projects.html",
+				"tickets.html",
+				"level0-engine.js"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Commit NodeZero full rebuild requested",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"commit",
+				"-m",
+				"Restored full NodeZero flow: Levels, Rooms, Steps, XP, Unlocks, Glossary, Projects, Tickets, Halo UI, Encoding Fixes"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Push NodeZero full rebuild commit",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"push",
+				"origin",
+				"main"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Commit and push NodeZero V1 final",
+			"type": "shell",
+			"command": "git add -- level0-engine.js; git commit -m \"NodeZero V1 rebuilt according to Product Specification\"; git push origin main",
+			"group": "build"
+		},
+		{
+			"label": "Commit NodeZero V1 exact message",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"commit",
+				"-m",
+				"NodeZero V1 rebuilt according to Product Specification"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Push NodeZero V1 latest",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"push",
+				"origin",
+				"main"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Stage and commit V1 mission loop rebuild",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"add",
+				"--",
+				"level0-engine.js",
+				"missions-v1.json",
+				"style.css",
+				"repeat.html"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Commit NodeZero V1 exact message",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"commit",
+				"-m",
+				"NodeZero V1 rebuilt according to Product Specification"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Push NodeZero V1 latest",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"push",
+				"origin",
+				"main"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Install Halo Cockpit dependencies",
+			"type": "shell",
+			"command": "C:\\Program Files\\nodejs\\npm.cmd",
+			"args": [
+				"install"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/halo-cockpit"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Build Halo Cockpit V1",
+			"type": "shell",
+			"command": "C:\\Program Files\\nodejs\\node.exe",
+			"args": [
+				"./node_modules/vite/bin/vite.js",
+				"build"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/halo-cockpit"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Locate Node Paths",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Write-Output 'node=C:\\Program Files\\nodejs\\node.exe'; Write-Output 'npm=C:\\Program Files\\nodejs\\npm.cmd'"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Locate Winget",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/d",
+				"/c",
+				"where winget"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Install Node LTS",
+			"type": "shell",
+			"command": "winget.exe",
+			"args": [
+				"install",
+				"OpenJS.NodeJS.LTS",
+				"-h",
+				"--accept-source-agreements",
+				"--accept-package-agreements"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Stage Halo Cockpit V1 source and build",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"add",
+				"--",
+				"halo-cockpit/src",
+				"halo-cockpit/index.html",
+				"halo-cockpit/vite.config.js",
+				"halo-cockpit/src/data/skills",
+				"index.html",
+				"404.html",
+				"assets",
+				"favicon.svg",
+				"icons.svg"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Publish Halo Cockpit dist to root",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Copy-Item -Path '${workspaceFolder}\\halo-cockpit\\dist\\*' -Destination '${workspaceFolder}' -Recurse -Force; Copy-Item -Path '${workspaceFolder}\\halo-cockpit\\dist\\index.html' -Destination '${workspaceFolder}\\404.html' -Force"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Publish dist via robocopy noninteractive",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"robocopy '${workspaceFolder}\\halo-cockpit\\dist' '${workspaceFolder}' /E /R:1 /W:1 /NFL /NDL /NJH /NJS /NP; if ($LASTEXITCODE -lt 8) { Copy-Item -Path '${workspaceFolder}\\halo-cockpit\\dist\\index.html' -Destination '${workspaceFolder}\\404.html' -Force; exit 0 } else { exit $LASTEXITCODE }"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Publish dist via robocopy noninteractive 2",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"robocopy '${workspaceFolder}\\halo-cockpit\\dist' '${workspaceFolder}' /E /R:1 /W:1 /NFL /NDL /NJH /NJS /NP; if ($LASTEXITCODE -lt 8) { Copy-Item -Path '${workspaceFolder}\\halo-cockpit\\dist\\index.html' -Destination '${workspaceFolder}\\404.html' -Force; exit 0 } else { exit $LASTEXITCODE }"
+			],
+			"group": "build"
 		}
 	]
 }
