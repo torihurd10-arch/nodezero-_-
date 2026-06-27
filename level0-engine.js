@@ -1,502 +1,650 @@
 (function () {
   const XP_KEY = "nodezero_xp";
-  const STATE_KEY = "nodezero_level0_state_v4";
+  const PROGRESS_KEY = "nodezero_progress";
+  const STEP_PROGRESS_KEY = "nodezero_step_progress";
+  const ANSWERS_KEY = "nodezero_answers";
+  const PROJECTS_KEY = "nodezero_project_progress";
   const STEP_XP = 10;
   const ROOM_XP = 20;
 
   const STEP_FLOW = [
-    { id: 1, slug: "learn", label: "Learn" },
-    { id: 2, slug: "see", label: "See" },
-    { id: 3, slug: "do", label: "Do" },
-    { id: 4, slug: "test", label: "Test" },
-    { id: 5, slug: "break", label: "Break" },
-    { id: 6, slug: "fix", label: "Fix" },
-    { id: 7, slug: "explain", label: "Explain" },
-    { id: 8, slug: "repeat", label: "Repeat" },
-    { id: 9, slug: "apply", label: "Apply to a Job" }
+    "Learn",
+    "See",
+    "Do",
+    "Test",
+    "Break",
+    "Fix",
+    "Explain",
+    "Repeat",
+    "Apply to a Job"
   ];
 
-  const ROOM_META = [
-    { id: "0_1", title: "Room 0.1 - What Is a Computer?", summary: "Meet the four core parts of a computer and how work flows through them.", ticket: "User says the laptop is slow and asks what to check first." },
-    { id: "0_2", title: "Room 0.2 - What Is Windows Doing?", summary: "Understand the operating system as the manager of apps, files, and hardware.", ticket: "User signs in to a blank desktop and needs triage." },
-    { id: "0_3", title: "Room 0.3 - What Is PowerShell?", summary: "Learn why shell commands speed up support work and make tasks repeatable.", ticket: "Team needs quick system info from many PCs." },
-    { id: "0_4", title: "Room 0.4 - What Is Intune / MDM?", summary: "See how cloud device management sets policy, apps, and compliance.", ticket: "Remote laptop is missing policy and company settings." },
-    { id: "0_5", title: "Room 0.5 - Files & Folders", summary: "Use paths, file types, and permissions to keep work organized.", ticket: "Shared file is missing and path is unclear." },
-    { id: "0_6", title: "Room 0.6 - Networking Basics", summary: "Connect DNS, IP, ports, and protocols into one mental model.", ticket: "Site works by IP but fails by name." },
-    { id: "0_7", title: "Room 0.7 - Command Prompt Basics", summary: "Navigate folders and run core commands with confidence.", ticket: "Script fails because terminal is in the wrong folder." },
-    { id: "0_8", title: "Room 0.8 - PowerShell Basics", summary: "Use objects, cmdlets, and pipelines to automate support checks.", ticket: "Need one command to list stopped services." },
-    { id: "0_9", title: "Room 0.9 - Beginner Automation Mindset", summary: "Turn repeatable support tasks into safe, testable automation habits.", ticket: "Daily ticket steps are repeated and error-prone." }
+  const levels = [
+    { id: "level0", name: "Level 0 - Computer Fundamentals", number: 0 },
+    { id: "level1", name: "Level 1 - Windows Basics", number: 1 }
   ];
 
-  const LABELS = {
-    learn: "Core idea in simple words.",
-    see: "Visual model and real-world view.",
-    do: "Hands-on task with exact actions.",
-    test: "Quick quiz to verify understanding.",
-    break: "Intentionally reproduce a common failure.",
-    fix: "Repair using a reliable checklist.",
-    explain: "State the idea in your own words.",
-    repeat: "Short repetition mode to lock memory.",
-    apply: "Connect skill to jobs, tickets, and interviews."
+  const roomsMap = {
+    room0_1: { id: "room0_1", level: 0, levelId: "level0", title: "Files & Folders", summary: "Build confidence with files, paths, and safe organization." },
+    room0_2: { id: "room0_2", level: 0, levelId: "level0", title: "Install & Uninstall", summary: "Install software safely and remove it cleanly." },
+    room0_3: { id: "room0_3", level: 0, levelId: "level0", title: "Keyboard & Mouse", summary: "Speed up work with core navigation and shortcuts." },
+    room0_4: { id: "room0_4", level: 0, levelId: "level0", title: "File Explorer", summary: "Navigate, search, and troubleshoot file locations." },
+    room0_5: { id: "room0_5", level: 0, levelId: "level0", title: "Task Manager", summary: "Inspect processes and diagnose performance issues." },
+
+    room1_1: { id: "room1_1", level: 1, levelId: "level1", title: "User Accounts", summary: "Create and manage local user accounts." },
+    room1_2: { id: "room1_2", level: 1, levelId: "level1", title: "Permissions & Access", summary: "Understand access rights and practical permission checks." },
+    room1_3: { id: "room1_3", level: 1, levelId: "level1", title: "Control Panel & Settings", summary: "Use both interfaces to configure Windows." },
+    room1_4: { id: "room1_4", level: 1, levelId: "level1", title: "Folder Sharing", summary: "Share folders securely and verify access." },
+    room1_5: { id: "room1_5", level: 1, levelId: "level1", title: "Personalization", summary: "Apply user-safe customization and profile settings." }
   };
 
-  const GLOSSARY = [
-    ["CPU", "Processor executing instructions", "Apps and system tasks use CPU", "High CPU slows systems", "Think: computer brain"],
-    ["RAM", "Short-term active memory", "Many tabs consume RAM", "Low RAM causes lag", "Think: desk workspace"],
-    ["Operating System", "Software manager for hardware/apps", "Windows handles sessions/services", "Separates app vs OS issues", "Think: control tower"],
-    ["PowerShell", "Command shell and scripting language", "Get-Service and Get-Process", "Speeds repeated tasks", "Think: system remote"],
-    ["Intune", "Cloud endpoint management", "Deploy policy to company devices", "Core modern endpoint skill", "Think: fleet control"],
-    ["Path", "Address to a file or folder", "C:/Users/Name/Documents/file.txt", "Wrong paths break tasks", "Think: street address"],
-    ["DNS", "Name to IP translation", "example.com -> IP", "Common root cause of web failures", "Think: internet phonebook"],
-    ["IP Address", "Numeric network identity", "Used in ping/troubleshooting", "Foundational networking concept", "Think: network house number"],
-    ["Command Prompt", "Windows text command shell", "cd/dir/ipconfig", "Fast diagnostics", "Think: direct text control"],
-    ["Cmdlet", "Verb-Noun PowerShell command", "Get-Help, Get-Item", "Consistent syntax helps speed", "Think: command blocks"],
-    ["Automation", "Repeatable scripted workflow", "Daily checks as script", "Reduces human error", "Think: build once run often"],
-    ["Runbook", "Documented support process", "Incident response checklist", "Consistency across team", "Think: playbook"]
-  ].map(function (i) {
-    return { term: i[0], definition: i[1], example: i[2], matters: i[3], memory: i[4] };
+  const rooms = Object.keys(roomsMap).map(function (id) {
+    return roomsMap[id];
   });
 
-  const PROJECTS = [
-    { id: "p1", title: "System Snapshot Checklist", summary: "Collect CPU, RAM, disk, and OS evidence in one report.", steps: ["Capture CPU/Memory/Disk", "Record OS version", "Write 5-line health summary"], verify: "Another person can spot likely bottleneck.", job: "Help desk first-line triage", xp: 40 },
-    { id: "p2", title: "Path Recovery Drill", summary: "Break and fix a file path issue.", steps: ["Create nested folders", "Break path intentionally", "Recover and verify access"], verify: "File opens by exact path and shortcut.", job: "Shared drive support", xp: 45 },
-    { id: "p3", title: "DNS vs Network Triage", summary: "Differentiate DNS failure from full outage.", steps: ["Test IP connectivity", "Test domain connectivity", "Write root-cause note"], verify: "Diagnosis clearly identifies DNS or broader outage.", job: "NOC/help desk workflow", xp: 50 },
-    { id: "p4", title: "PowerShell Service Audit", summary: "List stopped services and export findings.", steps: ["Run Get-Service", "Filter stopped", "Export findings"], verify: "Report includes service, status, and action.", job: "Endpoint maintenance", xp: 50 },
-    { id: "p5", title: "Mini Automation Playbook", summary: "Design a safe repeatable automation flow.", steps: ["Pick repeated ticket", "Define input-action-output", "Test and document rollback"], verify: "Teammate can repeat flow safely.", job: "Junior operations growth path", xp: 60 }
+  const roomOrder = rooms.map(function (r) {
+    return r.id;
+  });
+
+  const glossaryTerms = [
+    { word: "Path", plain: "The exact address of a file or folder.", why: "Wrong paths cause file-not-found tickets.", where: "File Explorer, CMD, PowerShell", job: "Locate missing team documents quickly.", lab: "Create nested folders, move a file, and reopen it by full path." },
+    { word: "Extension", plain: "The file type suffix like .txt or .exe.", why: "Prevents opening the wrong file type.", where: "File Explorer details view", job: "Identify risky email attachments.", lab: "Enable extension view and classify 10 files." },
+    { word: "Process", plain: "A running program instance.", why: "Helps diagnose slow or stuck apps.", where: "Task Manager", job: "Spot high CPU offenders in user reports.", lab: "Open three apps and identify each process." },
+    { word: "Service", plain: "A background component supporting features.", why: "Many failures are service-related.", where: "Task Manager / Services", job: "Restart failed print spooler service.", lab: "Find one stopped service and document impact." },
+    { word: "Permission", plain: "Rules that decide who can access data.", why: "Access errors are common tickets.", where: "Folder properties -> Security", job: "Grant least-privilege access to team folders.", lab: "Create a folder and test read/write with another account." },
+    { word: "DNS", plain: "Converts names to IP addresses.", why: "Name-resolution issues can block websites.", where: "Browser, ping, nslookup", job: "Differentiate DNS outage vs internet outage.", lab: "Test domain and direct IP connectivity." },
+    { word: "User Account", plain: "Identity profile used to sign in.", why: "Separates user data and permissions.", where: "Windows Accounts settings", job: "Onboard a new employee account.", lab: "Create local test user and switch profiles." },
+    { word: "Control Panel", plain: "Classic Windows settings interface.", why: "Some settings still live here.", where: "Control Panel app", job: "Adjust app defaults and device settings.", lab: "Find Programs and Features and uninstall a test app." },
+    { word: "Share", plain: "Grant network access to a folder.", why: "Enables team collaboration.", where: "Folder properties -> Sharing", job: "Set up shared team folder safely.", lab: "Share a folder and verify from another account." },
+    { word: "XP", plain: "Experience points for completed training tasks.", why: "Tracks progress and unlocks missions.", where: "Dashboard top bar", job: "Motivates step-by-step skill completion.", lab: "Complete one step and confirm XP increases." }
   ];
 
-  function buildRoomContent(meta) {
-    return {
-      roomId: meta.id,
-      title: meta.title,
-      summary: meta.summary,
-      ticket: meta.ticket,
-      steps: STEP_FLOW.map(function (f) {
-        const base = meta.title.replace(/^Room\s\d\.\d\s-\s/, "");
-        const common = {
-          step: f.id,
-          slug: f.slug,
-          title: meta.title + " - Step " + f.id + ": " + f.label,
-          explanation: [
-            base + " in simple terms: " + meta.summary,
-            "Use one clue at a time, then test one safe change.",
-            "Always verify and document outcome before moving on."
-          ],
-          visual: [
-            "Ticket -> clue -> layer -> test -> verify",
-            "Before -> action -> after",
-            "Small checks beat big guesses"
-          ]
-        };
+  const projects = [
+    {
+      id: "project_1",
+      title: "Build a Clean Practice Workspace",
+      xp: 40,
+      steps: ["Create a training folder tree.", "Add sample docs with clear names.", "Archive old files into dated folders."],
+      verify: ["Folder structure is clear and consistent.", "Naming is readable and searchable."],
+      job: "Real support teams rely on clear file hygiene."
+    },
+    {
+      id: "project_2",
+      title: "App Install/Remove Safety Drill",
+      xp: 50,
+      steps: ["Install one safe utility app.", "Capture where it appears in apps list.", "Uninstall and verify all shortcuts removed."],
+      verify: ["No broken shortcuts remain.", "Storage impact is documented."],
+      job: "Common endpoint support workflow."
+    },
+    {
+      id: "project_3",
+      title: "Task Manager Triage Report",
+      xp: 60,
+      steps: ["Capture CPU/memory usage at idle.", "Open heavy app and capture again.", "Write short diagnosis and action plan."],
+      verify: ["Report has before/after metrics.", "Action recommendation is clear."],
+      job: "Useful in first-line performance incidents."
+    },
+    {
+      id: "project_4",
+      title: "Shared Folder Access Test",
+      xp: 60,
+      steps: ["Create a shared folder.", "Grant one test user read access.", "Verify denied write for unauthorized user."],
+      verify: ["Permission behavior matches policy.", "Audit notes are saved."],
+      job: "Daily IT operations and onboarding tasks."
+    },
+    {
+      id: "project_5",
+      title: "Beginner Troubleshooting Runbook",
+      xp: 70,
+      steps: ["Pick one repeated ticket type.", "Write repeatable response checklist.", "Run simulation and refine steps."],
+      verify: ["Checklist is clear for another teammate.", "Contains verification and rollback steps."],
+      job: "Demonstrates operational maturity for junior roles."
+    }
+  ];
 
-        if (f.slug === "test") {
-          common.quiz = [
-            {
-              question: base + ": what is the first support move?",
-              options: ["Gather one clear clue", "Reinstall everything", "Skip to final fix"],
-              answer: 0
-            },
-            {
-              question: "Why verify after each change?",
-              options: ["To prove cause and effect", "To make notes longer", "To avoid learning"],
-              answer: 0
-            }
-          ];
-        } else if (f.slug === "explain") {
-          common.prompt = "Explain " + base + " in 4 plain lines to a new teammate.";
-        } else if (f.slug === "apply") {
-          common.jobTicket = "Ticket simulation: " + meta.ticket;
-          common.interview = [
-            "How would you triage this issue safely?",
-            "How do you prove the fix is stable?",
-            "How would you document handoff notes?"
-          ];
-          common.realWorld = [
-            "Used in first-line support triage.",
-            "Used in remote support communication.",
-            "Used to build repeatable team workflows."
-          ];
-        } else {
-          common.task = [
-            "Perform one check tied to this room topic.",
-            "Capture evidence in notes.",
-            "Write: Before, Action, After."
-          ];
-        }
+  const tickets = [
+    { id: "t0_1", level: 0, minXp: 0, title: "Recover Missing File", steps: ["Confirm expected file path.", "Check recent rename/move history.", "Restore access and notify user."] },
+    { id: "t0_2", level: 0, minXp: 0, title: "Uninstall Broken App", steps: ["Collect error details.", "Uninstall from Apps or Control Panel.", "Verify no startup residue remains."] },
+    { id: "t1_1", level: 1, minXp: 200, title: "Create New User Account", steps: ["Create local user.", "Assign proper role.", "Validate sign-in and profile creation."] },
+    { id: "t1_2", level: 1, minXp: 200, title: "Fix Folder Permission Denied", steps: ["Check ACL entries.", "Grant least-privilege access.", "Retest with impacted user."] },
+    { id: "t3_1", level: 3, minXp: 600, title: "Complex Multi-user Share Incident", steps: ["Map share and NTFS permissions.", "Resolve conflicting inheritance.", "Document final security model."] }
+  ];
 
-        if (f.slug === "break") {
-          common.task = [
-            "Create a safe reversible break (path typo, service stop, wrong setting).",
-            "Record exact error text.",
-            "Do not skip rollback planning."
-          ];
-        }
-
-        if (f.slug === "fix") {
-          common.task = [
-            "Undo the break from Step 5.",
-            "Verify baseline behavior is restored.",
-            "Write one-line root cause and prevention."
-          ];
-        }
-
-        if (f.slug === "repeat") {
-          common.task = [
-            "Repeat Steps 3-6 with one variation.",
-            "Complete in less time than first run.",
-            "Record the new completion time."
-          ];
-        }
-
-        return common;
-      })
-    };
-  }
-
-  const ROOMS = ROOM_META.map(buildRoomContent);
-
-  function getState() {
+  function getJson(key, fallback) {
     try {
-      const parsed = JSON.parse(localStorage.getItem(STATE_KEY) || "{}");
-      return {
-        completedSteps: parsed.completedSteps || {},
-        completedRooms: parsed.completedRooms || {},
-        answers: parsed.answers || {},
-        projectDone: parsed.projectDone || {}
-      };
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
     } catch (_err) {
-      return { completedSteps: {}, completedRooms: {}, answers: {}, projectDone: {} };
+      return fallback;
     }
   }
 
-  function setState(state) {
-    localStorage.setItem(STATE_KEY, JSON.stringify(state));
+  function setJson(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  function getProgress() {
+    return getJson(PROGRESS_KEY, {});
+  }
+
+  function getStepProgress() {
+    return getJson(STEP_PROGRESS_KEY, {});
+  }
+
+  function getAnswers() {
+    return getJson(ANSWERS_KEY, {});
+  }
+
+  function getProjectProgress() {
+    return getJson(PROJECTS_KEY, {});
   }
 
   function getXP() {
-    return parseInt(localStorage.getItem(XP_KEY) || "0", 10);
+    return Number(localStorage.getItem(XP_KEY) || "0");
   }
 
   function setXP(xp) {
     localStorage.setItem(XP_KEY, String(Math.max(0, xp)));
   }
 
-  function roomById(roomId) {
-    return ROOMS.find(function (r) { return r.roomId === roomId; });
+  function levelRooms(levelId) {
+    return rooms.filter(function (r) {
+      return r.levelId === levelId;
+    });
   }
 
-  function roomKey(roomId) {
-    return "room_" + roomId;
+  function previousRoomId(roomId) {
+    const idx = roomOrder.indexOf(roomId);
+    return idx > 0 ? roomOrder[idx - 1] : null;
   }
 
   function stepKey(roomId, step) {
-    return "room_" + roomId + "_step_" + step;
+    return roomId + "_step" + step;
   }
 
-  function roomIndex(roomId) {
-    return ROOMS.findIndex(function (r) { return r.roomId === roomId; });
+  function roomCompleted(roomId) {
+    return Boolean(getProgress()[roomId]);
   }
 
-  function roomUnlocked(roomId, state) {
-    const idx = roomIndex(roomId);
-    if (idx <= 0) return true;
-    return Boolean(state.completedRooms[roomKey(ROOMS[idx - 1].roomId)]);
+  function countCompletedRoomsInLevel(levelNumber) {
+    const progress = getProgress();
+    return roomOrder.filter(function (id) {
+      const room = roomsMap[id];
+      return room.level === levelNumber && progress[id];
+    }).length;
   }
 
-  function stepUnlocked(roomId, step, state) {
-    if (!roomUnlocked(roomId, state)) return false;
-    if (step <= 1) return true;
-    return Boolean(state.completedSteps[stepKey(roomId, step - 1)]);
-  }
+  function ensureLevelGateMarkers(levelNumber) {
+    const progress = getProgress();
+    const completed = countCompletedRoomsInLevel(levelNumber);
+    const nextLevel = levelNumber + 1;
 
-  function completedStepCount(roomId, state) {
-    return STEP_FLOW.filter(function (f) { return state.completedSteps[stepKey(roomId, f.id)]; }).length;
-  }
-
-  function dashboardPercent(state) {
-    const total = ROOMS.length * STEP_FLOW.length;
-    return Math.floor((Object.keys(state.completedSteps).length / total) * 100);
-  }
-
-  function grantStepCompletion(roomId, step) {
-    const state = getState();
-    let gained = 0;
-    const key = stepKey(roomId, step);
-
-    if (!state.completedSteps[key]) {
-      state.completedSteps[key] = true;
-      gained += STEP_XP;
+    for (let i = 1; i <= completed; i += 1) {
+      progress["room" + nextLevel + "_gate_" + i] = true;
     }
 
-    const roomDone = completedStepCount(roomId, state) === STEP_FLOW.length;
-    const rk = roomKey(roomId);
-    if (roomDone && !state.completedRooms[rk]) {
-      state.completedRooms[rk] = true;
-      gained += ROOM_XP;
-    }
-
-    setState(state);
-    if (gained > 0) setXP(getXP() + gained);
-    return { gained: gained, roomDone: roomDone };
+    setJson(PROGRESS_KEY, progress);
   }
 
-  function markProjectComplete(projectId) {
-    const state = getState();
-    if (state.projectDone[projectId]) return false;
-    const p = PROJECTS.find(function (x) { return x.id === projectId; });
-    state.projectDone[projectId] = true;
-    setState(state);
-    if (p) setXP(getXP() + p.xp);
+  function areAllStepsDone(roomId) {
+    const steps = getStepProgress();
+    for (let i = 1; i <= 9; i += 1) {
+      if (!steps[stepKey(roomId, i)]) return false;
+    }
     return true;
   }
 
-  function roomHref(prefix, roomId) {
-    return prefix + "level0/room" + roomId + "/room" + roomId + ".html";
+  function markStepComplete(roomId, step) {
+    const steps = getStepProgress();
+    const key = stepKey(roomId, step);
+    let gained = 0;
+
+    if (!steps[key]) {
+      steps[key] = true;
+      gained += STEP_XP;
+    }
+
+    setJson(STEP_PROGRESS_KEY, steps);
+
+    if (areAllStepsDone(roomId)) {
+      const progress = getProgress();
+      if (!progress[roomId]) {
+        progress[roomId] = true;
+        gained += ROOM_XP;
+        setJson(PROGRESS_KEY, progress);
+        ensureLevelGateMarkers(roomsMap[roomId].level);
+      }
+    }
+
+    if (gained > 0) {
+      setXP(getXP() + gained);
+    }
+
+    return gained;
   }
 
-  function stepHref(prefix, roomId, step) {
-    const meta = STEP_FLOW.find(function (f) { return f.id === step; });
-    return prefix + "level0/room" + roomId + "/step" + step + "_" + meta.slug + ".html";
+  function isStepUnlocked(roomId, step) {
+    if (step === 1) return true;
+    const steps = getStepProgress();
+    return Boolean(steps[stepKey(roomId, step - 1)]);
   }
 
-  function topBar(prefix) {
-    const state = getState();
+  function isRoomUnlockedInOrder(roomId) {
+    const prev = previousRoomId(roomId);
+    if (!prev) return true;
+    const prevRoom = roomsMap[prev];
+    const room = roomsMap[roomId];
+
+    if (prevRoom.level !== room.level) {
+      const priorLevelRooms = rooms.filter(function (r) {
+        return r.level < room.level;
+      });
+      return priorLevelRooms.every(function (r) {
+        return roomCompleted(r.id);
+      });
+    }
+
+    return roomCompleted(prev);
+  }
+
+  function getUnlockedRooms() {
+    const progress = JSON.parse(localStorage.getItem("nodezero_progress") || "{}");
+    const unlocked = [];
+
+    rooms.forEach(room => {
+      const levelComplete = Object.keys(progress)
+        .filter(id => id.startsWith(`room${room.level}_`))
+        .length;
+
+      if (room.level === 0 || levelComplete >= 5 || progress[room.id]) {
+        unlocked.push(room);
+      }
+    });
+
+    return unlocked;
+  }
+
+  let roomId = "";
+
+  function nextRoom() {
+    const progress = JSON.parse(localStorage.getItem("nodezero_progress") || "{}");
+    const roomIds = Object.keys(roomsMap);
+    const currentIndex = roomIds.indexOf(roomId);
+    const nextIndex = currentIndex + 1;
+
+    if (nextIndex < roomIds.length) {
+      const nextId = roomIds[nextIndex];
+      if (progress[roomId]) {
+        window.location.href = `room.html?id=${nextId}`;
+      } else {
+        alert("Complete this mission first to unlock the next room.");
+      }
+    } else {
+      alert("You've completed all rooms! Returning to dashboard.");
+      window.location.href = "index.html";
+    }
+  }
+
+  function dashboardProgress() {
+    const total = roomOrder.length * 9;
+    const done = Object.keys(getStepProgress()).length;
+    return Math.floor((done / total) * 100);
+  }
+
+  function topNav() {
     const xp = getXP();
-    const level = Math.floor(xp / 100);
-    const width = xp % 100;
-
+    const pct = xp % 100;
     return ""
       + '<header class="top-hud">'
-      + '  <div class="hud-brand">NODEZERO | LEVEL 0 COCKPIT</div>'
-      + '  <div class="hud-stats"><span>Level ' + level + '</span><span>' + xp + ' XP</span><span>' + dashboardPercent(state) + '% Complete</span></div>'
-      + '  <div class="hud-bar-wrap"><div class="hud-bar" style="width:' + width + '%"></div></div>'
-      + '  <nav class="global-nav">'
-      + '    <a href="' + prefix + 'index.html">Back to Dashboard</a>'
-      + '    <a href="' + prefix + 'glossary.html">Glossary</a>'
-      + '    <a href="' + prefix + 'projects.html">Projects</a>'
-      + '    <button id="resetProgressButton" type="button">Reset</button>'
-      + '  </nav>'
+      + '<div class="hud-brand">NODEZERO | HALO COCKPIT</div>'
+      + '<div class="hud-stats">'
+      + '  <span>XP ' + xp + '</span>'
+      + '  <span>Level ' + Math.floor(xp / 100) + '</span>'
+      + '  <span>Progress ' + dashboardProgress() + '%</span>'
+      + '</div>'
+      + '<div class="hud-bar-wrap"><div class="hud-bar" style="width:' + pct + '%"></div></div>'
+      + '<nav class="global-nav">'
+      + '  <a href="index.html">Back to Dashboard</a>'
+      + '  <a href="room.html?id=' + (roomId || roomOrder[0]) + '">Back to Room</a>'
+      + '  <a href="glossary.html">Glossary</a>'
+      + '  <a href="projects.html">Projects</a>'
+      + '  <a href="tickets.html">Tickets</a>'
+      + '  <button id="resetButton" type="button">Reset</button>'
+      + '</nav>'
       + '</header>';
   }
 
-  function renderDashboard(prefix) {
-    const state = getState();
-    const cards = ROOMS.map(function (room, idx) {
-      const unlocked = roomUnlocked(room.roomId, state);
-      const done = Boolean(state.completedRooms[roomKey(room.roomId)]);
-      const progress = completedStepCount(room.roomId, state);
+  function levelPanel(level) {
+    const unlocked = getUnlockedRooms().map(function (r) {
+      return r.id;
+    });
+
+    const cards = levelRooms(level.id).map(function (room) {
+      const doneCount = [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(function (n) {
+        return getStepProgress()[stepKey(room.id, n)];
+      }).length;
+      const done = roomCompleted(room.id);
+      const open = unlocked.includes(room.id) && isRoomUnlockedInOrder(room.id);
+
       return ""
-        + '<article class="mission-card ' + (unlocked ? "" : "locked") + '">'
-        + '  <h3>' + room.title + '</h3>'
-        + '  <p>' + room.summary + '</p>'
-        + '  <p class="progress-line">Progress: ' + progress + '/9 ' + (done ? '<span class="check">check</span>' : '') + '</p>'
-        + '  <p class="progress-line">Room XP: 110 total</p>'
-        + (unlocked
-          ? '  <a class="hud-btn" href="' + roomHref(prefix, room.roomId) + '">Enter Mission</a>'
-          : '  <button class="hud-btn" disabled>Locked - complete Room ' + idx + '.x first</button>')
-        + '</article>';
-    }).join("");
-
-    return topBar(prefix)
-      + '<main class="center-shell">'
-      + '  <section class="hero-panel"><h1>Level 0 Dashboard</h1><p>TryHackMe-style flow: Dashboard -> Rooms -> Pages -> Steps.</p><p>Complete steps in order to unlock next room.</p></section>'
-      + '  <section class="room-grid">' + cards + '</section>'
-      + '</main>';
-  }
-
-  function renderRoom(prefix, roomId) {
-    const state = getState();
-    const room = roomById(roomId);
-    if (!room) return topBar(prefix) + '<main class="center-shell"><section class="hero-panel"><p>Room not found.</p></section></main>';
-    if (!roomUnlocked(roomId, state)) {
-      return topBar(prefix) + '<main class="center-shell"><section class="hero-panel"><h1>' + room.title + '</h1><p>This room is locked until previous room is complete.</p><a class="hud-btn" href="' + prefix + 'index.html">Back to Dashboard</a></section></main>';
-    }
-
-    const stepCards = STEP_FLOW.map(function (f) {
-      const unlocked = stepUnlocked(roomId, f.id, state);
-      const done = state.completedSteps[stepKey(roomId, f.id)];
-      return ""
-        + '<article class="step-card ' + (unlocked ? "" : "locked") + '">'
-        + '<h3>Step ' + f.id + ': ' + f.label + '</h3>'
-        + '<p>' + LABELS[f.slug] + '</p>'
-        + '<p>' + (done ? 'Completed check' : 'Not completed') + '</p>'
-        + (unlocked
-          ? '<a class="hud-btn" href="' + stepHref(prefix, roomId, f.id) + '">Open Step</a>'
+        + '<article class="mission-card ' + (open ? "" : "locked") + '">'
+        + '<h3>' + room.id + ' - ' + room.title + (done ? ' [Complete]' : '') + '</h3>'
+        + '<p>' + room.summary + '</p>'
+        + '<p class="progress-line">Progress: ' + doneCount + '/9 ' + (done ? '<span class="check">check</span>' : '') + '</p>'
+        + (open
+          ? '<a class="hud-btn" href="room.html?id=' + room.id + '">Start Room</a>'
           : '<button class="hud-btn" disabled>Locked</button>')
         + '</article>';
-    }).join("");
+    }).join('');
 
-    return topBar(prefix)
+    return '<section class="level-panel"><h2>' + level.name + '</h2><div class="room-grid">' + cards + '</div></section>';
+  }
+
+  function renderDashboard() {
+    const levelBlocks = levels.map(levelPanel).join('');
+    return topNav()
       + '<main class="center-shell">'
-      + '<section class="hero-panel"><h1>' + room.title + '</h1><p>' + room.summary + '</p><p>Scenario: ' + room.ticket + '</p><div class="flow-links"><a class="hud-btn" href="' + prefix + 'index.html">Back to Dashboard</a><a class="hud-btn" href="' + prefix + 'glossary.html">Glossary</a><a class="hud-btn" href="' + prefix + 'projects.html">Projects</a></div></section>'
-      + '<section class="step-grid">' + stepCards + '</section>'
+      + '<section class="hero-panel"><h1>Level Dashboard</h1><p>Levels contain rooms. Rooms contain steps. Steps follow Learn -> See -> Do -> Test -> Break -> Fix -> Explain -> Repeat -> Apply.</p></section>'
+      + levelBlocks
       + '</main>';
   }
 
-  function renderStep(prefix, roomId, step) {
-    const state = getState();
-    const room = roomById(roomId);
-    if (!room) return topBar(prefix) + '<main class="center-shell"><section class="hero-panel"><p>Step not found.</p></section></main>';
-    if (!roomUnlocked(roomId, state)) return topBar(prefix) + '<main class="center-shell"><section class="hero-panel"><p>Room is locked.</p></section></main>';
-    if (!stepUnlocked(roomId, step, state)) return topBar(prefix) + '<main class="center-shell"><section class="hero-panel"><p>This step unlocks after previous step.</p><a class="hud-btn" href="' + roomHref(prefix, roomId) + '">Back to Room</a></section></main>';
+  function roomContent(room) {
+    const stepButtons = STEP_FLOW.map(function (name, idx) {
+      const step = idx + 1;
+      const unlocked = isStepUnlocked(room.id, step);
+      const done = Boolean(getStepProgress()[stepKey(room.id, step)]);
+      return '<a class="step-pill ' + (done ? 'done ' : '') + (unlocked ? '' : 'locked') + '" ' + (unlocked ? 'href="step.html?room=' + room.id + '&step=' + step + '"' : 'href="#"') + '>Step ' + step + ' - ' + name + (done ? ' [check]' : '') + '</a>';
+    }).join('');
 
-    const data = room.steps.find(function (s) { return s.step === step; });
-    const prevHref = step > 1 ? stepHref(prefix, roomId, step - 1) : roomHref(prefix, roomId);
-    const nextHref = step < 9 ? stepHref(prefix, roomId, step + 1) : roomHref(prefix, roomId);
-
-    const makeList = function (arr) {
-      return '<ul>' + arr.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>';
-    };
-
-    const quizHtml = data.quiz
-      ? '<h2>Quiz</h2><form id="quizForm">'
-        + data.quiz.map(function (q, i) {
-          return '<div class="quiz-block"><p>' + q.question + '</p>'
-            + q.options.map(function (o, oi) {
-              return '<label class="quiz-option"><input type="radio" name="q_' + i + '" value="' + oi + '"> ' + o + '</label>';
-            }).join('')
-            + '</div>';
-        }).join('')
-        + '<button class="hud-btn" type="submit">Submit Quiz</button></form><p id="quizResult" class="result-line"></p>'
-      : '';
-
-    const applyHtml = data.jobTicket
-      ? '<h2>Job Ticket</h2><p>' + data.jobTicket + '</p><h2>Interview Questions</h2>' + makeList(data.interview || []) + '<h2>Real-World Examples</h2>' + makeList(data.realWorld || [])
-      : '';
-
-    const taskHtml = data.task ? '<h2>Hands-on Task</h2>' + makeList(data.task) : '';
-    const explainHtml = data.prompt ? '<h2>Explain in Your Own Words</h2><p>' + data.prompt + '</p><textarea id="explainInput" rows="5" placeholder="Type your explanation here"></textarea>' : '';
-
-    return topBar(prefix)
+    return topNav()
       + '<main class="center-shell">'
-      + '<section class="hero-panel"><h1>' + data.title + '</h1><p>' + LABELS[data.slug] + '</p></section>'
-      + '<section class="content-panel"><h2>Simple Explanation</h2>' + makeList(data.explanation) + '<h2>Visual Example</h2>' + makeList(data.visual) + taskHtml + quizHtml + explainHtml + applyHtml + '</section>'
+      + '<section class="hero-panel"><h1>' + room.id + ' - ' + room.title + '</h1><p>' + room.summary + '</p><p>Complete all 9 steps to earn +20 room XP.</p></section>'
+      + '<section class="content-panel"><h2>Step Flow</h2><div class="step-pills-wrap">' + stepButtons + '</div></section>'
       + '<section class="flow-links">'
-      + '<a class="hud-btn" href="' + prefix + 'index.html">Back to Dashboard</a>'
-      + '<a class="hud-btn" href="' + roomHref(prefix, roomId) + '">Back to Room</a>'
-      + '<a class="hud-btn" href="' + prevHref + '">Previous Step</a>'
-      + '<a class="hud-btn" href="' + nextHref + '">Next Step</a>'
-      + '<a class="hud-btn" href="' + prefix + 'glossary.html">Glossary</a>'
-      + '<a class="hud-btn" href="' + prefix + 'projects.html">Projects</a>'
-      + '<button class="hud-btn" id="completeStepButton" data-room="' + roomId + '" data-step="' + step + '">Mark Step Complete (+10 XP)</button>'
+      + '<a class="hud-btn" href="index.html">Back to Dashboard</a>'
+      + '<a class="hud-btn" href="glossary.html">Glossary</a>'
+      + '<a class="hud-btn" href="projects.html">Projects</a>'
+      + '<a class="hud-btn" href="tickets.html">Tickets</a>'
+      + '<button class="hud-btn" id="nextRoomButton" type="button">Next Room</button>'
       + '</section>'
       + '</main>';
   }
 
-  function renderGlossary(prefix) {
-    const cards = GLOSSARY.map(function (g, i) {
-      return '<article class="glossary-card" data-card="' + i + '"><h3>' + g.term + '</h3><p><strong>Definition:</strong> ' + g.definition + '</p><p><strong>Real-world example:</strong> ' + g.example + '</p><p><strong>Why it matters:</strong> ' + g.matters + '</p><p><strong>How to remember it:</strong> ' + g.memory + '</p></article>';
-    }).join('');
+  function buildStepData(room, step) {
+    const stepName = STEP_FLOW[step - 1];
+    const base = room.title;
 
-    return topBar(prefix)
-      + '<main class="center-shell"><section class="hero-panel"><h1>Level 0 Glossary</h1><p>Simple definitions, examples, and memory hooks.</p><button id="flashModeButton" class="hud-btn" type="button">Toggle Flashcard Mode</button></section><section class="glossary-grid">' + cards + '</section></main>';
+    const common = {
+      simple: base + ': clear beginner explanation focused on one concept at a time.',
+      visual: 'Visual model: Ticket -> Clue -> Layer -> Action -> Verify.',
+      handsOn: 'Hands-on: perform one safe check and record before/after evidence.',
+      breakFix: 'Break/Fix: intentionally create a small reversible issue, then repair it.',
+      explainPrompt: 'Explain this step in your own words as if teaching a new teammate.',
+      repeat: 'Repeat mode: rerun the same process with a small variation.',
+      jobTicket: 'Job ticket simulation tied to ' + base + '.',
+      interview: ['What is your first safe check?', 'How do you verify your fix?', 'How do you document handoff notes?'],
+      quiz: [
+        { q: 'What should happen first?', options: ['Gather one clue', 'Reinstall immediately', 'Skip verification'], a: 0 },
+        { q: 'Why verify after changes?', options: ['Prove result', 'Take longer', 'Avoid evidence'], a: 0 }
+      ]
+    };
+
+    return {
+      title: 'Step ' + step + ' - ' + stepName,
+      simple: common.simple,
+      visual: common.visual,
+      handsOn: common.handsOn,
+      quiz: common.quiz,
+      breakFix: common.breakFix,
+      explainPrompt: common.explainPrompt,
+      repeat: common.repeat,
+      jobTicket: common.jobTicket,
+      interview: common.interview
+    };
   }
 
-  function renderProjects(prefix) {
-    const state = getState();
-    const cards = PROJECTS.map(function (p) {
-      const done = Boolean(state.projectDone[p.id]);
-      return '<article class="project-card"><h3>' + p.title + '</h3><p>' + p.summary + '</p><h4>Step-by-step</h4><ul>' + p.steps.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ul><p><strong>Verification:</strong> ' + p.verify + '</p><p><strong>Job connection:</strong> ' + p.job + '</p><p><strong>Reward:</strong> +' + p.xp + ' XP ' + (done ? 'check' : '') + '</p><button class="hud-btn project-complete" data-project="' + p.id + '"' + (done ? ' disabled' : '') + '>' + (done ? 'Completed' : ('Mark Complete (+' + p.xp + ' XP)')) + '</button></article>';
-    }).join('');
-
-    return topBar(prefix)
-      + '<main class="center-shell"><section class="hero-panel"><h1>Level 0 Projects</h1><p>Hands-on project missions with verification and job relevance.</p></section><section class="project-grid">' + cards + '</section></main>';
+  function stepSection(label, value) {
+    return '<h2>' + label + '</h2><p>' + value + '</p>';
   }
 
-  function bindReset(prefix) {
-    const btn = document.getElementById("resetProgressButton");
-    if (!btn) return;
-    btn.addEventListener("click", function () {
-      const ok = window.confirm("Reset all Level 0 progress? This clears XP, completed steps, completed rooms, saved answers, and checkmarks.");
-      if (!ok) return;
-      localStorage.clear();
-      window.location.href = prefix + "index.html";
+  function renderStep(room, step) {
+    const data = buildStepData(room, step);
+    const unlocked = isStepUnlocked(room.id, step);
+
+    if (!unlocked) {
+      return topNav()
+        + '<main class="center-shell"><section class="hero-panel"><h1>' + room.id + ' - ' + room.title + '</h1><p>This step is locked. Complete the previous step first.</p><a class="hud-btn" href="room.html?id=' + room.id + '">Back to Room</a></section></main>';
+    }
+
+    const answers = getAnswers();
+    const answerKey = stepKey(room.id, step) + '_answer';
+
+    const quiz = data.quiz.map(function (item, i) {
+      const opts = item.options.map(function (o, oi) {
+        return '<label class="quiz-option"><input type="radio" name="q_' + i + '" value="' + oi + '"> ' + o + '</label>';
+      }).join('');
+      return '<div class="quiz-block"><p>' + item.q + '</p>' + opts + '</div>';
+    }).join('');
+
+    return topNav()
+      + '<main class="center-shell">'
+      + '<section class="hero-panel"><h1>' + room.id + ' - ' + room.title + '</h1><p>' + data.title + '</p></section>'
+      + '<section class="content-panel">'
+      + stepSection('Simple explanation', data.simple)
+      + stepSection('Visual example', data.visual)
+      + stepSection('Hands-on task', data.handsOn)
+      + (step === 4 ? ('<h2>Quiz</h2><form id="quizForm">' + quiz + '<button class="hud-btn" type="submit">Check Quiz</button></form><p id="quizResult" class="result-line"></p>') : '')
+      + ((step === 5 || step === 6) ? stepSection(step === 5 ? 'Break task' : 'Fix task', data.breakFix) : '')
+      + (step === 7 ? stepSection('Explain prompt', data.explainPrompt) : '')
+      + (step === 8 ? stepSection('Repeat mode', data.repeat) : '')
+      + (step === 9 ? (stepSection('Job ticket', data.jobTicket) + '<h2>Interview questions</h2><ul>' + data.interview.map(function (q) {
+        return '<li>' + q + '</li>';
+      }).join('') + '</ul>') : '')
+      + '<h2>Answer box</h2><textarea id="answerBox" placeholder="Write your notes here...">' + (answers[answerKey] || '') + '</textarea>'
+      + '</section>'
+      + '<section class="flow-links">'
+      + '<a class="hud-btn" href="index.html">Back to Dashboard</a>'
+      + '<a class="hud-btn" href="room.html?id=' + room.id + '">Back to Room</a>'
+      + '<a class="hud-btn" href="' + (step > 1 ? ('step.html?room=' + room.id + '&step=' + (step - 1)) : ('room.html?id=' + room.id)) + '">Previous Step</a>'
+      + '<a class="hud-btn" href="' + (step < 9 ? ('step.html?room=' + room.id + '&step=' + (step + 1)) : ('room.html?id=' + room.id)) + '">Next Step</a>'
+      + '<a class="hud-btn" href="glossary.html">Glossary</a>'
+      + '<a class="hud-btn" href="projects.html">Projects</a>'
+      + '<a class="hud-btn" href="tickets.html">Tickets</a>'
+      + '<button class="hud-btn" id="completeStepButton" data-room="' + room.id + '" data-step="' + step + '">Mark Complete (+10 XP)</button>'
+      + '</section>'
+      + '</main>';
+  }
+
+  function renderGlossary() {
+    const cards = glossaryTerms.map(function (t) {
+      return '<article class="glossary-card" data-term="' + t.word.toLowerCase() + ' ' + t.plain.toLowerCase() + ' ' + t.job.toLowerCase() + '">' + '<h3>' + t.word + '</h3>' + '<p><strong>Word:</strong> ' + t.word + '</p>' + '<p><strong>Plain English:</strong> ' + t.plain + '</p>' + '<p><strong>Why it matters:</strong> ' + t.why + '</p>' + '<p><strong>Where you see it:</strong> ' + t.where + '</p>' + '<p><strong>Real job example:</strong> ' + t.job + '</p>' + '<p><strong>Mini lab:</strong> ' + t.lab + '</p>' + '</article>';
+    }).join('');
+
+    return topNav()
+      + '<main class="center-shell">'
+      + '<section class="hero-panel"><h1>Glossary</h1><p>Search terms quickly without overwhelm.</p><input id="glossarySearch" class="search-input" type="search" placeholder="Search word, meaning, or job example"></section>'
+      + '<section id="glossaryGrid" class="glossary-grid">' + cards + '</section>'
+      + '</main>';
+  }
+
+  function renderProjects() {
+    const progress = getProjectProgress();
+
+    const cards = projects.map(function (p) {
+      const done = Boolean(progress[p.id]);
+      return '<article class="project-card">'
+        + '<h3>' + p.title + (done ? ' [Complete]' : '') + '</h3>'
+        + '<p><strong>Step-by-step:</strong></p><ol>' + p.steps.map(function (s) {
+          return '<li>' + s + '</li>';
+        }).join('') + '</ol>'
+        + '<p><strong>Verification steps:</strong></p><ul>' + p.verify.map(function (s) {
+          return '<li>' + s + '</li>';
+        }).join('') + '</ul>'
+        + '<p><strong>Job connection:</strong> ' + p.job + '</p>'
+        + '<p><strong>XP reward:</strong> +' + p.xp + '</p>'
+        + (done
+          ? '<button class="hud-btn" disabled>Reward Claimed</button>'
+          : '<button class="hud-btn projectCompleteButton" data-project="' + p.id + '">Claim Project XP</button>')
+        + '</article>';
+    }).join('');
+
+    return topNav()
+      + '<main class="center-shell"><section class="hero-panel"><h1>Projects</h1><p>Beginner projects with verification and job connection.</p></section><section class="project-grid">' + cards + '</section></main>';
+  }
+
+  function renderTickets() {
+    const xp = getXP();
+    const unlocked = tickets.filter(function (t) {
+      return xp >= t.minXp;
     });
+
+    const cards = unlocked.map(function (t) {
+      return '<article class="project-card"><h3>' + t.title + '</h3><p><strong>Unlock:</strong> ' + t.minXp + ' XP</p><ol>' + t.steps.map(function (s) {
+        return '<li>' + s + '</li>';
+      }).join('') + '</ol></article>';
+    }).join('');
+
+    return topNav()
+      + '<main class="center-shell"><section class="hero-panel"><h1>Tickets</h1><p>Tickets unlock by XP: Level 0 at 0 XP, Level 1 at 200 XP, Level 3 at 600 XP.</p></section><section class="project-grid">' + cards + '</section></main>';
   }
 
-  function bindStepControls(roomId, step) {
-    const complete = document.getElementById("completeStepButton");
-    if (complete) {
-      complete.addEventListener("click", function () {
-        const out = grantStepCompletion(roomId, step);
-        window.alert("Progress saved. +" + out.gained + " XP earned." + (out.roomDone ? " Room bonus included." : ""));
+  function bindGlobalHandlers() {
+    const resetButton = document.getElementById('resetButton');
+    if (resetButton) {
+      resetButton.addEventListener('click', function () {
+        const okay = window.confirm('Reset all progress, XP, answers, and checkmarks?');
+        if (!okay) return;
+        localStorage.clear();
+        window.location.href = 'index.html';
+      });
+    }
+
+    const nextRoomButton = document.getElementById('nextRoomButton');
+    if (nextRoomButton) {
+      nextRoomButton.addEventListener('click', function () {
+        nextRoom();
+      });
+    }
+
+    const completeStepButton = document.getElementById('completeStepButton');
+    if (completeStepButton) {
+      completeStepButton.addEventListener('click', function () {
+        const rid = completeStepButton.getAttribute('data-room');
+        const step = Number(completeStepButton.getAttribute('data-step'));
+        const gained = markStepComplete(rid, step);
+        alert('Progress saved. +' + gained + ' XP');
         window.location.reload();
       });
     }
 
-    const quizForm = document.getElementById("quizForm");
+    const answerBox = document.getElementById('answerBox');
+    if (answerBox) {
+      const params = new URLSearchParams(window.location.search);
+      const rid = params.get('room') || '';
+      const step = Number(params.get('step') || '0');
+      const key = stepKey(rid, step) + '_answer';
+
+      answerBox.addEventListener('input', function () {
+        const answers = getAnswers();
+        answers[key] = answerBox.value;
+        setJson(ANSWERS_KEY, answers);
+      });
+    }
+
+    const quizForm = document.getElementById('quizForm');
     if (quizForm) {
-      quizForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const room = roomById(roomId);
-        const data = room.steps.find(function (s) { return s.step === step; });
-        const quiz = data.quiz || [];
+      quizForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const resultNode = document.getElementById('quizResult');
+        const blocks = quizForm.querySelectorAll('.quiz-block');
         let score = 0;
-        quiz.forEach(function (q, i) {
-          const picked = quizForm.querySelector('input[name="q_' + i + '"]:checked');
-          if (picked && parseInt(picked.value, 10) === q.answer) score += 1;
+
+        blocks.forEach(function (_blk, idx) {
+          const pick = quizForm.querySelector('input[name="q_' + idx + '"]:checked');
+          if (pick && Number(pick.value) === 0) score += 1;
         });
-        const node = document.getElementById("quizResult");
-        if (node) node.textContent = "Quiz score: " + score + "/" + quiz.length + ".";
-      });
-    }
 
-    const explain = document.getElementById("explainInput");
-    if (explain) {
-      const state = getState();
-      const key = stepKey(roomId, step) + "_explain";
-      explain.value = state.answers[key] || "";
-      explain.addEventListener("input", function () {
-        const next = getState();
-        next.answers[key] = explain.value;
-        setState(next);
-      });
-    }
-  }
-
-  function bindGlossaryFlash() {
-    const btn = document.getElementById("flashModeButton");
-    if (!btn) return;
-    btn.addEventListener("click", function () {
-      document.body.classList.toggle("flash-mode");
-    });
-  }
-
-  function bindProjectControls() {
-    Array.from(document.querySelectorAll(".project-complete")).forEach(function (b) {
-      b.addEventListener("click", function () {
-        if (markProjectComplete(b.dataset.project)) {
-          window.alert("Project completed and XP awarded.");
-          window.location.reload();
+        if (resultNode) {
+          resultNode.textContent = 'Quiz score: ' + score + '/' + blocks.length + '.';
         }
       });
+    }
+
+    Array.from(document.querySelectorAll('.projectCompleteButton')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const projectId = btn.getAttribute('data-project');
+        const progress = getProjectProgress();
+        if (progress[projectId]) return;
+        progress[projectId] = true;
+        setJson(PROJECTS_KEY, progress);
+
+        const project = projects.find(function (p) {
+          return p.id === projectId;
+        });
+        if (project) {
+          setXP(getXP() + project.xp);
+        }
+        window.location.reload();
+      });
     });
+
+    const glossarySearch = document.getElementById('glossarySearch');
+    if (glossarySearch) {
+      glossarySearch.addEventListener('input', function () {
+        const query = glossarySearch.value.trim().toLowerCase();
+        Array.from(document.querySelectorAll('#glossaryGrid .glossary-card')).forEach(function (card) {
+          const hay = card.getAttribute('data-term') || '';
+          card.style.display = hay.includes(query) ? '' : 'none';
+        });
+      });
+    }
   }
 
-  function render() {
-    const app = document.getElementById("app");
-    if (!app) return;
+  function renderApp() {
+    const mount = document.getElementById('app');
+    if (!mount) return;
 
-    const page = document.body.dataset.page || "dashboard";
-    const roomId = document.body.dataset.room || "";
-    const step = parseInt(document.body.dataset.step || "0", 10);
-    const prefix = document.body.dataset.rootPrefix || "./";
+    const pageType = document.body.dataset.page || 'dashboard';
+    const params = new URLSearchParams(window.location.search);
 
-    let html = "";
-    if (page === "dashboard") html = renderDashboard(prefix);
-    else if (page === "room") html = renderRoom(prefix, roomId);
-    else if (page === "step") html = renderStep(prefix, roomId, step);
-    else if (page === "glossary") html = renderGlossary(prefix);
-    else if (page === "projects") html = renderProjects(prefix);
-    else html = topBar(prefix) + '<main class="center-shell"><section class="hero-panel"><p>Unknown page.</p></section></main>';
+    let html = '';
 
-    app.innerHTML = html;
+    if (pageType === 'dashboard') {
+      roomId = roomOrder[0];
+      html = renderDashboard();
+    } else if (pageType === 'room') {
+      roomId = params.get('id') || roomOrder[0];
+      const room = roomsMap[roomId];
+      html = room ? roomContent(room) : (topNav() + '<main class="center-shell"><section class="hero-panel"><p>Room not found.</p></section></main>');
+    } else if (pageType === 'step') {
+      roomId = params.get('room') || roomOrder[0];
+      const step = Number(params.get('step') || '1');
+      const room = roomsMap[roomId];
+      html = room ? renderStep(room, step) : (topNav() + '<main class="center-shell"><section class="hero-panel"><p>Step not found.</p></section></main>');
+    } else if (pageType === 'glossary') {
+      roomId = roomOrder[0];
+      html = renderGlossary();
+    } else if (pageType === 'projects') {
+      roomId = roomOrder[0];
+      html = renderProjects();
+    } else if (pageType === 'tickets') {
+      roomId = roomOrder[0];
+      html = renderTickets();
+    } else {
+      roomId = roomOrder[0];
+      html = topNav() + '<main class="center-shell"><section class="hero-panel"><p>Unknown page type.</p></section></main>';
+    }
 
-    bindReset(prefix);
-    if (page === "step") bindStepControls(roomId, step);
-    if (page === "glossary") bindGlossaryFlash();
-    if (page === "projects") bindProjectControls();
+    mount.innerHTML = html;
+    bindGlobalHandlers();
   }
 
-  document.addEventListener("DOMContentLoaded", render);
+  window.nextRoom = nextRoom;
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderApp);
+  } else {
+    renderApp();
+  }
 })();
