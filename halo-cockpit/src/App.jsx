@@ -1,8 +1,9 @@
 import Sidebar from "./components/HUD/Sidebar"
 import MissionControl from "./components/HUD/MissionControl"
-import AIAssistant from "./components/HUD/AIAssistant"
+import AIGuide from "./components/HUD/AIGuide"
 import QuickActions from "./components/HUD/QuickActions"
 import FocusMode from "./components/HUD/FocusMode"
+import MissionSelector from "./components/HUD/MissionSelector"
 import LearnMode from "./components/Learning/LearnMode"
 import SeeMode from "./components/Learning/SeeMode"
 import PracticeMode from "./components/Learning/PracticeMode"
@@ -13,7 +14,7 @@ import MissionHistory from "./components/Stats/MissionHistory"
 import { useHUD } from "./context/HUDContext"
 
 export default function App() {
-  const { focusMode, activeModule, setActiveModule } = useHUD()
+  const { activeModule, setActiveModule } = useHUD()
 
   const modules = ["Learn", "See", "Practice"]
 
@@ -29,6 +30,11 @@ export default function App() {
 
       <div className="flex flex-col flex-1">
         <MissionControl />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 pb-0">
+          <MissionSelector />
+          <AIGuide />
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
           <QuickActions />
@@ -68,7 +74,6 @@ export default function App() {
             </div>
           </div>
 
-          {!focusMode && <AIAssistant />}
         </div>
       </div>
     </div>

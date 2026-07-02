@@ -15,9 +15,6 @@ function getInitialState() {
       recentXpGain: 0,
       missionHistory: [],
       achievements: [],
-      recentXpGain: 0,
-      missionHistory: [],
-      achievements: [],
     }
   }
 
@@ -176,6 +173,21 @@ export function HUDProvider({ children }) {
     return labels
   }, [state.xp, state.missionProgress])
 
+  const recommendedModule = useMemo(() => {
+    if (!state.missionProgress.learn) return "Learn"
+    if (!state.missionProgress.see) return "See"
+    if (!state.missionProgress.practice) return "Practice"
+    return "Practice"
+  }, [state.missionProgress])
+
+  const aiBriefing = useMemo(() => {
+    if (state.xp === 0) return "Start with Learn mode to build the data path foundation."
+    if (!state.missionProgress.learn) return "The AI recommends finishing Learn mode first."
+    if (!state.missionProgress.see) return "You’ve got the foundation. Move to See mode for visual pattern recognition."
+    if (!state.missionProgress.practice) return "Practice mode will lock in the troubleshooting habit."
+    return "All core learning modules are complete. Repeat the process to reinforce mastery."
+  }, [state.xp, state.missionProgress])
+
   const value = useMemo(
     () => ({
       focusMode: state.focusMode,
@@ -188,6 +200,8 @@ export function HUDProvider({ children }) {
       recentXpGain: state.recentXpGain,
       missionHistory: state.missionHistory,
       achievements: unlockedAchievementLabels,
+      recommendedModule,
+      aiBriefing,
       setActiveModule,
       addXP,
       startMission,
