@@ -7,6 +7,9 @@ import LearnMode from "./components/Learning/LearnMode"
 import SeeMode from "./components/Learning/SeeMode"
 import PracticeMode from "./components/Learning/PracticeMode"
 import ResourcesPanel from "./components/Learning/ResourcesPanel"
+import XPTracker from "./components/Stats/XPTracker"
+import Achievements from "./components/Stats/Achievements"
+import MissionHistory from "./components/Stats/MissionHistory"
 import { useHUD } from "./context/HUDContext"
 
 export default function App() {
@@ -56,6 +59,12 @@ export default function App() {
             <div className="mt-4 grid grid-cols-1 xl:grid-cols-[2fr_1fr] gap-4">
               {renderModule()}
               <ResourcesPanel />
+            </div>
+
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <XPTracker />
+              <Achievements />
+              <MissionHistory />
             </div>
           </div>
 

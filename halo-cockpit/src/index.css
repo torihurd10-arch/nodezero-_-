@@ -18,3 +18,37 @@ body {
 .halo-glow {
   text-shadow: 0 0 8px rgba(76, 201, 240, 0.8);
 }
+
+@keyframes xpBurst {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(76, 201, 240, 0.0);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 24px rgba(76, 201, 240, 0.35);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(76, 201, 240, 0.0);
+  }
+}
+
+@keyframes achievementPop {
+  0% {
+    transform: translateY(8px) scale(0.96);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.xp-burst {
+  animation: xpBurst 420ms ease-out;
+}
+
+.achievement-pop {
+  animation: achievementPop 280ms ease-out;
+}
