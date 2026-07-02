@@ -1,21 +1,20 @@
-/** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,jsx}'],
-  darkMode: 'class',
+  content: [
+    "./index.html",
+    "./src/**/*.{js,jsx}",
+  ],
   theme: {
     extend: {
       colors: {
-        haloBlue: '#4cc9f0',
-        haloBlueSoft: '#72e6ff',
-        haloGlow: 'rgba(76, 201, 240, 0.35)',
-        hudBg: '#0a0f14',
-        hudPanel: '#0d141c',
+        haloBlue: "#4cc9f0",
+        haloBlueSoft: "#72e6ff",
+        haloGlow: "rgba(76, 201, 240, 0.35)",
       },
       boxShadow: {
-        halo: '0 0 15px rgba(76, 201, 240, 0.4)',
+        halo: "0 0 15px rgba(76, 201, 240, 0.4)",
       },
       backdropBlur: {
-        xs: '2px',
+        xs: "2px",
       },
     },
   },

@@ -1,27 +1,21 @@
-import { useAppState } from '../../context/AppState'
-import ProgressBar from '../ui/ProgressBar'
+import { useHUD } from "../../context/HUDContext"
 
 export default function MissionControl() {
-  const { level, xp, streak, allRooms, progress, nextRoom } = useAppState()
-  const completion = allRooms.length ? (Object.keys(progress).length / allRooms.length) * 100 : 0
+  const { activeModule, missionPercent, xp } = useHUD()
 
   return (
-    <header className="halo-card mb-4">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="halo-title halo-glow text-lg">Mission Control</h1>
-          <p className="text-xs text-gray-300">Next room: {nextRoom ? nextRoom.title : 'All available rooms complete'}</p>
-        </div>
-        <div className="grid grid-cols-3 gap-2 text-xs">
-          <p className="rounded border border-white/10 px-2 py-1">Level {level}</p>
-          <p className="rounded border border-white/10 px-2 py-1">{xp} XP</p>
-          <p className="rounded border border-white/10 px-2 py-1">{streak} streak</p>
-        </div>
+    <div className="w-full bg-[#0d141c]/70 border-b border-haloBlue/20 p-4 flex justify-between items-center halo-card">
+      <div>
+        <h2 className="halo-title halo-glow text-xl">Current Mission</h2>
+        <p className="text-gray-400 text-sm">Active module: {activeModule}</p>
       </div>
-      <div className="mt-3">
-        <ProgressBar value={completion} />
-        <p className="mt-1 text-xs text-gray-400">Global progress: {Math.round(completion)}%</p>
+
+      <div className="w-1/3">
+        <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
+          <div className="h-full bg-haloBlueSoft" style={{ width: `${missionPercent}%` }}></div>
+        </div>
+        <p className="text-gray-400 text-xs mt-1">Mission Progress: {missionPercent}% • XP: {xp}</p>
       </div>
-    </header>
+    </div>
   )
 }
